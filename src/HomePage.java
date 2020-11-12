@@ -22,14 +22,18 @@ public class HomePage extends JFrame implements ActionListener {
 
 
     JButton settins = new JButton("Settings");
-    JLabel player = new JLabel("Player");
+    JLabel player = new JLabel();
     JButton play = new JButton("Play");
 
 
-    public void HomeGame(){
+    Player pro = new Player();
 
+    public HomePage(Player p){
+
+        pro.setName(p.getName());
+        player.setText(pro.getName());
         panelUp.setLayout(new GridLayout(1,4));
-        panelMid.setLayout(new GridLayout(1,4));
+        panelMid.setLayout(new GridLayout(1,1));
         panelBot.setLayout(new GridLayout(2,1));
 
         frame.add(panelUp, BorderLayout.NORTH);
@@ -41,17 +45,21 @@ public class HomePage extends JFrame implements ActionListener {
         panelBot.add(play);
         panelBot.add(home);
 
-        frame.pack();
+        frame.setSize(200,400);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        play.addActionListener(this);
 
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == play){
+            frame.dispose();
+            GamePage g = new GamePage(pro);
+        }
     }
 }
