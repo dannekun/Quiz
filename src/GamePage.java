@@ -30,7 +30,8 @@ public class GamePage extends JFrame implements ActionListener {
 
     JButton play = new JButton("Play");
 
-    List<JButton> buttonList_questions;
+    List<JButton> player1_answers;
+    List<JButton> player2_answers;
 
     Properties p = new Properties();
 
@@ -40,7 +41,7 @@ public class GamePage extends JFrame implements ActionListener {
         pro = player;
 
         try{
-            p.load(new FileInputStream("src/RoundQuestions_Properties.properties"));
+            p.load(new FileInputStream("src/RoundQuestions.properties"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -55,17 +56,17 @@ public class GamePage extends JFrame implements ActionListener {
         player2Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
 
         int totalbuttons = numberOfQuestions * numberOfRounds;
-        buttonList_questions = createButtonList(totalbuttons);
-        List<JButton> buttonList_Questions2 = createButtonList(totalbuttons);
+        player1_answers = createButtonList(totalbuttons);
+        player2_answers = createButtonList(totalbuttons);
 
         for (int i = 0; i < totalbuttons; i++) {
-            player1Panel.add(buttonList_questions.get(i));
+            player1Panel.add(player1_answers.get(i));
         }
         for (int i = 0; i < numberOfRounds; i++) {
             categoriepanel.add(new JLabel("Category"));
         }
         for (int i = 0; i <totalbuttons ; i++) {
-            player2Panel.add(buttonList_Questions2.get(i));
+            player2Panel.add(player2_answers.get(i));
         }
 
         stats.add(playerName1);

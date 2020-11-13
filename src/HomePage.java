@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 /**
@@ -22,7 +24,7 @@ public class HomePage extends JFrame implements ActionListener {
     JLabel home = new JLabel("Home");
 
 
-    JButton settins = new JButton("Settings");
+    JButton settings = new JButton("Settings");
     JLabel player = new JLabel();
     JButton play = new JButton("Play");
 
@@ -33,7 +35,7 @@ public class HomePage extends JFrame implements ActionListener {
 
         pro.setName(p.getName());
         player.setText(pro.getName());
-        panelUp.setLayout(new GridLayout(1,4));
+    //    panelUp.setLayout(new GridLayout(1,4));
         panelMid.setLayout(new GridLayout(1,1));
         panelBot.setLayout(new GridLayout(2,1));
 
@@ -41,7 +43,7 @@ public class HomePage extends JFrame implements ActionListener {
         frame.add(panelMid,BorderLayout.CENTER);
         frame.add(panelBot, BorderLayout.SOUTH);
 
-        panelUp.add(settins);
+        panelUp.add(settings);
         panelMid.add(player);
         panelBot.add(play);
         panelBot.add(home);
@@ -52,6 +54,12 @@ public class HomePage extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         play.addActionListener(this);
+        settings.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Settings s = new Settings();
+            }
+        });
     }
 
 
