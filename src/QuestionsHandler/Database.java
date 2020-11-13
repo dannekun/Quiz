@@ -12,8 +12,7 @@ import java.util.Random;
  * Quiz
  * Copyright: MIT
  */
-public class Database {
-
+abstract class Database {
 
     // General Knowledge
     // Music
@@ -25,11 +24,6 @@ public class Database {
     // f
     // f
 
-    String name = "";
-
-    public String getName() {
-        return name;
-    }
 
     //--------------------------------------------------------------------------------------//
     // Geography Answers

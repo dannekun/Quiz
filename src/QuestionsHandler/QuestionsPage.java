@@ -21,9 +21,6 @@ public class QuestionsPage {
 
     public static void main(String[] args) {
         Database g =  new GeneralKnowledge();
-        g.getName();
-
-        QuestionsPage a = new QuestionsPage("fråga", new AnswerPage("1","2","3","4"));
 
     }
 
