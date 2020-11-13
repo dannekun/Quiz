@@ -79,9 +79,10 @@ public class GamePage extends JFrame implements ActionListener {
     //    buttonList_round = createButtonList(numberOfRounds);
         buttonList_questions = createButtonList(numberOfQuestions);
         rounds = createRounds(numberOfRounds);
-
+int counter = 0;
         for (JPanel panel : rounds){
-            panel.add((Component) buttonList_questions);
+            panel.add(buttonList_questions.get(counter));
+            counter++;
         }
 
         mainPanel.setLayout(new BorderLayout());
@@ -143,7 +144,7 @@ public class GamePage extends JFrame implements ActionListener {
     }
 
     public List<JButton> createButtonList(int numberOfButtons) {
-        List<JButton> buttonList = new <>();
+        List<JButton> buttonList = new ArrayList<>();
         for (int i = 0; i <numberOfButtons; i++) {
             buttonList.add(new JButton());
         }
