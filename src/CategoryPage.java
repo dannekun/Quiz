@@ -25,7 +25,7 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
     public CategoryPage(Player p){
-        pro.setName(p.getName());
+        pro = p;
 
         frame.setSize(400,200);
         panel1.setLayout(new GridLayout(1,1));
