@@ -1,7 +1,14 @@
 import javax.swing.*;
+import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by Daniel Bojic
@@ -12,7 +19,23 @@ import java.awt.event.ActionListener;
  */
 public class GamePage extends JFrame implements ActionListener {
 
-    JLabel player1 = new JLabel();
+    JPanel player1Panel = new JPanel();
+    JPanel player2Panel = new JPanel();
+    JPanel mainPanel = new JPanel();
+
+    JLabel playerName = new JLabel();
+    JLabel score = new JLabel("0 - 0");
+
+    JButton play = new JButton("Play");
+
+ //   List<JButton> buttonList_round;
+    List<JButton> buttonList_questions;
+    List<JPanel> rounds;
+
+    Properties p = new Properties();
+
+
+ /*   JLabel player1 = new JLabel();
     JLabel player2 = new JLabel("Player 2");
 
     JLabel score = new JLabel("0 - 0");
@@ -34,14 +57,56 @@ public class GamePage extends JFrame implements ActionListener {
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel panel4 = new JPanel();
-    JFrame frame = new JFrame();
+    JFrame frame = new JFrame();*/
 
 
     Player pro = new Player();
-    public GamePage(Player p){
+    public GamePage(Player player) throws FileNotFoundException, IOException {
 
-        pro.setName(p.getName());
-        player1.setText(pro.getName());
+        pro.setName(player.getName());
+
+        try{
+            p.load(new FileInputStream("src/RoundQuestions_Properties.properties"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        String stringRounds = p.getProperty("numberOfRounds", "2");
+        int numberOfRounds = Integer.parseInt(stringRounds);
+        String stringQuestions = p.getProperty("numberOfQuestions", "2");
+        int numberOfQuestions = Integer.parseInt(stringQuestions);
+
+    //    buttonList_round = createButtonList(numberOfRounds);
+        buttonList_questions = createButtonList(numberOfQuestions);
+        rounds = createRounds(numberOfRounds);
+
+        for (JPanel panel : rounds){
+            panel.add((Component) buttonList_questions);
+        }
+
+        mainPanel.setLayout(new BorderLayout());
+        add(score, BorderLayout.NORTH);
+        add(player1Panel, BorderLayout.WEST);
+        add(player2Panel, BorderLayout.EAST);
+        add(play, BorderLayout.SOUTH);
+
+        playerName.setText(pro.getName());
+
+        player1Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
+        player1Panel.add(playerName);
+        player1Panel.add((Component) rounds);
+
+        player2Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
+        player2Panel.add(playerName);
+        player2Panel.add((Component) rounds);
+
+        play.addActionListener(this);
+
+        pack();
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    /*    player1.setText(pro.getName());
 
         frame.setSize(400, 200);
         panel1.setLayout(new GridLayout(1,3));
@@ -74,13 +139,30 @@ public class GamePage extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        play.addActionListener(this);
+        play.addActionListener(this);*/
     }
+
+    public List<JButton> createButtonList(int numberOfButtons) {
+        List<JButton> buttonList = new <>();
+        for (int i = 0; i <numberOfButtons; i++) {
+            buttonList.add(new JButton());
+        }
+        return buttonList;
+    }
+
+    public List<JPanel> createRounds(int numberOfRounds){
+        List<JPanel> panelList = new ArrayList<>();
+        for (int i = 0; i < numberOfRounds; i++) {
+            panelList.add(new JPanel());
+        }
+        return panelList;
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-            frame.dispose();
+            //frame.dispose();
             CategoryPage c = new CategoryPage(pro);
         }
     }

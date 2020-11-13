@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Created by Daniel Bojic
@@ -59,7 +60,11 @@ public class HomePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             frame.dispose();
-            GamePage g = new GamePage(pro);
+            try {
+                GamePage g = new GamePage(pro);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
     }
 }
