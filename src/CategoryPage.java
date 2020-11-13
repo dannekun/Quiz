@@ -28,7 +28,7 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
     public CategoryPage(Player p){
-        pro.setName(p.getName());
+        pro = p;
 
         category1.setText(m.getName());
         category2.setText(ma.getName());

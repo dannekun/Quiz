@@ -9,6 +9,15 @@ public class Player {
 
     String name;
     int points;
+    int round;
+
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
 
     Player(){
 

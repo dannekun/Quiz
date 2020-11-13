@@ -2,6 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by Daniel Bojic
@@ -12,74 +18,119 @@ import java.awt.event.ActionListener;
  */
 public class GamePage extends JFrame implements ActionListener {
 
-    JLabel player1 = new JLabel();
-    JLabel player2 = new JLabel("Player 2");
+    JFrame frame = new JFrame();
+    JPanel player1Panel = new JPanel();
+    JPanel player2Panel = new JPanel();
+    JPanel stats = new JPanel();
+    JPanel categoriepanel = new JPanel();
 
+    JLabel playerName1 = new JLabel();
+    JLabel playerName2 = new JLabel("Player 2");
     JLabel score = new JLabel("0 - 0");
-
-    JButton p1k1b1 = new JButton();
-    JButton p1k1b2 = new JButton();
-    JLabel kategori1 = new JLabel();
-    JButton p2k1b1 = new JButton();
-    JButton p2k1b2 = new JButton();
-
-    JButton p1k2b1 = new JButton();
-    JButton p1k2b2 = new JButton();
-    JLabel kategori2 = new JLabel();
-    JButton p2k2b1 = new JButton();
-    JButton p2k2b2 = new JButton();
 
     JButton play = new JButton("Play");
 
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel();
-    JPanel panel4 = new JPanel();
-    JFrame frame = new JFrame();
+
+    List<JButton> buttonList_questions;
+
+    Properties p = new Properties();
+
 
 
     Player pro = new Player();
-    public GamePage(Player p){
+    public GamePage(Player player) throws FileNotFoundException, IOException {
 
-        pro.setName(p.getName());
-        player1.setText(pro.getName());
+        pro = player;
 
-        frame.setSize(400, 200);
-        panel1.setLayout(new GridLayout(1,3));
-        panel2.setLayout(new GridLayout(2,5));
-        panel4.setLayout(new GridLayout(1,1));
 
-        panel1.add(player1);
-        panel1.add(score);
-        panel1.add(player2);
+        try{
+            p.load(new FileInputStream("src/RoundQuestions_Properties.properties"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        String stringRounds = p.getProperty("numberOfRounds", "2");
+        int numberOfRounds = Integer.parseInt(stringRounds);
+        String stringQuestions = p.getProperty("numberOfQuestions", "2");
+        int numberOfQuestions = Integer.parseInt(stringQuestions);
 
-        panel2.add(p1k1b1);
-        panel2.add(p1k1b2);
-        panel2.add(kategori1);
-        panel2.add(p2k1b1);
-        panel2.add(p2k1b2);
 
-        panel2.add(p1k2b1);
-        panel2.add(p1k2b2);
-        panel2.add(kategori2);
-        panel2.add(p2k2b1);
-        panel2.add(p2k2b2);
+        player1Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
+        categoriepanel.setLayout(new GridLayout(numberOfRounds+1, 1));
+        player2Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
 
-        panel4.add(play);
 
-        frame.add(panel1, BorderLayout.NORTH);
-        frame.add(panel2, BorderLayout.CENTER);
-        frame.add(panel4, BorderLayout.SOUTH);
+        int totalbuttons = numberOfQuestions * numberOfRounds;
+        buttonList_questions = createButtonList(totalbuttons);
+        List<JButton> buttonList_Questions2 = createButtonList(totalbuttons);
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        for (int i = 0; i < totalbuttons; i++) {
+            player1Panel.add(buttonList_questions.get(i));
+        }
+        for (int i = 0; i < numberOfRounds; i++) {
+            categoriepanel.add(new JLabel("Category"));
+        }
+        for (int i = 0; i <totalbuttons ; i++) {
+            player2Panel.add(buttonList_Questions2.get(i));
+        }
+
+
+        /*
+        Rond            Till
+        1       0       3
+        2       3       6
+        3       6       9
+        4       9       12
+
+         */
+
+/*
+        for (int i = (pro.getRound()*numberOfQuestions)- numberOfQuestions; i < numberOfQuestions*pro.getRound(); i++) {
+            buttonList_questions.get(i);
+        }
+
+ */
+
+        stats.add(playerName1);
+        stats.add(score);
+        stats.add(playerName2);
+        frame.add(stats, BorderLayout.NORTH);
+        frame.add(player1Panel, BorderLayout.WEST);
+        frame.add(categoriepanel, BorderLayout.CENTER);
+        frame.add(player2Panel, BorderLayout.EAST);
+        frame.add(play, BorderLayout.SOUTH);
+        playerName1.setText(pro.getName());
+
+
+
 
         play.addActionListener(this);
+
+        frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
+
+
+
+
+    public List<JButton> createButtonList(int numberOfButtons) {
+        List<JButton> buttonList = new ArrayList<>();
+        for (int i = 0; i <numberOfButtons; i++) {
+            buttonList.add(new JButton());
+        }
+        return buttonList;
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
+            pro.setRound(pro.getRound()+1);
             frame.dispose();
             CategoryPage c = new CategoryPage(pro);
         }
