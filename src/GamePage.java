@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +20,7 @@ public class GamePage extends JFrame implements ActionListener {
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
-    JPanel mainPanel = new JPanel();
+   // JPanel mainPanel = new JPanel();
 
     JLabel playerName = new JLabel();
     JLabel score = new JLabel("0 - 0");
@@ -29,7 +28,7 @@ public class GamePage extends JFrame implements ActionListener {
     JButton play = new JButton("Play");
 
  //   List<JButton> buttonList_round;
-    List<JButton> buttonList_questions;
+    List<JButton> answers;
     List<JPanel> rounds;
 
     Properties p = new Properties();
@@ -77,15 +76,15 @@ public class GamePage extends JFrame implements ActionListener {
         int numberOfQuestions = Integer.parseInt(stringQuestions);
 
     //    buttonList_round = createButtonList(numberOfRounds);
-        buttonList_questions = createButtonList(numberOfQuestions);
+        answers = createAnswers(numberOfQuestions);
         rounds = createRounds(numberOfRounds);
 int counter = 0;
         for (JPanel panel : rounds){
-            panel.add(buttonList_questions.get(counter));
+            panel.add(answers.get(counter));
             counter++;
         }
 
-        mainPanel.setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
         add(score, BorderLayout.NORTH);
         add(player1Panel, BorderLayout.WEST);
         add(player2Panel, BorderLayout.EAST);
@@ -95,11 +94,11 @@ int counter = 0;
 
         player1Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
         player1Panel.add(playerName);
-        player1Panel.add((Component) rounds);
+        player1Panel.add(rounds);
 
         player2Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
         player2Panel.add(playerName);
-        player2Panel.add((Component) rounds);
+        player2Panel.add(rounds);
 
         play.addActionListener(this);
 
@@ -143,7 +142,7 @@ int counter = 0;
         play.addActionListener(this);*/
     }
 
-    public List<JButton> createButtonList(int numberOfButtons) {
+    public List<JButton> createAnswers(int numberOfButtons) {
         List<JButton> buttonList = new ArrayList<>();
         for (int i = 0; i <numberOfButtons; i++) {
             buttonList.add(new JButton());
