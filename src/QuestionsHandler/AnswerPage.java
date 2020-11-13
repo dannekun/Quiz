@@ -27,7 +27,7 @@ public class AnswerPage {
 
     }
 
-    public void ShuffleAnswers(){
+    public List ShuffleAnswers(){
 
         List<String> answerPageList = new ArrayList<>();
 
@@ -37,6 +37,8 @@ public class AnswerPage {
         answerPageList.add(wrongAnswer3);
 
         Collections.shuffle(answerPageList);
+
+        return answerPageList;
 
     }
 

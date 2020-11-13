@@ -93,8 +93,6 @@ public class GeneralKnowledge extends Database{
 
         var b = generalKnowledgeList.get(0).getAnswers();
 
-        System.out.println(a);
-        System.out.println(b);
 
 
     }
@@ -105,7 +103,4 @@ public class GeneralKnowledge extends Database{
         return generalKnowledgeList;
     }
 
-    public static void main(String[] args) {
-        new GeneralKnowledge();
-    }
 }

@@ -1,10 +1,14 @@
 import QuestionsHandler.Database;
 import QuestionsHandler.GeneralKnowledge;
+import QuestionsHandler.Music;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,10 +30,14 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-   Database d = new GeneralKnowledge();
+   GeneralKnowledge d = new GeneralKnowledge();
+
+
 
     Player pro = new Player();
     public CategoryPage(Player p){
+
+
         pro = p;
 
         category1.setText(d.getName());
@@ -60,13 +68,17 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, d.getName());
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, d.getName());
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, d.getName());
         }
+    }
+
+    public static void main(String[] args) {
+        new CategoryPage(new Player());
     }
 }

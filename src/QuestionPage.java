@@ -1,4 +1,5 @@
 import QuestionsHandler.Database;
+import QuestionsHandler.GeneralKnowledge;
 import QuestionsHandler.QuestionsPage;
 
 import javax.swing.*;
@@ -43,21 +44,20 @@ public class QuestionPage extends JFrame implements ActionListener {
     Player pro = new Player();
 
 
+    public QuestionPage(Player p, String s){
+        if (s.equals("General Knowledge")){
 
 
-    public QuestionPage(Player p, Database d){
+        }
 
-        pro = p;
         round.setText(String.valueOf(pro.getRound()));
 
         player.setText(pro.getName());
 
         frame.setSize(400,200);
-        category.setText(d.getName());
+        //category.setText(g.getName());
 
-        List<QuestionsPage> randomListToPull = d.getAnswersfromCategory();
 
-        question.setText(randomListToPull.get(0).getQuestion().toString());
 
 
 

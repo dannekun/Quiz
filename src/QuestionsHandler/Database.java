@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class Database {
 
-
     // General Knowledge
     // Music
     // Animals & Nature
@@ -22,11 +21,14 @@ public class Database {
     // f
     // f
     // f
-
-    String name = "";
+    String name = "Database";
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<QuestionsPage> getAnswersfromCategory(){
@@ -55,9 +57,9 @@ public class Database {
 
     //--------------------------------------------------------------------------------------//
 
-    public static void main(String[] args) {
 
 
-    }
+
+
 
 }
