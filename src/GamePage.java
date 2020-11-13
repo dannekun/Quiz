@@ -81,7 +81,7 @@ public class GamePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro);
+            CategoryPage c = new CategoryPage(pro);
         }
     }
 }
