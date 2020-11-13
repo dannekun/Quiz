@@ -1,5 +1,9 @@
 package QuestionsHandler;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Created by Salah Abdinoor
  * 11/13/2020
@@ -20,6 +24,19 @@ public class AnswerPage {
         this.wrongAnswer1 = wrongAnswer1;
         this.wrongAnswer2 = wrongAnswer2;
         this.wrongAnswer3 = wrongAnswer3;
+
+    }
+
+    public void ShuffleAnswers(){
+
+        List<String> answerPageList = new ArrayList<>();
+
+        answerPageList.add(rightAnswer);
+        answerPageList.add(wrongAnswer1);
+        answerPageList.add(wrongAnswer2);
+        answerPageList.add(wrongAnswer3);
+
+        Collections.shuffle(answerPageList);
 
     }
 

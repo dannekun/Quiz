@@ -1,3 +1,6 @@
+import QuestionsHandler.Database;
+import QuestionsHandler.GeneralKnowledge;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +22,6 @@ public class Categories {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }
