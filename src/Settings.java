@@ -50,9 +50,7 @@ public class Settings extends JFrame {
                     fos = new FileOutputStream("src/RoundQuestions.properties");
                     properties.setProperty("numberOfRounds", numberOfRounds);
                     properties.setProperty("numberOfQuestions", numberOfQuestions);
-
                     properties.store(fos, "Properties generated for change numbers of rounds and questions");
-
                     fos.close();
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
