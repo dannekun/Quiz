@@ -12,7 +12,7 @@ import java.util.Random;
  * Quiz
  * Copyright: MIT
  */
-abstract class Database {
+public class Database {
 
     // General Knowledge
     // Music
