@@ -52,7 +52,6 @@ public class HomePage extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         play.addActionListener(this);
-
     }
 
 
