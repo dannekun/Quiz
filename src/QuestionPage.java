@@ -38,7 +38,9 @@ public class QuestionPage extends JFrame implements ActionListener {
     Player pro = new Player();
 
 
-    public QuestionPage(Player p){
+    public QuestionPage(Player p, Categories c){
+
+        category.setText(c.getName());
 
         pro.setName(p.getName());
         player.setText(pro.getName());

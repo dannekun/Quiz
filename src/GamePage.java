@@ -19,13 +19,13 @@ public class GamePage extends JFrame implements ActionListener {
 
     JButton p1k1b1 = new JButton();
     JButton p1k1b2 = new JButton();
-    JLabel kategori1 = new JLabel("Tv-serier");
+    JLabel kategori1 = new JLabel();
     JButton p2k1b1 = new JButton();
     JButton p2k1b2 = new JButton();
 
     JButton p1k2b1 = new JButton();
     JButton p1k2b2 = new JButton();
-    JLabel kategori2 = new JLabel("Tv-spel");
+    JLabel kategori2 = new JLabel();
     JButton p2k2b1 = new JButton();
     JButton p2k2b2 = new JButton();
 
