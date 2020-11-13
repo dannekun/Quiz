@@ -16,16 +16,24 @@ public class CategoryPage extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
     JPanel panel1 = new JPanel();
 
-    JButton category1 = new JButton("1");
-    JButton category2 = new JButton("2");
-    JButton category3 = new JButton("3");
+    JButton category1 = new JButton();
+    JButton category2 = new JButton();
+    JButton category3 = new JButton();
 
     JLabel choose = new JLabel("Choose a category");
 
+    MovieCategory m = new MovieCategory();
+    GameCategory g = new GameCategory();
+    MathCategory ma = new MathCategory();
 
     Player pro = new Player();
     public CategoryPage(Player p){
         pro = p;
+
+        category1.setText(m.getName());
+        category2.setText(ma.getName());
+        category3.setText(g.getName());
+
 
         frame.setSize(400,200);
         panel1.setLayout(new GridLayout(1,1));
@@ -50,13 +58,13 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro);
+            QuestionPage q = new QuestionPage(pro, m);
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro);
+            QuestionPage q = new QuestionPage(pro, ma);
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro);
+            QuestionPage q = new QuestionPage(pro, g);
         }
 
     }
