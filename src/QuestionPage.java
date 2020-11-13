@@ -40,7 +40,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
 
-    public QuestionPage(Player p){
+    public QuestionPage(Player p, Categories c){
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
 

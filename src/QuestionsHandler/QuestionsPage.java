@@ -1,6 +1,5 @@
 package QuestionsHandler;
 
-
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-12
@@ -8,6 +7,7 @@ package QuestionsHandler;
  * Project: Quizkampen
  * Copyright: MIT
  */
+
 public class QuestionsPage {
 
     private String question;
@@ -16,7 +16,18 @@ public class QuestionsPage {
     public QuestionsPage(String question, AnswerPage answers) {
         this.question = question;
         this.answers = answers;
+
     }
+
+    public static void main(String[] args) {
+        Database g =  new GeneralKnowledge();
+        g.getName();
+
+        QuestionsPage a = new QuestionsPage("fråga", new AnswerPage("1","2","3","4"));
+
+    }
+
+
 
     public AnswerPage getAnswers() {
         return answers;
