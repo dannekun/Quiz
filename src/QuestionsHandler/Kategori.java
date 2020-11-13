@@ -1,3 +1,5 @@
+package QuestionsHandler;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,28 @@ import java.util.List;
  */
 public class Kategori {
 
-    List<Komedi> haha = new ArrayList<>();
+
+
+    Kategori(){
+
+    }
+
+
+    public static void main(String[] args) {
+        new Kategori();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
