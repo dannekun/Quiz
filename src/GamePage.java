@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,51 +18,30 @@ import java.util.Properties;
  */
 public class GamePage extends JFrame implements ActionListener {
 
+    JFrame frame = new JFrame();
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
-    JPanel mainPanel = new JPanel();
+    JPanel stats = new JPanel();
+    JPanel categoriepanel = new JPanel();
 
-    JLabel playerName = new JLabel();
+    JLabel playerName1 = new JLabel();
+    JLabel playerName2 = new JLabel("Player 2");
     JLabel score = new JLabel("0 - 0");
 
     JButton play = new JButton("Play");
 
- //   List<JButton> buttonList_round;
+
     List<JButton> buttonList_questions;
-    List<JPanel> rounds;
 
     Properties p = new Properties();
 
-
- /*   JLabel player1 = new JLabel();
-    JLabel player2 = new JLabel("Player 2");
-
-    JLabel score = new JLabel("0 - 0");
-
-    JButton p1k1b1 = new JButton();
-    JButton p1k1b2 = new JButton();
-    JLabel kategori1 = new JLabel("Tv-serier");
-    JButton p2k1b1 = new JButton();
-    JButton p2k1b2 = new JButton();
-
-    JButton p1k2b1 = new JButton();
-    JButton p1k2b2 = new JButton();
-    JLabel kategori2 = new JLabel("Tv-spel");
-    JButton p2k2b1 = new JButton();
-    JButton p2k2b2 = new JButton();
-
-    JButton play = new JButton("Play");
-
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel();
-    JPanel panel4 = new JPanel();
-    JFrame frame = new JFrame();*/
 
 
     Player pro = new Player();
     public GamePage(Player player) throws FileNotFoundException, IOException {
 
-        pro.setName(player.getName());
+        pro = player;
+
 
         try{
             p.load(new FileInputStream("src/RoundQuestions_Properties.properties"));
@@ -76,72 +54,66 @@ public class GamePage extends JFrame implements ActionListener {
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
         int numberOfQuestions = Integer.parseInt(stringQuestions);
 
-    //    buttonList_round = createButtonList(numberOfRounds);
-        buttonList_questions = createButtonList(numberOfQuestions);
-        rounds = createRounds(numberOfRounds);
-int counter = 0;
-        for (JPanel panel : rounds){
-            panel.add(buttonList_questions.get(counter));
-            counter++;
+
+        player1Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
+        categoriepanel.setLayout(new GridLayout(numberOfRounds+1, 1));
+        player2Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
+
+
+        int totalbuttons = numberOfQuestions * numberOfRounds;
+        buttonList_questions = createButtonList(totalbuttons);
+        List<JButton> buttonList_Questions2 = createButtonList(totalbuttons);
+
+
+        for (int i = 0; i < totalbuttons; i++) {
+            player1Panel.add(buttonList_questions.get(i));
+        }
+        for (int i = 0; i < numberOfRounds; i++) {
+            categoriepanel.add(new JLabel("Category"));
+        }
+        for (int i = 0; i <totalbuttons ; i++) {
+            player2Panel.add(buttonList_Questions2.get(i));
         }
 
-        mainPanel.setLayout(new BorderLayout());
-        add(score, BorderLayout.NORTH);
-        add(player1Panel, BorderLayout.WEST);
-        add(player2Panel, BorderLayout.EAST);
-        add(play, BorderLayout.SOUTH);
 
-        playerName.setText(pro.getName());
+        /*
+        Rond            Till
+        1       0       3
+        2       3       6
+        3       6       9
+        4       9       12
 
-        player1Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
-        player1Panel.add(playerName);
-        player1Panel.add((Component) rounds);
+         */
 
-        player2Panel.setLayout(new GridLayout(numberOfRounds+1, 1));
-        player2Panel.add(playerName);
-        player2Panel.add((Component) rounds);
+
+        for (int i = (pro.getRound()*numberOfQuestions)- numberOfQuestions; i < numberOfQuestions*pro.getRound(); i++) {
+            buttonList_questions.get(i);
+        }
+
+        stats.add(playerName1);
+        stats.add(score);
+        stats.add(playerName2);
+        frame.add(stats, BorderLayout.NORTH);
+        frame.add(player1Panel, BorderLayout.WEST);
+        frame.add(categoriepanel, BorderLayout.CENTER);
+        frame.add(player2Panel, BorderLayout.EAST);
+        frame.add(play, BorderLayout.SOUTH);
+        playerName1.setText(pro.getName());
+
+
+
 
         play.addActionListener(this);
 
-        pack();
-        setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    /*    player1.setText(pro.getName());
-
-        frame.setSize(400, 200);
-        panel1.setLayout(new GridLayout(1,3));
-        panel2.setLayout(new GridLayout(2,5));
-        panel4.setLayout(new GridLayout(1,1));
-
-        panel1.add(player1);
-        panel1.add(score);
-        panel1.add(player2);
-
-        panel2.add(p1k1b1);
-        panel2.add(p1k1b2);
-        panel2.add(kategori1);
-        panel2.add(p2k1b1);
-        panel2.add(p2k1b2);
-
-        panel2.add(p1k2b1);
-        panel2.add(p1k2b2);
-        panel2.add(kategori2);
-        panel2.add(p2k2b1);
-        panel2.add(p2k2b2);
-
-        panel4.add(play);
-
-        frame.add(panel1, BorderLayout.NORTH);
-        frame.add(panel2, BorderLayout.CENTER);
-        frame.add(panel4, BorderLayout.SOUTH);
-
-        frame.setLocationRelativeTo(null);
+        frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        play.addActionListener(this);*/
     }
+
+
+
 
     public List<JButton> createButtonList(int numberOfButtons) {
         List<JButton> buttonList = new ArrayList<>();
@@ -151,19 +123,13 @@ int counter = 0;
         return buttonList;
     }
 
-    public List<JPanel> createRounds(int numberOfRounds){
-        List<JPanel> panelList = new ArrayList<>();
-        for (int i = 0; i < numberOfRounds; i++) {
-            panelList.add(new JPanel());
-        }
-        return panelList;
-    }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-            //frame.dispose();
+            pro.setRound(pro.getRound()+1);
+            frame.dispose();
             CategoryPage c = new CategoryPage(pro);
         }
     }
