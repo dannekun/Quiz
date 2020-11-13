@@ -85,10 +85,12 @@ public class GamePage extends JFrame implements ActionListener {
 
          */
 
-
+/*
         for (int i = (pro.getRound()*numberOfQuestions)- numberOfQuestions; i < numberOfQuestions*pro.getRound(); i++) {
             buttonList_questions.get(i);
         }
+
+ */
 
         stats.add(playerName1);
         stats.add(score);
