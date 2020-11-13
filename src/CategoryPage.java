@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 /**
  * Created by Daniel Bojic
@@ -22,9 +23,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-    MovieCategory m = new MovieCategory();
-    GameCategory g = new GameCategory();
-    MathCategory ma = new MathCategory();
+    Categories m = new MovieCategory();
+    Categories g = new GameCategory();
+    Categories ma = new MathCategory();
 
     Player pro = new Player();
     public CategoryPage(Player p){
@@ -66,6 +67,5 @@ public class CategoryPage extends JFrame implements ActionListener {
             frame.dispose();
             QuestionPage q = new QuestionPage(pro, g);
         }
-
     }
 }

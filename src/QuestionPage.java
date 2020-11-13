@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-12
@@ -40,9 +41,17 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
 
-    public QuestionPage(Player p){
+    public QuestionPage(Player p, Categories c){
+        if(c.getName() == "Math"){
+            category.setText(c.getName());
+        }else if (c.getName() == "Game"){
+            category.setText(c.getName());
+        }else if (c.getName() == "Movie"){
+            category.setText(c.getName());
+        }
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
+        category.setText(c.getName());
 
 
         pro.setName(p.getName());
