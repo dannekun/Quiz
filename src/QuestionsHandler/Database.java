@@ -1,9 +1,7 @@
 package QuestionsHandler;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Salah Abdinoor
@@ -29,6 +27,12 @@ public class Database {
 
     public String getName() {
         return name;
+    }
+
+    public List<QuestionsPage> getAnswersfromCategory(){
+
+        List<QuestionsPage> generalKnowledgeList = null;
+        return generalKnowledgeList;
     }
 
     //--------------------------------------------------------------------------------------//

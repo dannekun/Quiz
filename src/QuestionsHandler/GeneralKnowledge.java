@@ -99,6 +99,12 @@ public class GeneralKnowledge extends Database{
 
     }
 
+    public List<QuestionsPage> getAnswersFromCategory(){
+        Collections.shuffle(generalKnowledgeList);
+
+        return generalKnowledgeList;
+    }
+
     public static void main(String[] args) {
         new GeneralKnowledge();
     }

@@ -1,3 +1,6 @@
+import QuestionsHandler.Database;
+import QuestionsHandler.GeneralKnowledge;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,17 +26,15 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-    Categories m = new MovieCategory();
-    Categories g = new GameCategory();
-    Categories ma = new MathCategory();
+   Database d = new GeneralKnowledge();
 
     Player pro = new Player();
     public CategoryPage(Player p){
         pro = p;
 
-        category1.setText(m.getName());
-        category2.setText(ma.getName());
-        category3.setText(g.getName());
+        category1.setText(d.getName());
+        category2.setText(d.getName());
+        category3.setText(d.getName());
 
 
         frame.setSize(400,200);
@@ -59,13 +60,13 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, m);
+            QuestionPage q = new QuestionPage(pro, d);
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, ma);
+            QuestionPage q = new QuestionPage(pro, d);
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, g);
+            QuestionPage q = new QuestionPage(pro, d);
         }
     }
 }

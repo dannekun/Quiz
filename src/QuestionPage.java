@@ -1,7 +1,11 @@
+import QuestionsHandler.Database;
+import QuestionsHandler.QuestionsPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 
 /**
@@ -41,23 +45,21 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
 
-    public QuestionPage(Player p, Categories c){
-        if(c.getName() == "Math"){
-            category.setText(c.getName());
-        }else if (c.getName() == "Game"){
-            category.setText(c.getName());
-        }else if (c.getName() == "Movie"){
-            category.setText(c.getName());
-        }
+    public QuestionPage(Player p, Database d){
+
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
-        category.setText(c.getName());
 
-
-        pro.setName(p.getName());
         player.setText(pro.getName());
 
         frame.setSize(400,200);
+        category.setText(d.getName());
+
+        List<QuestionsPage> randomListToPull = d.getAnswersfromCategory();
+
+        question.setText(randomListToPull.get(0).getQuestion().toString());
+
+
 
         north.setLayout(new GridLayout(1,5));
         north.add(b1);
