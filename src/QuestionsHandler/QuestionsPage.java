@@ -8,12 +8,12 @@ package QuestionsHandler;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class QuestionPage{
+public class QuestionsPage {
 
     private String question;
     private AnswerPage answers;
 
-    public QuestionPage(String question, AnswerPage answers) {
+    public QuestionsPage(String question, AnswerPage answers) {
         this.question = question;
         this.answers = answers;
     }

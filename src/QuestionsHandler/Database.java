@@ -15,7 +15,7 @@ public class Database {
 
     //--------------------------------------------------------------------------------------//
     // General Knowledge Answers
-    private final List<QuestionPage> generalKnowledgeList = new ArrayList<>();
+    private final List<QuestionsPage> generalKnowledgeList = new ArrayList<>();
 
     private final AnswerPage GA1 = new AnswerPage("Laos", "Thailand",
             "Vietnam", "Cambodia");
@@ -49,29 +49,29 @@ public class Database {
 
     //--------------------------------------------------------------------------------------//
     // General Knowledge Questions
-    private final QuestionPage GQ1 = new QuestionPage("I vilket land är Vientiane huvudstad?", GA1);
+    private final QuestionsPage GQ1 = new QuestionsPage("I vilket land är Vientiane huvudstad?", GA1);
 
-    private final QuestionPage GQ2 = new QuestionPage("Vilket av följande är stavning?", GA2);
+    private final QuestionsPage GQ2 = new QuestionsPage("Vilket av följande är stavning?", GA2);
 
-    private final QuestionPage GQ3 = new QuestionPage("Hur många länder finns det i världen?", GA3);
+    private final QuestionsPage GQ3 = new QuestionsPage("Hur många länder finns det i världen?", GA3);
 
-    private final QuestionPage GQ4 = new QuestionPage("När fick Sverige färg-TV?", GA4);
+    private final QuestionsPage GQ4 = new QuestionsPage("När fick Sverige färg-TV?", GA4);
 
-    private final QuestionPage GQ5 = new QuestionPage("Vad hette Tokyo förr", GA5);
+    private final QuestionsPage GQ5 = new QuestionsPage("Vad hette Tokyo förr", GA5);
 
-    private final QuestionPage GQ6 = new QuestionPage("När skapades Facebook?", GA6);
+    private final QuestionsPage GQ6 = new QuestionsPage("När skapades Facebook?", GA6);
 
-    private final QuestionPage GQ7 = new QuestionPage("Vilket land har störst yta?", GA7);
+    private final QuestionsPage GQ7 = new QuestionsPage("Vilket land har störst yta?", GA7);
 
-    private final QuestionPage GQ8 = new QuestionPage("Hur många kanter har en kub?", GA8);
+    private final QuestionsPage GQ8 = new QuestionsPage("Hur många kanter har en kub?", GA8);
 
-    private final QuestionPage GQ9 = new QuestionPage("Ungefär hur mycket koffein är de i 100 kaffe", GA9);
+    private final QuestionsPage GQ9 = new QuestionsPage("Ungefär hur mycket koffein är de i 100 kaffe", GA9);
 
-    private final QuestionPage GQ10 = new QuestionPage("Vad hade Einstein för IQ?", GA10);
+    private final QuestionsPage GQ10 = new QuestionsPage("Vad hade Einstein för IQ?", GA10);
 
     //--------------------------------------------------------------------------------------//
     // Geography Answers
-    private final List<QuestionPage> geograohyList = new ArrayList<>();
+    private final List<QuestionsPage> geograohyList = new ArrayList<>();
 
 
     //--------------------------------------------------------------------------------------//
@@ -81,7 +81,7 @@ public class Database {
     //--------------------------------------------------------------------------------------//
     //--------------------------------------------------------------------------------------//
     // History Answers
-    private final List<QuestionPage> HistoryList = new ArrayList<>();
+    private final List<QuestionsPage> HistoryList = new ArrayList<>();
 
 
     //--------------------------------------------------------------------------------------//
