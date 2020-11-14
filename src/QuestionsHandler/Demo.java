@@ -1,5 +1,6 @@
 package QuestionsHandler;
 
+import QuestionsHandler.Categories.AnimalsNature;
 import QuestionsHandler.Categories.GeneralKnowledge;
 
 import java.util.List;
@@ -36,11 +37,11 @@ public class Demo {
 
         var shuffledListTemp = shuffledList;
 
-        var shuffledList2 = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject().getShuffledAnswersList();;
+        var shuffledList2 = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject().getShuffledAnswersList();
         //-------------------------------------------------------------------------------------------------------------//
 
         // This gives you gives you the same list as the previous "correctList".
-        var correctList2 = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject().getAnswersList();;
+        var correctList2 = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject().getAnswersList();
 
 
         // Run this program for a Demo. Note all the variables are different.

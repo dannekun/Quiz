@@ -20,47 +20,47 @@ public class ArtLiterature {
     // Art & Literature Answers
     private final List<Questions> artLiteratureList;
 
-    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+    private final Answers A1 = new Answers("August Strindberg", "Hjalmar Söderberg", "Björn Ranelid", "Daniel Bojic");
 
-    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+    private final Answers A2 = new Answers("Harry Martinson", "Jan Guillou", "Daniel Axelqvist", "Peter Manneberg");
 
-    private final Answers A3 = new Answers("195", "220", "90", "164");
+    private final Answers A3 = new Answers("Två", "Tre", "Fyra", "Fem");
 
-    private final Answers A4 = new Answers("1965", "1970", "1975", "1980");
+    private final Answers A4 = new Answers("Mugglare", "Troll", "Gobliner", "Gråmulare");
 
-    private final Answers A5 = new Answers("Edo", "Edoyo", "Kyoto", "Kygo");
+    private final Answers A5 = new Answers("Charles Dickens", "Frank Kafka", "William Shakespeare", "George Orwell");
 
-    private final Answers A6 = new Answers("2004", "2001", "2008", "1994");
+    private final Answers A6 = new Answers("Louvren, Paris", "British Museum, London", "Pradomuseet, Madrid", "The Metropolitan Museum of Art, New York");
 
-    private final Answers A7 = new Answers("Ryssland", "USA", "Canada", "Mongoliet");
+    private final Answers A7 = new Answers("Antonio Vivaldi", "Giacomo Puccini", "Gioacchino Rossini", "Benito Mussolini");
 
-    private final Answers A8 = new Answers("12", "8", "6", "16");
+    private final Answers A8 = new Answers("Odling", "Intryck", "Insikt", "Sjöl");
 
-    private final Answers A9 = new Answers("40mg", "1g", "400mg", "15g");
+    private final Answers A9 = new Answers("Sofokles", "Euripides", "Aischylos", "Aristoteles");
 
-    private final Answers A10 = new Answers("160", "210", "90", "110");
+    private final Answers A10 = new Answers("London", "Sydney", "New York", "Johannesburg");
 
     //--------------------------------------------------------------------------------------//
     // Art & Literature Questions
-    private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
+    private final Questions Q1 = new Questions("Efter äktenskapskrisen med Siri von Essen skrev han En dåres försvarstal. Vilken författare?", A1);
 
-    private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
+    private final Questions Q2 = new Questions("Vem har skrivit den delvis självbiografiska Nässlorna blomma?", A2);
 
-    private final Questions Q3 = new Questions("Hur många länder finns det i världen?", A3);
+    private final Questions Q3 = new Questions("Hur många är tornen i titeln på J.R.R. Tolkiens andra volym i serien om Härskarringen??", A3);
 
-    private final Questions Q4 = new Questions("När fick Sverige färg-TV?", A4);
+    private final Questions Q4 = new Questions("Vilket begrepp används om människor utan magiska förmågor i J.K. Rowlings böcker", A4);
 
-    private final Questions Q5 = new Questions("Vad hette Tokyo förr", A5);
+    private final Questions Q5 = new Questions("Vem är ”pappa” till såväl David Copperfield som Oliver Twist?", A5);
 
-    private final Questions Q6 = new Questions("När skapades Facebook?", A6);
+    private final Questions Q6 = new Questions("Vart hänger Mona Lisa idag?", A6);
 
-    private final Questions Q7 = new Questions("Vilket land har störst yta?", A7);
+    private final Questions Q7 = new Questions("Vem komponerade De fyra årstiderna, på italienska Le quattro stagioni?", A7);
 
-    private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
+    private final Questions Q8 = new Questions("Ordet kultur kommer från latinets cultura. Vad betyder det, ungefär?", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe", A9);
+    private final Questions Q9 = new Questions("Vem skrev tragedierna Antigone och Kung Oidipus?", A9);
 
-    private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
+    private final Questions Q10 = new Questions("Var ligger konserthuset Royal Albert Hall?", A10);
 
 
     public ArtLiterature(){
