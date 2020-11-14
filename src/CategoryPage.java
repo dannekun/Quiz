@@ -35,8 +35,8 @@ public class CategoryPage extends JFrame implements ActionListener {
         pro = p;
 
         category1.setText(database.animalsNature.getCategoryName());
-        category2.setText(d.getName());
-        category3.setText(d.getName());
+        category2.setText(database.generalKnowledge.getCategoryName());
+        category3.setText(database.artLiterature.getCategoryName());
 
 
         frame.setSize(400,200);
@@ -62,13 +62,13 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-//            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, database);
         }else if (e.getSource() == category2){
             frame.dispose();
-//            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, database);
         }else if (e.getSource() == category3){
             frame.dispose();
-//            QuestionPage q = new QuestionPage(pro, d);
+            QuestionPage q = new QuestionPage(pro, database);
         }
     }
 }

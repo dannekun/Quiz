@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
+    Database database = new Database();
+
     JButton b1 = new JButton();
     JButton b2 = new JButton();
     JButton b3 = new JButton();
@@ -27,10 +29,15 @@ public class QuestionPage extends JFrame implements ActionListener {
     JLabel category = new JLabel("Category");
     JLabel question = new JLabel("What is 2+2?");
 
-    JButton answer1 = new JButton("1");
-    JButton answer2 = new JButton("2");
-    JButton answer3 = new JButton("3");
-    JButton answer4 = new JButton("4");
+
+    JButton answer1 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
+            .getAnswersList().get(0).toString());
+    JButton answer2 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
+            .getAnswersList().get(1).toString());
+    JButton answer3 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
+            .getAnswersList().get(2).toString());
+    JButton answer4 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
+            .getAnswersList().get(3).toString());
 
     JLabel timer = new JLabel("Timer here");
 
@@ -53,9 +60,9 @@ public class QuestionPage extends JFrame implements ActionListener {
         player.setText(pro.getName());
 
         frame.setSize(400,200);
-//        category.setText(d.getName());
+        category.setText(d.artLiterature.getCategoryName());
 
-        List<Questions> randomListToPull = d.getCategories();
+        List<Questions> randomListToPull = d.artLiterature.getArtLiteratureList();
 
         question.setText(randomListToPull.get(0).getQuestion());
 
