@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class GeneralKnowledge extends Database{
 
+    String name = "General Knowledge";
     //--------------------------------------------------------------------------------------//
     // General Knowledge Answers
     private final List<QuestionsPage> generalKnowledgeList = new ArrayList<>();
@@ -86,9 +87,25 @@ public class GeneralKnowledge extends Database{
 
         Collections.shuffle(generalKnowledgeList);
 
+        var a = generalKnowledgeList.get(0).getAnswers();
+
+        generalKnowledgeList.get(0).getAnswers().ShuffleAnswers();
+
+        var b = generalKnowledgeList.get(0).getAnswers();
+
+        System.out.println(a);
+        System.out.println(b);
+
+
     }
 
-    public List<QuestionsPage> getGeneralKnowledgeList() {
+    public List<QuestionsPage> getAnswersFromCategory(){
+        Collections.shuffle(generalKnowledgeList);
+
         return generalKnowledgeList;
+    }
+
+    public static void main(String[] args) {
+        new GeneralKnowledge();
     }
 }

@@ -1,7 +1,12 @@
+import QuestionsHandler.Database;
+import QuestionsHandler.QuestionsPage;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 
 /**
  * Created by Daniel Bojic
@@ -40,15 +45,21 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
 
-    public QuestionPage(Player p, Categories c){
+    public QuestionPage(Player p, Database d){
+
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
 
-
-        pro.setName(p.getName());
         player.setText(pro.getName());
 
         frame.setSize(400,200);
+//        category.setText(d.getName());
+
+        List<QuestionsPage> randomListToPull = d.getAnswersfromCategory();
+
+        question.setText(randomListToPull.get(0).getQuestion().toString());
+
+
 
         north.setLayout(new GridLayout(1,5));
         north.add(b1);

@@ -1,9 +1,7 @@
 package QuestionsHandler;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Salah Abdinoor
@@ -25,6 +23,12 @@ public class Database {
     // f
 
 
+    public List<QuestionsPage> getAnswersfromCategory(){
+
+        List<QuestionsPage> generalKnowledgeList = null;
+        return generalKnowledgeList;
+    }
+
     //--------------------------------------------------------------------------------------//
     // Geography Answers
     private final List<QuestionsPage> geograohyList = new ArrayList<>();
@@ -42,7 +46,6 @@ public class Database {
 
     //--------------------------------------------------------------------------------------//
     // History Answers
-
 
     //--------------------------------------------------------------------------------------//
 
