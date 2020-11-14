@@ -18,40 +18,14 @@ public class Database {
     // Sports
     // History
     // TV Shows
-    // f
-    // f
-    // f
+    // Pop Culture
 
 
-    public List<QuestionsPage> getAnswersfromCategory(){
+    public List<Questions> getAnswersfromCategory(){
 
-        List<QuestionsPage> generalKnowledgeList = null;
+        List<Questions> generalKnowledgeList = null;
         return generalKnowledgeList;
     }
 
-    //--------------------------------------------------------------------------------------//
-    // Geography Answers
-    private final List<QuestionsPage> geograohyList = new ArrayList<>();
-
-
-    //--------------------------------------------------------------------------------------//
-    // Geography Answers
-
-
-    //--------------------------------------------------------------------------------------//
-    //--------------------------------------------------------------------------------------//
-    // History Answers
-    private final List<QuestionsPage> HistoryList = new ArrayList<>();
-
-
-    //--------------------------------------------------------------------------------------//
-    // History Answers
-
-    //--------------------------------------------------------------------------------------//
-
-    public static void main(String[] args) {
-
-
-    }
 
 }

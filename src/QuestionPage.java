@@ -1,5 +1,5 @@
 import QuestionsHandler.Database;
-import QuestionsHandler.QuestionsPage;
+import QuestionsHandler.Questions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,7 +55,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         frame.setSize(400,200);
 //        category.setText(d.getName());
 
-        List<QuestionsPage> randomListToPull = d.getAnswersfromCategory();
+        List<Questions> randomListToPull = d.getAnswersfromCategory();
 
         question.setText(randomListToPull.get(0).getQuestion().toString());
 

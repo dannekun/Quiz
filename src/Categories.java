@@ -1,9 +1,3 @@
-import QuestionsHandler.Database;
-import QuestionsHandler.GeneralKnowledge;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-13

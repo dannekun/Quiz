@@ -1,11 +1,10 @@
 import QuestionsHandler.Database;
-import QuestionsHandler.GeneralKnowledge;
+import QuestionsHandler.Categories.GeneralKnowledge;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 /**
  * Created by Daniel Bojic

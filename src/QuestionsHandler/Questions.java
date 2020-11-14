@@ -1,5 +1,9 @@
 package QuestionsHandler;
 
+import QuestionsHandler.Categories.GeneralKnowledge;
+
+import java.util.List;
+
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-12
@@ -8,28 +12,20 @@ package QuestionsHandler;
  * Copyright: MIT
  */
 
-public class QuestionsPage {
+public class Questions {
 
     private String question;
-    private AnswerPage answers;
+    private Answers answers;
 
-    public QuestionsPage(String question, AnswerPage answers) {
+    public Questions(String question, Answers answers) {
         this.question = question;
         this.answers = answers;
 
     }
 
-    public static void main(String[] args) {
-        Database g =  new GeneralKnowledge();
-
-    }
-
-
-
-    public AnswerPage getAnswers() {
+    public Answers getAnswerObject(){
         return answers;
     }
-
 
     public String getQuestion() {
         return question;
