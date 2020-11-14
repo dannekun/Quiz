@@ -55,9 +55,9 @@ public class QuestionPage extends JFrame implements ActionListener {
         frame.setSize(400,200);
 //        category.setText(d.getName());
 
-        List<Questions> randomListToPull = d.getAnswersfromCategory();
+        List<Questions> randomListToPull = d.getCategories();
 
-        question.setText(randomListToPull.get(0).getQuestion().toString());
+        question.setText(randomListToPull.get(0).getQuestion());
 
 
 

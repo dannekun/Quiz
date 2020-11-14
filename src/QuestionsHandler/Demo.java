@@ -1,4 +1,8 @@
-package QuestionsHandler.Categories;
+package QuestionsHandler;
+
+import QuestionsHandler.Categories.GeneralKnowledge;
+
+import java.util.List;
 
 /**
  * Created by Salah Abdinoor
@@ -18,7 +22,7 @@ public class Demo {
 
         // This gives you a random question from the GeneralKnowledge class. <Type String>
 
-        var question= generalKnowledge.getGeneralKnowledgeList().get(0).getQuestion();
+        var question = generalKnowledge.getGeneralKnowledgeList().get(0).getQuestion();
 
         // This gives you a list of answer in the right order. <Type List>
 
@@ -50,8 +54,6 @@ public class Demo {
 //        System.out.println("\nBack to Correct List: " + correctList2);
 
         //------------------------------------------------------------------------------------------------------------//
-        // Demo 2:
-
         // This is how you get the right answer.
         var rightAnswer = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject().getRightAnswer();
 
@@ -64,13 +66,28 @@ public class Demo {
         var checkAnswerFalse = generalKnowledge.getGeneralKnowledgeList().get(0).getAnswerObject()
                 .checkAnswer("BlaBlaBla");
 
+
+        // Run this program for a Demo.
+        // Demo 2:
+
 //        System.out.println("Question: " + question);
 //        System.out.println("\nAnswer Options: " + correctList);
 //        System.out.println("\nRight Answer: " + rightAnswer);
 //        System.out.println("\nChecking Right Answer: " + checkAnswerTrue);
 //        System.out.println("\nChecking Wrong Answer: " + checkAnswerFalse);
 
-        // For Education Purposes;
+        //____________________________________________________________________________________________________________//
+        // Test block: Feel free to try diffrent combos.
+
+
+
+
+
+
+
+        //_____________________________________________________________________________________________________________//
+
+        // For Education Purposes.
         //____________________________________________________________________________________________________________//
 
     }

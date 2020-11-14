@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -15,45 +14,34 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class Music extends Database {
-
-            //FIXME: GÖR OM FRÅGORNA!
-    //--------------------------------------------------------------------------------------//
-    // General Knowledge Answers
-    private final List<Questions> musicList = new ArrayList<>();
-
-    private final Answers A1 = new Answers("Laos", "Thailand",
-            "Vietnam", "Cambodia");
-
-    private final Answers A2 = new Answers("Desamma", "Detsamma",
-            "Det samma", "Detsamman");
-
-    private final Answers A3 = new Answers("195", "220",
-            "90", "164");
-
-    private final Answers A4 = new Answers("1965", "1970",
-            "1975", "1980");
-
-    private final Answers A5 = new Answers("Edo", "Edoyo",
-            "Kyoto", "Kygo");
-
-    private final Answers A6 = new Answers("2004", "2001",
-            "2008", "1994");
-
-    private final Answers A7 = new Answers("Ryssland", "USA",
-            "Canada", "Mongoliet");
-
-    private final Answers A8 = new Answers("12", "8",
-            "6", "16");
-
-    private final Answers A9 = new Answers("40mg", "1g",
-            "400mg", "15g");
-
-    private final Answers A10 = new Answers("160", "210",
-            "90", "110");
+public class Music {
 
     //--------------------------------------------------------------------------------------//
-    // General Knowledge Questions
+    // Music Answers
+    private final List<Questions> musicList;
+
+    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+
+    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+
+    private final Answers A3 = new Answers("195", "220", "90", "164");
+
+    private final Answers A4 = new Answers("1965", "1970", "1975", "1980");
+
+    private final Answers A5 = new Answers("Edo", "Edoyo", "Kyoto", "Kygo");
+
+    private final Answers A6 = new Answers("2004", "2001", "2008", "1994");
+
+    private final Answers A7 = new Answers("Ryssland", "USA", "Canada", "Mongoliet");
+
+    private final Answers A8 = new Answers("12", "8", "6", "16");
+
+    private final Answers A9 = new Answers("40mg", "1g", "400mg", "15g");
+
+    private final Answers A10 = new Answers("160", "210", "90", "110");
+
+    //--------------------------------------------------------------------------------------//
+    // Music Questions
     private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
 
     private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
@@ -74,7 +62,10 @@ public class Music extends Database {
 
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 
-    Music(){
+
+    public Music(){
+
+        musicList = new ArrayList<>();
 
         musicList.add(Q1);
         musicList.add(Q2);
@@ -91,5 +82,11 @@ public class Music extends Database {
 
     }
 
+    public String getCategoryName() {
+        return "Music";
+    }
 
+    public List<Questions> getMusicList() {
+        return musicList;
+    }
 }

@@ -1,9 +1,5 @@
 package QuestionsHandler;
 
-import QuestionsHandler.Categories.GeneralKnowledge;
-
-import java.util.List;
-
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-12
@@ -18,9 +14,9 @@ public class Questions {
     private Answers answers;
 
     public Questions(String question, Answers answers) {
+
         this.question = question;
         this.answers = answers;
-
     }
 
     public Answers getAnswerObject(){

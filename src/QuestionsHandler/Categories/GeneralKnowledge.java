@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class GeneralKnowledge extends Database {
+public class GeneralKnowledge {
 
     //--------------------------------------------------------------------------------------//
     // General Knowledge Answers
@@ -68,7 +67,6 @@ public class GeneralKnowledge extends Database {
 
         generalKnowledgeList = new ArrayList<>();
 
-        // General knowledge
         generalKnowledgeList.add(Q1);
         generalKnowledgeList.add(Q2);
         generalKnowledgeList.add(Q3);
@@ -82,6 +80,10 @@ public class GeneralKnowledge extends Database {
 
         Collections.shuffle(generalKnowledgeList);
 
+    }
+
+    public String getCategoryName() {
+        return "General Knowledge";
     }
 
     public List<Questions> getGeneralKnowledgeList() {

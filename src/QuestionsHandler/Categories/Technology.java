@@ -10,15 +10,15 @@ import java.util.List;
 /**
  * Created by Salah Abdinoor
  * 11/14/2020
- * 4:34 PM
+ * 5:10 PM
  * Quiz2
  * Copyright: MIT
  */
-public class History {
+public class Technology {
 
     //--------------------------------------------------------------------------------------//
-    // History Answers
-    private final List<Questions> historyList;
+    // Technology Answers
+    private final List<Questions> technologyList;
 
     private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
 
@@ -41,7 +41,7 @@ public class History {
     private final Answers A10 = new Answers("160", "210", "90", "110");
 
     //--------------------------------------------------------------------------------------//
-    // History Questions
+    // Technology Questions
     private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
 
     private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
@@ -63,31 +63,36 @@ public class History {
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 
 
-    public History(){
+    public Technology(){
 
-        historyList = new ArrayList<>();
+        technologyList = new ArrayList<>();
 
-        historyList.add(Q1);
-        historyList.add(Q2);
-        historyList.add(Q3);
-        historyList.add(Q4);
-        historyList.add(Q5);
-        historyList.add(Q6);
-        historyList.add(Q7);
-        historyList.add(Q8);
-        historyList.add(Q9);
-        historyList.add(Q10);
+        technologyList.add(Q1);
+        technologyList.add(Q2);
+        technologyList.add(Q3);
+        technologyList.add(Q4);
+        technologyList.add(Q5);
+        technologyList.add(Q6);
+        technologyList.add(Q7);
+        technologyList.add(Q8);
+        technologyList.add(Q9);
+        technologyList.add(Q10);
 
-        Collections.shuffle(historyList);
+        Collections.shuffle(technologyList);
 
+    }
+
+    public Object getQuestion(int questionIndex){
+
+        return technologyList.get(questionIndex).getQuestion();
     }
 
     public String getCategoryName() {
-        return "History";
+        return "Technology";
     }
 
-    public List<Questions> getHistoryList() {
-        return historyList;
+    public List<Questions> getTechnologyList() {
+        return technologyList;
     }
 
 }

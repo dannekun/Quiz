@@ -25,15 +25,18 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-   Database d = new GeneralKnowledge();
+//   Database d = new GeneralKnowledge();
+
+    Database database = new Database();
+
 
     Player pro = new Player();
     public CategoryPage(Player p){
         pro = p;
 
-//        category1.setText(d.getName());
-//        category2.setText(d.getName());
-//        category3.setText(d.getName());
+        category1.setText(database.animalsNature.getCategoryName());
+        category2.setText(d.getName());
+        category3.setText(d.getName());
 
 
         frame.setSize(400,200);
@@ -59,13 +62,13 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+//            QuestionPage q = new QuestionPage(pro, d);
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+//            QuestionPage q = new QuestionPage(pro, d);
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, d);
+//            QuestionPage q = new QuestionPage(pro, d);
         }
     }
 }

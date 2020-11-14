@@ -10,15 +10,15 @@ import java.util.List;
 /**
  * Created by Salah Abdinoor
  * 11/14/2020
- * 4:34 PM
+ * 5:10 PM
  * Quiz2
  * Copyright: MIT
  */
-public class History {
+public class ArtLiterature {
 
     //--------------------------------------------------------------------------------------//
-    // History Answers
-    private final List<Questions> historyList;
+    // Art & Literature Answers
+    private final List<Questions> artLiteratureList;
 
     private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
 
@@ -41,7 +41,7 @@ public class History {
     private final Answers A10 = new Answers("160", "210", "90", "110");
 
     //--------------------------------------------------------------------------------------//
-    // History Questions
+    // Art & Literature Questions
     private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
 
     private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
@@ -63,31 +63,31 @@ public class History {
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 
 
-    public History(){
+    public ArtLiterature(){
 
-        historyList = new ArrayList<>();
+        artLiteratureList = new ArrayList<>();
 
-        historyList.add(Q1);
-        historyList.add(Q2);
-        historyList.add(Q3);
-        historyList.add(Q4);
-        historyList.add(Q5);
-        historyList.add(Q6);
-        historyList.add(Q7);
-        historyList.add(Q8);
-        historyList.add(Q9);
-        historyList.add(Q10);
+        artLiteratureList.add(Q1);
+        artLiteratureList.add(Q2);
+        artLiteratureList.add(Q3);
+        artLiteratureList.add(Q4);
+        artLiteratureList.add(Q5);
+        artLiteratureList.add(Q6);
+        artLiteratureList.add(Q7);
+        artLiteratureList.add(Q8);
+        artLiteratureList.add(Q9);
+        artLiteratureList.add(Q10);
 
-        Collections.shuffle(historyList);
+        Collections.shuffle(artLiteratureList);
 
     }
 
     public String getCategoryName() {
-        return "History";
+        return "Art & Literature";
     }
 
-    public List<Questions> getHistoryList() {
-        return historyList;
+    public List<Questions> getArtLiteratureList() {
+        return artLiteratureList;
     }
 
 }
