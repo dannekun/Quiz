@@ -27,7 +27,7 @@ public class QuestionPage extends JFrame implements ActionListener {
     JLabel player = new JLabel();
 
     JLabel category = new JLabel("Category");
-    JLabel question = new JLabel("What is 2+2?");
+    JLabel question = new JLabel();
 
 
     JButton answer1 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
@@ -54,13 +54,15 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     public QuestionPage(Player p, Database d){
 
+
+
+
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
 
         player.setText(pro.getName());
 
         frame.setSize(400,200);
-        category.setText(d.artLiterature.getCategoryName());
 
         List<Questions> randomListToPull = d.artLiterature.getArtLiteratureList();
 
@@ -99,6 +101,27 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
+    }
+
+    public void setAnswer1(JButton answer1) {
+        this.answer1 = answer1;
+    }
+
+    public void setAnswer2(JButton answer2) {
+        this.answer2 = answer2;
+    }
+
+    public void setAnswer3(JButton answer3) {
+        this.answer3 = answer3;
+    }
+
+    public void setAnswer4(JButton answer4) {
+        this.answer4 = answer4;
+    }
+
+    public void setCategory(JLabel category, String categroyText) {
+        this.category = category;
+        category.setText(categroyText);
     }
 
     @Override

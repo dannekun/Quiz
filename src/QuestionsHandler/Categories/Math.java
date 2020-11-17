@@ -14,11 +14,11 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class History {
+public class Math {
 
     //--------------------------------------------------------------------------------------//
-    // History Answers
-    private final List<Questions> historyList;
+    // Math Answers
+    private final List<Questions> mathList;
 
     private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
 
@@ -41,7 +41,7 @@ public class History {
     private final Answers A10 = new Answers("160", "210", "90", "110");
 
     //--------------------------------------------------------------------------------------//
-    // History Questions
+    // Math Questions
     private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
 
     private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
@@ -63,31 +63,31 @@ public class History {
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 
 
-    public History(){
+    public Math(){
 
-        historyList = new ArrayList<>();
+        mathList = new ArrayList<>();
 
-        historyList.add(Q1);
-        historyList.add(Q2);
-        historyList.add(Q3);
-        historyList.add(Q4);
-        historyList.add(Q5);
-        historyList.add(Q6);
-        historyList.add(Q7);
-        historyList.add(Q8);
-        historyList.add(Q9);
-        historyList.add(Q10);
+        mathList.add(Q1);
+        mathList.add(Q2);
+        mathList.add(Q3);
+        mathList.add(Q4);
+        mathList.add(Q5);
+        mathList.add(Q6);
+        mathList.add(Q7);
+        mathList.add(Q8);
+        mathList.add(Q9);
+        mathList.add(Q10);
 
-        Collections.shuffle(historyList);
+        Collections.shuffle(mathList);
 
     }
 
     public String getCategoryName() {
-        return "History";
+        return "Math";
     }
 
-    public List<Questions> getHistoryList() {
-        return historyList;
+    public List<Questions> getMathList() {
+        return mathList;
     }
 
 }

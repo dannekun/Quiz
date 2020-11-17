@@ -1,11 +1,6 @@
 package QuestionsHandler;
 
-import QuestionsHandler.Categories.AnimalsNature;
 import QuestionsHandler.Categories.GeneralKnowledge;
-import QuestionsHandler.Categories.History;
-
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Salah Abdinoor
@@ -16,26 +11,16 @@ import java.util.Random;
  */
 public class Demo {
 
-
-
     public static void main(String[] args) {
 
         //____________________________________________________________________________________________________________//
         // For Education Purposes.
 
-
+        // This gives you a category from the Database
 
         Database database = new Database();
 
-
-
-
-
-
-
-
-
-        GeneralKnowledge generalKnowledge = new GeneralKnowledge();
+        var generalKnowledge = database.generalKnowledge;
 
         // This gives you a random question from the GeneralKnowledge class. <Type String>
 
@@ -96,11 +81,37 @@ public class Demo {
         //____________________________________________________________________________________________________________//
         // Test block: Feel free to try diffrent combos.
 
+        var category = database.animalsNature;
 
+        var categoryName = category.getCategoryName();
+        var questionObject = category.getAnimalsNatureList().get(0);
 
+        var stringQuestion =  questionObject.getQuestion();
 
+        var answerObject = questionObject.getAnswerObject();
 
+        var randomList = answerObject.getShuffledAnswersList();
 
+        var answer1 = randomList.get(0);
+        var answer2 = randomList.get(1);
+        var answer3 = randomList.get(2);
+        var answer4 = randomList.get(3);
+
+        var rightAnswerAN = questionObject.getAnswerObject().getRightAnswer();
+        var checkingAnswer = questionObject.getAnswerObject().checkAnswer(rightAnswerAN);
+
+        System.out.println("Kategori: " + categoryName);
+        System.out.println("");
+        System.out.println("Fråga: " + stringQuestion);
+        System.out.println("");
+        System.out.println("Svarsalternativ Lista: " + randomList);
+        System.out.println("");
+        System.out.println("Svarsalternativ 1: " + answer1);
+        System.out.println("Svarsalternativ 2: " + answer2);
+        System.out.println("Svarsalternativ 3: " + answer3);
+        System.out.println("Svarsalternativ 4: " + answer4);
+        System.out.println("");
+        System.out.println("Är " + rightAnswerAN + " det rätta svaret? " + checkingAnswer);
 
         //_____________________________________________________________________________________________________________//
 

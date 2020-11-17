@@ -18,7 +18,7 @@ public class ArtLiterature {
 
     //--------------------------------------------------------------------------------------//
     // Art & Literature Answers
-    private final List<Questions> artLiteratureList;
+    private final List<Questions> artLiteratureList = new ArrayList<>();
 
     private final Answers A1 = new Answers("August Strindberg", "Hjalmar Söderberg", "Björn Ranelid", "Daniel Bojic");
 
@@ -65,7 +65,16 @@ public class ArtLiterature {
 
     public ArtLiterature(){
 
-        artLiteratureList = new ArrayList<>();
+
+    }
+
+
+
+    public String getCategoryName() {
+        return "Art & Literature";
+    }
+
+    public List<Questions> getArtLiteratureList() {
 
         artLiteratureList.add(Q1);
         artLiteratureList.add(Q2);
@@ -80,13 +89,6 @@ public class ArtLiterature {
 
         Collections.shuffle(artLiteratureList);
 
-    }
-
-    public String getCategoryName() {
-        return "Art & Literature";
-    }
-
-    public List<Questions> getArtLiteratureList() {
         return artLiteratureList;
     }
 

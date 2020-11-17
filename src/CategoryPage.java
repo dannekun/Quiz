@@ -1,4 +1,5 @@
 import QuestionsHandler.Categories.*;
+import QuestionsHandler.Categories.Math;
 import QuestionsHandler.Database;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class CategoryPage extends JFrame implements ActionListener {
     final int animalsNature = 0;
     final int artLiterature = 1;
     final int generalKnowledge = 2;
-    final int history = 3;
+    final int math = 3;
     final int music = 4;
     final int popCulture = 5;
     final int sports = 6;
@@ -90,9 +91,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         uniqueRandomNumber();
 
-        findCategoryText(unique1);
-        findCategoryText(unique2);
-        findCategoryText(unique3);
+        findCategory(unique1);
+        findCategory(unique2);
+        findCategory(unique3);
 
     }
 
@@ -105,7 +106,9 @@ public class CategoryPage extends JFrame implements ActionListener {
      * @param randomCategoryIndex = [unique1 || unique2 || unique3]
      */
 
-    public void findCategoryText(int randomCategoryIndex){
+
+    public void findCategory(int randomCategoryIndex){
+
 
         switch (randomCategoryIndex) {
 
@@ -113,13 +116,13 @@ public class CategoryPage extends JFrame implements ActionListener {
 
                 categoryName = new AnimalsNature().getCategoryName();
 
-                setCategoryText(categoryName);
-
                 break;
 
             case artLiterature:
 
-                categoryName = new ArtLiterature().getCategoryName();
+                // Forsätt här!
+                var categoryAL = new ArtLiterature();
+                categoryName = categoryAL.getCategoryName();
 
                 setCategoryText(categoryName);
 
@@ -133,9 +136,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
                 break;
 
-            case history:
+            case math:
 
-                categoryName = new History().getCategoryName();
+                categoryName = new Math().getCategoryName();
 
                 setCategoryText(categoryName);
 
@@ -231,11 +234,14 @@ public class CategoryPage extends JFrame implements ActionListener {
     }
 
 
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
             QuestionPage q = new QuestionPage(pro, database);
+
         }else if (e.getSource() == category2){
             frame.dispose();
             QuestionPage q = new QuestionPage(pro, database);
