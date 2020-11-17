@@ -23,8 +23,8 @@ public class Settings extends JFrame {
     JPanel leftPanel = new JPanel();
     JPanel rightPanel = new JPanel();
     Properties properties = new Properties();
-    String numberOfRounds;
-    String numberOfQuestions;
+    String getNumberOfRounds;
+    String getNumberOfQuestions;
 
     Settings() {
         setTitle("Settings");
@@ -43,13 +43,13 @@ public class Settings extends JFrame {
         submit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                numberOfRounds = answerRounds.getText();
-                numberOfQuestions = answerQuestions.getText();
                 FileOutputStream fos;
+                getNumberOfRounds = answerRounds.getText();
+                getNumberOfQuestions = answerQuestions.getText();
                 try {
                     fos = new FileOutputStream("src/RoundQuestions.properties");
-                    properties.setProperty("numberOfRounds", numberOfRounds);
-                    properties.setProperty("numberOfQuestions", numberOfQuestions);
+                    properties.setProperty("numberOfRounds", getNumberOfRounds);
+                    properties.setProperty("numberOfQuestions", getNumberOfQuestions);
                     properties.store(fos, "Properties generated for change numbers of rounds and questions");
                     fos.close();
                 } catch (IOException ioException) {
