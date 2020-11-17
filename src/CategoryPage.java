@@ -1,10 +1,12 @@
+import QuestionsHandler.Categories.*;
 import QuestionsHandler.Database;
-import QuestionsHandler.Categories.GeneralKnowledge;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Daniel Bojic
@@ -14,6 +16,22 @@ import java.awt.event.ActionListener;
  * Copyright: MIT
  */
 public class CategoryPage extends JFrame implements ActionListener {
+
+    final int animalsNature = 0;
+    final int artLiterature = 1;
+    final int generalKnowledge = 2;
+    final int history = 3;
+    final int music = 4;
+    final int popCulture = 5;
+    final int sports = 6;
+    final int technology = 7;
+    final int tvShows = 8;
+
+    int unique1;
+    int unique2;
+    int unique3;
+
+    String categoryName;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
@@ -25,19 +43,21 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-//   Database d = new GeneralKnowledge();
-
     Database database = new Database();
 
 
     Player pro = new Player();
+
+
+
     public CategoryPage(Player p){
         pro = p;
 
-        category1.setText(database.animalsNature.getCategoryName());
-        category2.setText(database.generalKnowledge.getCategoryName());
-        category3.setText(database.artLiterature.getCategoryName());
+        category1.setText(null);
+        category2.setText(null);
+        category3.setText(null);
 
+        getCategoryText();
 
         frame.setSize(400,200);
         panel1.setLayout(new GridLayout(1,1));
@@ -58,6 +78,159 @@ public class CategoryPage extends JFrame implements ActionListener {
         category3.addActionListener(this);
 
     }
+
+    /**
+     * This methods calls the uniqueRandomNumber(); method to assing values to the 3 unique numbers
+     * and uses those as parameters for the method findCategoryText();
+     *
+     *
+     */
+
+    public void getCategoryText(){
+
+        uniqueRandomNumber();
+
+        findCategoryText(unique1);
+        findCategoryText(unique2);
+        findCategoryText(unique3);
+
+    }
+
+    /**
+     * This method finds the right category based on a unique random number 0 - 9
+     * All the cases (Categories) have been assigned to a number that will corresponds to the given unique number
+     *
+     * t.ex: unique1 = 5 && popCulture = 5 -> category1.setText("Pop Culture)
+     *
+     * @param randomCategoryIndex = [unique1 || unique2 || unique3]
+     */
+
+    public void findCategoryText(int randomCategoryIndex){
+
+        switch (randomCategoryIndex) {
+
+            case animalsNature:
+
+                categoryName = new AnimalsNature().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case artLiterature:
+
+                categoryName = new ArtLiterature().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case generalKnowledge:
+
+                categoryName = new GeneralKnowledge().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case history:
+
+                categoryName = new History().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case music:
+
+                categoryName = new Music().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case popCulture:
+
+                categoryName = new PopCulture().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case sports:
+
+                categoryName = new Sports().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case technology:
+
+                categoryName = new Technology().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+            case tvShows:
+
+                categoryName = new TVShows().getCategoryName();
+
+                setCategoryText(categoryName);
+
+                break;
+
+        }
+
+    }
+
+    /**
+     * This method makes sure to set the correct category in the right button.
+     *
+     * @param categoryText
+     */
+
+    public void setCategoryText(String categoryText){
+
+        if (category1.getText() == null && category2.getText() == null && category3.getText() == null){
+
+            category1.setText(categoryText);
+
+        } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null){
+
+            category2.setText(categoryText);
+
+        } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null){
+
+            category3.setText(categoryText);
+        }
+
+    }
+
+    /**
+     * This method creates 3 random numbers that is used for the selection of categories.
+     *
+     * @return
+     */
+
+    public void uniqueRandomNumber(){
+
+        ArrayList<Integer> listOfNumbers = new ArrayList<>();
+
+        for (int i = 0; i < 9; i++) {
+            listOfNumbers.add(i);
+        }
+
+        Collections.shuffle(listOfNumbers);
+
+            unique1 = listOfNumbers.get(0);
+            unique2 = listOfNumbers.get(1);
+            unique3 = listOfNumbers.get(2);
+
+    }
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){

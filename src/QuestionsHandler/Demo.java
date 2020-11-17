@@ -2,8 +2,10 @@ package QuestionsHandler;
 
 import QuestionsHandler.Categories.AnimalsNature;
 import QuestionsHandler.Categories.GeneralKnowledge;
+import QuestionsHandler.Categories.History;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Salah Abdinoor
@@ -14,10 +16,24 @@ import java.util.List;
  */
 public class Demo {
 
+
+
     public static void main(String[] args) {
 
         //____________________________________________________________________________________________________________//
         // For Education Purposes.
+
+
+
+        Database database = new Database();
+
+
+
+
+
+
+
+
 
         GeneralKnowledge generalKnowledge = new GeneralKnowledge();
 
@@ -92,4 +108,6 @@ public class Demo {
         //____________________________________________________________________________________________________________//
 
     }
+
+
 }
