@@ -260,6 +260,7 @@ public class CategoryPage extends JFrame implements ActionListener {
             frame.dispose();
             QuestionPage q = new QuestionPage(pro, database);
 
+
         }else if (e.getSource() == category2){
             frame.dispose();
             QuestionPage q = new QuestionPage(pro, database);
