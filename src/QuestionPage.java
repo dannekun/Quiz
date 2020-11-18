@@ -124,6 +124,8 @@ public class QuestionPage extends JFrame implements ActionListener {
         category.setText(categroyText);
     }
 
+    // Radera
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Boolean b = true;
