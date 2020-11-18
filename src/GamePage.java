@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class GamePage extends JFrame implements ActionListener {
 
-    JFrame frame = new JFrame();
+  //  JFrame frame = new JFrame();
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
@@ -30,21 +30,18 @@ public class GamePage extends JFrame implements ActionListener {
 
     JButton play = new JButton("Play");
 
-
-    List<JButton> buttonList_questions;
+    List<JButton> player1_answers;
+    List<JButton> player2_answers;
 
     Properties p = new Properties();
-
-
 
     Player pro = new Player();
     public GamePage(Player player) throws FileNotFoundException, IOException {
 
         pro = player;
 
-
         try{
-            p.load(new FileInputStream("src/RoundQuestions_Properties.properties"));
+            p.load(new FileInputStream("src/RoundQuestions.properties"));
         }
         catch (Exception e){
             e.printStackTrace();
@@ -54,68 +51,41 @@ public class GamePage extends JFrame implements ActionListener {
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
         int numberOfQuestions = Integer.parseInt(stringQuestions);
 
-
         player1Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
         categoriepanel.setLayout(new GridLayout(numberOfRounds+1, 1));
         player2Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
 
-
         int totalbuttons = numberOfQuestions * numberOfRounds;
-        buttonList_questions = createButtonList(totalbuttons);
-        List<JButton> buttonList_Questions2 = createButtonList(totalbuttons);
-
+        player1_answers = createButtonList(totalbuttons);
+        player2_answers = createButtonList(totalbuttons);
 
         for (int i = 0; i < totalbuttons; i++) {
-            player1Panel.add(buttonList_questions.get(i));
+            player1Panel.add(player1_answers.get(i));
         }
         for (int i = 0; i < numberOfRounds; i++) {
             categoriepanel.add(new JLabel("Category"));
         }
         for (int i = 0; i <totalbuttons ; i++) {
-            player2Panel.add(buttonList_Questions2.get(i));
+            player2Panel.add(player2_answers.get(i));
         }
-
-
-        /*
-        Rond            Till
-        1       0       3
-        2       3       6
-        3       6       9
-        4       9       12
-
-         */
-
-/*
-        for (int i = (pro.getRound()*numberOfQuestions)- numberOfQuestions; i < numberOfQuestions*pro.getRound(); i++) {
-            buttonList_questions.get(i);
-        }
-
- */
 
         stats.add(playerName1);
         stats.add(score);
         stats.add(playerName2);
-        frame.add(stats, BorderLayout.NORTH);
-        frame.add(player1Panel, BorderLayout.WEST);
-        frame.add(categoriepanel, BorderLayout.CENTER);
-        frame.add(player2Panel, BorderLayout.EAST);
-        frame.add(play, BorderLayout.SOUTH);
+        add(stats, BorderLayout.NORTH);
+        add(player1Panel, BorderLayout.WEST);
+        add(categoriepanel, BorderLayout.CENTER);
+        add(player2Panel, BorderLayout.EAST);
+        add(play, BorderLayout.SOUTH);
         playerName1.setText(pro.getName());
-
-
-
 
         play.addActionListener(this);
 
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        pack();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
-
-
-
 
     public List<JButton> createButtonList(int numberOfButtons) {
         List<JButton> buttonList = new ArrayList<>();
@@ -125,13 +95,11 @@ public class GamePage extends JFrame implements ActionListener {
         return buttonList;
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             pro.setRound(pro.getRound()+1);
-            frame.dispose();
+            dispose();
             CategoryPage c = new CategoryPage(pro);
         }
     }
