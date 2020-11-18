@@ -1,6 +1,6 @@
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 /**
@@ -12,46 +12,41 @@ import java.util.Scanner;
  */
 public class Point {
 
-    public static void main(String[] args) {
+    private List<Integer> pointsPerRound = new ArrayList<Integer>();// point-quiz 1,2,3
+    private int numberOfRounds = 3; // I cannot pull the Properties
+    private int point;
 
-        List<Integer> player1_TotalPoints = new ArrayList<Integer>();// round1, round 2...
-        List<Integer> player2_TotalPoints = new ArrayList<Integer>();
+    private int currentCategory = 0;//0-2(3category)
+    private int currentQuiz = 0;//0-2(3 quiz)
+    private String[][] answer = {{"m-a", "m-b", "m-c"}, //Math
+            {"mo-d", "mo-e", "m-f"},//Movie
+            {"g-g", "g-h", "g-i"}};//Game
 
-        int pointPerQuizP1 = 0;
-        int pointPerQuizP2 = 0;
-        boolean round = true;
-        //boolean rightAnswerP1=true;
-        //boolean rightAnswerP2=false;
 
-        while(round){
-                //---test code-----
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Input Player 1 or 2");
-                int player = sc.nextInt();//player1 =1 or player2= 2
-                System.out.println("Q1point: Input point 1 or 0");
-                int q1 = sc.nextInt();//point 1 or 0
-                System.out.println("Q2point: Input point 1 or 0");
-                int q2 = sc.nextInt();//point 1 or 0
+    public String ShowResult(String input){
+        //Properties p = new Properties();
+        //String output = null;
+        //int numberOfRounds = Integer.parseInt(p.getProperty("numberOfRounds"));
+        String output = null;
+        for (int i = 0; i < numberOfRounds; i++) {
 
-                if (player==1) {
-                    pointPerQuizP1 = q1 + q2;
-                    System.out.println("Player1: Point per round " + pointPerQuizP1 + "points");
-                    player1_TotalPoints.add(pointPerQuizP1);
-                    System.out.println(String.valueOf(player1_TotalPoints));
-                    System.out.println("Player1_Total Points from all rounds: " + SumAllRoundsPoints((ArrayList<Integer>) player1_TotalPoints));
-                } else if (player==2) {
-                    pointPerQuizP2 = q1 + q2;
-                    System.out.println("Player2: Point per round " + pointPerQuizP2++ + "points");
-                    player2_TotalPoints.add(pointPerQuizP2);
-                    System.out.println(String.valueOf(player2_TotalPoints));
-                    System.out.println("Player2_Total Points from all rounds: " + SumAllRoundsPoints((ArrayList<Integer>) player2_TotalPoints));
-
-                }
+            if (input.equalsIgnoreCase(answer[currentCategory][currentQuiz])) {
+                point = 1;
+                //System.out.println(String.valueOf(TotalPoints));
+            } else {
+                point = 0;
+                //System.out.println(String.valueOf(TotalPoints));
             }
+            pointsPerRound.add(point);
+            // System.out.println("Player1_Total Points from round: " + SumPoints((ArrayList<Integer>) pointsPerRound) +"point");
+            currentQuiz++; // quiz 1-3 within the same category
+            output = String.valueOf(SumPoints((ArrayList<Integer>) pointsPerRound));
         }
+        return output;
+    }
 
 
-    public static int SumAllRoundsPoints(ArrayList<Integer> list) {
+    public static int SumPoints (ArrayList < Integer > list) {
         int sum = 0;
         for (int i = 0; i < list.size(); i++) {
             int n = list.get(i);
@@ -59,8 +54,6 @@ public class Point {
         }
         return sum;
     }
-
 }
-
 
 
