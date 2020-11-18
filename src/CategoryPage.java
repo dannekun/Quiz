@@ -256,6 +256,17 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == category1){
+            frame.dispose();
+            QuestionPage q = new QuestionPage(pro, database);
 
+
+        }else if (e.getSource() == category2){
+            frame.dispose();
+            QuestionPage q = new QuestionPage(pro, database);
+        }else if (e.getSource() == category3){
+            frame.dispose();
+            QuestionPage q = new QuestionPage(pro, database);
+        }
     }
 }
