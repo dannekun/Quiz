@@ -1,6 +1,7 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
+import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;

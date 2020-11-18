@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -89,6 +90,7 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     public void getCategoryText(){
 
+        // Generate 3 random numbers and set unique[1, 2, 3]
         uniqueRandomNumber();
 
         findCategory(unique1);
@@ -101,6 +103,7 @@ public class CategoryPage extends JFrame implements ActionListener {
      * This method finds the right category based on a unique random number 0 - 9
      * All the cases (Categories) have been assigned to a number that will corresponds to the given unique number
      *
+     *
      * t.ex: unique1 = 5 && popCulture = 5 -> category1.setText("Pop Culture)
      *
      * @param randomCategoryIndex = [unique1 || unique2 || unique3]
@@ -109,20 +112,24 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     public void findCategory(int randomCategoryIndex){
 
-
+        // Operator = randomCategoryIndex = t.ex: unique1
         switch (randomCategoryIndex) {
 
+            // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
             case animalsNature:
 
+                // Get category name from AnimalsNature.java
                 categoryName = new AnimalsNature().getCategoryName();
+
+
+                // Use that name to setCategoryText();
+                setCategoryText(categoryName);
 
                 break;
 
             case artLiterature:
 
-                // Forsätt här!
-                var categoryAL = new ArtLiterature();
-                categoryName = categoryAL.getCategoryName();
+                categoryName = new ArtLiterature().getCategoryName();
 
                 setCategoryText(categoryName);
 
@@ -196,16 +203,22 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     public void setCategoryText(String categoryText){
 
+        // if all category names are empty ->
         if (category1.getText() == null && category2.getText() == null && category3.getText() == null){
 
+            // Set category1 as categoryText
             category1.setText(categoryText);
 
+        // if first category name is taken and the other two are empty ->
         } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null){
 
+            // Set category2 as categoryText
             category2.setText(categoryText);
 
+        // if the two first category names are taken and last one is empty ->
         } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null){
 
+            // Set category3 as categoryText
             category3.setText(categoryText);
         }
 
@@ -221,12 +234,14 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         ArrayList<Integer> listOfNumbers = new ArrayList<>();
 
+        // Add the numbers 0 - 8 in a list
         for (int i = 0; i < 9; i++) {
             listOfNumbers.add(i);
         }
-
+        // Shuffle said list
         Collections.shuffle(listOfNumbers);
 
+        // Get 3 numbers from list. since list is shuffled these will always me 3 different random numbers between 0-8
             unique1 = listOfNumbers.get(0);
             unique2 = listOfNumbers.get(1);
             unique3 = listOfNumbers.get(2);
@@ -234,6 +249,9 @@ public class CategoryPage extends JFrame implements ActionListener {
     }
 
 
+    // Factory method();
+    // Factory pattern.
+    // Lista till QuestionPage.
 
 
     @Override
