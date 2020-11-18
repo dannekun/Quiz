@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -81,10 +80,6 @@ public class GeneralKnowledge {
 
         Collections.shuffle(generalKnowledgeList);
 
-    }
-
-    public String getCategoryName() {
-        return "General Knowledge";
     }
 
     public List<Questions> getGeneralKnowledgeList() {

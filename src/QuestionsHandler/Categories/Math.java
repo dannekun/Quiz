@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -21,9 +20,9 @@ public class Math {
     // Math Answers
     private final List<Questions> mathList;
 
-    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+    private final Answers A1 = new Answers("4", "6", "8", "10");
 
-    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+    private final Answers A2 = new Answers("25", "40", "55", "10");
 
     private final Answers A3 = new Answers("195", "220", "90", "164");
 
@@ -43,9 +42,9 @@ public class Math {
 
     //--------------------------------------------------------------------------------------//
     // Math Questions
-    private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
+    private final Questions Q1 = new Questions("Vad är 2 + 2?", A1);
 
-    private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
+    private final Questions Q2 = new Questions("Vad är 5*5?", A2);
 
     private final Questions Q3 = new Questions("Hur många länder finns det i världen?", A3);
 
@@ -81,10 +80,6 @@ public class Math {
 
         Collections.shuffle(mathList);
 
-    }
-
-    public String getCategoryName() {
-        return "Math";
     }
 
     public List<Questions> getMathList() {

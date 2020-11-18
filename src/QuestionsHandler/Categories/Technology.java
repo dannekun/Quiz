@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -81,15 +80,6 @@ public class Technology {
 
         Collections.shuffle(technologyList);
 
-    }
-
-    public Object getQuestion(int questionIndex){
-
-        return technologyList.get(questionIndex).getQuestion();
-    }
-
-    public String getCategoryName() {
-        return "Technology";
     }
 
     public List<Questions> getTechnologyList() {

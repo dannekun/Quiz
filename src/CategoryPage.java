@@ -1,6 +1,6 @@
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
-import QuestionsHandler.Database;
+import QuestionsHandler.Questions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,11 +29,19 @@ public class CategoryPage extends JFrame implements ActionListener {
     final int technology = 7;
     final int tvShows = 8;
 
+    final String animalNatureName = "Animals & Nature";
+    final String artLiteratureName = "Art & Literature";
+    final String generalKnowledgeName = "General Knowledge";
+    final String mathName = "Math";
+    final String musicName = "Music";
+    final String popCultureName = "Pop Culture";
+    final String sportsName = "Sports";
+    final String technologyName = "Technology";
+    final String tvShowsName = "TVShows";
+
     int unique1;
     int unique2;
     int unique3;
-
-    String categoryName;
 
     JFrame frame = new JFrame();
     JPanel panel = new JPanel();
@@ -45,14 +53,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Choose a category");
 
-    Database database = new Database();
+    Player pro;
 
-
-    Player pro = new Player();
-
-
-
-    public CategoryPage(Player p){
+    public CategoryPage(Player p) {
         pro = p;
 
         category1.setText(null);
@@ -61,9 +64,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         getCategoryText();
 
-        frame.setSize(400,200);
-        panel1.setLayout(new GridLayout(1,1));
-        panel.setLayout(new GridLayout(1,3));
+        frame.setSize(400, 200);
+        panel1.setLayout(new GridLayout(1, 1));
+        panel.setLayout(new GridLayout(1, 3));
         panel.add(choose);
         panel1.add(category1);
         panel1.add(category2);
@@ -84,11 +87,9 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This methods calls the uniqueRandomNumber(); method to assing values to the 3 unique numbers
      * and uses those as parameters for the method findCategoryText();
-     *
-     *
      */
 
-    public void getCategoryText(){
+    public void getCategoryText() {
 
         // Generate 3 random numbers and set unique[1, 2, 3]
         uniqueRandomNumber();
@@ -102,121 +103,54 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This method finds the right category based on a unique random number 0 - 9
      * All the cases (Categories) have been assigned to a number that will corresponds to the given unique number
-     *
-     *
+     * <p>
+     * <p>
      * t.ex: unique1 = 5 && popCulture = 5 -> category1.setText("Pop Culture)
      *
      * @param randomCategoryIndex = [unique1 || unique2 || unique3]
      */
 
 
-    public void findCategory(int randomCategoryIndex){
+    public void findCategory(int randomCategoryIndex) {
 
         // Operator = randomCategoryIndex = t.ex: unique1
+        // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
+        // Set Category name.
         switch (randomCategoryIndex) {
-
-            // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
-            case animalsNature:
-
-                // Get category name from AnimalsNature.java
-                categoryName = new AnimalsNature().getCategoryName();
-
-
-                // Use that name to setCategoryText();
-                setCategoryText(categoryName);
-
-                break;
-
-            case artLiterature:
-
-                categoryName = new ArtLiterature().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case generalKnowledge:
-
-                categoryName = new GeneralKnowledge().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case math:
-
-                categoryName = new Math().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case music:
-
-                categoryName = new Music().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case popCulture:
-
-                categoryName = new PopCulture().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case sports:
-
-                categoryName = new Sports().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case technology:
-
-                categoryName = new Technology().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
-            case tvShows:
-
-                categoryName = new TVShows().getCategoryName();
-
-                setCategoryText(categoryName);
-
-                break;
-
+            case animalsNature -> setCategoryText(animalNatureName);
+            case artLiterature -> setCategoryText(artLiteratureName);
+            case generalKnowledge -> setCategoryText(generalKnowledgeName);
+            case math -> setCategoryText(mathName);
+            case music -> setCategoryText(musicName);
+            case popCulture -> setCategoryText(popCultureName);
+            case sports -> setCategoryText(sportsName);
+            case technology -> setCategoryText(technologyName);
+            case tvShows -> setCategoryText(tvShowsName);
         }
-
     }
 
     /**
      * This method makes sure to set the correct category in the right button.
      *
-     * @param categoryText
+     * @param categoryText Comes from the names the categories.
      */
 
-    public void setCategoryText(String categoryText){
+    public void setCategoryText(String categoryText) {
 
         // if all category names are empty ->
-        if (category1.getText() == null && category2.getText() == null && category3.getText() == null){
+        if (category1.getText() == null && category2.getText() == null && category3.getText() == null) {
 
             // Set category1 as categoryText
             category1.setText(categoryText);
 
-        // if first category name is taken and the other two are empty ->
-        } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null){
+            // if first category name is taken and the other two are empty ->
+        } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null) {
 
             // Set category2 as categoryText
             category2.setText(categoryText);
 
-        // if the two first category names are taken and last one is empty ->
-        } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null){
+            // if the two first category names are taken and last one is empty ->
+        } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null) {
 
             // Set category3 as categoryText
             category3.setText(categoryText);
@@ -226,11 +160,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     /**
      * This method creates 3 random numbers that is used for the selection of categories.
-     *
-     * @return
      */
 
-    public void uniqueRandomNumber(){
+    public void uniqueRandomNumber() {
 
         ArrayList<Integer> listOfNumbers = new ArrayList<>();
 
@@ -242,31 +174,69 @@ public class CategoryPage extends JFrame implements ActionListener {
         Collections.shuffle(listOfNumbers);
 
         // Get 3 numbers from list. since list is shuffled these will always me 3 different random numbers between 0-8
-            unique1 = listOfNumbers.get(0);
-            unique2 = listOfNumbers.get(1);
-            unique3 = listOfNumbers.get(2);
+        unique1 = listOfNumbers.get(0);
+        unique2 = listOfNumbers.get(1);
+        unique3 = listOfNumbers.get(2);
 
     }
 
+    public List<Questions> findList(JButton categoryName) {
 
-    // Factory method();
-    // Factory pattern.
-    // Lista till QuestionPage.
+        return switch (categoryName.getText()) {
+            case animalNatureName -> new AnimalsNature().getAnimalsNatureList();
+            case artLiteratureName -> new ArtLiterature().getArtLiteratureList();
+            case generalKnowledgeName -> new GeneralKnowledge().getGeneralKnowledgeList();
+            case mathName -> new Math().getMathList();
+            case musicName -> new Music().getMusicList();
+            case popCultureName -> new PopCulture().getPopCultureList();
+            case sportsName -> new Sports().getSportsList();
+            case technologyName -> new Technology().getTechnologyList();
+            case tvShowsName -> new TVShows().getTvShowsList();
+            default -> null;
+        };
+    }
 
+    public List<Questions> forwardList(ActionEvent e) {
+
+        if (e.getSource() == category1) {
+
+            return findList(category1);
+
+        } else if (e.getSource() == category2) {
+
+            return findList(category2);
+
+
+        } else if (e.getSource() == category3) {
+
+            return findList(category3);
+
+        }
+        return null;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == category1){
+
+        if (e.getSource() == category1) {
+
+            new QuestionPage(pro, forwardList(e), category1.getText());
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
 
 
-        }else if (e.getSource() == category2){
+        } else if (e.getSource() == category2) {
+
+            new QuestionPage(pro, forwardList(e), category2.getText());
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
-        }else if (e.getSource() == category3){
+
+        } else if (e.getSource() == category3) {
+
+            new QuestionPage(pro, forwardList(e), category3.getText());
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+
+
         }
     }
+
+
 }

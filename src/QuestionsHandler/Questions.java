@@ -26,4 +26,5 @@ public class Questions {
     public String getQuestion() {
         return question;
     }
+
 }

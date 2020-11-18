@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -81,10 +80,6 @@ public class Music {
 
         Collections.shuffle(musicList);
 
-    }
-
-    public String getCategoryName() {
-        return "Music";
     }
 
     public List<Questions> getMusicList() {

@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -66,17 +65,6 @@ public class ArtLiterature {
 
     public ArtLiterature(){
 
-
-    }
-
-
-
-    public String getCategoryName() {
-        return "Art & Literature";
-    }
-
-    public List<Questions> getArtLiteratureList() {
-
         artLiteratureList.add(Q1);
         artLiteratureList.add(Q2);
         artLiteratureList.add(Q3);
@@ -89,6 +77,9 @@ public class ArtLiterature {
         artLiteratureList.add(Q10);
 
         Collections.shuffle(artLiteratureList);
+    }
+
+    public List<Questions> getArtLiteratureList() {
 
         return artLiteratureList;
     }

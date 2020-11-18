@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -82,10 +81,6 @@ public class TVShows {
 
         Collections.shuffle(tvShows);
 
-    }
-
-    public String getCategoryName() {
-        return "TVShows";
     }
 
     public List<Questions> getTvShowsList() {

@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -81,10 +80,6 @@ public class PopCulture {
 
         Collections.shuffle(popCultureList);
 
-    }
-
-    public String getCategoryName() {
-        return "Pop Culture";
     }
 
     public List<Questions> getPopCultureList() {

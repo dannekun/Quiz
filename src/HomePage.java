@@ -35,7 +35,7 @@ public class HomePage extends JFrame implements ActionListener {
 
         pro.setName(p.getName());
         player.setText(pro.getName());
-    //    panelUp.setLayout(new GridLayout(1,4));
+        panelUp.setLayout(new GridLayout(1,4));
         panelMid.setLayout(new GridLayout(1,1));
         panelBot.setLayout(new GridLayout(2,1));
 

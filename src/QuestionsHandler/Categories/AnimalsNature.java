@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -82,10 +81,6 @@ public class AnimalsNature {
 
         Collections.shuffle(animalsNatureList);
 
-    }
-
-    public String getCategoryName() {
-        return "Animals & Nature";
     }
 
     public List<Questions> getAnimalsNatureList() {

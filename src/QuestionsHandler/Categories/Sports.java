@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class Sports {
     private final Answers A10 = new Answers("160", "210", "90", "110");
 
     //--------------------------------------------------------------------------------------//
-    // General Knowledge Questions
+    // Sports Questions
     private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
 
     private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
@@ -81,10 +80,6 @@ public class Sports {
 
         Collections.shuffle(sportsList);
 
-    }
-
-    public String getCategoryName() {
-        return "General Knowledge";
     }
 
     public List<Questions> getSportsList() {

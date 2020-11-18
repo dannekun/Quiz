@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
-    Database database = new Database();
-
     JButton b1 = new JButton();
     JButton b2 = new JButton();
     JButton b3 = new JButton();
@@ -27,17 +25,17 @@ public class QuestionPage extends JFrame implements ActionListener {
     JLabel player = new JLabel();
 
     JLabel category = new JLabel("Category");
+
     JLabel question = new JLabel();
 
+    String rightAnswer;
 
-    JButton answer1 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(0).toString());
-    JButton answer2 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(1).toString());
-    JButton answer3 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(2).toString());
-    JButton answer4 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(3).toString());
+    boolean result;
+
+    JButton answer1 = new JButton();
+    JButton answer2 = new JButton();
+    JButton answer3 = new JButton();
+    JButton answer4 = new JButton();
 
     JLabel timer = new JLabel("Timer here");
 
@@ -47,41 +45,31 @@ public class QuestionPage extends JFrame implements ActionListener {
     JPanel center = new JPanel();
     JPanel south = new JPanel();
 
-    Player pro = new Player();
+    Player pro;
 
-
-
-
-    public QuestionPage(Player p, Database d){
-
-
-
+    public QuestionPage(Player p, List<Questions> chosenCategory, String categoryName) {
 
         pro = p;
         round.setText(String.valueOf(pro.getRound()));
 
         player.setText(pro.getName());
 
-        frame.setSize(400,200);
+        frame.setSize(400, 200);
 
-        List<Questions> randomListToPull = d.artLiterature.getArtLiteratureList();
+        setCategoryText(chosenCategory, categoryName);
 
-        question.setText(randomListToPull.get(0).getQuestion());
-
-
-
-        north.setLayout(new GridLayout(1,5));
+        north.setLayout(new GridLayout(1, 5));
         north.add(b1);
         north.add(b2);
         north.add(b3);
         north.add(round);
         north.add(player);
 
-        center.setLayout(new GridLayout(2,1));
+        center.setLayout(new GridLayout(2, 1));
         center.add(category);
         center.add(question);
 
-        south.setLayout(new GridLayout(3,2));
+        south.setLayout(new GridLayout(3, 2));
         south.add(answer1);
         south.add(answer3);
         south.add(answer2);
@@ -103,54 +91,69 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
-    public void setAnswer1(JButton answer1) {
-        this.answer1 = answer1;
+    private void setCategoryText(List<Questions> chosenCategory, String categoryName) {
+
+        category.setText(categoryName);
+
+        var questionObject = chosenCategory.get(0);
+        var answerObject = questionObject.getAnswerObject();
+
+        String questionString = questionObject.getQuestion();
+
+        var shuffleAnswers = answerObject.getShuffledAnswersList();
+
+        answer1.setText(shuffleAnswers.get(0));
+        answer2.setText(shuffleAnswers.get(1));
+        answer3.setText(shuffleAnswers.get(2));
+        answer4.setText(shuffleAnswers.get(3));
+
+        question.setText(questionString);
+
+        rightAnswer = questionObject.getAnswerObject().getRightAnswer();
     }
 
-    public void setAnswer2(JButton answer2) {
-        this.answer2 = answer2;
+    public boolean checkAnswer(JButton answer) {
+
+        boolean answerCheck;
+
+        answer.setOpaque(true);
+        answer.setBorderPainted(false);
+
+        if (answer.getText().equals(rightAnswer)) {
+            answerCheck = true;
+            answer.setBackground(Color.GREEN);
+        } else {
+            answerCheck = false;
+            answer.setBackground(Color.RED);
+
+        }
+        return answerCheck;
     }
 
-    public void setAnswer3(JButton answer3) {
-        this.answer3 = answer3;
-    }
-
-    public void setAnswer4(JButton answer4) {
-        this.answer4 = answer4;
-    }
-
-    public void setCategory(JLabel category, String categroyText) {
-        this.category = category;
-        category.setText(categroyText);
-    }
-
-    // Radera
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Boolean b = true;
-        if (e.getSource() == answer1){
-            answer1.setBackground(Color.RED);
-            answer1.setOpaque(true);
-            answer1.setBorderPainted(false);
-            b = false;
-        }else if (e.getSource() == answer2){
-            answer2.setBackground(Color.RED);
-            answer2.setOpaque(true);
-            answer2.setBorderPainted(false);
-            b = false;
-        }else if (e.getSource() == answer3){
-            answer3.setBackground(Color.RED);
-            answer3.setOpaque(true);
-            answer3.setBorderPainted(false);
-            b = false;
-        }else if (e.getSource() == answer4){
-            answer4.setBackground(Color.GREEN);
-            answer4.setOpaque(true);
-            answer4.setBorderPainted(false);
-            b = true;
+
+        if (e.getSource() == answer1) {
+
+           result = checkAnswer(answer1);
+
+
+        } else if (e.getSource() == answer2) {
+
+            result = checkAnswer(answer2);
+
+        } else if (e.getSource() == answer3) {
+
+            result = checkAnswer(answer3);
+
+        } else if (e.getSource() == answer4) {
+
+            result = checkAnswer(answer4);
+
         }
-        ResultPage result = new ResultPage(pro,b);
+
+        new ResultPage(pro, result);
         frame.dispose();
     }
 }
