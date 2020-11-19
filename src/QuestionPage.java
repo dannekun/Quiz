@@ -71,7 +71,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         player.setText(pro.getName());
 
-        frame.setSize(400,200);
+        frame.setSize(600,200);
 
         randomListToPull = d.artLiterature.getArtLiteratureList();
 
@@ -130,7 +130,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         north.add(round);
         north.add(player);
 
-        center.setLayout(new GridLayout(2,1));
+        center.setLayout(new GridLayout(3,1));
         center.add(category);
         center.add(questionNumber);
         center.add(question);

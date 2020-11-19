@@ -71,7 +71,7 @@ public class CategoryPage extends JFrame implements ActionListener {
         cat2 = category2.getText();
         cat3 = category3.getText();
 
-        frame.setSize(400,200);
+        frame.setSize(600,200);
         panel1.setLayout(new GridLayout(1,1));
         panel.setLayout(new GridLayout(1,3));
         panel.add(choose);
