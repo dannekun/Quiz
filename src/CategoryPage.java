@@ -50,7 +50,13 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
 
+    //List<String> categoriesChosen = new ArrayList<>();
 
+   String cat1 = "";
+   String cat2 = "";
+   String cat3 = "";
+
+    public CategoryPage(){}
 
     public CategoryPage(Player p){
         pro = p;
@@ -60,6 +66,10 @@ public class CategoryPage extends JFrame implements ActionListener {
         category3.setText(null);
 
         getCategoryText();
+
+        cat1 = category1.getText();
+        cat2 = category2.getText();
+        cat3 = category3.getText();
 
         frame.setSize(400,200);
         panel1.setLayout(new GridLayout(1,1));
@@ -79,6 +89,13 @@ public class CategoryPage extends JFrame implements ActionListener {
         category2.addActionListener(this);
         category3.addActionListener(this);
 
+    }
+
+    public List<String> findCategoryNamiestoDisplay(String input){
+        List<String> categorieNames = new ArrayList<>();
+        categorieNames.add(input);
+
+        return categorieNames;
     }
 
     /**
@@ -258,13 +275,25 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+            //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
+           // categoriesChosen.add(cat1);
+            pro.addToList(cat1);
+            QuestionPage q = new QuestionPage(pro);
+
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+            //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
+           // categoriesChosen.add(cat2);
+            pro.addToList(cat2);
+            QuestionPage q = new QuestionPage(pro);
+
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+            //categoriesChosen.add(cat3);
+            pro.addToList(cat3);
+            //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
+            QuestionPage q = new QuestionPage(pro);
+
         }
     }
 }

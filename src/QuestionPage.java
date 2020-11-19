@@ -1,3 +1,4 @@
+import QuestionsHandler.Answers;
 import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
@@ -5,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -23,11 +27,15 @@ public class QuestionPage extends JFrame implements ActionListener {
     JButton b2 = new JButton();
     JButton b3 = new JButton();
 
+    List<JButton> buttonsToPaintList = new ArrayList<>();
+
     JLabel round = new JLabel("Round nr");
     JLabel player = new JLabel();
+    JLabel questionNumber = new JLabel();
 
     JLabel category = new JLabel("Category");
     JLabel question = new JLabel();
+
 
 
     JButton answer1 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
@@ -48,25 +56,70 @@ public class QuestionPage extends JFrame implements ActionListener {
     JPanel south = new JPanel();
 
     Player pro = new Player();
+    List<Questions> randomListToPull = new ArrayList<>();
+    List<String> randomAnswerList = new ArrayList<>();
 
+    Database d = new Database();
 
-
-
-    public QuestionPage(Player p, Database d){
-
+    public QuestionPage(Player p){
 
 
 
         pro = p;
-        round.setText(String.valueOf(pro.getRound()));
+        round.setText(("Round " + pro.getRound()));
+        questionNumber.setText("Question " + pro.getQuestion());
 
         player.setText(pro.getName());
 
         frame.setSize(400,200);
 
-        List<Questions> randomListToPull = d.artLiterature.getArtLiteratureList();
+        randomListToPull = d.artLiterature.getArtLiteratureList();
 
-        question.setText(randomListToPull.get(0).getQuestion());
+
+        question.setText(randomListToPull.get(pro.getRound()).getQuestion());
+
+        //d.artLiterature.getArtLiteratureList().get(0).getAnswerObject().shuffleAnswers(randomListToPull.get(0).getAnswerObject().getAnswersList());
+
+
+       //randomListToPull.get(0).getAnswerObject().shuffleAnswers();
+
+        randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+        Collections.shuffle(randomAnswerList);
+
+
+        answer1.setText(randomAnswerList.get(0));
+        answer2.setText(randomAnswerList.get(1));
+        answer3.setText(randomAnswerList.get(2));
+        answer4.setText(randomAnswerList.get(3));
+
+        /*
+        answer1.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(0).toString());
+        answer2.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(1).toString());
+        answer3.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(2).toString());
+        answer4.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(3).toString());
+
+         */
+        category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size()-1));
+
+        buttonsToPaintList.add(b1);
+        buttonsToPaintList.add(b2);
+        buttonsToPaintList.add(b3);
+
+
+
+        if (pro.getQuestion() > 0){
+            for (int i = 0; i < pro.getQuestion()-1; i++) {
+                if (pro.getAnswers().get(i) == false){
+                    paintRed(buttonsToPaintList.get(i));
+                }else {
+                    paintGreen(buttonsToPaintList.get(i));
+                }
+            }
+        }else if (pro.getQuestion() == 0){
+            for (int i = 0; i < pro.getMaxQuestion(); i++) {
+                resetPaint(buttonsToPaintList.get(i));
+            }
+        }
 
 
 
@@ -79,6 +132,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         center.setLayout(new GridLayout(2,1));
         center.add(category);
+        center.add(questionNumber);
         center.add(question);
 
         south.setLayout(new GridLayout(3,2));
@@ -124,33 +178,94 @@ public class QuestionPage extends JFrame implements ActionListener {
         category.setText(categroyText);
     }
 
+    public void paintRed(JButton jb){
+        jb.setBackground(Color.RED);
+        jb.setOpaque(true);
+        jb.setBorderPainted(false);
+    }
+    public void paintGreen(JButton jb){
+        jb.setBackground(Color.GREEN);
+        jb.setOpaque(true);
+        jb.setBorderPainted(false);
+    }
+    public void resetPaint(JButton jb){
+        jb.setBackground(null);
+    }
+
     // Radera
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Boolean b = true;
+
         if (e.getSource() == answer1){
-            answer1.setBackground(Color.RED);
+            if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
+                answer1.setBackground(Color.RED);
+                pro.answersAddToList(false);
+            }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
+                answer1.setBackground(Color.GREEN);
+                pro.answersAddToList(true);
+                pro.setPoints(pro.getPoints()+1);
+            }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
-            b = false;
         }else if (e.getSource() == answer2){
-            answer2.setBackground(Color.RED);
+            if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
+                answer2.setBackground(Color.RED);
+                pro.answersAddToList(false);
+            }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
+                answer2.setBackground(Color.GREEN);
+                pro.answersAddToList(true);
+                pro.setPoints(pro.getPoints()+1);
+            }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
-            b = false;
         }else if (e.getSource() == answer3){
-            answer3.setBackground(Color.RED);
+            if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
+                answer3.setBackground(Color.RED);
+                pro.answersAddToList(false);
+            }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
+                answer3.setBackground(Color.GREEN);
+                pro.answersAddToList(true);
+                pro.setPoints(pro.getPoints()+1);
+            }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
-            b = false;
         }else if (e.getSource() == answer4){
-            answer4.setBackground(Color.GREEN);
+            if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
+                answer4.setBackground(Color.RED);
+                pro.answersAddToList(false);
+            }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
+                answer4.setBackground(Color.GREEN);
+                pro.answersAddToList(true);
+                pro.setPoints(pro.getPoints()+1);
+            }
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
-            b = true;
         }
-        ResultPage result = new ResultPage(pro,b);
+
+
+        if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()){
+            pro.setQuestion(0);
+            frame.dispose();
+            ResultPage r = new ResultPage(pro);
+
+        }else if (pro.getQuestion() == pro.getMaxQuestion()){
+            pro.setQuestion(0);
+            try {
+                frame.dispose();
+                GamePage g = new GamePage(pro);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
+        else if (pro.getQuestion() <= pro.getMaxQuestion()){
+            pro.setQuestion(pro.getQuestion()+1);
+            frame.dispose();
+            QuestionPage q = new QuestionPage(pro);
+        }
+
+
+            //INSERT QUESTPAGE HERE
         frame.dispose();
     }
 }
