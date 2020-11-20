@@ -42,7 +42,7 @@ public class HomePage extends JFrame implements ActionListener {
         add(panelMid,BorderLayout.CENTER);
         add(panelBot, BorderLayout.SOUTH);
 
-        panelUp.add(settings);
+       // panelUp.add(settings);
         panelMid.add(player);
         panelBot.add(play);
         panelBot.add(home);

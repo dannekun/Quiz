@@ -15,13 +15,12 @@ public class ResultPage {
 
 
     Player pro = new Player();
-    public ResultPage(Player p, boolean b){
-        pro.setName(p.getName());
-        if (b == true){
-            JOptionPane.showMessageDialog(null,pro.getName() + " vann!");
-        }else {
-            JOptionPane.showMessageDialog(null, pro.getName() + " förlorade!");
-        }
+    public ResultPage(Player p){
+
+        pro = p;
+
+        JOptionPane.showMessageDialog(null, pro.getName() + " fick " + pro.getPoints() + " poäng!");
+
 
         HomePage page = new HomePage(pro);
 
