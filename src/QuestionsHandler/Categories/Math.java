@@ -26,17 +26,17 @@ public class Math {
 
     private final Answers A3 = new Answers("4531", "4432", "4531", "5431");
 
-    private final Answers A4 = new Answers("Tre hundra fyrtiotvå", "Trehundra fyra två", "Tre fyrtiotvå", "Tre fyra två");
+    private final Answers A4 = new Answers("1331", "1313", "1133", "3131");//Changed
 
-    private final Answers A5 = new Answers("261", "221", "241", "251");
+    private final Answers A5 = new Answers("24", "36", "26", "56");//Changed
 
-    private final Answers A6 = new Answers("5,68", "6,53", "5,58", "6,68");
+    private final Answers A6 = new Answers("360", "21600", "30", "600");//Changed
 
-    private final Answers A7 = new Answers("w=-50", "w=2", "w=-2", "w=50");
+    private final Answers A7 = new Answers("23", "33", "25", "12");//Changed
 
     private final Answers A8 = new Answers("x=4", "x=6", "x=3", "x=1");
 
-    private final Answers A9 = new Answers("x=6", "X=7", "x=1/6", "x=9");
+    private final Answers A9 = new Answers("2", "0,2", "234", "0,74");//Changed
 
     private final Answers A10 = new Answers("9900", "9990", "990", "1001");
 
@@ -48,17 +48,17 @@ public class Math {
 
     private final Questions Q3 = new Questions("Vilket nummer kommer nästa i serien? 4231, 4331, 4431,?", A3);
 
-    private final Questions Q4 = new Questions("Du hade 342 mynt i sin samling. Hur skulle du skriva 342?", A4);
+    private final Questions Q4 = new Questions("Vad är 121 gånger 11?", A4);//Changed
 
-    private final Questions Q5 = new Questions("Om du hade 785 hundar hur många skulle du ha om jag tog 524?", A5);
+    private final Questions Q5 = new Questions("5 + 7 + 10 + 6 - 4 =?", A5);//Changed
 
-    private final Questions Q6 = new Questions("Om Johanna hade 19,27kr och Max hade 13,59kr hur mycket mer pengar har Johanna?", A6);
+    private final Questions Q6 = new Questions("Hur många minuter är det på sex timmar?", A6);//Changed
 
-    private final Questions Q7 = new Questions("w/5 = -10", A7);
+    private final Questions Q7 = new Questions("Vilket nummer kommer nästa i serien? 3,8,13,18,?", A7); //Changed
 
     private final Questions Q8 = new Questions("14+3x=26", A8);
 
-    private final Questions Q9 = new Questions("9/36=x/24", A9);
+    private final Questions Q9 = new Questions("1,4 / 0,7", A9);//Changed
 
     private final Questions Q10 = new Questions("10001 – 101", A10);
 
