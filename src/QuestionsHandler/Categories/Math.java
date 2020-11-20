@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -21,47 +20,47 @@ public class Math {
     // Math Answers
     private final List<Questions> mathList;
 
-    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+    private final Answers A1 = new Answers("55", "65", "43", "53");
 
-    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+    private final Answers A2 = new Answers("476 > 467", "456 > 465", "403 > 430", "457 > 475");
 
-    private final Answers A3 = new Answers("195", "220", "90", "164");
+    private final Answers A3 = new Answers("4531", "4432", "4531", "5431");
 
-    private final Answers A4 = new Answers("1965", "1970", "1975", "1980");
+    private final Answers A4 = new Answers("Tre hundra fyrtiotvå", "Trehundra fyra två", "Tre fyrtiotvå", "Tre fyra två");
 
-    private final Answers A5 = new Answers("Edo", "Edoyo", "Kyoto", "Kygo");
+    private final Answers A5 = new Answers("261", "221", "241", "251");
 
-    private final Answers A6 = new Answers("2004", "2001", "2008", "1994");
+    private final Answers A6 = new Answers("5,68", "6,53", "5,58", "6,68");
 
-    private final Answers A7 = new Answers("Ryssland", "USA", "Canada", "Mongoliet");
+    private final Answers A7 = new Answers("w=-50", "w=2", "w=-2", "w=50");
 
-    private final Answers A8 = new Answers("12", "8", "6", "16");
+    private final Answers A8 = new Answers("x=4", "x=6", "x=3", "x=1");
 
-    private final Answers A9 = new Answers("40mg", "1g", "400mg", "15g");
+    private final Answers A9 = new Answers("x=6", "X=7", "x=1/6", "x=9");
 
-    private final Answers A10 = new Answers("160", "210", "90", "110");
+    private final Answers A10 = new Answers("9900", "9990", "990", "1001");
 
     //--------------------------------------------------------------------------------------//
     // Math Questions
-    private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
+    private final Questions Q1 = new Questions("Summera 1 till 10", A1);
 
-    private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
+    private final Questions Q2 = new Questions("Vilka av dessa påstående är korrekta?", A2);
 
-    private final Questions Q3 = new Questions("Hur många länder finns det i världen?", A3);
+    private final Questions Q3 = new Questions("Vilket nummer kommer nästa i serien? 4231, 4331, 4431,?", A3);
 
-    private final Questions Q4 = new Questions("När fick Sverige färg-TV?", A4);
+    private final Questions Q4 = new Questions("Du hade 342 mynt i sin samling. Hur skulle du skriva 342?", A4);
 
-    private final Questions Q5 = new Questions("Vad hette Tokyo förr", A5);
+    private final Questions Q5 = new Questions("Om du hade 785 hundar hur många skulle du ha om jag tog 524?", A5);
 
-    private final Questions Q6 = new Questions("När skapades Facebook?", A6);
+    private final Questions Q6 = new Questions("Om Johanna hade 19,27kr och Max hade 13,59kr hur mycket mer pengar har Johanna?", A6);
 
-    private final Questions Q7 = new Questions("Vilket land har störst yta?", A7);
+    private final Questions Q7 = new Questions("w/5 = -10", A7);
 
-    private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
+    private final Questions Q8 = new Questions("14+3x=26", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe", A9);
+    private final Questions Q9 = new Questions("9/36=x/24", A9);
 
-    private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
+    private final Questions Q10 = new Questions("10001 – 101", A10);
 
 
     public Math(){

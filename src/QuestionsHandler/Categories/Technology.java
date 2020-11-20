@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -21,47 +20,47 @@ public class Technology {
     // Technology Answers
     private final List<Questions> technologyList;
 
-    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+    private final Answers A1 = new Answers("Amazon", "Walmart", "BEST BUY", "Apple");
 
-    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+    private final Answers A2 = new Answers("Snapchat", "Instagram", "Facebook", "SNOW");
 
-    private final Answers A3 = new Answers("195", "220", "90", "164");
+    private final Answers A3 = new Answers("Harvard", "Columbia", "Yale", "Brown");
 
-    private final Answers A4 = new Answers("1965", "1970", "1975", "1980");
+    private final Answers A4 = new Answers("2007", "2010", "2000", "2005");
 
-    private final Answers A5 = new Answers("Edo", "Edoyo", "Kyoto", "Kygo");
+    private final Answers A5 = new Answers("Ljusår", "Ljudår", "Parsec", "Attoparsec");
 
-    private final Answers A6 = new Answers("2004", "2001", "2008", "1994");
+    private final Answers A6 = new Answers("Archie", "Yahoo!", "Google", "Ask");
 
-    private final Answers A7 = new Answers("Ryssland", "USA", "Canada", "Mongoliet");
+    private final Answers A7 = new Answers("1970-talet", "1960-talet", "1980-talet", "1990-talet");
 
-    private final Answers A8 = new Answers("12", "8", "6", "16");
+    private final Answers A8 = new Answers("1889", "1947", "1975", "1901");
 
-    private final Answers A9 = new Answers("40mg", "1g", "400mg", "15g");
+    private final Answers A9 = new Answers("Böcker", "Leksaker","Elektoronik" , "Porslin");
 
-    private final Answers A10 = new Answers("160", "210", "90", "110");
+    private final Answers A10 = new Answers("Lucky-Goldstar", "Lucy-Goldie", "Lucky-Goodman", "Lucy-Goldman");
 
     //--------------------------------------------------------------------------------------//
     // Technology Questions
-    private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
+    private final Questions Q1 = new Questions("Den nuvarande rikaste mannen i världen Jeff Bezos är VD för vilken online-återförsäljare?", A1);
 
-    private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
+    private final Questions Q2 = new Questions("Vilken app för sociala medier låter dig bara visa bilder och meddelanden under en begränsad tid?", A2);
 
-    private final Questions Q3 = new Questions("Hur många länder finns det i världen?", A3);
+    private final Questions Q3 = new Questions("Vilket prestigefyllt universitet hoppade Microsoft-grundaren Bill Gates av?", A3);
 
-    private final Questions Q4 = new Questions("När fick Sverige färg-TV?", A4);
+    private final Questions Q4 = new Questions("Vilket år lanserades den första Apple iPhone?", A4);
 
-    private final Questions Q5 = new Questions("Vad hette Tokyo förr", A5);
+    private final Questions Q5 = new Questions("Vilken längdenhet är lika med cirka 5,8 biljoner mil?", A5);
 
-    private final Questions Q6 = new Questions("När skapades Facebook?", A6);
+    private final Questions Q6 = new Questions("Skapades 1990, vad hette den första sökmotorn på internet?", A6);
 
-    private final Questions Q7 = new Questions("Vilket land har störst yta?", A7);
+    private final Questions Q7 = new Questions("Under vilket årtionde lanserades Sony Walkman?", A7);
 
-    private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
+    private final Questions Q8 = new Questions("När elektronikföretaget Nintendo grundades?", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe", A9);
+    private final Questions Q9 = new Questions("Ursprungligen sålde Amazon endast vilken produkt?", A9);
 
-    private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
+    private final Questions Q10 = new Questions("Vad står LG för i LG Electronics?", A10);
 
 
     public Technology(){

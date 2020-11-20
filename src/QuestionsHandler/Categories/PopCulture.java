@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -21,47 +20,47 @@ public class PopCulture {
     // Pop Culture Answers
     private final List<Questions> popCultureList;
 
-    private final Answers A1 = new Answers("Laos", "Thailand", "Vietnam", "Cambodia");
+    private final Answers A1 = new Answers("Stephenie Meyer", "E. L. James", "J. K. Rowling", "J.R.R Tolkien");
 
-    private final Answers A2 = new Answers("Desamma", "Detsamma", "Det samma", "Detsamman");
+    private final Answers A2 = new Answers("4 maj", "4 juli", "20 maj", "20 juli");
 
-    private final Answers A3 = new Answers("195", "220", "90", "164");
+    private final Answers A3 = new Answers("Becoming", "Enhancing","Yes We Can", "Yes I Can");
 
-    private final Answers A4 = new Answers("1965", "1970", "1975", "1980");
+    private final Answers A4 = new Answers("Doja Cat", "Megan Thee Stallion", "Nicki Minaj", "Lana Del Rey");
 
-    private final Answers A5 = new Answers("Edo", "Edoyo", "Kyoto", "Kygo");
+    private final Answers A5 = new Answers("7 böcker och 8 filmer.", "6 böcker och 8 filmer.", "10 böcker och 10 filmer.", "8 böcker och 9 filmer.");
 
-    private final Answers A6 = new Answers("2004", "2001", "2008", "1994");
+    private final Answers A6 = new Answers("Winifred, Mary och Sarah", "Wendy, Meagan och Sandra", "Anny, Mary och Sandra", "Wendy, Megan och Sarah");
 
-    private final Answers A7 = new Answers("Ryssland", "USA", "Canada", "Mongoliet");
+    private final Answers A7 = new Answers("Lady Gaga", "Ariana Grande", "Katy Perry", "Madonna");
 
-    private final Answers A8 = new Answers("12", "8", "6", "16");
+    private final Answers A8 = new Answers("John James Preston", "Aidan Shaw", "Jack Berger", "Aleksandr Petrovsky");
 
-    private final Answers A9 = new Answers("40mg", "1g", "400mg", "15g");
+    private final Answers A9 = new Answers("Kourtney", "Kim", "Khloé", "Kris");
 
-    private final Answers A10 = new Answers("160", "210", "90", "110");
+    private final Answers A10 = new Answers("The Upside Down", "The Strain", "The distortion", "The Inside Out");
 
     //--------------------------------------------------------------------------------------//
     // Pop Culture Questions
-    private final Questions Q1 = new Questions("I vilket land är Vientiane huvudstad?", A1);
+    private final Questions Q1 = new Questions("Vem skrev Twilight-böckerna?", A1);
 
-    private final Questions Q2 = new Questions("Vilket av följande är stavning?", A2);
+    private final Questions Q2 = new Questions("Vilken dag är Star Wars Day?", A2);
 
-    private final Questions Q3 = new Questions("Hur många länder finns det i världen?", A3);
+    private final Questions Q3 = new Questions("Vad heter Michelle Obamas 2018-memoar?", A3);
 
-    private final Questions Q4 = new Questions("När fick Sverige färg-TV?", A4);
+    private final Questions Q4 = new Questions("Vem sjunger låten 'Say So' som ligger bakom den populära TikTok-dansen?", A4);
 
-    private final Questions Q5 = new Questions("Vad hette Tokyo förr", A5);
+    private final Questions Q5 = new Questions("Hur många Harry Potter böcker och filmer finns det?", A5);
 
-    private final Questions Q6 = new Questions("När skapades Facebook?", A6);
+    private final Questions Q6 = new Questions("Vad heter Sanderson-systrarna från Hocus Pocus?", A6);
 
-    private final Questions Q7 = new Questions("Vilket land har störst yta?", A7);
+    private final Questions Q7 = new Questions("Vilken popstjärna är gudmor till båda Elton Johns söner?", A7);
 
-    private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
+    private final Questions Q8 = new Questions("Vad är Mr. Big: s riktiga namn i Sex and the City?", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe", A9);
+    private final Questions Q9 = new Questions("Vem är den äldsta Kardashian-systern?", A9);
 
-    private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
+    private final Questions Q10 = new Questions("Vad heter den alternativa dimensionen i Netflix Stranger Things?", A10);
 
 
     public PopCulture(){
