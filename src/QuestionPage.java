@@ -243,12 +243,12 @@ public class QuestionPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == answer1){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
-            if (checkAnswers(randomAnswerList.get(0)) == false) {
+            if (!checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 System.out.println("Du fick fel");
                 //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
-            }else if (checkAnswers(randomAnswerList.get(0))== true){
+            }else if (checkAnswers(randomAnswerList.get(0))){
                 answer1.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
@@ -258,12 +258,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer1.setBorderPainted(false);
         }else if (e.getSource() == answer2){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
-            if (checkAnswers(randomAnswerList.get(1))== false) {
+            if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 System.out.println("Du fick fel");
           //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
-            }else if (checkAnswers(randomAnswerList.get(1))== true){
+            }else if (checkAnswers(randomAnswerList.get(1))){
                 answer2.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
@@ -274,12 +274,12 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         }else if (e.getSource() == answer3){
            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
-            if (checkAnswers(randomAnswerList.get(2))== false) {
+            if (!checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 System.out.println("Du fick fel");
         //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
-            }else if (checkAnswers(randomAnswerList.get(2))== true){
+            }else if (checkAnswers(randomAnswerList.get(2))){
                 answer3.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
@@ -290,12 +290,12 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         }else if (e.getSource() == answer4){
            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
-            if (checkAnswers(randomAnswerList.get(3))== false) {
+            if (!checkAnswers(randomAnswerList.get(3))) {
                 answer4.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 System.out.println("Du fick fel");
            // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
-            }else if (checkAnswers(randomAnswerList.get(3))== true){
+            }else if (checkAnswers(randomAnswerList.get(3))){
                 answer4.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
