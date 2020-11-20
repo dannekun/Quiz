@@ -284,24 +284,47 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
+    public void findRightAnswerAndPaint(JButton a, JButton b, JButton c, JButton d, String rightAnswer){
+        if (a.getText().equals(rightAnswer)){
+            a.setBackground(Color.GREEN);
+            a.setOpaque(true);
+            a.setBorderPainted(false);
+        }else if (b.getText().equals(rightAnswer)){
+            b.setBackground(Color.GREEN);
+            b.setOpaque(true);
+            b.setBorderPainted(false);
+        }else if (c.getText().equals(rightAnswer)){
+            c.setBackground(Color.GREEN);
+            c.setOpaque(true);
+            c.setBorderPainted(false);
+        }else if (d.getText().equals(rightAnswer)){
+            d.setBackground(Color.GREEN);
+            d.setOpaque(true);
+            d.setBorderPainted(false);
+        }
+    }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Boolean didYouGetIt = false;
         if (e.getSource() == answer1){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
             if (!checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
-                System.out.println("Du fick fel");
+                didYouGetIt = false;
+
+
+
                 //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
             }else if (checkAnswers(randomAnswerList.get(0))){
                 answer1.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
                 pro.setPoints(pro.getPoints()+1);
-                System.out.println("Du fick rätt");
+                didYouGetIt = true;
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
@@ -311,14 +334,14 @@ public class QuestionPage extends JFrame implements ActionListener {
                 answer2.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
-                System.out.println("Du fick fel");
+                didYouGetIt = false;
           //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
             }else if (checkAnswers(randomAnswerList.get(1))){
                 answer2.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
                 pro.setPoints(pro.getPoints()+1);
-                System.out.println("Du fick rätt");
+                didYouGetIt = true;
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
@@ -329,14 +352,14 @@ public class QuestionPage extends JFrame implements ActionListener {
                 answer3.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
-                System.out.println("Du fick fel");
+                didYouGetIt = false;
         //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
             }else if (checkAnswers(randomAnswerList.get(2))){
                 answer3.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
                 pro.setPoints(pro.getPoints()+1);
-                System.out.println("Du fick rätt");
+                didYouGetIt = true;
             }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
@@ -347,23 +370,30 @@ public class QuestionPage extends JFrame implements ActionListener {
                 answer4.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
-                System.out.println("Du fick fel");
+                didYouGetIt = false;
            // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
             }else if (checkAnswers(randomAnswerList.get(3))){
                 answer4.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
                 pro.setPoints(pro.getPoints()+1);
-                System.out.println("Du fick rätt");
+                didYouGetIt = true;
             }
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
 
         }
 
+        findRightAnswerAndPaint(answer1, answer2, answer3, answer4,rightAnswerFromList);
+
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()){
             pro.setQuestion(0);
+            if (didYouGetIt == true){
+                JOptionPane.showMessageDialog(null, "Right!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            }
             frame.dispose();
             ResultPage r = new ResultPage(pro);
 
@@ -371,7 +401,11 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
             pro.roundAnswers.clear();
-            JOptionPane.showMessageDialog(null, " ");
+            if (didYouGetIt == true){
+                JOptionPane.showMessageDialog(null, "Right!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            }
             try {
                 frame.dispose();
                 GamePage g = new GamePage(pro);
@@ -381,8 +415,11 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
         else if (pro.getQuestion() <= pro.getMaxQuestion()){
             pro.setQuestion(pro.getQuestion()+1);
-
-            JOptionPane.showMessageDialog(null, " ");
+            if (didYouGetIt == true){
+                JOptionPane.showMessageDialog(null, "Right!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            }
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
