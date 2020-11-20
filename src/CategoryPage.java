@@ -130,84 +130,46 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void findCategory(int randomCategoryIndex){
 
         // Operator = randomCategoryIndex = t.ex: unique1
+        // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
+        // Get category name from AnimalsNature.java
+        // Use that name to setCategoryText();
         switch (randomCategoryIndex) {
-
-            // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
-            case animalsNature:
-
-                // Get category name from AnimalsNature.java
+            case animalsNature -> {
                 categoryName = new AnimalsNature().getCategoryName();
-
-
-                // Use that name to setCategoryText();
                 setCategoryText(categoryName);
-
-                break;
-
-            case artLiterature:
-
+            }
+            case artLiterature -> {
                 categoryName = new ArtLiterature().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case generalKnowledge:
-
+            }
+            case generalKnowledge -> {
                 categoryName = new GeneralKnowledge().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case math:
-
+            }
+            case math -> {
                 categoryName = new Math().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case music:
-
+            }
+            case music -> {
                 categoryName = new Music().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case popCulture:
-
+            }
+            case popCulture -> {
                 categoryName = new PopCulture().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case sports:
-
+            }
+            case sports -> {
                 categoryName = new Sports().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case technology:
-
+            }
+            case technology -> {
                 categoryName = new Technology().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case tvShows:
-
+            }
+            case tvShows -> {
                 categoryName = new TVShows().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
+            }
         }
 
     }
