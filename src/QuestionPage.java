@@ -41,14 +41,10 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
 
-    JButton answer1 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(0).toString());
-    JButton answer2 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(1).toString());
-    JButton answer3 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(2).toString());
-    JButton answer4 = new JButton(database.artLiterature.getArtLiteratureList().get(0).getAnswerObject()
-            .getAnswersList().get(3).toString());
+    JButton answer1 = new JButton();
+    JButton answer2 = new JButton();
+    JButton answer3 = new JButton();
+    JButton answer4 = new JButton();
 
     JLabel timer = new JLabel("Timer here");
 
@@ -241,7 +237,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
-    // Radera
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -260,7 +256,6 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
-            answer1.repaint();
         }else if (e.getSource() == answer2){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
             if (checkAnswers(randomAnswerList.get(1))== false) {
@@ -276,7 +271,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
-            answer2.repaint();
+
         }else if (e.getSource() == answer3){
            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
             if (checkAnswers(randomAnswerList.get(2))== false) {
@@ -292,7 +287,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
-            answer3.repaint();
+
         }else if (e.getSource() == answer4){
            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
             if (checkAnswers(randomAnswerList.get(3))== false) {
@@ -308,7 +303,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
-            answer4.repaint();
+
         }
 
 
@@ -329,18 +324,16 @@ public class QuestionPage extends JFrame implements ActionListener {
         else if (pro.getQuestion() <= pro.getMaxQuestion()){
             pro.setQuestion(pro.getQuestion()+1);
 
+            JOptionPane.showMessageDialog(null, " ");
             try {
-                TimeUnit.SECONDS.sleep(5);
+                Thread.sleep(5000);
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
 
+
             frame.dispose();
             QuestionPage q = new QuestionPage(pro);
         }
-
-
-            //INSERT QUESTPAGE HERE
-        frame.dispose();
     }
 }
