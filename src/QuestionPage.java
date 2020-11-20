@@ -84,6 +84,9 @@ public class QuestionPage extends JFrame implements ActionListener {
        //randomListToPull.get(0).getAnswerObject().shuffleAnswers();
 
         randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+
+
+
         Collections.shuffle(randomAnswerList);
 
 
@@ -192,6 +195,17 @@ public class QuestionPage extends JFrame implements ActionListener {
         jb.setBackground(null);
     }
 
+
+    /*
+    public List<Questions> findList(String s){
+
+        return switch (s){
+            case
+        }
+    }
+
+     */
+
     // Radera
 
     @Override
@@ -201,10 +215,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
                 answer1.setBackground(Color.RED);
                 pro.answersAddToList(false);
+                System.out.println("Du fick fel");
             }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
                 answer1.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
+                System.out.println("Du fick rätt");
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
@@ -212,10 +228,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
                 answer2.setBackground(Color.RED);
                 pro.answersAddToList(false);
+                System.out.println("Du fick fel");
             }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
                 answer2.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
+                System.out.println("Du fick rätt");
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
@@ -223,10 +241,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
                 answer3.setBackground(Color.RED);
                 pro.answersAddToList(false);
+                System.out.println("Du fick fel");
             }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
                 answer3.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
+                System.out.println("Du fick rätt");
             }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
@@ -234,10 +254,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
                 answer4.setBackground(Color.RED);
                 pro.answersAddToList(false);
+                System.out.println("Du fick fel");
             }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
                 answer4.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.setPoints(pro.getPoints()+1);
+                System.out.println("Du fick rätt");
             }
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
