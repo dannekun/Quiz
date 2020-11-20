@@ -371,6 +371,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
             pro.roundAnswers.clear();
+            JOptionPane.showMessageDialog(null, " ");
             try {
                 frame.dispose();
                 GamePage g = new GamePage(pro);
