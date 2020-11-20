@@ -16,7 +16,6 @@ import java.io.IOException;
 public class HomePage extends JFrame implements ActionListener {
 
 
-    JFrame frame = new JFrame();
     JPanel panelUp = new JPanel();
     JPanel panelMid = new JPanel();
     JPanel panelBot = new JPanel();
@@ -39,19 +38,19 @@ public class HomePage extends JFrame implements ActionListener {
         panelMid.setLayout(new GridLayout(1,1));
         panelBot.setLayout(new GridLayout(2,1));
 
-        frame.add(panelUp, BorderLayout.NORTH);
-        frame.add(panelMid,BorderLayout.CENTER);
-        frame.add(panelBot, BorderLayout.SOUTH);
+        add(panelUp, BorderLayout.NORTH);
+        add(panelMid,BorderLayout.CENTER);
+        add(panelBot, BorderLayout.SOUTH);
 
         panelUp.add(settings);
         panelMid.add(player);
         panelBot.add(play);
         panelBot.add(home);
 
-        frame.setSize(200,400);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(200,400);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         play.addActionListener(this);
         settings.addMouseListener(new MouseAdapter() {
@@ -66,7 +65,7 @@ public class HomePage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-            frame.dispose();
+            dispose();
             try {
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
