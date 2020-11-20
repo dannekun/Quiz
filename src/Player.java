@@ -16,7 +16,26 @@ public class Player {
     int maxRound;
     int question;
     int maxQuestion;
+    List<String> currentQuestion = new ArrayList<>();
 
+    List<String> roundCategories = new ArrayList<>();
+
+    List<Boolean> answers = new ArrayList<>();
+
+    List<Boolean> roundAnswers = new ArrayList<>();
+
+
+    public void addQuestionToCurrentList(String s){
+        currentQuestion.add(s);
+    }
+
+    public List<String> getCurrentQuestion() {
+        return currentQuestion;
+    }
+
+    public void setCurrentQuestion(List<String> currentQuestion) {
+        this.currentQuestion = currentQuestion;
+    }
 
     public int getPoints() {
         return points;
@@ -50,12 +69,10 @@ public class Player {
         this.maxRound = maxRound;
     }
 
-    List<String> roundCategories = new ArrayList<>();
 
-    List<Boolean> answers = new ArrayList<>();
-
-    List<Boolean> roundAnswers = new ArrayList<>();
-
+    public void addToRoundAnswersList(Boolean b){
+        roundAnswers.add(b);
+    }
 
     public List<Boolean> getRoundAnswers() {
         return roundAnswers;

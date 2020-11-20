@@ -33,6 +33,30 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
+    public int getUnique1() {
+        return unique1;
+    }
+
+    public void setUnique1(int unique1) {
+        this.unique1 = unique1;
+    }
+
+    public int getUnique2() {
+        return unique2;
+    }
+
+    public void setUnique2(int unique2) {
+        this.unique2 = unique2;
+    }
+
+    public int getUnique3() {
+        return unique3;
+    }
+
+    public void setUnique3(int unique3) {
+        this.unique3 = unique3;
+    }
+
     String categoryName;
 
     JFrame frame = new JFrame();

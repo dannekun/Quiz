@@ -83,7 +83,7 @@ public class Sports {
     }
 
     public String getCategoryName() {
-        return "General Knowledge";
+        return "Sports";
     }
 
     public List<Questions> getSportsList() {
