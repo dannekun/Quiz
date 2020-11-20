@@ -326,7 +326,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
             JOptionPane.showMessageDialog(null, " ");
             try {
-                Thread.sleep(5000);
+                Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
