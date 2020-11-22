@@ -1,111 +1,124 @@
 package KnockKnock_QuizTest;
-
 import java.util.ArrayList;
-
 
 /**
  * Created by Miwa Guhrés
- * Date: 2020-11-16
- * Time: 23:19
- * Project: TEST_GroupArbete
+ * Date: 2020-11-21
+ * Time: 15:43
+ * Project: OOPJava_4
  * Copyright: MIT
  */
-
-//----------------It DOSE NOT work OLD I need fix TestQuizProtocol-----------
-
 public class QuizProtocol {
-    private static final int WAITING=0;
-    private static final int SENTQUIZ = 1;
-    private static final int SENTANSWER_OPTIONS = 2;
-    private static final int SENTANSWER=3;
-    private static final int SENTPOINT=4;
-    private static final int SENTTOTALPOINTS=5;
+
+    private static final int WAITING = 0;
+    private static final int SENTQUESTION = 1;
+    private static final int SENTANSWER = 2;
+
 
     private int state = WAITING;
-    //private  static final int NUMQUIZ_CATEGORY=3; //3quiz*3category
 
-    private int currentCategory=0;//0-2(3category)
-    private int currentQuiz=0;//0-2(3 quiz)
-    private int currentAnswerOptions=0;//0-3 (4 options per quiz)
-
-    public String category;
-    private ArrayList<Integer> pointPerRound= new ArrayList<>(3);// 3 quiz per round
+    private ArrayList<Integer> pointPerRound = new ArrayList<>(3);// 3 quiz per round
     private int point;
-    //List<Integer> TotalPoints = new ArrayList<Integer>();// round1,2,3
 
-    private int numberOfRounds=3;
+    private int currentCategory = 0;//0-2(3category)
+    private int currentQuestion = 0;//0-2(3 quiz)
+
+    private int numberOfQuestions = 3;
 
 
+    //----------Ver. 4--------------------
+    /** This is protocol for QuestionPage
+     * CategoryPage-->Press category x button
+     * QuestionPage-->Take data x and set the data to lists index 0,
+     * player 1 go through 3 questions
+     * player2 go through  3 questions
+     *
+     * I don´t know how the server fetch the questions from database.....
+     * User will click the category button at the CategoryPage.
+     * The selected 3 questions, Options and answers
+     * are added to the quiz list, answerOptions list and answer.
+     *
+     * May be the lists does not need to index 0-2......
+     * Every time the selected category´s questions options and answers added to index 0?????
+     */
 
+    String[][] quiz = {{"m-aaaa", "m-bbbb", "m-cccc"},
+            {"mo-dddd", "mo-eeee", "m-ffff"},
+            {"g-gggg", "g-hhhh", "g-iii"}};
 
-    private  String[][] quiz={{"m-aaaa","m-bbbb","m-cccc"},
-            {"mo-dddd","mo-eeee","m-ffff"},
-            {"g-gggg","g-hhhh","g-iii"}};
+    String[][][] answerOptions = {{{"m-a", "aa", "aaa", "aaaa"}, {"m-b", "bb", "bbb", "bbbb"}, {"m-c", "cc", "ccc", "cccc"}},
+            {{"mo-d", "dd", "ddd", "dddd"}, {"mo-e", "ee", "eee", "eeee"}, {"mo-f", "ff", "fff", "ffff"}},
+            {{"g-g", "gg", "ggg", "gggg"}, {"g-h", "hh", "hhh", "hhhh"}, {"g-i", "ii", "iii", "iiii"}}};
 
-    private String [][][] answerOptions={{{"m-a","aa","aaa","aaaa"},{"m-b","bb","bbb","bbbb"},{"m-c","cc","ccc","cccc"}},
-            {{"mo-d","dd","ddd","dddd"},{"mo-e","ee","eee","eeee"},{"mo-f","ff","fff","ffff"}},
-            {{"g-g","gg","ggg","gggg"},{"g-h","hh","hhh","hhhh"},{"g-i","ii","iii","iiii"}}};
-
-    private  String[][] answer={{"m-a","m-b","m-c"},
-            {"mo-d","mo-e","m-f"},
-            {"g-g","g-h","g-i"}};
+    String[][] answer = {{"m-a", "m-b", "m-c"},
+            {"mo-d", "mo-e", "m-f"},
+            {"g-g", "g-h", "g-i"}};
 
     public String processInput(String input) {
-        //Properties p = new Properties();
         String output = null;
-        //int numberOfRounds = Integer.parseInt(p.getProperty("numberOfRounds"));
 
+        if (state == WAITING||state == SENTANSWER) {
 
-        for (int i = 0; i < numberOfRounds; i++) {
-            if (state == WAITING || state == SENTTOTALPOINTS) {
-                output="Skriva Quiz Category";
+            output = quiz[currentCategory][currentQuestion] + " " +
+                    "alternativ1: " + answerOptions[currentCategory][currentQuestion][0] + ", " +
+                    "alternativ2: " + answerOptions[currentCategory][currentQuestion][1] + ", " +
+                    "alternativ3: " + answerOptions[currentCategory][currentQuestion][2] + ", " +
+                    "alternativ4: " + answerOptions[currentCategory][currentQuestion][3];
 
-                if (input.equalsIgnoreCase("Math")) {
-                    output = quiz[currentCategory = 0][currentQuiz];
-                    state = SENTQUIZ;
-                } else if (input.equalsIgnoreCase("Movie")) {
-                    output = quiz[currentCategory = 1][currentQuiz];
-                    state = SENTQUIZ;
-                } else if(input.equalsIgnoreCase("Game")) {
-                    output = quiz[currentCategory = 2][currentQuiz];
-                    state = SENTQUIZ;
-                }
+            state = SENTQUESTION;// state0->1
 
-            } else if (state == SENTQUIZ) {
-                output = answerOptions[currentCategory][currentQuiz][currentAnswerOptions];// 4 alternative answers
-                state = SENTANSWER_OPTIONS;
-            } else if (state == SENTANSWER_OPTIONS) {
+        } else if (state == SENTQUESTION) { // state 1 -> Server send question to Client
 
-                if (input.equalsIgnoreCase(answer[currentCategory][currentQuiz])) {
-                    output = "rightAnswer"; // Front: if(output.equalsIgnoreCase("rightAnswer")) boolean b= true; the button becomes green color.
-                    state = SENTANSWER;
+            if (currentQuestion != (numberOfQuestions - 1)) {// currentQuestion index 0 or 1
+                if (input.equalsIgnoreCase(answer[currentCategory][currentQuestion])) {
                     //----add point ArrayList----
                     point = 1;
-                    pointPerRound.add(currentQuiz);
-                    output=String.valueOf(point);
-                    state = SENTPOINT;
+                    pointPerRound.add(point);
+                    //---------send to client side---------
+                    output = "rightAnswer" + ", " + // To change green color of the answer button
+                            //"Du har fått" + String.valueOf(point) +" poäng" +", "+ // To show the result
+                            "Din total poäng: " + String.valueOf(SumPoints(pointPerRound)) + ", " + //To show the result(Total points)
+                            "Skriva f (Trycka Fortsätt button)";// This is the trigger to the next question
+
                 } else {
-                    output = "WrongAnswer";// Front: boolean b= false; The button becomes red color.
-                    state = SENTANSWER;
                     //----add point ArrayList----
-                    point = 0;//
-                    pointPerRound.add(currentQuiz);
-                    output=String.valueOf(point);
-                    state = SENTPOINT;
+                    point = 0;
+                    pointPerRound.add(point);
+                    output = "wrongAnswer" + ", " + // To change green color of the answer button
+                            //"Du har fått " + String.valueOf(point) +" poäng"+", "+
+                            "Din total poäng: " + String.valueOf(SumPoints(pointPerRound)) + ", " + //To show the result(Total points)
+                            "Skriva f (Trycka Fortsätt button)";// This is the trigger to the next question
+
                 }
-                currentQuiz++; // quiz 1-3 within the same category
-                currentAnswerOptions++;// 4 options per quiz
-                output= String.valueOf(SumPoints(pointPerRound));// send total points
-                state= SENTTOTALPOINTS;
+                currentQuestion++;
+                state = SENTANSWER;//state1->2
 
+            } else { //last question
+                if (input.equalsIgnoreCase(answer[currentCategory][currentQuestion])) {
+                    //----add point ArrayList----
+                    point = 1;
+                    pointPerRound.add(point);
+                    //---------send to client side---------
+                    output = "rightAnswer" + ", " + // To change green color of the answer button
+                            //"Du har fått" + String.valueOf(point) +" poäng" +", "+ // To show the result
+                            "Din total poäng: " + String.valueOf(SumPoints(pointPerRound)) + ", " + //To show the result(Total points)
+                            "En rond är slut! Trycka Cancel";
+
+                } else {
+                    //----add point ArrayList----
+                    point = 0;
+                    pointPerRound.add(point);
+                    output = "wrongAnswer" + ", " + // To change green color of the answer button
+                            //"Du har fått " + String.valueOf(point) +" poäng"+", "+
+                            "Din total poäng: " + String.valueOf(SumPoints(pointPerRound)) + ", " + //To show the result(Total points)
+                            "En rond är slut! Trycka Cancel";
+                }
             }
-
         }
+
         return output;
     }
-
-
-    public static int SumPoints(ArrayList<Integer> list) {
+    public static int SumPoints (ArrayList < Integer > list) {
         int sum = 0;
         for (int i = 0; i < list.size(); i++) {
             int n = list.get(i);
