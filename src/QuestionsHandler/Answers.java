@@ -33,7 +33,7 @@ public class Answers {
      * @return shuffledAnswerList
      */
 
-    public List getShuffledAnswersList(){
+    public List<String> getShuffledAnswersList(){
 
         List<String> shuffledAnswerList = new ArrayList<>();
 
@@ -48,19 +48,23 @@ public class Answers {
 
     }
 
+    public void shuffleAnswers(List<String> answersToShuffle){
+        Collections.shuffle(answersToShuffle);
+    }
+
     /**
      * This method gives you a list of the type List<String> in correct order.
      *
      * @return AnswerList
      */
 
-    public List getAnswersList(){
+    public List<String> getAnswersList(){
         List<String> answerList = new ArrayList<>();
 
-        answerList.add(rightAnswer);
-        answerList.add(wrongAnswer1);
-        answerList.add(wrongAnswer2);
-        answerList.add(wrongAnswer3);
+        answerList.add(this.rightAnswer);
+        answerList.add(this.wrongAnswer1);
+        answerList.add(this.wrongAnswer2);
+        answerList.add(this.wrongAnswer3);
 
         return answerList;
     }
@@ -84,10 +88,12 @@ public class Answers {
 
     public boolean checkAnswer(String getTextFromClick){
 
-        if (getRightAnswer() == getTextFromClick)
+        if (getRightAnswer() == getTextFromClick){
             return true;
+        }else {
+            return false;
+        }
 
-        return false;
     }
 
 }

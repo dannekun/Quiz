@@ -33,6 +33,30 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
+    public int getUnique1() {
+        return unique1;
+    }
+
+    public void setUnique1(int unique1) {
+        this.unique1 = unique1;
+    }
+
+    public int getUnique2() {
+        return unique2;
+    }
+
+    public void setUnique2(int unique2) {
+        this.unique2 = unique2;
+    }
+
+    public int getUnique3() {
+        return unique3;
+    }
+
+    public void setUnique3(int unique3) {
+        this.unique3 = unique3;
+    }
+
     String categoryName;
 
     JFrame frame = new JFrame();
@@ -50,7 +74,13 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
 
+    //List<String> categoriesChosen = new ArrayList<>();
 
+   String cat1 = "";
+   String cat2 = "";
+   String cat3 = "";
+
+    public CategoryPage(){}
 
     public CategoryPage(Player p){
         pro = p;
@@ -61,7 +91,11 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         getCategoryText();
 
-        frame.setSize(400,200);
+        cat1 = category1.getText();
+        cat2 = category2.getText();
+        cat3 = category3.getText();
+
+        frame.setSize(600,200);
         panel1.setLayout(new GridLayout(1,1));
         panel.setLayout(new GridLayout(1,3));
         panel.add(choose);
@@ -79,6 +113,13 @@ public class CategoryPage extends JFrame implements ActionListener {
         category2.addActionListener(this);
         category3.addActionListener(this);
 
+    }
+
+    public List<String> findCategoryNamiestoDisplay(String input){
+        List<String> categorieNames = new ArrayList<>();
+        categorieNames.add(input);
+
+        return categorieNames;
     }
 
     /**
@@ -113,84 +154,46 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void findCategory(int randomCategoryIndex){
 
         // Operator = randomCategoryIndex = t.ex: unique1
+        // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
+        // Get category name from AnimalsNature.java
+        // Use that name to setCategoryText();
         switch (randomCategoryIndex) {
-
-            // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
-            case animalsNature:
-
-                // Get category name from AnimalsNature.java
+            case animalsNature -> {
                 categoryName = new AnimalsNature().getCategoryName();
-
-
-                // Use that name to setCategoryText();
                 setCategoryText(categoryName);
-
-                break;
-
-            case artLiterature:
-
+            }
+            case artLiterature -> {
                 categoryName = new ArtLiterature().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case generalKnowledge:
-
+            }
+            case generalKnowledge -> {
                 categoryName = new GeneralKnowledge().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case math:
-
+            }
+            case math -> {
                 categoryName = new Math().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case music:
-
+            }
+            case music -> {
                 categoryName = new Music().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case popCulture:
-
+            }
+            case popCulture -> {
                 categoryName = new PopCulture().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case sports:
-
+            }
+            case sports -> {
                 categoryName = new Sports().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case technology:
-
+            }
+            case technology -> {
                 categoryName = new Technology().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
-            case tvShows:
-
+            }
+            case tvShows -> {
                 categoryName = new TVShows().getCategoryName();
-
                 setCategoryText(categoryName);
-
-                break;
-
+            }
         }
 
     }
@@ -258,15 +261,25 @@ public class CategoryPage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
-
+            //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
+           // categoriesChosen.add(cat1);
+            pro.addToList(cat1);
+            QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category2){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+            //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
+           // categoriesChosen.add(cat2);
+            pro.addToList(cat2);
+            QuestionPage q = new QuestionPage(pro);
+
         }else if (e.getSource() == category3){
             frame.dispose();
-            QuestionPage q = new QuestionPage(pro, database);
+            //categoriesChosen.add(cat3);
+            pro.addToList(cat3);
+            //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
+            QuestionPage q = new QuestionPage(pro);
+
         }
     }
 }
