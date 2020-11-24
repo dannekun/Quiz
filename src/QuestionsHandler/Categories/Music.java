@@ -83,7 +83,7 @@ public class Music {
     }
 
     public String getCategoryName() {
-        return "Music";
+        return "Musik";
     }
 
     public List<Questions> getMusicList() {

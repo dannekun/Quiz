@@ -71,7 +71,7 @@ public class ArtLiterature {
 
 
     public String getCategoryName() {
-        return "Art & Literature";
+        return "Konst & literatur";
     }
 
     public List<Questions> getArtLiteratureList() {

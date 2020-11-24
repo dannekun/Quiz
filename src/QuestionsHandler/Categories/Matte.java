@@ -83,7 +83,7 @@ public class Matte {
     }
 
     public String getCategoryName() {
-        return "Math";
+        return "Matte";
     }
 
     public List<Questions> getMathList() {

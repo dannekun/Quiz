@@ -29,12 +29,12 @@ public class GamePage extends JFrame implements ActionListener {
     JButton empty = new JButton("Empty");
 
     JButton playerName1 = new JButton();
-    JButton playerName2 = new JButton("Player");
+    JButton playerName2 = new JButton("Spelare");
  //   JLabel scorePlayer1 = new JLabel("0");
  //   JLabel colon = new JLabel(" : ");
  //   JLabel scorePlayer2 = new JLabel("0");
 
-    JButton play = new JButton("Play");
+    JButton play = new JButton("Spela");
 
     List<JButton> player1_answers;
     List<JButton> player2_answers;

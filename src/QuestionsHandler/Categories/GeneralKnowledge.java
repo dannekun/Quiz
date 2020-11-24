@@ -83,7 +83,7 @@ public class GeneralKnowledge {
     }
 
     public String getCategoryName() {
-        return "General Knowledge";
+        return "Allmän kunskap";
     }
 
     public List<Questions> getGeneralKnowledgeList() {

@@ -84,7 +84,7 @@ public class AnimalsNature {
     }
 
     public String getCategoryName() {
-        return "Animals & Nature";
+        return "Djur & natur";
     }
 
     public List<Questions> getAnimalsNatureList() {

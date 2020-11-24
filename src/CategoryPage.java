@@ -69,7 +69,7 @@ public class CategoryPage extends JFrame implements ActionListener {
     JButton category2 = new JButton();
     JButton category3 = new JButton();
 
-    JLabel choose = new JLabel("Choose a category");
+    JLabel choose = new JLabel("Välj en kategori");
 
     Player pro = new Player();
 

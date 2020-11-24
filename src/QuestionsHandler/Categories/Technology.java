@@ -88,7 +88,7 @@ public class Technology {
     }
 
     public String getCategoryName() {
-        return "Technology";
+        return "Teknologi";
     }
 
     public List<Questions> getTechnologyList() {

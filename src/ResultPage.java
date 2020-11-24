@@ -9,9 +9,8 @@ import javax.swing.*;
  */
 public class ResultPage {
 
-    //RETURN TO HOMEPAGE
+    JPanel panel = new JPanel();
 
-    //VI BEHÖVER EN KONSTRUKTOR MED RESULTAT PLAYERS OSV FÖR HOMEPAGE
 
 
     Player pro = new Player();
@@ -20,9 +19,20 @@ public class ResultPage {
         pro = p;
 
         JOptionPane.showMessageDialog(null, pro.getName() + " fick " + pro.getPoints() + " poäng!");
+    /*    setSize(350, 500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);*/
+
 
 
         HomePage page = new HomePage(pro);
 
     }
 }
+
+//Det finns fortfarande bugs! (DanneCleanCode)
+//Efter man har tryckt det sista svaret ändrar det inte färgen till rött/blått
+
+//TODO: Gå igenom alla frågor och sätta <html> i strängarna
+//TODO: Göra klart ResultPage

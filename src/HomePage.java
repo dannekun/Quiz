@@ -15,8 +15,8 @@ public class HomePage extends JFrame implements ActionListener {
 
     JLabel quizkampen = new JLabel("Quizkampen");
     JLabel player = new JLabel();
-    JButton play = new JButton("Play");
-    JLabel home = new JLabel("Home");
+    JButton play = new JButton("Spela");
+    JLabel home = new JLabel("Hem");
 
     Player pro = new Player();
 

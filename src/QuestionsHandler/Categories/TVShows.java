@@ -84,7 +84,7 @@ public class TVShows {
     }
 
     public String getCategoryName() {
-        return "TVShows";
+        return "TV-show";
     }
 
     public List<Questions> getTvShowsList() {
