@@ -2,11 +2,7 @@ package QuestionsHandler;
 
 
 import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Math;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import QuestionsHandler.Categories.Matte;
 
 /**
  * Created by Salah Abdinoor
@@ -20,7 +16,7 @@ public class Database{
     public AnimalsNature animalsNature = new AnimalsNature();
     public ArtLiterature artLiterature = new ArtLiterature();
     public GeneralKnowledge generalKnowledge = new GeneralKnowledge();
-    public Math math = new Math();
+    public Matte matte = new Matte();
     public Music music = new Music();
     public PopCulture popCulture = new PopCulture();
     public Sports sports = new Sports();

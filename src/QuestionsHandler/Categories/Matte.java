@@ -14,7 +14,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class Math {
+public class Matte {
 
     //--------------------------------------------------------------------------------------//
     // Math Answers
@@ -46,13 +46,13 @@ public class Math {
 
     private final Questions Q2 = new Questions("Vilka av dessa påstående är korrekta?", A2);
 
-    private final Questions Q3 = new Questions("Vilket nummer kommer nästa i serien? 4231, 4331, 4431,?", A3);
+    private final Questions Q3 = new Questions("Vilket nummer kommer nästa i serien?\n4231, 4331, 4431,?", A3);
 
-    private final Questions Q4 = new Questions("Du hade 342 mynt i sin samling. Hur skulle du skriva 342?", A4);
+    private final Questions Q4 = new Questions("Du hade 342 mynt i sin samling.\nHur skulle du skriva 342?", A4);
 
-    private final Questions Q5 = new Questions("Om du hade 785 hundar hur många skulle du ha om jag tog 524?", A5);
+    private final Questions Q5 = new Questions("Om du hade 785 hundar hur många skulle\ndu ha om jag tog 524?", A5);
 
-    private final Questions Q6 = new Questions("Om Johanna hade 19,27kr och Max hade 13,59kr hur mycket mer pengar har Johanna?", A6);
+    private final Questions Q6 = new Questions("Om Johanna hade 19,27kr och Max hade 13,59kr\nhur mycket mer pengar har Johanna?", A6);
 
     private final Questions Q7 = new Questions("w/5 = -10", A7);
 
@@ -63,7 +63,7 @@ public class Math {
     private final Questions Q10 = new Questions("10001 – 101", A10);
 
 
-    public Math(){
+    public Matte(){
 
         mathList = new ArrayList<>();
 

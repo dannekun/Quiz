@@ -42,25 +42,25 @@ public class Music {
 
     //--------------------------------------------------------------------------------------//
     // Music Questions
-    private final Questions Q1 = new Questions("Vilken 1960-tals amerikansk popgrupp skapade surfin sound?", A1);
+    private final Questions Q1 = new Questions("<html>Vilken 1960-tals amerikansk popgrupp skapade surfin sound?</html>", A1);
 
     private final Questions Q2 = new Questions("Vilket år åkte Beatles först till USA?", A2);
 
     private final Questions Q3 = new Questions("Vad hette Adeles första skiva?", A3);
 
-    private final Questions Q4 = new Questions("'Future Nostalgia' som innehåller singeln 'Don't Start Now' är det andra studioalbumet från vilken engelsk sångare?", A4);
+    private final Questions Q4 = new Questions("<html>'Future Nostalgia' som innehåller singeln'Don't Start Now' är det andra studioalbumet från vilken engelsk sångare?</html>", A4);
 
-    private final Questions Q5 = new Questions("Vad heter bandet med följande medlemmar: John Deacon, Brian May, Freddie Mercury, Roger Taylor?", A5);
+    private final Questions Q5 = new Questions("<html>Vad heter bandet med följande medlemmar:John Deacon, Brian May, Freddie Mercury,Roger Taylor?</html>", A5);
 
-    private final Questions Q6 = new Questions("Vilken sångare var bland annat känd som 'The King of Pop' och 'The Gloved One'?", A6);
+    private final Questions Q6 = new Questions("<html>Vilken sångare var bland annat känd som 'The King of Pop' och 'The Gloved One'?</html>", A6);
 
-    private final Questions Q7 = new Questions("Vilken amerikansk popstjärna hade framgångsrikt 2015-framgång med singlarna 'Sorry' och 'Love Yourself'?", A7);
+    private final Questions Q7 = new Questions("<html>Vilken amerikansk popstjärna hade framgångsrikt 2015-framgång med singlarna 'Sorry' och 'Love Yourself'?</html>", A7);
 
-    private final Questions Q8 = new Questions("‘Losing my religion‘ var en hit för vilket alternativt Rockband 1991?", A8);
+    private final Questions Q8 = new Questions("<html>‘Losing my religion‘ var en hit för vilket alternativt Rockband 1991?</html>", A8);
 
-    private final Questions Q9 = new Questions("Vilken låt har följande texter:“Suddenly I’m not half the man I used to be. / There’s a shadow hanging over me.”?", A9);
+    private final Questions Q9 = new Questions("<html>Vilken låt har följande texter: “Suddenly I’m not half the man I used to be./ There’s a shadow hanging over me.”?</html>", A9);
 
-    private final Questions Q10 = new Questions("Vilken svensk musikproducent har skapat studioalbum ‘True‘?", A10);
+    private final Questions Q10 = new Questions("<html>Vilken svensk musikproducent har skapat studioalbum ‘True‘?</html>", A10);
 
 
     public Music(){

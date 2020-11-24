@@ -1,8 +1,11 @@
 import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Math;
-import QuestionsHandler.Database;
+import QuestionsHandler.Categories.Matte;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,18 +38,14 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     String categoryName;
 
-    JFrame frame = new JFrame();
     JPanel panel = new JPanel();
-    JPanel panel1 = new JPanel();
+    JFrame frame = new JFrame();
 
     JButton category1 = new JButton();
     JButton category2 = new JButton();
     JButton category3 = new JButton();
 
     JLabel choose = new JLabel("Choose a category");
-
-    Database database = new Database();
-
 
     Player pro = new Player();
 
@@ -71,20 +70,59 @@ public class CategoryPage extends JFrame implements ActionListener {
         cat2 = category2.getText();
         cat3 = category3.getText();
 
-        frame.setSize(600,200);
-        panel1.setLayout(new GridLayout(1,1));
-        panel.setLayout(new GridLayout(1,3));
+    //    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.add(panel);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground( new Color(51, 133, 255));
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 60)));
         panel.add(choose);
-        panel1.add(category1);
-        panel1.add(category2);
-        panel1.add(category3);
+        choose.setFont(new Font("Arial", Font.PLAIN, 18));
+        choose.setForeground(Color.WHITE);
+        choose.setBackground(new Color(0, 51, 204));
+        choose.setOpaque(true);
+        choose.setBorder(new EmptyBorder(10, 30, 10, 30));
+        choose.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 40)));
+        panel.add(category1);
+        category1.setBackground(new Color(204, 0, 204));
+        category1.setForeground(Color.WHITE);
+        category1.setFont(new Font("Arial", Font.BOLD, 14));
+        category1.setContentAreaFilled(false);
+        category1.setOpaque(true);
+        category1.setPreferredSize(new Dimension(200, 70));
+        category1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 15)));
+        panel.add(category2);
+        category2.setBackground(new Color(0, 204, 102));
+        category2.setForeground(Color.WHITE);
+        category2.setFont(new Font("Arial", Font.BOLD, 14));
+        category2.setContentAreaFilled(false);
+        category2.setOpaque(true);
+        category2.setPreferredSize(new Dimension(200, 70));
+        category2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 15)));
+        panel.add(category3);
+        category3.setBackground(new Color(255, 92, 51));
+        category3.setForeground(Color.WHITE);
+        category3.setFont(new Font("Arial", Font.BOLD, 14));
+        category3.setContentAreaFilled(false);
+        category3.setOpaque(true);
+        category3.setPreferredSize(new Dimension(200, 70));
+        category3.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        frame.add(panel1, BorderLayout.SOUTH);
-        frame.add(panel, BorderLayout.NORTH);
+        category1.setMaximumSize(new Dimension(200, 70));
+        category2.setMaximumSize(new Dimension(200, 70));
+        category3.setMaximumSize(new Dimension(200, 70));
 
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(350, 500);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        Container contentPane = getContentPane();
+        contentPane.add(panel);
+
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
@@ -147,7 +185,7 @@ public class CategoryPage extends JFrame implements ActionListener {
                 setCategoryText(categoryName);
             }
             case math -> {
-                categoryName = new Math().getCategoryName();
+                categoryName = new Matte().getCategoryName();
                 setCategoryText(categoryName);
             }
             case music -> {
@@ -236,21 +274,21 @@ public class CategoryPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == category1){
-            frame.dispose();
+            dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
            // categoriesChosen.add(cat1);
             pro.addToList(cat1);
             QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category2){
-            frame.dispose();
+            dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
            // categoriesChosen.add(cat2);
             pro.addToList(cat2);
             QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category3){
-            frame.dispose();
+            dispose();
             //categoriesChosen.add(cat3);
             pro.addToList(cat3);
             //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
