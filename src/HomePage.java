@@ -24,6 +24,10 @@ public class HomePage extends JFrame implements ActionListener {
         pro.setName(p.getName());
         player.setText(pro.getName());
 
+
+        Client playerTest = new Client();
+        playerTest.setPro(pro);
+
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
         upperPanel.setBackground( new Color(51, 133, 255));

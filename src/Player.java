@@ -1,5 +1,6 @@
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class Player {
+public class Player implements Serializable {
 
     String name;
     int points = 0;

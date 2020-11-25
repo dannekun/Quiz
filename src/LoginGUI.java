@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 
 public class LoginGUI extends JFrame implements ActionListener {
 
@@ -12,6 +13,7 @@ public class LoginGUI extends JFrame implements ActionListener {
 
 
     public LoginGUI(){
+
 
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));

@@ -429,6 +429,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             try {
                 dispose();
+                //Client clientMinBroder = new Client(pro);
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
