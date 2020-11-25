@@ -24,7 +24,7 @@ public class Math {
 
     private final Answers A2 = new Answers("476 > 467", "456 > 465", "403 > 430", "457 > 475");
 
-    private final Answers A3 = new Answers("4531", "4432", "4531", "5431");
+    private final Answers A3 = new Answers("4531", "4432", "4532", "5431");// Changed(I found two right answers)
 
     private final Answers A4 = new Answers("1331", "1313", "1133", "3131");//Changed
 
