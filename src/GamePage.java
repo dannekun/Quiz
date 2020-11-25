@@ -82,9 +82,9 @@ public class GamePage extends JFrame implements ActionListener {
         //categoriepanel.setLayout(new GridLayout(numberOfRounds+1, 1));
         //player2Panel.setLayout(new GridLayout(numberOfRounds+1, numberOfQuestions+1));
 
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds()+1, getNumberOfQuestions()+1));
+        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds()+1, getNumberOfQuestions()+1));
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
 
 
         pro.setMaxRound(getNumberOfRounds());

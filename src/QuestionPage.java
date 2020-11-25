@@ -107,31 +107,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
 
-        /*
-        if (pro.getCurrentQuestion() == null){
-            whichCatToChoose = pro.getRound();
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
-       // }else if (randomListToPull.get(pro.getRound()).getQuestion().equals(pro.getCurrentQuestion())){
-        }else if (randomListToPull.get(pro.getRound()).getQuestion().equals(pro.getCurrentQuestion())){
-            whichCatToChoose = pro.getRound()+1;
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
-        }else {
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
-        }
-
-
-
-         */
-
-        //d.artLiterature.getArtLiteratureList().get(0).getAnswerObject().shuffleAnswers(randomListToPull.get(0).getAnswerObject().getAnswersList());
-
-
-       //randomListToPull.get(0).getAnswerObject().shuffleAnswers();
-
-
 
        rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
 
@@ -143,19 +118,18 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.setText(randomAnswerList.get(2));
         answer4.setText(randomAnswerList.get(3));
 
-        /*
-        answer1.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(0).toString());
-        answer2.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(1).toString());
-        answer3.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(2).toString());
-        answer4.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(3).toString());
 
-         */
         category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size()-1));
 
+        /*
         buttonsToPaintList.add(b1);
         buttonsToPaintList.add(b2);
         buttonsToPaintList.add(b3);
+         */
 
+        for (int i = 0; i <pro.getMaxQuestion() ; i++) {
+            buttonsToPaintList.add(new JButton());
+        }
 
 
         if (pro.getQuestion() > 0){
@@ -173,12 +147,17 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
         }
 
-
+        for (int i = 0; i < buttonsToPaintList.size(); i++) {
+            north.add(buttonsToPaintList.get(i));
+        }
 
         north.setLayout(new GridLayout(1,5));
+        /*
         north.add(b1);
         north.add(b2);
         north.add(b3);
+
+         */
         north.add(round);
         north.add(player);
 
