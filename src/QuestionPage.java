@@ -53,7 +53,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     JLabel timer = new JLabel("Timer here");
 
-    JFrame frame = new JFrame();
 
     JPanel north = new JPanel();
     JPanel center = new JPanel();
@@ -153,7 +152,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
 
             //    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-            frame.add(north);
+            add(north);
             north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
             //    north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
             north.setBackground(new Color(51, 133, 255));
@@ -412,7 +411,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
-            frame.dispose();
+            dispose();
             ResultPage r = new ResultPage(pro);
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
@@ -425,7 +424,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
             try {
-                frame.dispose();
+                dispose();
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -444,7 +443,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
 
 
-            frame.dispose();
+           dispose();
             QuestionPage q = new QuestionPage(pro);
         }
     }
