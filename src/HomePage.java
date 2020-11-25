@@ -25,7 +25,7 @@ public class HomePage extends JFrame implements ActionListener {
         player.setText(pro.getName());
 
 
-        Client playerTest = new Client();
+        ClientToSend playerTest = new ClientToSend();
         playerTest.setPro(pro);
 
         add(upperPanel);

@@ -12,7 +12,7 @@ import java.net.UnknownHostException;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class Client {
+public class ClientToSend {
 
     public static void main(String[] args) throws IOException {
         Player pro = new Player();
