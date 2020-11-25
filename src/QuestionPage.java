@@ -54,14 +54,12 @@ public class QuestionPage extends JFrame implements ActionListener {
     JPanel center = new JPanel();
     JPanel south = new JPanel();
 
-    Player pro = new Player();
+    Player pro;
     List<Questions> randomListToPull = new ArrayList<>();
     List<String> randomAnswerList = new ArrayList<>();
 
     String rightAnswerFromList;
 
-
-    Database d = new Database();
 
     String questionToAsk = null;
     public QuestionPage(Player p){
@@ -79,38 +77,32 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         randomListToPull = findList(pro.getRoundCategories().get(pro.getRound()-1));
 
-        questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
+        //questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
 
         //questionToAsk = randomListToPull.get(whichCatToChoose).getQuestion();
 
 
         List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
-        int randomNumber = 0;
-
-        /*
-        for (Questions s : randomListToPull){
-            if (!s.getQuestion().equals(questionToAsk)){
-                newQuestionsForPlayerToAsk.add(randomListToPull.get(randomNumber));
-            }
-            randomNumber++;
-        }
-
-         */
 
         Collections.shuffle(newQuestionsForPlayerToAsk);
 
+        randomListToPull = newQuestionsForPlayerToAsk;
+
         if (pro.currentQuestion.isEmpty()){
-            question.setText(questionToAsk);
-            pro.addQuestionToCurrentList(questionToAsk);
+            question.setText(randomListToPull.get(0).getQuestion());
+            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+
+            pro.addQuestionBetweenPlayers(randomListToPull.get(pro.getRound()));
         }else {
 
-            randomListToPull = newQuestionsForPlayerToAsk;
+
             randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
 
             //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
             question.setText(randomListToPull.get(0).getQuestion());
            // pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
             pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
         }
 
 
@@ -131,11 +123,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size()-1));
 
-        /*
-        buttonsToPaintList.add(b1);
-        buttonsToPaintList.add(b2);
-        buttonsToPaintList.add(b3);
-         */
 
         for (int i = 0; i <pro.getMaxQuestion() ; i++) {
             buttonsToPaintList.add(new JButton());
@@ -162,12 +149,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
 
         north.setLayout(new GridLayout(1,5));
-        /*
-        north.add(b1);
-        north.add(b2);
-        north.add(b3);
 
-         */
         north.add(round);
         north.add(player);
 

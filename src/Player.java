@@ -1,3 +1,5 @@
+import QuestionsHandler.Questions;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,20 @@ public class Player {
 
     List<Boolean> roundAnswers = new ArrayList<>();
 
+    List<Questions> questionToPassBetweenPlayers = new ArrayList<>();
+
+
+    public void addQuestionBetweenPlayers(Questions quest){
+        this.questionToPassBetweenPlayers.add(quest);
+    }
+
+    public List<Questions> getQuestionToPassBetweenPlayers() {
+        return questionToPassBetweenPlayers;
+    }
+
+    public void setQuestionToPassBetweenPlayers(List<Questions> questionToPassBetweenPlayers) {
+        this.questionToPassBetweenPlayers = questionToPassBetweenPlayers;
+    }
 
     public void addQuestionToCurrentList(String s){
         currentQuestion.add(s);

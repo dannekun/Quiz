@@ -148,6 +148,13 @@ public class GamePage extends JFrame implements ActionListener {
                 labelNames.get(i).setText(pro.roundCategories.get(i));
             }
         }
+        if (pro.getPoints() == 0){
+            score.setText("0 - 0");
+        }else {
+            score.setText(String.valueOf(pro.getPoints()) + " - 0");
+        }
+
+
 
         stats.add(playerName1);
         stats.add(score);
