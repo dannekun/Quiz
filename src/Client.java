@@ -32,6 +32,8 @@ public class Client {
 
         //objectOutputStream.writeObject();
 
+        System.out.println("walla bror");
+
         System.out.println("Closing socket and terminating program");
         socket.close();
 
