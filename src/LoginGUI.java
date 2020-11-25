@@ -15,7 +15,6 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     public LoginGUI(){
 
-
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground( new Color(51, 133, 255));
@@ -45,7 +44,6 @@ public class LoginGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         login.addActionListener(this);
-
     }
 
     @Override
@@ -53,14 +51,13 @@ public class LoginGUI extends JFrame implements ActionListener {
         if (e.getSource() == login){
             p.setName(userText.getText());
             dispose();
-            returnThisMotherFucker();
             //HomePage page = new HomePage(p);
         }
     }
 
     public Player returnThisMotherFucker(){
 
-        return p;
+        return this.p;
     }
 
 }

@@ -26,7 +26,7 @@ private static final int PLAY = 3;
 private static final int RESULT = 4;
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         int STATE = LOGGIN;
 
@@ -44,8 +44,11 @@ private static final int RESULT = 4;
         System.out.println("Connected!");
         Player shuno = new Player();
         if (socket.isConnected()){
-           LoginGUI fuckdehär = new LoginGUI();
-           shuno = fuckdehär.returnThisMotherFucker();
+            LoginGUI jaKnullarDig = new LoginGUI();
+            socket.wait();
+            jaKnullarDig.
+            shuno = jaKnullarDig.returnThisMotherFucker();
+
         }
 
         OutputStream outputStream = socket.getOutputStream();
