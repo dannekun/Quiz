@@ -30,9 +30,7 @@ public class GamePage extends JFrame implements ActionListener {
 
     JButton playerName1 = new JButton();
     JButton playerName2 = new JButton("Spelare");
- //   JLabel scorePlayer1 = new JLabel("0");
- //   JLabel colon = new JLabel(" : ");
- //   JLabel scorePlayer2 = new JLabel("0");
+
 
     JButton play = new JButton("Spela");
 
@@ -42,9 +40,6 @@ public class GamePage extends JFrame implements ActionListener {
     List<JLabel> labelNames;
 
     Properties p = new Properties();
-
-    CategoryPage catToFindNamesForLabel = new CategoryPage();
-
 
     int numberOfRounds;
     int numberOfQuestions;
@@ -78,36 +73,38 @@ public class GamePage extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         String stringRounds = p.getProperty("numberOfRounds", "2");
-        //numberOfRounds = Integer.parseInt(stringRounds);
+
         setNumberOfRounds(Integer.parseInt(stringRounds));
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
-        //numberOfQuestions = Integer.parseInt(stringQuestions);
+
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
 
         add(stats, BorderLayout.NORTH);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+
+
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-    //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+
+
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
         playerName1.setOpaque(true);
+        playerName1.setBorderPainted(false);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
+        playerName2.setBorderPainted(false);
         playerName2.setOpaque(true);
         playerName2.setPreferredSize(new Dimension(150, 40));
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-    //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
 
-    //    player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         add(player1Panel, BorderLayout.WEST);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
@@ -126,7 +123,6 @@ public class GamePage extends JFrame implements ActionListener {
         pro.setMaxRound(getNumberOfRounds());
         pro.setMaxQuestion(getNumberOfQuestions());
 
-        //int totalbuttons = numberOfQuestions * numberOfRounds;
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
 
 
@@ -139,11 +135,11 @@ public class GamePage extends JFrame implements ActionListener {
                 if (!pro.getAnswers().get(i)){
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
                 }else {
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
                 }
             }
             player1Panel.add(player1_answers.get(i));
@@ -152,12 +148,6 @@ public class GamePage extends JFrame implements ActionListener {
         }
 
 
-/*
-        for (int i = 0; i < numberOfRounds; i++) {
-            categoriepanel.add(new JLabel("Category"));
-        }
-
- */
         labelNames = createLabelList(getNumberOfRounds());
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
@@ -169,13 +159,7 @@ public class GamePage extends JFrame implements ActionListener {
             categoriepanel.add(labelNames.get(i));
         }
 
-        /*
-        for (int i = 0; i < getNumberOfRounds(); i++) {
-            categoriepanel.add(new JLabel("Category"));
-        }
 
-
-         */
 
         for (int i = 0; i <totalbuttons ; i++) {
             player2Panel.add(player2_answers.get(i));

@@ -31,6 +31,8 @@ public class LoginGUI extends JFrame implements ActionListener {
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
         login.setBackground(new Color(71, 71, 209));
         login.setForeground(Color.WHITE);
+        login.setBorderPainted(false);
+        login.setOpaque(true);
         login.setPreferredSize(new Dimension(50,40));
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 

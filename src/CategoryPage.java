@@ -110,12 +110,14 @@ public class CategoryPage extends JFrame implements ActionListener {
         category1.setForeground(Color.WHITE);
         category1.setFont(new Font("Arial", Font.BOLD, 14));
         category1.setContentAreaFilled(false);
+        category1.setBorderPainted(false);
         category1.setOpaque(true);
         category1.setPreferredSize(new Dimension(200, 70));
         category1.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
         panel.add(category2);
         category2.setBackground(new Color(0, 204, 102));
+        category2.setBorderPainted(false);
         category2.setForeground(Color.WHITE);
         category2.setFont(new Font("Arial", Font.BOLD, 14));
         category2.setContentAreaFilled(false);
@@ -128,6 +130,7 @@ public class CategoryPage extends JFrame implements ActionListener {
         category3.setForeground(Color.WHITE);
         category3.setFont(new Font("Arial", Font.BOLD, 14));
         category3.setContentAreaFilled(false);
+        category3.setBorderPainted(false);
         category3.setOpaque(true);
         category3.setPreferredSize(new Dimension(200, 70));
         category3.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -182,6 +182,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer1.setForeground(Color.WHITE);
             answer1.setFont(new Font("Arial", Font.BOLD, 14));
             answer1.setContentAreaFilled(false);
+            answer1.setBorderPainted(false);
             answer1.setOpaque(true);
             answer1.setPreferredSize(new Dimension(250, 30));
 
@@ -190,6 +191,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer2.setForeground(Color.WHITE);
             answer2.setFont(new Font("Arial", Font.BOLD, 14));
             answer2.setContentAreaFilled(false);
+            answer2.setBorderPainted(false);
             answer2.setOpaque(true);
             answer2.setPreferredSize(new Dimension(250, 30));
 
@@ -198,6 +200,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer3.setForeground(Color.WHITE);
             answer3.setFont(new Font("Arial", Font.BOLD, 14));
             answer3.setContentAreaFilled(false);
+            answer3.setBorderPainted(false);
             answer3.setOpaque(true);
             answer3.setPreferredSize(new Dimension(250, 30));
 
@@ -206,6 +209,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer4.setForeground(Color.WHITE);
             answer4.setFont(new Font("Arial", Font.BOLD, 14));
             answer4.setContentAreaFilled(false);
+            answer4.setBorderPainted(false);
             answer4.setOpaque(true);
             answer4.setPreferredSize(new Dimension(250, 30));
 
