@@ -83,7 +83,7 @@ public class Sports {
     }
 
     public String getCategoryName() {
-        return "Sports";
+        return "Idrott";
     }
 
     public List<Questions> getSportsList() {

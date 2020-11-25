@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -43,23 +42,23 @@ public class ArtLiterature {
 
     //--------------------------------------------------------------------------------------//
     // Art & Literature Questions
-    private final Questions Q1 = new Questions("Efter äktenskapskrisen med Siri von Essen skrev han En dåres försvarstal. Vilken författare?", A1);
+    private final Questions Q1 = new Questions("Efter äktenskapskrisen med Siri von Essen\nskrev han En dåres försvarstal.\nVilken författare?", A1);
 
-    private final Questions Q2 = new Questions("Vem har skrivit den delvis självbiografiska Nässlorna blomma?", A2);
+    private final Questions Q2 = new Questions("Vem har skrivit den delvis självbiografiska\nNässlorna blomma?", A2);
 
-    private final Questions Q3 = new Questions("Hur många är tornen i titeln på J.R.R. Tolkiens andra volym i serien om Härskarringen??", A3);
+    private final Questions Q3 = new Questions("Hur många är tornen i titeln på J.R.R. Tolkiens\nandra volym i serien om Härskarringen??", A3);
 
-    private final Questions Q4 = new Questions("Vilket begrepp används om människor utan magiska förmågor i J.K. Rowlings böcker", A4);
+    private final Questions Q4 = new Questions("Vilket begrepp används om människor utan magiska\nförmågor i J.K. Rowlings böcker", A4);
 
-    private final Questions Q5 = new Questions("Vem är ”pappa” till såväl David Copperfield som Oliver Twist?", A5);
+    private final Questions Q5 = new Questions("Vem är ”pappa” till såväl David Copperfield\nsom Oliver Twist?", A5);
 
     private final Questions Q6 = new Questions("Vart hänger Mona Lisa idag?", A6);
 
-    private final Questions Q7 = new Questions("Vem komponerade De fyra årstiderna, på italienska Le quattro stagioni?", A7);
+    private final Questions Q7 = new Questions("Vem komponerade De fyra årstiderna, på\nitalienska Le quattro stagioni?", A7);
 
-    private final Questions Q8 = new Questions("Ordet kultur kommer från latinets cultura. Vad betyder det, ungefär?", A8);
+    private final Questions Q8 = new Questions("Ordet kultur kommer från latinets cultura.\nVad betyder det, ungefär?", A8);
 
-    private final Questions Q9 = new Questions("Vem skrev tragedierna Antigone och Kung Oidipus?", A9);
+    private final Questions Q9 = new Questions("Vem skrev tragedierna Antigone och\nKung Oidipus?", A9);
 
     private final Questions Q10 = new Questions("Var ligger konserthuset Royal Albert Hall?", A10);
 
@@ -72,7 +71,7 @@ public class ArtLiterature {
 
 
     public String getCategoryName() {
-        return "Art & Literature";
+        return "Konst & literatur";
     }
 
     public List<Questions> getArtLiteratureList() {

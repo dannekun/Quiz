@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -46,7 +45,7 @@ public class AnimalsNature {
     // Animals & Nature Questions
     private final Questions Q1 = new Questions("Vilda elefanter finns i två världsdelar, vilka?", A1);
 
-    private final Questions Q2 = new Questions("Vilken människoapa är rödaktig och lever på Sumatra och Borneo?", A2);
+    private final Questions Q2 = new Questions("Vilken människoapa är rödaktig och lever\npå Sumatra och Borneo?", A2);
 
     private final Questions Q3 = new Questions("Vilken haj är världens största fiskart?", A3);
 
@@ -85,7 +84,7 @@ public class AnimalsNature {
     }
 
     public String getCategoryName() {
-        return "Animals & Nature";
+        return "Djur & natur";
     }
 
     public List<Questions> getAnimalsNatureList() {

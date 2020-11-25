@@ -1,7 +1,6 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class GeneralKnowledge {
     }
 
     public String getCategoryName() {
-        return "General Knowledge";
+        return "Allmän kunskap";
     }
 
     public List<Questions> getGeneralKnowledgeList() {
