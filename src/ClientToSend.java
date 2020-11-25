@@ -28,12 +28,13 @@ private static final int RESULT = 4;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+
         int STATE = LOGGIN;
 
         Player pro = new Player();
         pro.setPoints(10);
         pro.setRound(3);
-        pro.setName("Daniel");
+
 
 
 
@@ -44,10 +45,18 @@ private static final int RESULT = 4;
         System.out.println("Connected!");
         Player shuno = new Player();
         LoginGUI jaKnullarDig = new LoginGUI();
-            while (jaKnullarDig.isActive()){
 
+        pro = jaKnullarDig.returnThisMotherFucker();
+
+        while (pro.getName() == null){
+            shuno = jaKnullarDig.returnThisMotherFucker();
+            if (shuno.getName() == null) {
+                Thread.sleep(5000);
             }
-        shuno = jaKnullarDig.returnThisMotherFucker();
+
+        }
+//        shuno = jaKnullarDig.returnThisMotherFucker();
+
 
         OutputStream outputStream = socket.getOutputStream();
 
@@ -63,7 +72,7 @@ private static final int RESULT = 4;
         socket.close();
 
 
+            }
+
     }
 
-
-}

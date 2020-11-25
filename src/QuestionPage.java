@@ -450,6 +450,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
            dispose();
             QuestionPage q = new QuestionPage(pro);
+
         }
         
     }
