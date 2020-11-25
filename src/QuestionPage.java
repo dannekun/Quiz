@@ -84,8 +84,10 @@ public class QuestionPage extends JFrame implements ActionListener {
         //questionToAsk = randomListToPull.get(whichCatToChoose).getQuestion();
 
 
-        List<Questions> newQuestionsForPlayerToAsk = new ArrayList<>();
+        List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
         int randomNumber = 0;
+
+        /*
         for (Questions s : randomListToPull){
             if (!s.getQuestion().equals(questionToAsk)){
                 newQuestionsForPlayerToAsk.add(randomListToPull.get(randomNumber));
@@ -93,23 +95,31 @@ public class QuestionPage extends JFrame implements ActionListener {
             randomNumber++;
         }
 
+         */
+
         Collections.shuffle(newQuestionsForPlayerToAsk);
 
         if (pro.currentQuestion.isEmpty()){
             question.setText(questionToAsk);
             pro.addQuestionToCurrentList(questionToAsk);
         }else {
+
             randomListToPull = newQuestionsForPlayerToAsk;
-            question.setText(randomListToPull.get(pro.getRound()).getQuestion());
-            pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
+            randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
+
+            //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
+            question.setText(randomListToPull.get(0).getQuestion());
+           // pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
+            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
         }
 
 
-        randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+       // randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+        randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
 
+       // rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
 
-       rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
-
+        rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
         Collections.shuffle(randomAnswerList);
 
 
@@ -281,6 +291,24 @@ public class QuestionPage extends JFrame implements ActionListener {
             d.setOpaque(true);
             d.setBorderPainted(false);
         }
+    }
+
+    public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith){
+        Boolean found = false;
+        List<Questions> questionsToUse = new ArrayList<>();
+        for (int i = 0; i < questionListToFind.size(); i++) {
+            for (int j = 0; j < listToCompareWith.size(); j++) {
+                if (questionListToFind.get(i).getQuestion().equals(listToCompareWith.get(j))){
+                    found = true;
+                }
+            }
+            if (found == false){
+            questionsToUse.add(questionListToFind.get(i));
+            }
+            found = false;
+        }
+        Collections.shuffle(questionsToUse);
+        return questionsToUse;
     }
 
 
