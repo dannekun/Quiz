@@ -19,19 +19,34 @@ import java.net.UnknownHostException;
  */
 public class ClientToSend implements Serializable {
 
+private static final int LOGGIN = 0;
+private static final int QUEUE = 1;
+private static final int CHOSECAT = 2;
+private static final int PLAY = 3;
+private static final int RESULT = 4;
+
+
     public static void main(String[] args) throws IOException {
 
-        Player pro = new Player();
+        int STATE = LOGGIN;
 
-        AnimalsNature a = new AnimalsNature();
+        Player pro = new Player();
+        pro.setPoints(10);
+        pro.setRound(3);
+        pro.setName("Daniel");
+
+
 
 
         InetAddress iadr = InetAddress.getLocalHost();
 
         Socket socket = new Socket(iadr, 7777);
         System.out.println("Connected!");
-
-//        LoginGUI log = new LoginGUI();
+        Player shuno = new Player();
+        if (socket.isConnected()){
+           LoginGUI fuckdehär = new LoginGUI();
+           shuno = fuckdehär.returnThisMotherFucker();
+        }
 
         OutputStream outputStream = socket.getOutputStream();
 
@@ -39,7 +54,7 @@ public class ClientToSend implements Serializable {
 
         System.out.println("Sending message to server");
 
-        objectOutputStream.writeObject(a);
+        objectOutputStream.writeObject(shuno);
 
         System.out.println("walla bror");
 

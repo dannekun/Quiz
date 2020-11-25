@@ -11,7 +11,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     JTextField userText = new JTextField();
     JButton login = new JButton("Logga in");
 
-
+    Player p = new Player();
 
     public LoginGUI(){
 
@@ -45,16 +45,22 @@ public class LoginGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         login.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login){
-            Player p = new Player(userText.getText());
+            p.setName(userText.getText());
             dispose();
-            HomePage page = new HomePage(p);
+            returnThisMotherFucker();
+            //HomePage page = new HomePage(p);
         }
     }
 
+    public Player returnThisMotherFucker(){
+
+        return p;
+    }
 
 }
