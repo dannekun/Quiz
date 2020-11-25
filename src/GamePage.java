@@ -43,14 +43,18 @@ public class GamePage extends JFrame implements ActionListener {
 
     Properties p = new Properties();
 
+    CategoryPage catToFindNamesForLabel = new CategoryPage();
+
+
     int numberOfRounds;
     int numberOfQuestions;
 
-    public int getNumberOfRounds() {     //YAGNI
+
+    public int getNumberOfRounds() {
         return numberOfRounds;
     }
 
-    public void setNumberOfRounds(int numberOfRounds) {   //YAGNI
+    public void setNumberOfRounds(int numberOfRounds) {
         this.numberOfRounds = numberOfRounds;
     }
 
@@ -74,8 +78,10 @@ public class GamePage extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         String stringRounds = p.getProperty("numberOfRounds", "2");
+        //numberOfRounds = Integer.parseInt(stringRounds);
         setNumberOfRounds(Integer.parseInt(stringRounds));
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
+        //numberOfQuestions = Integer.parseInt(stringQuestions);
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
 
         add(stats, BorderLayout.NORTH);
@@ -101,24 +107,29 @@ public class GamePage extends JFrame implements ActionListener {
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
     //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
 
+        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         add(player1Panel, BorderLayout.WEST);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds()+1, getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
         add(categoriepanel, BorderLayout.CENTER);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
         categoriepanel.setBackground( new Color(51, 133, 255));
         add(player2Panel, BorderLayout.EAST);
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds()+1, getNumberOfQuestions()+1));
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
         player2Panel.setBackground( new Color(51, 133, 255));
 
 
-        pro.setMaxRound(getNumberOfRounds()); //YAGNI
-        pro.setMaxQuestion(getNumberOfQuestions()); //YAGNI
+        pro.setMaxRound(getNumberOfRounds());
+        pro.setMaxQuestion(getNumberOfQuestions());
 
+        //int totalbuttons = numberOfQuestions * numberOfRounds;
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
+
+
 
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
@@ -140,6 +151,13 @@ public class GamePage extends JFrame implements ActionListener {
             player1_answers.get(i).setMaximumSize(new Dimension(35,10));
         }
 
+
+/*
+        for (int i = 0; i < numberOfRounds; i++) {
+            categoriepanel.add(new JLabel("Category"));
+        }
+
+ */
         labelNames = createLabelList(getNumberOfRounds());
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
@@ -150,6 +168,14 @@ public class GamePage extends JFrame implements ActionListener {
             }
             categoriepanel.add(labelNames.get(i));
         }
+
+        /*
+        for (int i = 0; i < getNumberOfRounds(); i++) {
+            categoriepanel.add(new JLabel("Category"));
+        }
+
+
+         */
 
         for (int i = 0; i <totalbuttons ; i++) {
             player2Panel.add(player2_answers.get(i));
