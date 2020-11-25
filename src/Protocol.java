@@ -33,9 +33,17 @@ public class Protocol {
         }else if (STATE == QUEUE){
             HomePage h = new HomePage(pro);
 
+            while (pro.getName() == null){
+                if (pro.getName() != null) {
+                    pro = jaKnullarDig.returnThisMotherFucker();
+                }
+            }
+
             //STATE = GAME;
         }else if (STATE == GAME){
             GamePage g = new GamePage(pro);
+
+
            // STATE = CHOSECAT;
         } else if (STATE == CHOSECAT){
             CategoryPage q = new CategoryPage(pro);
