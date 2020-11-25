@@ -92,7 +92,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             question.setText(randomListToPull.get(0).getQuestion());
             pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
 
-            pro.addQuestionBetweenPlayers(randomListToPull.get(pro.getRound()));
+            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
         }else {
 
 
