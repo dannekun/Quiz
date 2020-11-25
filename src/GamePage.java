@@ -27,8 +27,8 @@ public class GamePage extends JFrame implements ActionListener {
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
     JPanel categoriepanel = new JPanel();
-//    JButton empty = new JButton("Empty");
-
+    JPanel lowestPanel = new JPanel();
+    JButton empty = new JButton("Empty");
     JButton playerName1 = new JButton();
     JButton playerName2 = new JButton("Spelare");
  //   JLabel scorePlayer1 = new JLabel("0");
@@ -85,43 +85,6 @@ public class GamePage extends JFrame implements ActionListener {
         //numberOfQuestions = Integer.parseInt(stringQuestions);
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
 
-        add(stats, BorderLayout.NORTH);
-        stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
-        stats.setBackground( new Color(51, 133, 255));
-        stats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
-        stats.add(playerName1);
-        stats.add(Box.createRigidArea(new Dimension(20, 40)));
-        stats.add(playerName2);
-    //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
-        playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName1.setForeground(Color.WHITE);
-        playerName1.setBackground(new Color(0, 51, 204));
-        playerName1.setOpaque(true);
-        playerName1.setPreferredSize(new Dimension(150, 40));
-        playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName2.setForeground(Color.WHITE);
-        playerName2.setBackground(new Color(191, 64, 191));
-        playerName2.setOpaque(true);
-        playerName2.setPreferredSize(new Dimension(150, 40));
-        playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-    //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
-
-    //    player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        add(player1Panel, BorderLayout.WEST);
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
-        player1Panel.setBackground( new Color(51, 133, 255));
-        add(categoriepanel, BorderLayout.CENTER);
-        categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
-        categoriepanel.setBackground(new Color(51, 133, 255));
-        add(player2Panel, BorderLayout.EAST);
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
-        player2Panel.setBackground( new Color(51, 133, 255));
 
 
         pro.setMaxRound(getNumberOfRounds());
@@ -140,11 +103,11 @@ public class GamePage extends JFrame implements ActionListener {
                 if (!pro.getAnswers().get(i)){
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                //    player1_answers.get(i).setBorderPainted(false);
                 }else {
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                //    player1_answers.get(i).setBorderPainted(false);
                 }
             }
             player1Panel.add(player1_answers.get(i));
@@ -206,25 +169,60 @@ public class GamePage extends JFrame implements ActionListener {
 
          */
 
+        add(stats);
+        stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
+        stats.setBackground( new Color(51, 133, 255));
+        stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
+        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+        stats.add(playerName1);
+        stats.add(Box.createRigidArea(new Dimension(20, 40)));
+        stats.add(playerName2);
+        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+        playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
+        playerName1.setForeground(Color.WHITE);
+        playerName1.setBackground(new Color(0, 51, 204));
+        playerName1.setOpaque(true);
+        playerName1.setPreferredSize(new Dimension(150, 40));
+        playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+        playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
+        playerName2.setForeground(Color.WHITE);
+        playerName2.setBackground(new Color(191, 64, 191));
+        playerName2.setOpaque(true);
+        playerName2.setPreferredSize(new Dimension(150, 40));
+        playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
 
-    //    player1Panel.add(Box.createRigidArea(new Dimension(40, 150)));
-    //    player2Panel.add(Box.createRigidArea(new Dimension(40, 150)));
-    //    categoriepanel.add(Box.createRigidArea(new Dimension(40, 150)));
+        //    player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        add(player1Panel);
+        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
+        player1Panel.setBackground( new Color(51, 133, 255));
+        add(categoriepanel);
+        categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
+        categoriepanel.setBackground(new Color(51, 133, 255));
+        add(player2Panel);
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
+        player2Panel.setBackground( new Color(51, 133, 255));
 
-    /*    add(empty, BorderLayout.SOUTH);
+        add(lowestPanel);
+        lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
+        lowestPanel.add(empty);
         Border line2 = new LineBorder(new Color(51, 133, 255));
-        Border margin2 = new EmptyBorder(5, 80, 5, 80);
+        Border margin2 = new EmptyBorder(70, 150, 70, 150);
         Border compound2 = new CompoundBorder(line2, margin2);
         empty.setBorder(compound2);
         empty.setBackground(new Color(51, 133, 255));
-        empty.setForeground(Color.WHITE);
+        empty.setForeground(new Color(51, 133, 255));
         empty.setFont(new Font("Arial", Font.PLAIN, 16));
         empty.setContentAreaFilled(false);
-        empty.setOpaque(true);*/
+        empty.setOpaque(true);
     //    empty.setVisible(false);
-        add(play, BorderLayout.PAGE_END);
+        lowestPanel.add(play);
         Border line = new LineBorder(new Color(128, 255, 128));
-        Border margin = new EmptyBorder(5, 80, 5, 80);
+        Border margin = new EmptyBorder(5, 151, 5, 151);
         Border compound = new CompoundBorder(line, margin);
         play.setBorder(compound);
         play.setBackground(new Color(77, 255, 77));
@@ -237,6 +235,13 @@ public class GamePage extends JFrame implements ActionListener {
 
         playerName1.setMaximumSize(new Dimension(150, 40));
         playerName2.setMaximumSize(new Dimension(150, 40));
+
+        Container contentPane = getContentPane();
+        contentPane.add(stats, BorderLayout.NORTH);
+        contentPane.add(player1Panel, BorderLayout.WEST);
+        contentPane.add(categoriepanel, BorderLayout.CENTER);
+        contentPane.add(player2Panel, BorderLayout.EAST);
+        contentPane.add(lowestPanel, BorderLayout.SOUTH);
 
         play.addActionListener(this);
 
