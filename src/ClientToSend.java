@@ -43,13 +43,13 @@ private static final int RESULT = 4;
         Socket socket = new Socket(iadr, 7777);
         System.out.println("Connected!");
         Player shuno = new Player();
+        LoginGUI jaKnullarDig = new LoginGUI();
         if (socket.isConnected()){
-            LoginGUI jaKnullarDig = new LoginGUI();
-            socket.wait();
-            jaKnullarDig.
-            shuno = jaKnullarDig.returnThisMotherFucker();
+            while (jaKnullarDig.isActive()){
 
+            }
         }
+        shuno = jaKnullarDig.returnThisMotherFucker();
 
         OutputStream outputStream = socket.getOutputStream();
 
