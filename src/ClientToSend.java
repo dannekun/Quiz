@@ -1,6 +1,11 @@
+import QuestionsHandler.Categories.AnimalsNature;
+import QuestionsHandler.Database;
+import QuestionsHandler.Questions;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -12,17 +17,21 @@ import java.net.UnknownHostException;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class ClientToSend {
+public class ClientToSend implements Serializable {
 
     public static void main(String[] args) throws IOException {
+
         Player pro = new Player();
+
+        AnimalsNature a = new AnimalsNature();
+
 
         InetAddress iadr = InetAddress.getLocalHost();
 
         Socket socket = new Socket(iadr, 7777);
         System.out.println("Connected!");
 
-        LoginGUI log = new LoginGUI();
+//        LoginGUI log = new LoginGUI();
 
         OutputStream outputStream = socket.getOutputStream();
 
@@ -30,7 +39,7 @@ public class ClientToSend {
 
         System.out.println("Sending message to server");
 
-        //objectOutputStream.writeObject();
+        objectOutputStream.writeObject(a);
 
         System.out.println("walla bror");
 

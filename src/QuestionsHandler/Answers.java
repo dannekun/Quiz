@@ -1,5 +1,6 @@
 package QuestionsHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * Quiz
  * Copyright: MIT
  */
-public class Answers {
+public class Answers implements Serializable {
 
     private String rightAnswer;
     private String wrongAnswer1;

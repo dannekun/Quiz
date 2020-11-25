@@ -1,3 +1,4 @@
+import QuestionsHandler.Categories.AnimalsNature;
 import QuestionsHandler.Questions;
 
 import java.io.*;
@@ -30,11 +31,12 @@ public class Server {
 
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-        Player pro2 = (Player) objectInputStream.readObject();
+//        Player pro2 = (Player) objectInputStream.readObject();
 
-        System.out.println("Recieved " + pro2.getName()+ " from " + socket);
+//        System.out.println("Recieved " + pro2.getName()+ " from " + socket);
+//
+//        System.out.println(pro2.getName());
 
-        System.out.println(pro2.getName());
 
         /*
         System.out.println(pro2.getPoints());

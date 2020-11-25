@@ -12,6 +12,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     JButton login = new JButton("Logga in");
 
 
+
     public LoginGUI(){
 
 
