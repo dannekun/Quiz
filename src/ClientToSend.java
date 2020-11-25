@@ -44,11 +44,9 @@ private static final int RESULT = 4;
         System.out.println("Connected!");
         Player shuno = new Player();
         LoginGUI jaKnullarDig = new LoginGUI();
-        if (socket.isConnected()){
             while (jaKnullarDig.isActive()){
 
             }
-        }
         shuno = jaKnullarDig.returnThisMotherFucker();
 
         OutputStream outputStream = socket.getOutputStream();
