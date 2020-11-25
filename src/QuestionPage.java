@@ -132,7 +132,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         if (pro.getQuestion() > 0){
             for (int i = 0; i < pro.getQuestion()-1; i++) {
              //   if (pro.getAnswers().get(i) == false){
-                if (pro.getRoundAnswers().get(i) == false){
+                if (!pro.getRoundAnswers().get(i)){
                     paintRed(buttonsToPaintList.get(i));
                 }else {
                     paintGreen(buttonsToPaintList.get(i));
@@ -144,8 +144,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
         }
 
-        for (int i = 0; i < buttonsToPaintList.size(); i++) {
-            north.add(buttonsToPaintList.get(i));
+        for (JButton button : buttonsToPaintList) {
+            north.add(button);
         }
 
         north.setLayout(new GridLayout(1,5));
@@ -178,27 +178,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.addActionListener(this);
         answer4.addActionListener(this);
 
-    }
-
-    public void setAnswer1(JButton answer1) {
-        this.answer1 = answer1;
-    }
-
-    public void setAnswer2(JButton answer2) {
-        this.answer2 = answer2;
-    }
-
-    public void setAnswer3(JButton answer3) {
-        this.answer3 = answer3;
-    }
-
-    public void setAnswer4(JButton answer4) {
-        this.answer4 = answer4;
-    }
-
-    public void setCategory(JLabel category, String categroyText) {
-        this.category = category;
-        category.setText(categroyText);
     }
 
     public void paintRed(JButton jb){
@@ -247,11 +226,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     public Boolean checkAnswers(String a){
 
-    if (rightAnswerFromList.equals(a)){
-        return true;
-    }else {
-        return false;
-    }
+        return rightAnswerFromList.equals(a);
 
     }
 
@@ -276,16 +251,17 @@ public class QuestionPage extends JFrame implements ActionListener {
     }
 
     public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith){
-        Boolean found = false;
+        boolean found = false;
         List<Questions> questionsToUse = new ArrayList<>();
-        for (int i = 0; i < questionListToFind.size(); i++) {
-            for (int j = 0; j < listToCompareWith.size(); j++) {
-                if (questionListToFind.get(i).getQuestion().equals(listToCompareWith.get(j))){
+        for (Questions questions : questionListToFind) {
+            for (String s : listToCompareWith) {
+                if (questions.getQuestion().equals(s)) {
                     found = true;
+                    break;
                 }
             }
-            if (found == false){
-            questionsToUse.add(questionListToFind.get(i));
+            if (!found) {
+                questionsToUse.add(questions);
             }
             found = false;
         }
@@ -296,7 +272,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Boolean didYouGetIt = false;
+        boolean didYouGetIt = false;
         if (e.getSource() == answer1){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
             if (!checkAnswers(randomAnswerList.get(0))) {
@@ -377,7 +353,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()){
             pro.setQuestion(0);
-            if (didYouGetIt == true){
+            if (didYouGetIt){
                 JOptionPane.showMessageDialog(null, "Right!");
             }else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
@@ -389,7 +365,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
             pro.roundAnswers.clear();
-            if (didYouGetIt == true){
+            if (didYouGetIt){
                 JOptionPane.showMessageDialog(null, "Right!");
             }else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
@@ -403,7 +379,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
         else if (pro.getQuestion() <= pro.getMaxQuestion()){
             pro.setQuestion(pro.getQuestion()+1);
-            if (didYouGetIt == true){
+            if (didYouGetIt){
                 JOptionPane.showMessageDialog(null, "Right!");
             }else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
