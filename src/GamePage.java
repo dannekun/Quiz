@@ -217,7 +217,7 @@ public class GamePage extends JFrame implements ActionListener {
         empty.setBackground(new Color(51, 133, 255));
         empty.setForeground(new Color(51, 133, 255));
         empty.setFont(new Font("Arial", Font.PLAIN, 16));
-        empty.setContentAreaFilled(false);
+        //empty.setContentAreaFilled(false);
         empty.setOpaque(true);
     //    empty.setVisible(false);
         lowestPanel.add(play);
@@ -228,7 +228,7 @@ public class GamePage extends JFrame implements ActionListener {
         play.setBackground(new Color(77, 255, 77));
         play.setForeground(Color.WHITE);
         play.setFont(new Font("Arial", Font.PLAIN, 16));
-        play.setContentAreaFilled(false);
+        //play.setContentAreaFilled(false);
         play.setOpaque(true);
 
         playerName1.setText(pro.getName());

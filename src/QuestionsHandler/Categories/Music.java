@@ -58,7 +58,7 @@ public class Music {
 
     private final Questions Q8 = new Questions("<html>‘Losing my religion‘ var en hit för vilket alternativt Rockband 1991?</html>", A8);
 
-    private final Questions Q9 = new Questions("<html>Vilken låt har följande texter: “Suddenly I’m not half the man I used to be./ There’s a shadow hanging over me.”?</html>", A9);
+    private final Questions Q9 = new Questions("<html>Vilken låt har följande texter: 'Suddenly I’m not half the man I used to be. There’s a shadow hanging over me.'?</html>", A9);
 
     private final Questions Q10 = new Questions("<html>Vilken svensk musikproducent har skapat studioalbum ‘True‘?</html>", A10);
 
