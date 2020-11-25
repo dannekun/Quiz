@@ -88,9 +88,9 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
 
-        Collections.shuffle(newQuestionsForPlayerToAsk);
-
         randomListToPull = newQuestionsForPlayerToAsk;
+
+        Collections.shuffle(randomListToPull);
 
         if (pro.currentQuestion.isEmpty()) {
             question.setText(randomListToPull.get(0).getQuestion());
