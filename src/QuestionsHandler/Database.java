@@ -2,7 +2,7 @@ package QuestionsHandler;
 
 
 import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Matte;
+import QuestionsHandler.Categories.Math;
 
 /**
  * Created by Salah Abdinoor
@@ -16,7 +16,7 @@ public class Database{
     public AnimalsNature animalsNature = new AnimalsNature();
     public ArtLiterature artLiterature = new ArtLiterature();
     public GeneralKnowledge generalKnowledge = new GeneralKnowledge();
-    public Matte matte = new Matte();
+    public Math math = new Math();
     public Music music = new Music();
     public PopCulture popCulture = new PopCulture();
     public Sports sports = new Sports();

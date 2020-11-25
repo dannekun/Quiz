@@ -8,7 +8,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
     JLabel user = new JLabel("Spelare");
     JTextField userText = new JTextField();
-    JButton login = new JButton("Log in");
+    JButton login = new JButton("Logga in");
 
 
     public LoginGUI(){
