@@ -194,12 +194,16 @@ public class GamePage extends JFrame implements ActionListener {
 
             }
         }
+
+        /*
         if (pro.getPoints() == 0){
             score.setText("0 - 0");
         }else {
             score.setText(String.valueOf(pro.getPoints()) + " - 0");
         }
 
+
+         */
 
 
     //    player1Panel.add(Box.createRigidArea(new Dimension(40, 150)));
