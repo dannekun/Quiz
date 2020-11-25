@@ -384,7 +384,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         }
 
-        findRightAnswerAndPaint(answer1, answer2, answer3, answer4,rightAnswerFromList);
 
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()){
