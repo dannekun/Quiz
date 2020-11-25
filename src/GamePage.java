@@ -116,7 +116,7 @@ public class GamePage extends JFrame implements ActionListener {
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
-        categoriepanel.setBackground( new Color(51, 133, 255));
+        categoriepanel.setBackground(new Color(51, 133, 255));
         add(player2Panel, BorderLayout.EAST);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
@@ -136,7 +136,7 @@ public class GamePage extends JFrame implements ActionListener {
 
         for (int i = 0; i < totalbuttons; i++) {
             if (i < pro.getAnswers().size()){
-                if (pro.getAnswers().get(i) == false){
+                if (!pro.getAnswers().get(i)){
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
                 //    player1_answers.get(i).setBorderPainted(false);
