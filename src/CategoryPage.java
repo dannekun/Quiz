@@ -1,11 +1,8 @@
 import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Matte;
+import QuestionsHandler.Categories.Math;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -209,7 +206,7 @@ public class CategoryPage extends JFrame implements ActionListener {
                 setCategoryText(categoryName);
             }
             case math -> {
-                categoryName = new Matte().getCategoryName();
+                categoryName = new Math().getCategoryName();
                 setCategoryText(categoryName);
             }
             case music -> {

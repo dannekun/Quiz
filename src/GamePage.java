@@ -26,7 +26,7 @@ public class GamePage extends JFrame implements ActionListener {
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
     JPanel categoriepanel = new JPanel();
-    JButton empty = new JButton("Empty");
+//    JButton empty = new JButton("Empty");
 
     JButton playerName1 = new JButton();
     JButton playerName2 = new JButton("Spelare");
@@ -107,9 +107,9 @@ public class GamePage extends JFrame implements ActionListener {
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
     //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
 
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+    //    player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         add(player1Panel, BorderLayout.WEST);
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds()+1, getNumberOfQuestions()+1));
+        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
         add(categoriepanel, BorderLayout.CENTER);
@@ -199,7 +199,7 @@ public class GamePage extends JFrame implements ActionListener {
     //    player2Panel.add(Box.createRigidArea(new Dimension(40, 150)));
     //    categoriepanel.add(Box.createRigidArea(new Dimension(40, 150)));
 
-        add(empty, BorderLayout.SOUTH);
+    /*    add(empty, BorderLayout.SOUTH);
         Border line2 = new LineBorder(new Color(51, 133, 255));
         Border margin2 = new EmptyBorder(5, 80, 5, 80);
         Border compound2 = new CompoundBorder(line2, margin2);
@@ -208,7 +208,7 @@ public class GamePage extends JFrame implements ActionListener {
         empty.setForeground(Color.WHITE);
         empty.setFont(new Font("Arial", Font.PLAIN, 16));
         empty.setContentAreaFilled(false);
-        empty.setOpaque(true);
+        empty.setOpaque(true);*/
     //    empty.setVisible(false);
         add(play, BorderLayout.PAGE_END);
         Border line = new LineBorder(new Color(128, 255, 128));

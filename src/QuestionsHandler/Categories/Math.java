@@ -14,7 +14,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class Matte {
+public class Math {
 
     //--------------------------------------------------------------------------------------//
     // Math Answers
@@ -63,7 +63,7 @@ public class Matte {
     private final Questions Q10 = new Questions("10001 – 101", A10);
 
 
-    public Matte(){
+    public Math(){
 
         mathList = new ArrayList<>();
 
