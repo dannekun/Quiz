@@ -24,18 +24,32 @@ public class Server {
         System.out.println("Väntar på connection...");
 
         Socket socket = ss.accept();
+        Socket socket2 = ss.accept();
+
+        if (socket.isConnected()&&socket2.isConnected()){
+            System.out.println("HÄR!!!!");
+        }
 
         System.out.println("Connection from " + socket + "!");
 
+        //Dessa är för player 1
         InputStream inputStream = socket.getInputStream();
-
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        Player pro1 = (Player) objectInputStream.readObject();
 
+        //Dessa är för player 2????
+        /*
+        InputStream inputStream2 = socket.getInputStream();
+        ObjectInputStream objectInputStream2 = new ObjectInputStream(inputStream);
         Player pro2 = (Player) objectInputStream.readObject();
 
-       System.out.println("Recieved " + pro2.getName()+ " from " + socket);
 
-       System.out.println(pro2.getName());
+         */
+
+
+       System.out.println("Recieved " + pro1.getName()+ " from " + socket);
+
+       System.out.println(pro1.getName());
 
 
         /*

@@ -19,52 +19,33 @@ import java.net.UnknownHostException;
  */
 public class ClientToSend implements Serializable {
 
-private static final int LOGGIN = 0;
-private static final int QUEUE = 1;
-private static final int CHOSECAT = 2;
-private static final int PLAY = 3;
-private static final int RESULT = 4;
+
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-
-        int STATE = LOGGIN;
-
         Player pro = new Player();
-        pro.setPoints(10);
-        pro.setRound(3);
-
-
-
 
 
         InetAddress iadr = InetAddress.getLocalHost();
 
         Socket socket = new Socket(iadr, 7777);
         System.out.println("Connected!");
-        Player shuno = new Player();
-        LoginGUI jaKnullarDig = new LoginGUI();
 
-        pro = jaKnullarDig.returnThisMotherFucker();
-
-        while (pro.getName() == null){
-            shuno = jaKnullarDig.returnThisMotherFucker();
-            if (shuno.getName() == null) {
-                Thread.sleep(5000);
-            }
-
-        }
-//        shuno = jaKnullarDig.returnThisMotherFucker();
+        Protocol protocol  = new Protocol();
 
 
         OutputStream outputStream = socket.getOutputStream();
 
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
+        while (!pro.getFinished()){
+            protocol.processInput(pro);
+        }
+
         System.out.println("Sending message to server");
 
-        objectOutputStream.writeObject(shuno);
+        objectOutputStream.writeObject(protocol.processInput(pro));
 
         System.out.println("walla bror");
 

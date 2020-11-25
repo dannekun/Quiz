@@ -251,7 +251,7 @@ public class GamePage extends JFrame implements ActionListener {
             pro.setRound(pro.getRound()+1);
             pro.setQuestion(pro.getQuestion()+1);
             dispose();
-            CategoryPage c = new CategoryPage(pro);
+           // CategoryPage c = new CategoryPage(pro);
         }
     }
 }

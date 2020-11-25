@@ -316,7 +316,7 @@ public class CategoryPage extends JFrame implements ActionListener {
             //categoriesChosen.add(cat3);
             pro.addToList(cat3);
             //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
-            QuestionPage q = new QuestionPage(pro);
+            //QuestionPage q = new QuestionPage(pro);
 
         }
     }

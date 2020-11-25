@@ -19,6 +19,17 @@ public class Player implements Serializable {
     int maxRound;
     int question;
     int maxQuestion;
+    boolean finished = false;
+    boolean startedGame = false;
+
+    public boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
     List<String> currentQuestion = new ArrayList<>();
 
     List<String> roundCategories = new ArrayList<>();

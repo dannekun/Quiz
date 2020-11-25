@@ -85,11 +85,14 @@ public class HomePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             dispose();
+            /*
             try {
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+
+             */
         }
     }
 }
