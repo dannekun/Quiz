@@ -29,34 +29,29 @@ public class ClientToSend implements Serializable {
 
         Protocol protocol  = new Protocol();
 
-        try(  OutputStream outputStream = socket.getOutputStream();
+        try(OutputStream outputStream = socket.getOutputStream();
 
               ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-              InputStream inputStream = socket.getInputStream();
-
-
-
-              ){
+              InputStream inputStream = socket.getInputStream();){
 
             while (!player1.getFinished()){
                 player1 = protocol.processInput(player1);
+
+
+
+
+
             }
-
-
-
-
-
 
             System.out.println("Sending message to server");
 
             objectOutputStream.writeObject(player1);
 
 
-        //HÄR ÄR PROBLEMET
+
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-            System.out.println("här kommer vi förbi");
 
             player2 = (Player) objectInputStream.readObject();
 
