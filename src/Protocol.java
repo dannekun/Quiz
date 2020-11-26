@@ -37,7 +37,7 @@ public class Protocol {
         }else if (pro.getSTATE() == QUEUE_NOTCONNECTED){
 
             //BEHÖVER SKICKA
-          //  HomePage_waiting h = new HomePage_waiting(pro);
+            HomePage_waiting h = new HomePage_waiting(pro);
 
 
 
