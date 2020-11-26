@@ -20,6 +20,8 @@ public class ClientHandler extends Thread {
     InputStream inputStream;
     ObjectInputStream objectInputStream;
 
+    Player player1 = new Player();
+    Player player2 = new Player();
 
 
     public ClientHandler(Socket socketToClient, Socket socketToClient2) {
@@ -43,7 +45,7 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-
+/*
         try {
          sendPlayerInfo(spelare1);
          sendPlayerInfo(spelare2);
@@ -54,6 +56,8 @@ public class ClientHandler extends Thread {
 
 
 
+ */
+
 
         if (spelare1.isConnected()&&spelare2.isConnected()){
             System.out.println("HÄR!!!!");
@@ -61,6 +65,24 @@ public class ClientHandler extends Thread {
 
 
         System.out.println("Connection from " + spelare1 + "!");
+        System.out.println("Connection from " + spelare2 + "!");
+
+        try {
+            player1 = (Player) receivePlayerInfo(spelare1).readObject();
+            player2 = (Player) receivePlayerInfo(spelare2).readObject();
+
+            sendPlayerInfo(spelare2).writeObject(player1);
+            sendPlayerInfo(spelare1).writeObject(player2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Första spelaren heter: " + player1.getName());
+        System.out.println("Andra spelaren heter: " + player2.getName());
+
 
         //Dessa är för player 1
 

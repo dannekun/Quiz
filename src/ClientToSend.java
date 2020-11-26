@@ -1,14 +1,6 @@
-import QuestionsHandler.Categories.AnimalsNature;
-import QuestionsHandler.Database;
-import QuestionsHandler.Questions;
-
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * Created by Daniel Bojic
@@ -22,9 +14,10 @@ public class ClientToSend implements Serializable {
 
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
 
-        Player pro = new Player();
+        Player player1 = new Player();
+        Player player2 = new Player();
 
 
         InetAddress iadr = InetAddress.getLocalHost();
@@ -34,26 +27,42 @@ public class ClientToSend implements Serializable {
 
         Protocol protocol  = new Protocol();
 
+        try(  OutputStream outputStream = socket.getOutputStream();
 
-        OutputStream outputStream = socket.getOutputStream();
+              ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+              InputStream inputStream = socket.getInputStream();
+
+              ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);){
 
 
-        while (!pro.getFinished()){
-           pro = protocol.processInput(pro);
+            while (!player1.getFinished()){
+                player1 = protocol.processInput(player1);
+            }
+
+
+
+
+
+            System.out.println("Sending message to server");
+
+            objectOutputStream.writeObject(player1);
+
+            player2 = (Player) objectInputStream.readObject();
+            System.out.println("vi hitta shuno, han heter: " + player2.getName());
+
+
+            System.out.println(player1.getName());
+
+            System.out.println("Closing socket and terminating program");
+            socket.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
 
-        System.out.println("Sending message to server");
-
-        objectOutputStream.writeObject(pro);
-
-        System.out.println("walla bror");
-
-        System.out.println("Closing socket and terminating program");
-        socket.close();
 
 
             }
