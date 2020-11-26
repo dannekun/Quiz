@@ -11,6 +11,7 @@ public class LoginGUI extends JFrame implements ActionListener {
     JButton login = new JButton("Logga in");
 
     Player p = new Player();
+    String name;
 
     /*
     public LoginGUI(){
@@ -21,13 +22,14 @@ public class LoginGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == userText || e.getSource() == login) {
-            p.setName(userText.getText());
+           // p.setName(userText.getText());
+            name = userText.getText();
             dispose();
             //HomePage page = new HomePage(p);
         }
     }
 
-    public Player findPlayerAndReturn() throws InterruptedException {
+    public String findPlayerAndReturn() throws InterruptedException {
 
 
         //DET ÄR HÄR NÅGONSTANS DET LAGGAR SÖNDER
@@ -36,7 +38,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         //TA BORT KOMMENTAREN UNDER FÖR ATT KÖRA PROGRAMMET
         login.addActionListener(this);
 
-        return this.p;
+        return name;
     }
 
 
