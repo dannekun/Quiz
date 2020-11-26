@@ -27,8 +27,8 @@ public class ClientToSend implements Serializable {
 
         Protocol protocol  = new Protocol();
 
-
-        while (player1.isEndState()){
+boolean work  = true;
+        while (work == true){
             player1 = protocol.processInput(player1);
 
 
@@ -36,10 +36,10 @@ public class ClientToSend implements Serializable {
 
             //player1.setName("daniel");
             if (player1.getName() != null){
-                player1.setSTATE(1);
+                //player1.setSTATE(1);
                 //player1 = protocol.processInput(player1);
                // homePage_waiting.showWindow(player1);
-                player1.setEndState(false);
+                work = false;
             }
         }
 

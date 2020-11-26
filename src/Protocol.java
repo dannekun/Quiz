@@ -17,7 +17,7 @@ public class Protocol {
         //HomePage_waiting homePage_waiting = new HomePage_waiting();
 
         if (pro.getSTATE() == 0){
-            logginProtocol(pro);
+            return logginProtocol(pro);
 
         }else if (pro.getSTATE() == 1){
 //queueWaitProtocol(pro);
@@ -56,13 +56,15 @@ public Player logginProtocol(Player pro) throws InterruptedException {
     LoginGUI gui = new LoginGUI();
     gui.showWindow();
     //BEHÖVER INTE SKICKA
-    pro.setName("daniel");
+    //pro.setName("daniel");
 
     //PROGRAMMET FUNGERAR UTMÄRKT OM MAN SETNAME
     while (pro.getName() == null){
         pro =  gui.findPlayerAndReturn();
 
+
     }
+
 
     return pro;
 

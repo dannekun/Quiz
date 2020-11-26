@@ -34,7 +34,7 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         //userText.addActionListener(this);
         //TA BORT KOMMENTAREN UNDER FÖR ATT KÖRA PROGRAMMET
-       // login.addActionListener(this);
+        login.addActionListener(this);
 
         return this.p;
     }
