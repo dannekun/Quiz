@@ -62,8 +62,10 @@ public class ClientHandler extends Thread implements Serializable {
 
 
             player1 = (Player) receivePlayerInfo(spelare1).readObject();
+            player1.setPLAYER(1);
 
             player2 = (Player) receivePlayerInfo(spelare2).readObject();
+            player2.setPLAYER(2);
 
             System.out.println("Mammaknullare");
 

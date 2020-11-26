@@ -53,6 +53,8 @@ public class ClientToSend implements Serializable {
 
             player2 = (Player) objectInputStream.readObject();
 
+            //SKICKA TILLBAKA PLAYER OCH SE OM MAN ÄR PLAYER 1 ELLER 2
+
 
 
             System.out.println("vi hitta shuno, han heter: " + player2.getName());

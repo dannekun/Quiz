@@ -26,6 +26,7 @@ public class Protocol {
         
         if (STATE == LOGGIN){
 
+            //BEHÖVER INTE SKICKA
             while (pro.getName() == null){
                 pro =  gui.findPlayerAndReturn();
             }
@@ -37,6 +38,7 @@ public class Protocol {
             return pro;
         }else if (STATE == QUEUE){
 
+            //BEHÖVER SKICKA
             HomePage_waiting h = new HomePage_waiting(pro);
 
             /*

@@ -22,6 +22,32 @@ public class Player implements Serializable {
     boolean finished = false;
     boolean startedGame = false;
 
+    private static final int PLAYER1 = 1;
+    private static final int PLAYER2 = 2;
+
+    private int PLAYER;
+
+    public static int getPLAYER1() {
+        return PLAYER1;
+    }
+
+    public static int getPLAYER2() {
+        return PLAYER2;
+    }
+
+    public int getPLAYER() {
+        return PLAYER;
+    }
+
+    public void setPLAYER(int PLAYER) {
+        if (PLAYER == 1){
+            this.PLAYER = PLAYER1;
+        }else if (PLAYER == 2){
+            this.PLAYER = PLAYER2;
+        }
+
+    }
+
     public boolean getFinished() {
         return finished;
     }
