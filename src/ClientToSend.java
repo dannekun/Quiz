@@ -21,13 +21,28 @@ public class ClientToSend implements Serializable {
         Player player2 = new Player();
 
 
+        HomePage_waiting homePage_waiting = new HomePage_waiting();
+
         InetAddress iadr = InetAddress.getLocalHost();
+
+        Protocol protocol  = new Protocol();
+
+        while (player1.isEndState()){
+            player1 = protocol.processInput(player1);
+
+            if (player1.getName() != null){
+                player1.setSTATE(1);
+               homePage_waiting = new HomePage_waiting(player1);
+                player1.setEndState(false);
+            }
+
+        }
 
         Socket socket = new Socket(iadr, 7777);
 
         System.out.println("Connected!");
 
-        Protocol protocol  = new Protocol();
+
 
         try(OutputStream outputStream = socket.getOutputStream();
 
@@ -36,22 +51,43 @@ public class ClientToSend implements Serializable {
               InputStream inputStream = socket.getInputStream();){
 
             while (!player1.getFinished()){
-                player1 = protocol.processInput(player1);
-
                 System.out.println("Du är här");
+                objectOutputStream.writeObject(player1);
+
+                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+
+                player2 = (Player) objectInputStream.readObject();
+
+                System.out.println(player2.getName());
+
+                if (player2.isConnected()){
+                    homePage_waiting.dispose();
+                    player1.setSTATE(2);
+                }
+
+            player1.setEndState(true);
+
+                while (player1.isEndState()){
+                    player1 = protocol.processInput(player1);
+
+                    
+                }
+
+
+
+
 
             }
 
             System.out.println("Sending message to server");
 
-            objectOutputStream.writeObject(player1);
 
 
 
-            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
 
-            player2 = (Player) objectInputStream.readObject();
+
 
             //SKICKA TILLBAKA PLAYER OCH SE OM MAN ÄR PLAYER 1 ELLER 2
 
@@ -69,10 +105,6 @@ public class ClientToSend implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
 
             }
 

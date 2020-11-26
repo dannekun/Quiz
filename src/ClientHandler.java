@@ -50,7 +50,29 @@ public class ClientHandler extends Thread implements Serializable {
 
 
         if (spelare1.isConnected()&&spelare2.isConnected()){
+
+            try {
+                player1 = (Player) receivePlayerInfo(spelare1).readObject();
+                player1.setPLAYER(1);
+
+                player2 = (Player) receivePlayerInfo(spelare2).readObject();
+                player2.setPLAYER(2);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
             System.out.println("HÄR!!!!");
+            player1.setConnected(true);
+            player2.setConnected(true);
+
+            try {
+                sendPlayerInfo(spelare1).writeObject(player2);
+                sendPlayerInfo(spelare2).writeObject(player1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -61,11 +83,7 @@ public class ClientHandler extends Thread implements Serializable {
             System.out.println("din mamma");
 
 
-            player1 = (Player) receivePlayerInfo(spelare1).readObject();
-            player1.setPLAYER(1);
 
-            player2 = (Player) receivePlayerInfo(spelare2).readObject();
-            player2.setPLAYER(2);
 
             System.out.println("Mammaknullare");
 
@@ -74,8 +92,6 @@ public class ClientHandler extends Thread implements Serializable {
             sendPlayerInfo(spelare1).writeObject(player2);
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 

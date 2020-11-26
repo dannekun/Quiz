@@ -22,6 +22,63 @@ public class Player implements Serializable {
     boolean finished = false;
     boolean startedGame = false;
 
+    boolean connected = false;
+
+    boolean endState = true;
+
+
+    public boolean isEndState() {
+        return endState;
+    }
+
+    public void setEndState(boolean endState) {
+        this.endState = endState;
+    }
+
+    private static final int LOGGIN = 0; //LOGGINGUI
+    private static final int QUEUE_NOTCONNECTED = 1; //HOMEPAGE_WAITING
+    private static final int QUEUE_CONNECTED = 2;
+    private static final int GAME_WAITING = 3;
+    private static final int GAME_READY = 4;
+    private static final int CHOSECAT = 5;
+    private static final int PLAY = 6;
+    private static final int RESULT = 7;
+
+    private int STATE = LOGGIN;
+
+    public int getSTATE() {
+        return STATE;
+    }
+
+    public void setSTATE(int STATE) {
+
+        if (STATE == 0){
+            this.STATE = LOGGIN;
+        }else if (STATE == 1){
+            this.STATE = QUEUE_NOTCONNECTED;
+        }else if (STATE == 2){
+            this.STATE = QUEUE_CONNECTED;
+        }else if (STATE == 3){
+            this.STATE = GAME_WAITING;
+        }else if (STATE == 4){
+            this.STATE = GAME_READY;
+        }else if (STATE == 5){
+            this.STATE = CHOSECAT;
+        }else if (STATE == 6){
+            this.STATE = PLAY;
+        }else if (STATE == 7){
+            this.STATE = RESULT;
+        }
+    }
+
+    public boolean isConnected() {
+        return connected;
+    }
+
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+
     private static final int PLAYER1 = 1;
     private static final int PLAYER2 = 2;
 

@@ -21,6 +21,16 @@ public class HomePage_play extends JFrame implements ActionListener {
 
     Player pro = new Player();
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
     public HomePage_play(Player p){
         pro.setName(p.getName());
         player.setText(pro.getName());
@@ -92,6 +102,7 @@ public class HomePage_play extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             dispose();
+            setClicked(true);
             /*
             try {
                 GamePage_play g = new GamePage_play(pro);
@@ -101,5 +112,10 @@ public class HomePage_play extends JFrame implements ActionListener {
 
              */
         }
+
+    }
+    public boolean findClickPlay(){
+        play.addActionListener(this);
+        return isClicked();
     }
 }

@@ -75,6 +75,10 @@ public class HomePage_waiting extends JFrame {
 
     }
 
+    public HomePage_waiting(){
+
+    }
+
 /*    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
