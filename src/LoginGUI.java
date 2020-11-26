@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.InetAddress;
 
 public class LoginGUI extends JFrame implements ActionListener {
 
@@ -62,12 +61,11 @@ public class LoginGUI extends JFrame implements ActionListener {
         }
     }
 
-    public Player findPlayerAndReturn(){
+    public Player findPlayerAndReturn() throws InterruptedException {
 
-
+        userText.addActionListener(this);
 
         return this.p;
     }
-
 
 }

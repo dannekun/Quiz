@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 /**
@@ -19,24 +22,18 @@ public class Protocol {
 
     public Player processInput(Player pro) throws IOException, InterruptedException {
 
+        LoginGUI gui = new LoginGUI();
         
         if (STATE == LOGGIN){
-           LoginGUI gui = new LoginGUI();
 
-
-           Boolean flag = true;
-            while (flag){
-               
-                pro = gui.findPlayerAndReturn();
-                if (pro.getName() != null){
-                   flag = false;
-                   System.out.println("det fungerade");
-                   break;
-                }
+            while (pro.getName() == null){
+                pro =  gui.findPlayerAndReturn();
             }
+
             System.out.println(pro.getName());
 
-            //STATE = QUEUE;
+            pro.setFinished(true);
+            STATE = QUEUE;
             return pro;
         }else if (STATE == QUEUE){
 
