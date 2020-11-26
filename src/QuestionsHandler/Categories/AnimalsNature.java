@@ -44,25 +44,25 @@ public class AnimalsNature implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // Animals & Nature Questions
-    private final Questions Q1 = new Questions("Vilda elefanter finns i två världsdelar, vilka?", A1);
+    private final Questions Q1 = new Questions("Vilda elefanter finns i två världsdelar. Vilka?", A1);
 
-    private final Questions Q2 = new Questions("Vilken människoapa är rödaktig och lever\npå Sumatra och Borneo?", A2);
+    private final Questions Q2 = new Questions("<html>Vilken människoapa är rödaktig och lever på Sumatra och Borneo?</html>", A2);
 
     private final Questions Q3 = new Questions("Vilken haj är världens största fiskart?", A3);
 
-    private final Questions Q4 = new Questions("Ur vad för slags blomma utvinns opium?", A4);
+    private final Questions Q4 = new Questions("Vrån vilken typ av blomma erhålls opium?", A4);
 
-    private final Questions Q5 = new Questions("Vad kallas en ko som ännu inte kalvat", A5);
+    private final Questions Q5 = new Questions("Vad kallas en ko som ännu inte kalvat?", A5);
 
     private final Questions Q6 = new Questions("Från vilken sorts blomma får man saffran?", A6);
 
     private final Questions Q7 = new Questions("Vilken ätlig svamp kallas även stensopp?", A7);
 
-    private final Questions Q8 = new Questions("Vilken frukt är en stenfrukt", A8);
+    private final Questions Q8 = new Questions("Vilken frukt är en stenfruk?t", A8);
 
-    private final Questions Q9 = new Questions("Vilket kattdjur är världens snabbaste djur på land?", A9);
+    private final Questions Q9 = new Questions("<html>Vilket kattdjur är världens snabbaste djur på land?</html>", A9);
 
-    private final Questions Q10 = new Questions("Vilket lövträd har kottar", A10);
+    private final Questions Q10 = new Questions("Vilket lövträd har kottar?", A10);
 
 
     public AnimalsNature(){

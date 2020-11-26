@@ -1,11 +1,9 @@
-import QuestionsHandler.Answers;
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
 import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -26,15 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
-    Database database = new Database();
-
-    JButton b1 = new JButton();
-    JButton b2 = new JButton();
-    JButton b3 = new JButton();
-    JButton b1empty = new JButton();
-    JButton b2empty = new JButton();
-    JButton b3empty = new JButton();
-
+ //   Database database = new Database();
 
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
@@ -45,17 +34,14 @@ public class QuestionPage extends JFrame implements ActionListener {
     JLabel category = new JLabel("Category");
     JLabel question = new JLabel();
 
-
     JButton answer1 = new JButton();
     JButton answer2 = new JButton();
     JButton answer3 = new JButton();
     JButton answer4 = new JButton();
 
-    JLabel timer = new JLabel("Timer here");
-
+  //  JLabel timer = new JLabel("Timer here");
 
     JPanel north = new JPanel();
-    JPanel center = new JPanel();
     JPanel south = new JPanel();
 
     Player pro;
@@ -88,9 +74,9 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
 
-        Collections.shuffle(newQuestionsForPlayerToAsk);
-
         randomListToPull = newQuestionsForPlayerToAsk;
+
+        Collections.shuffle(randomListToPull);
 
         if (pro.currentQuestion.isEmpty()) {
             question.setText(randomListToPull.get(0).getQuestion());
@@ -151,18 +137,14 @@ public class QuestionPage extends JFrame implements ActionListener {
             north.add(button);
         }*/
 
-        //    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
-        //    north.setLayout(new BoxLayout(north, BoxLayout.X_AXIS));
         north.setBackground(new Color(51, 133, 255));
         for (int i = 0; i < buttonsToPaintList.size(); i++) {
             north.add(buttonsToPaintList.get(i));
             buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
             buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
         }
-
-    //    north.setLayout(new GridLayout(1, 5));
         north.add(player);
         player.setFont(new Font("Arial", Font.PLAIN, 14));
         player.setForeground(Color.WHITE);
@@ -183,7 +165,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         category.setBackground(new Color(204, 0, 204));
         category.setForeground(Color.WHITE);
         category.setFont(new Font("Arial", Font.BOLD, 14));
-        //    category.setContentAreaFilled(false);
         category.setOpaque(true);
         category.setPreferredSize(new Dimension(250, 30));
         category.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -197,8 +178,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         question.setForeground(Color.WHITE);
         question.setFont(new Font("Arial", Font.BOLD, 12));
         question.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        //    question.setContentAreaFilled(false);
         question.setOpaque(true);
         question.setPreferredSize(new Dimension(250, 30));
 
@@ -245,7 +224,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.setMaximumSize(new Dimension(250, 30));
         answer4.setMaximumSize(new Dimension(250, 30));
 
-
         setSize(350, 500);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -257,7 +235,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer4.addActionListener(this);
 
     }
-
 
     public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
@@ -448,8 +425,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             try {
                 dispose();
-                //Client clientMinBroder = new Client(pro);
-                GamePage g = new GamePage(pro);
+                GamePage_play g = new GamePage_play(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -467,10 +443,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
 
 
-           dispose();
+            dispose();
             QuestionPage q = new QuestionPage(pro);
-
         }
-
     }
 }

@@ -49,19 +49,19 @@ public class PopCulture implements Serializable {
 
     private final Questions Q3 = new Questions("Vad heter Michelle Obamas 2018-memoar?", A3);
 
-    private final Questions Q4 = new Questions("Vem sjunger låten 'Say So' som ligger bakom den populära TikTok-dansen?", A4);
+    private final Questions Q4 = new Questions("<html>Vem sjunger låten 'Say So' som ligger bakom den populära TikTok-dansen?</html>", A4);
 
-    private final Questions Q5 = new Questions("Hur många Harry Potter böcker och filmer finns det?", A5);
+    private final Questions Q5 = new Questions("<html>Hur många Harry Potter böcker och filmer finns det?</html>", A5);
 
-    private final Questions Q6 = new Questions("Vad heter Sanderson-systrarna från Hocus Pocus?", A6);
+    private final Questions Q6 = new Questions("<html>Vad heter Sanderson-systrarna från Hocus Pocus?</html>", A6);
 
-    private final Questions Q7 = new Questions("Vilken popstjärna är gudmor till båda Elton Johns söner?", A7);
+    private final Questions Q7 = new Questions("<html>Vilken popstjärna är gudmor till båda Elton Johns söner?</html>", A7);
 
-    private final Questions Q8 = new Questions("Vad är Mr. Big: s riktiga namn i Sex and the City?", A8);
+    private final Questions Q8 = new Questions("<html>Vad är Mr. Big: s riktiga namn i Sex and the City?</html>", A8);
 
     private final Questions Q9 = new Questions("Vem är den äldsta Kardashian-systern?", A9);
 
-    private final Questions Q10 = new Questions("Vad heter den alternativa dimensionen i Netflix Stranger Things?", A10);
+    private final Questions Q10 = new Questions("<html>Vad heter den alternativa dimensionen i Netflix Stranger Things?</html>", A10);
 
 
     public PopCulture(){

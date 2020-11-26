@@ -43,17 +43,17 @@ public class Technology implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // Technology Questions
-    private final Questions Q1 = new Questions("Den nuvarande rikaste mannen i världen Jeff Bezos är VD för vilken online-återförsäljare?", A1);
+    private final Questions Q1 = new Questions("<html>Den nuvarande rikaste mannen i världen Jeff Bezos är VD för vilken online-återförsäljare?</html>", A1);
 
-    private final Questions Q2 = new Questions("Vilken app för sociala medier låter dig bara visa bilder och meddelanden under en begränsad tid?", A2);
+    private final Questions Q2 = new Questions("<html>Vilken app för sociala medier låter dig bara visa bilder och meddelanden under en begränsad tid?</html>", A2);
 
-    private final Questions Q3 = new Questions("Vilket prestigefyllt universitet hoppade Microsoft-grundaren Bill Gates av?", A3);
+    private final Questions Q3 = new Questions("<html>Vilket prestigefyllt universitet hoppade Microsoft-grundaren Bill Gates av?</html>", A3);
 
     private final Questions Q4 = new Questions("Vilket år lanserades den första Apple iPhone?", A4);
 
-    private final Questions Q5 = new Questions("Vilken längdenhet är lika med cirka 5,8 biljoner mil?", A5);
+    private final Questions Q5 = new Questions("<html>Vilken längdenhet är lika med cirka 5,8 biljoner mil?</html>", A5);
 
-    private final Questions Q6 = new Questions("Skapades 1990, vad hette den första sökmotorn på internet?", A6);
+    private final Questions Q6 = new Questions("<html>Skapades 1990, vad hette den första sökmotorn på internet?</html>", A6);
 
     private final Questions Q7 = new Questions("Under vilket årtionde lanserades Sony Walkman?", A7);
 

@@ -18,10 +18,10 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground( new Color(51, 133, 255));
+        panel.setBackground(new Color(51, 133, 255));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 80)));
-        panel.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         panel.add(user);
         user.setFont(new Font("Arial", Font.PLAIN, 18));
         user.setForeground(Color.WHITE);
@@ -37,6 +37,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         login.setBorderPainted(false);
         login.setOpaque(true);
         login.setPreferredSize(new Dimension(50,40));
+        login.setPreferredSize(new Dimension(50, 40));
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 
         setSize(350, 500);
@@ -45,13 +46,14 @@ public class LoginGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         login.addActionListener(this);
+        userText.addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == login){
-            p.setName(userText.getText());
+        if (e.getSource() == userText || e.getSource() == login) {
+            Player p = new Player(userText.getText());
             dispose();
             //HomePage page = new HomePage(p);
         }

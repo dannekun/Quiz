@@ -5,28 +5,29 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class HomePage extends JFrame implements ActionListener {
-
+/**
+ * Created by Ivona Zoricic
+ * Date: 2020-11-26
+ * Time: 11:56
+ * Project: Quiz
+ * Copywrite: MIT
+ */
+public class HomePage_waiting extends JFrame {
     JPanel bottomPanel = new JPanel();
     JPanel upperPanel = new JPanel();
 
     JLabel quizkampen = new JLabel("Quizkampen");
     JLabel player = new JLabel();
-    JButton play = new JButton("Spela");
     JLabel home = new JLabel("Hem");
+    JLabel info = new JLabel("Väntar på spelare nr 2...");
 
     Player pro = new Player();
 
-    public HomePage(Player p){
+    public HomePage_waiting(Player p){
         pro.setName(p.getName());
         player.setText(pro.getName());
-
-
-        ClientToSend playerTest = new ClientToSend();
-//        playerTest.setPro(pro);
 
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
@@ -46,17 +47,6 @@ public class HomePage extends JFrame implements ActionListener {
         player.setBorder(new EmptyBorder(10, 70, 10, 70));
         player.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
-        upperPanel.add(play);
-        Border line = new LineBorder(new Color(128, 255, 128));
-        Border margin = new EmptyBorder(5, 80, 5, 80);
-        Border compound = new CompoundBorder(line, margin);
-        play.setBorder(compound);
-        play.setBackground(new Color(77, 255, 77));
-        play.setForeground(Color.WHITE);
-        play.setFont(new Font("Arial", Font.PLAIN, 16));
-        play.setContentAreaFilled(false);
-        play.setOpaque(true);
-        play.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
         add(bottomPanel);
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
@@ -65,6 +55,11 @@ public class HomePage extends JFrame implements ActionListener {
         home.setForeground(Color.BLACK);
         home.setBackground(Color.WHITE);
         home.setOpaque(true);
+        bottomPanel.add(Box.createRigidArea(new Dimension(40, 20)));
+        bottomPanel.add(info);
+        info.setFont(new Font("Arial", Font.ITALIC, 14));
+        info.setForeground(Color.BLACK);
+        info.setOpaque(true);
         Border lineLabel = new LineBorder(new Color(128, 191, 255));
         Border marginLabel = new EmptyBorder(10, 10, 10, 10);
         Border compoundLabel = new CompoundBorder(lineLabel, marginLabel);
@@ -78,21 +73,17 @@ public class HomePage extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        play.addActionListener(this);
     }
 
-    @Override
+/*    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             dispose();
-            /*
             try {
-                GamePage g = new GamePage(pro);
+                GamePage_waiting g = new GamePage_waiting(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-
-             */
         }
-    }
+    }*/
 }
