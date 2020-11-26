@@ -21,7 +21,7 @@ public class ClientToSend implements Serializable {
         Player player2 = new Player();
 
 
-        //HomePage_waiting homePage_waiting = new HomePage_waiting();
+        HomePage_waiting homePage_waiting = new HomePage_waiting();
 
         InetAddress iadr = InetAddress.getLocalHost();
 
@@ -32,7 +32,7 @@ public class ClientToSend implements Serializable {
 
             if (player1.getName() != null){
                 player1.setSTATE(1);
-               //homePage_waiting = new HomePage_waiting(player1);
+                homePage_waiting = new HomePage_waiting(player1);
                 player1.setEndState(false);
             }
         }
@@ -62,7 +62,7 @@ public class ClientToSend implements Serializable {
                 System.out.println(player2.getName());
 
                 if (player2.isConnected()){
-                   // homePage_waiting.dispose();
+                   homePage_waiting.dispose();
                     player1.setSTATE(2);
                 }
 

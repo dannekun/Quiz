@@ -37,7 +37,8 @@ public class Protocol {
         }else if (pro.getSTATE() == QUEUE_NOTCONNECTED){
 
             //BEHÖVER SKICKA
-            HomePage_waiting h = new HomePage_waiting(pro);
+            //HomePage_waiting h = new HomePage_waiting(pro);
+
 
 
 
@@ -55,6 +56,7 @@ public class Protocol {
 
             //STATE = GAME;
         }else if(pro.getSTATE() == QUEUE_CONNECTED){
+
             HomePage_play hPlay = new HomePage_play(pro);
 
             while(!hPlay.isClicked()){
