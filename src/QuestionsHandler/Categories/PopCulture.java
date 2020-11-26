@@ -83,7 +83,7 @@ public class PopCulture {
     }
 
     public String getCategoryName() {
-        return "Pop kultur";
+        return "Pop Kultur";
     }
 
     public List<Questions> getPopCultureList() {
