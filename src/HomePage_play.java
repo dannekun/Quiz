@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class HomePage_play extends JFrame implements ActionListener {
 
+    GUI_Util g = new GUI_Util();
+
     JPanel bottomPanel = new JPanel();
     JPanel upperPanel = new JPanel();
 
@@ -30,15 +32,18 @@ public class HomePage_play extends JFrame implements ActionListener {
         upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
         upperPanel.add(quizkampen);
-        quizkampen.setFont(new Font("Comfortaa", Font.BOLD, 24));
-        quizkampen.setForeground(Color.WHITE);
+        g.paintLabelSimply(quizkampen, "Comfortaa",1,24,255,255,255);
+    /*    quizkampen.setFont(new Font("Comfortaa", Font.BOLD, 24));
+        quizkampen.setForeground(Color.WHITE);*/
         quizkampen.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
         upperPanel.add(player);
-        player.setFont(new Font("Arial", Font.PLAIN, 18));
+        g.paintLabel(player,"Arial",0,18,
+                255,255,255, 0,51,204);
+    /*    player.setFont(new Font("Arial", Font.PLAIN, 18));
         player.setForeground(Color.WHITE);
         player.setBackground(new Color(0, 51, 204));
-        player.setOpaque(true);
+        player.setOpaque(true);*/
         player.setBorder(new EmptyBorder(10, 70, 10, 70));
         player.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
