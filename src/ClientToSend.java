@@ -39,13 +39,16 @@ public class ClientToSend implements Serializable {
 
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
+
         while (!pro.getFinished()){
-            protocol.processInput(pro);
+           pro = protocol.processInput(pro);
         }
+
+
 
         System.out.println("Sending message to server");
 
-        objectOutputStream.writeObject(protocol.processInput(pro));
+        objectOutputStream.writeObject(pro);
 
         System.out.println("walla bror");
 

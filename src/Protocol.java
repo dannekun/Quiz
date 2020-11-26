@@ -21,17 +21,19 @@ public class Protocol {
 
         
         if (STATE == LOGGIN){
-            LoginGUI jaKnullarDig = new LoginGUI();
+            LoginGUI loginGUI = new LoginGUI();
 
-            pro = jaKnullarDig.returnThisMotherFucker();
+            pro = loginGUI.findPlayerAndReturn();
 
             while (pro.getName() == null){
                 if (pro.getName() != null) {
-                    pro = jaKnullarDig.returnThisMotherFucker();
+                    pro = loginGUI.findPlayerAndReturn();
                 }
             }
-            //STATE = QUEUE;
+            pro.setFinished(true);
+            STATE = QUEUE;
         }else if (STATE == QUEUE){
+            /*
             HomePage h = new HomePage(pro);
 
             while (pro.getName() == null){
@@ -39,6 +41,8 @@ public class Protocol {
 
                 }
             }
+
+             */
 
             //STATE = GAME;
         }else if (STATE == GAME){

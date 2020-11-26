@@ -57,7 +57,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         }
     }
 
-    public Player returnThisMotherFucker(){
+    public Player findPlayerAndReturn(){
 
         return this.p;
     }
