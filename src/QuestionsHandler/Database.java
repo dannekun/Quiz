@@ -4,10 +4,6 @@ package QuestionsHandler;
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Created by Salah Abdinoor
  * 11/13/2020

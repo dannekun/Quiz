@@ -1,72 +1,93 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 
-/**
- * Created by Daniel Bojic
- * Date: 2020-11-12
- * Time: 14:06
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class HomePage extends JFrame implements ActionListener {
 
+    JPanel bottomPanel = new JPanel();
+    JPanel upperPanel = new JPanel();
 
-    JFrame frame = new JFrame();
-    JPanel panelUp = new JPanel();
-    JPanel panelMid = new JPanel();
-    JPanel panelBot = new JPanel();
-
-    JLabel home = new JLabel("Home");
-
-
-    JButton settings = new JButton("Settings");
+    JLabel quizkampen = new JLabel("Quizkampen");
     JLabel player = new JLabel();
-    JButton play = new JButton("Play");
-
+    JButton play = new JButton("Spela");
+    JLabel home = new JLabel("Hem");
+    JLabel info = new JLabel("Väntar på spelare nr 2...");
 
     Player pro = new Player();
 
     public HomePage(Player p){
-
         pro.setName(p.getName());
         player.setText(pro.getName());
-    //    panelUp.setLayout(new GridLayout(1,4));
-        panelMid.setLayout(new GridLayout(1,1));
-        panelBot.setLayout(new GridLayout(2,1));
 
-        frame.add(panelUp, BorderLayout.NORTH);
-        frame.add(panelMid,BorderLayout.CENTER);
-        frame.add(panelBot, BorderLayout.SOUTH);
+        add(upperPanel);
+        upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
+        upperPanel.setBackground( new Color(51, 133, 255));
+        upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
+        upperPanel.add(quizkampen);
+        quizkampen.setFont(new Font("Comfortaa", Font.BOLD, 24));
+        quizkampen.setForeground(Color.WHITE);
+        quizkampen.setAlignmentX(Component.CENTER_ALIGNMENT);
+        upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
+        upperPanel.add(player);
+        player.setFont(new Font("Arial", Font.PLAIN, 18));
+        player.setForeground(Color.WHITE);
+        player.setBackground(new Color(0, 51, 204));
+        player.setOpaque(true);
+        player.setBorder(new EmptyBorder(10, 70, 10, 70));
+        player.setAlignmentX(Component.CENTER_ALIGNMENT);
+        upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
+        upperPanel.add(play);
+        Border line = new LineBorder(new Color(128, 255, 128));
+        Border margin = new EmptyBorder(5, 80, 5, 80);
+        Border compound = new CompoundBorder(line, margin);
+        play.setBorder(compound);
+        play.setBackground(new Color(77, 255, 77));
+        play.setForeground(Color.WHITE);
+        play.setFont(new Font("Arial", Font.PLAIN, 16));
+        play.setContentAreaFilled(false);
+        play.setOpaque(true);
+        play.setAlignmentX(Component.CENTER_ALIGNMENT);
+        upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
+        add(bottomPanel);
+        bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
+        bottomPanel.add(home);
+        home.setFont(new Font("Arial", Font.PLAIN, 14));
+        home.setForeground(Color.BLACK);
+        home.setBackground(Color.WHITE);
+        home.setOpaque(true);
+        bottomPanel.add(Box.createRigidArea(new Dimension(40, 20)));
+        bottomPanel.add(info);
+        info.setFont(new Font("Arial", Font.ITALIC, 14));
+        info.setForeground(Color.BLACK);
+    //    info.setBackground(Color.WHITE);
+        info.setOpaque(true);
+        Border lineLabel = new LineBorder(new Color(128, 191, 255));
+        Border marginLabel = new EmptyBorder(10, 10, 10, 10);
+        Border compoundLabel = new CompoundBorder(lineLabel, marginLabel);
+        home.setBorder(compoundLabel);
+        Container contentPane = getContentPane();
+        contentPane.add(upperPanel, BorderLayout.CENTER);
+        contentPane.add(bottomPanel, BorderLayout.PAGE_END);
 
-       // panelUp.add(settings);
-        panelMid.add(player);
-        panelBot.add(play);
-        panelBot.add(home);
-
-        frame.setSize(200,400);
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(350, 500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         play.addActionListener(this);
-        settings.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Settings s = new Settings();
-            }
-        });
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-            frame.dispose();
+            dispose();
             try {
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {

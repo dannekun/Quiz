@@ -5,6 +5,8 @@ import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,11 +26,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
-    Database database = new Database();
-
-    JButton b1 = new JButton();
-    JButton b2 = new JButton();
-    JButton b3 = new JButton();
+ //   Database database = new Database();
 
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
@@ -39,22 +37,17 @@ public class QuestionPage extends JFrame implements ActionListener {
     JLabel category = new JLabel("Category");
     JLabel question = new JLabel();
 
-
-
     JButton answer1 = new JButton();
     JButton answer2 = new JButton();
     JButton answer3 = new JButton();
     JButton answer4 = new JButton();
 
-    JLabel timer = new JLabel("Timer here");
-
-    JFrame frame = new JFrame();
+  //  JLabel timer = new JLabel("Timer here");
 
     JPanel north = new JPanel();
-    JPanel center = new JPanel();
     JPanel south = new JPanel();
 
-    Player pro = new Player();
+    Player pro;
     List<Questions> randomListToPull = new ArrayList<>();
     List<String> randomAnswerList = new ArrayList<>();
 
@@ -64,77 +57,54 @@ public class QuestionPage extends JFrame implements ActionListener {
     Database d = new Database();
 
     String questionToAsk = null;
-    public QuestionPage(Player p){
 
+    public QuestionPage(Player p) {
 
 
         pro = p;
-        round.setText(("Round " + pro.getRound()));
-        questionNumber.setText("Question " + pro.getQuestion());
+
+        round.setText(("Rond " + pro.getRound()));
+        questionNumber.setText("Fråga " + pro.getQuestion());
 
         player.setText(pro.getName());
 
-        frame.setSize(600,200);
+        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() - 1));
 
-
-        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound()-1));
-
-        questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
+        //questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
 
         //questionToAsk = randomListToPull.get(whichCatToChoose).getQuestion();
 
 
-        List<Questions> newQuestionsForPlayerToAsk = new ArrayList<>();
-        int randomNumber = 0;
-        for (Questions s : randomListToPull){
-            if (!s.getQuestion().equals(questionToAsk)){
-                newQuestionsForPlayerToAsk.add(randomListToPull.get(randomNumber));
-            }
-            randomNumber++;
-        }
+        List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
 
-        Collections.shuffle(newQuestionsForPlayerToAsk);
+        randomListToPull = newQuestionsForPlayerToAsk;
 
-        if (pro.currentQuestion.isEmpty()){
-            question.setText(questionToAsk);
-            pro.addQuestionToCurrentList(questionToAsk);
-        }else {
-            randomListToPull = newQuestionsForPlayerToAsk;
-            question.setText(randomListToPull.get(pro.getRound()).getQuestion());
-            pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
-        }
+        Collections.shuffle(randomListToPull);
+
+        if (pro.currentQuestion.isEmpty()) {
+            question.setText(randomListToPull.get(0).getQuestion());
+            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+
+            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
+        } else {
 
 
-        randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+            randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
 
-        /*
-        if (pro.getCurrentQuestion() == null){
-            whichCatToChoose = pro.getRound();
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
-       // }else if (randomListToPull.get(pro.getRound()).getQuestion().equals(pro.getCurrentQuestion())){
-        }else if (randomListToPull.get(pro.getRound()).getQuestion().equals(pro.getCurrentQuestion())){
-            whichCatToChoose = pro.getRound()+1;
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
-        }else {
-            question.setText(questionToAsk);
-            pro.setCurrentQuestion(questionToAsk);
+            //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
+            question.setText(randomListToPull.get(0).getQuestion());
+            // pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
+            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
         }
 
 
+        // randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
+        randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
 
-         */
+        // rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
 
-        //d.artLiterature.getArtLiteratureList().get(0).getAnswerObject().shuffleAnswers(randomListToPull.get(0).getAnswerObject().getAnswersList());
-
-
-       //randomListToPull.get(0).getAnswerObject().shuffleAnswers();
-
-
-
-       rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
-
+        rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
         Collections.shuffle(randomAnswerList);
 
 
@@ -143,64 +113,124 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.setText(randomAnswerList.get(2));
         answer4.setText(randomAnswerList.get(3));
 
-        /*
-        answer1.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(0).toString());
-        answer2.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(1).toString());
-        answer3.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(2).toString());
-        answer4.setText(randomListToPull.get(0).getAnswerObject().getAnswersList().get(3).toString());
-
-         */
-        category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size()-1));
-
-        buttonsToPaintList.add(b1);
-        buttonsToPaintList.add(b2);
-        buttonsToPaintList.add(b3);
+        category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size() - 1));
 
 
+        for (int i = 0; i < pro.getMaxQuestion(); i++) {
+            buttonsToPaintList.add(new JButton());
+        }
 
-        if (pro.getQuestion() > 0){
-            for (int i = 0; i < pro.getQuestion()-1; i++) {
-             //   if (pro.getAnswers().get(i) == false){
-                if (pro.getRoundAnswers().get(i) == false){
+
+        if (pro.getQuestion() > 0) {
+            for (int i = 0; i < pro.getQuestion() - 1; i++) {
+                //   if (pro.getAnswers().get(i) == false){
+                if (!pro.getRoundAnswers().get(i)) {
                     paintRed(buttonsToPaintList.get(i));
-                }else {
+                } else {
                     paintGreen(buttonsToPaintList.get(i));
                 }
             }
-        }else if (pro.getQuestion() == 0){
+        } else if (pro.getQuestion() == 0) {
             for (int i = 0; i < pro.getMaxQuestion(); i++) {
                 resetPaint(buttonsToPaintList.get(i));
             }
         }
 
+    /*    for (JButton button : buttonsToPaintList) {
+            north.add(button);
+        }*/
 
-
-        north.setLayout(new GridLayout(1,5));
-        north.add(b1);
-        north.add(b2);
-        north.add(b3);
-        north.add(round);
+        add(north);
+        north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+        north.setBackground(new Color(51, 133, 255));
+        for (int i = 0; i < buttonsToPaintList.size(); i++) {
+            north.add(buttonsToPaintList.get(i));
+            buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
+            buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
+        }
         north.add(player);
+        player.setFont(new Font("Arial", Font.PLAIN, 14));
+        player.setForeground(Color.WHITE);
+        player.setBackground(new Color(0, 51, 204));
+        player.setOpaque(true);
+        player.setBorder(new EmptyBorder(10, 30, 10, 30));
 
-        center.setLayout(new GridLayout(3,1));
-        center.add(category);
-        center.add(questionNumber);
-        center.add(question);
+        add(south);
+        south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        south.setLayout(new GridLayout(8,1));
+        south.setBackground( new Color(51, 133, 255));
 
-        south.setLayout(new GridLayout(3,2));
+        south.add(round);
+        round.setFont(new Font("Arial", Font.PLAIN, 14));
+        round.setForeground(Color.WHITE);
+
+        south.add(category);
+        category.setBackground(new Color(204, 0, 204));
+        category.setForeground(Color.WHITE);
+        category.setFont(new Font("Arial", Font.BOLD, 14));
+        category.setOpaque(true);
+        category.setPreferredSize(new Dimension(250, 30));
+        category.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        south.add(questionNumber);
+        questionNumber.setFont(new Font("Arial", Font.PLAIN, 14));
+        questionNumber.setForeground(Color.WHITE);
+
+        south.add(question);
+        question.setBackground(new Color(255, 51, 133));
+        question.setForeground(Color.WHITE);
+        question.setFont(new Font("Arial", Font.BOLD, 12));
+        question.setBorder(new EmptyBorder(10, 10, 10, 10));
+        question.setOpaque(true);
+        question.setPreferredSize(new Dimension(250, 30));
+
         south.add(answer1);
-        south.add(answer3);
+        answer1.setBackground(new Color(163, 102, 255));
+        answer1.setForeground(Color.WHITE);
+        answer1.setFont(new Font("Arial", Font.BOLD, 14));
+        answer1.setContentAreaFilled(false);
+        answer1.setOpaque(true);
+        answer1.setPreferredSize(new Dimension(250, 30));
+
         south.add(answer2);
+        answer2.setBackground(new Color(163, 102, 255));
+        answer2.setForeground(Color.WHITE);
+        answer2.setFont(new Font("Arial", Font.BOLD, 14));
+        answer2.setContentAreaFilled(false);
+        answer2.setOpaque(true);
+        answer2.setPreferredSize(new Dimension(250, 30));
+
+        south.add(answer3);
+        answer3.setBackground(new Color(163, 102, 255));
+        answer3.setForeground(Color.WHITE);
+        answer3.setFont(new Font("Arial", Font.BOLD, 14));
+        answer3.setContentAreaFilled(false);
+        answer3.setOpaque(true);
+        answer3.setPreferredSize(new Dimension(250, 30));
+
         south.add(answer4);
-        south.add(timer);
+        answer4.setBackground(new Color(163, 102, 255));
+        answer4.setForeground(Color.WHITE);
+        answer4.setFont(new Font("Arial", Font.BOLD, 14));
+        answer4.setContentAreaFilled(false);
+        answer4.setOpaque(true);
+        answer4.setPreferredSize(new Dimension(250, 30));
 
-        frame.add(north, BorderLayout.NORTH);
-        frame.add(center, BorderLayout.CENTER);
-        frame.add(south, BorderLayout.SOUTH);
+        Container contentPane = getContentPane();
+        contentPane.add(north, BorderLayout.NORTH);
+        contentPane.add(south, BorderLayout.CENTER);
 
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        category.setMaximumSize(new Dimension(250, 30));
+        question.setMaximumSize(new Dimension(250, 30));
+        answer1.setMaximumSize(new Dimension(250, 30));
+        answer2.setMaximumSize(new Dimension(250, 30));
+        answer3.setMaximumSize(new Dimension(250, 30));
+        answer4.setMaximumSize(new Dimension(250, 30));
+
+        setSize(350, 500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         answer1.addActionListener(this);
         answer2.addActionListener(this);
@@ -209,53 +239,31 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
-    public void setAnswer1(JButton answer1) {
-        this.answer1 = answer1;
-    }
-
-    public void setAnswer2(JButton answer2) {
-        this.answer2 = answer2;
-    }
-
-    public void setAnswer3(JButton answer3) {
-        this.answer3 = answer3;
-    }
-
-    public void setAnswer4(JButton answer4) {
-        this.answer4 = answer4;
-    }
-
-    public void setCategory(JLabel category, String categroyText) {
-        this.category = category;
-        category.setText(categroyText);
-    }
-
-    public void paintRed(JButton jb){
+    public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
         jb.setOpaque(true);
         jb.setBorderPainted(false);
     }
-    public void paintGreen(JButton jb){
+
+    public void paintGreen(JButton jb) {
         jb.setBackground(Color.GREEN);
         jb.setOpaque(true);
         jb.setBorderPainted(false);
     }
-    public void resetPaint(JButton jb){
+
+    public void resetPaint(JButton jb) {
         jb.setBackground(null);
     }
 
-
-    final String animalNatureName = "Animals & Nature";
-    final String artLiteratureName = "Art & Literature";
-    final String generalKnowledgeName = "General Knowledge";
-    final String mathName = "Math";
-    final String musicName = "Music";
-    final String popCultureName = "Pop Culture";
-    final String sportsName = "Sports";
-    final String technologyName = "Technology";
-    final String tvShowsName = "TVShows";
-
-
+    final String animalNatureName = "Djur & natur";
+    final String artLiteratureName = "Konst & literatur";
+    final String generalKnowledgeName = "Allmän kunskap";
+    final String mathName = "Matte";
+    final String musicName = "Musik";
+    final String popCultureName = "Pop Kultur";
+    final String sportsName = "Idrott";
+    final String technologyName = "Teknologi";
+    final String tvShowsName = "TV-show";
 
 
     public List<Questions> findList(String categoryName) {
@@ -274,86 +282,56 @@ public class QuestionPage extends JFrame implements ActionListener {
         };
     }
 
-    public Boolean checkAnswers(String a){
+    public Boolean checkAnswers(String a) {
 
-    if (rightAnswerFromList.equals(a)){
-        return true;
-    }else {
-        return false;
-    }
+        return rightAnswerFromList.equals(a);
 
     }
 
-    public void findRightAnswerAndPaint(JButton a, JButton b, JButton c, JButton d, String rightAnswer){
-        if (a.getText().equals(rightAnswer)){
+    public void findRightAnswerAndPaint(JButton a, JButton b, JButton c, JButton d, String rightAnswer) {
+        if (a.getText().equals(rightAnswer)) {
             a.setBackground(Color.GREEN);
             a.setOpaque(true);
             a.setBorderPainted(false);
-        }else if (b.getText().equals(rightAnswer)){
+        } else if (b.getText().equals(rightAnswer)) {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
             b.setBorderPainted(false);
-        }else if (c.getText().equals(rightAnswer)){
+        } else if (c.getText().equals(rightAnswer)) {
             c.setBackground(Color.GREEN);
             c.setOpaque(true);
             c.setBorderPainted(false);
-        }else if (d.getText().equals(rightAnswer)){
+        } else if (d.getText().equals(rightAnswer)) {
             d.setBackground(Color.GREEN);
             d.setOpaque(true);
             d.setBorderPainted(false);
         }
     }
 
-
-    public void changeColorRedOrGreen(JButton x, boolean b, String selectedAnswer){
-        if (!checkAnswers(selectedAnswer)) {
-            x.setBackground(Color.RED);
-            pro.answersAddToList(false);
-            pro.addToRoundAnswersList(false);
-            b = false;
-
-
-            //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
-        } else if (checkAnswers(selectedAnswer)) {
-            x.setBackground(Color.GREEN);
-            pro.answersAddToList(true);
-            pro.addToRoundAnswersList(true);
-            pro.setPoints(pro.getPoints() + 1);
-            b= true;
+    public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith) {
+        boolean found = false;
+        List<Questions> questionsToUse = new ArrayList<>();
+        for (Questions questions : questionListToFind) {
+            for (String s : listToCompareWith) {
+                if (questions.getQuestion().equals(s)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                questionsToUse.add(questions);
+            }
+            found = false;
         }
-        x.setOpaque(true);
-        x.setBorderPainted(false);
+        Collections.shuffle(questionsToUse);
+        return questionsToUse;
     }
-
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-            Boolean didYouGetIt = false;
-            if (e.getSource() == answer1) {
-                //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
-                changeColorRedOrGreen (answer1, didYouGetIt, randomAnswerList.get(0));
-
-            } else if (e.getSource() == answer2) {
-                //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
-                changeColorRedOrGreen(answer2, didYouGetIt, randomAnswerList.get(1));
-
-
-            } else if (e.getSource() == answer3) {
-                // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
-                changeColorRedOrGreen(answer3, didYouGetIt, randomAnswerList.get(2));
-
-            } else if (e.getSource() == answer4) {
-                // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
-                changeColorRedOrGreen(answer4, didYouGetIt, randomAnswerList.get(3));
-            }
-
-
-
-/*
-        Boolean didYouGetIt = false;
-        if (e.getSource() == answer1){
+        boolean didYouGetIt = false;
+        if (e.getSource() == answer1) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
             if (!checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.RED);
@@ -362,66 +340,65 @@ public class QuestionPage extends JFrame implements ActionListener {
                 didYouGetIt = false;
 
 
-
                 //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
-            }else if (checkAnswers(randomAnswerList.get(0))){
+            } else if (checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints()+1);
+                pro.setPoints(pro.getPoints() + 1);
                 didYouGetIt = true;
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
-        }else if (e.getSource() == answer2){
+        } else if (e.getSource() == answer2) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
             if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
                 didYouGetIt = false;
-          //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
-            }else if (checkAnswers(randomAnswerList.get(1))){
+                //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
+            } else if (checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints()+1);
+                pro.setPoints(pro.getPoints() + 1);
                 didYouGetIt = true;
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
 
-        }else if (e.getSource() == answer3){
-           // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
+        } else if (e.getSource() == answer3) {
+            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
             if (!checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
                 didYouGetIt = false;
-        //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
-            }else if (checkAnswers(randomAnswerList.get(2))){
+                //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
+            } else if (checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints()+1);
+                pro.setPoints(pro.getPoints() + 1);
                 didYouGetIt = true;
             }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
 
-        }else if (e.getSource() == answer4){
-           // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
+        } else if (e.getSource() == answer4) {
+            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
             if (!checkAnswers(randomAnswerList.get(3))) {
                 answer4.setBackground(Color.RED);
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
                 didYouGetIt = false;
-           // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
-            }else if (checkAnswers(randomAnswerList.get(3))){
+                // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
+            } else if (checkAnswers(randomAnswerList.get(3))) {
                 answer4.setBackground(Color.GREEN);
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints()+1);
+                pro.setPoints(pro.getPoints() + 1);
                 didYouGetIt = true;
             }
             answer4.setOpaque(true);
@@ -429,43 +406,38 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         }
 
-         */
 
-        findRightAnswerAndPaint(answer1, answer2, answer3, answer4,rightAnswerFromList);
-
-
-        if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()){
+        if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
             pro.setQuestion(0);
-            if (didYouGetIt == true){
+            if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
-            }else {
-                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
-            frame.dispose();
+            dispose();
             ResultPage r = new ResultPage(pro);
 
-        }else if (pro.getQuestion() == pro.getMaxQuestion()){
+        } else if (pro.getQuestion() == pro.getMaxQuestion()) {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
             pro.roundAnswers.clear();
-            if (didYouGetIt == true){
+            if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
-            }else {
-                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
             try {
-                frame.dispose();
+                dispose();
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-        }
-        else if (pro.getQuestion() <= pro.getMaxQuestion()){
-            pro.setQuestion(pro.getQuestion()+1);
-            if (didYouGetIt == true){
+        } else if (pro.getQuestion() <= pro.getMaxQuestion()) {
+            pro.setQuestion(pro.getQuestion() + 1);
+            if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
-            }else {
-                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList+ "'\'");
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
             try {
                 Thread.sleep(1000);
@@ -474,12 +446,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
 
 
-            frame.dispose();
+            dispose();
             QuestionPage q = new QuestionPage(pro);
         }
     }
-    //Flytar method till hitt
-
-
-
 }

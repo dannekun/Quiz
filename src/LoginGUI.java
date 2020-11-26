@@ -1,45 +1,52 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Daniel Bojic
- * Date: 2020-11-12
- * Time: 14:34
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class LoginGUI extends JFrame implements ActionListener {
+
     JPanel panel = new JPanel();
-    JFrame frame = new JFrame();
-    JLabel user = new JLabel("Player");
-    JTextField userText = new JTextField(20);
-    JButton login = new JButton("Log in");
+    JLabel user = new JLabel("Spelare");
+    JTextField userText = new JTextField();
+    JButton login = new JButton("Logga in");
 
-
-    public LoginGUI(){
-
-        frame.setSize(350, 100);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.add(panel);
-        user.setBounds(10,20,80,25);
+    public LoginGUI() {
+        add(panel);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(new Color(51, 133, 255));
+        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 80)));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
         panel.add(user);
-        userText.setBounds(100,20,165,25);
+        user.setFont(new Font("Arial", Font.PLAIN, 18));
+        user.setForeground(Color.WHITE);
+        user.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(10, 10)));
         panel.add(userText);
-        login.setBounds(10,80,80,25);
+        userText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        panel.add(Box.createRigidArea(new Dimension(100, 15)));
         panel.add(login);
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        login.setAlignmentX(Component.CENTER_ALIGNMENT);
+        login.setBackground(new Color(71, 71, 209));
+        login.setForeground(Color.WHITE);
+        login.setPreferredSize(new Dimension(50, 40));
+        panel.add(Box.createRigidArea(new Dimension(100, 170)));
+
+        setSize(350, 500);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);
+        setLocationRelativeTo(null);
 
         login.addActionListener(this);
+        userText.addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == login){
+        if (e.getSource() == userText || e.getSource() == login) {
             Player p = new Player(userText.getText());
-            frame.dispose();
+            dispose();
             HomePage page = new HomePage(p);
         }
     }
