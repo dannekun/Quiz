@@ -308,6 +308,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
     }
 
+
     public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith) {
         boolean found = false;
         List<Questions> questionsToUse = new ArrayList<>();
@@ -327,9 +328,49 @@ public class QuestionPage extends JFrame implements ActionListener {
         return questionsToUse;
     }
 
+    public void changeColorOfButtonByAnswer(JButton x, boolean b, String selectedAnswer){
+        if (!checkAnswers(selectedAnswer)) {
+            x.setBackground(Color.RED);
+            pro.answersAddToList(false);
+            pro.addToRoundAnswersList(false);
+            b = false;
+
+        } else if (checkAnswers(selectedAnswer)) {
+            x.setBackground(Color.GREEN);
+            pro.answersAddToList(true);
+            pro.addToRoundAnswersList(true);
+            pro.setPoints(pro.getPoints() + 1);
+            b= true;
+        }
+        x.setOpaque(true);
+        x.setBorderPainted(false);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
+        boolean didYouGetIt = false;
+        if (e.getSource() == answer1) {
+
+            changeColorOfButtonByAnswer(answer1, didYouGetIt,randomAnswerList.get(0));
+
+        } else if (e.getSource() == answer2) {
+
+            changeColorOfButtonByAnswer(answer2, didYouGetIt,randomAnswerList.get(1));
+
+        } else if (e.getSource() == answer3) {
+
+            changeColorOfButtonByAnswer(answer3, didYouGetIt,randomAnswerList.get(2));
+
+        } else if (e.getSource() == answer4) {
+
+            changeColorOfButtonByAnswer(answer4, didYouGetIt,randomAnswerList.get(3));
+
+        }
+
+
+/*
         boolean didYouGetIt = false;
         if (e.getSource() == answer1) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
@@ -405,6 +446,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer4.setBorderPainted(false);
 
         }
+
+ */
 
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
