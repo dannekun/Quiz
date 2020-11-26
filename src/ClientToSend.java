@@ -55,6 +55,9 @@ public class ClientToSend implements Serializable {
 
         //HÄR ÄR PROBLEMET
             ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+            System.out.println("här kommer vi förbi");
+
             player2 = (Player) objectInputStream.readObject();
 
 

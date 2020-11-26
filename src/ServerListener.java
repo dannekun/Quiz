@@ -1,5 +1,6 @@
 import javax.net.ServerSocketFactory;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -10,7 +11,7 @@ import java.net.Socket;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class ServerListener extends Thread {
+public class ServerListener extends Thread implements Serializable {
 
     private ServerSocket serverSocket;
 

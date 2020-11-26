@@ -8,7 +8,7 @@ import java.net.Socket;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class ClientHandler extends Thread {
+public class ClientHandler extends Thread implements Serializable {
 
     int portNumber = 7777;
     private Socket spelare1;
@@ -45,14 +45,6 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-
-        try {
-         sendPlayerInfo(spelare1);
-         sendPlayerInfo(spelare2);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
 
