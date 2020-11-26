@@ -16,6 +16,9 @@ public class LoginGUI extends JFrame implements ActionListener {
     public LoginGUI(){
 
 
+
+
+
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(51, 133, 255));
@@ -53,13 +56,15 @@ public class LoginGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == userText || e.getSource() == login) {
-            Player p = new Player(userText.getText());
+            p.setName(userText.getText());
             dispose();
             //HomePage page = new HomePage(p);
         }
     }
 
     public Player findPlayerAndReturn(){
+
+
 
         return this.p;
     }

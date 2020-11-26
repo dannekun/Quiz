@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Player implements Serializable {
 
-    String name;
+    String name = null;
     int points = 0;
     int round;
     int maxRound;
@@ -143,7 +143,6 @@ public class Player implements Serializable {
     }
 
     Player(){
-
     }
 
     Player(String name){

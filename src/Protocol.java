@@ -17,21 +17,26 @@ public class Protocol {
 
     private int STATE = LOGGIN;
 
-    public Player processInput(Player pro) throws IOException {
+    public Player processInput(Player pro) throws IOException, InterruptedException {
 
         
         if (STATE == LOGGIN){
-            LoginGUI loginGUI = new LoginGUI();
+           LoginGUI gui = new LoginGUI();
 
 
-
-            while (pro.getName() == null){
-
-                    pro = loginGUI.findPlayerAndReturn();
-
+           Boolean flag = true;
+            while (flag){
+               
+                pro = gui.findPlayerAndReturn();
+                if (pro.getName() != null){
+                   flag = false;
+                   System.out.println("det fungerade");
+                   break;
+                }
             }
+            System.out.println(pro.getName());
 
-            STATE = QUEUE;
+            //STATE = QUEUE;
             return pro;
         }else if (STATE == QUEUE){
 
