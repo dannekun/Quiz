@@ -50,7 +50,7 @@ public class ResultPage extends JFrame {
         ok.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                HomePage_play page = new HomePage_play(pro);
+               // HomePage_play page = new HomePage_play(pro);
             }
         });
 

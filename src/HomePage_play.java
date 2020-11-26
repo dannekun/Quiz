@@ -31,13 +31,10 @@ public class HomePage_play extends JFrame implements ActionListener {
         this.clicked = clicked;
     }
 
-    public HomePage_play(Player p){
+
+    public void showWindow(Player p){
         pro.setName(p.getName());
         player.setText(pro.getName());
-
-
-        ClientToSend playerTest = new ClientToSend();
-//        playerTest.setPro(pro);
 
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
@@ -96,6 +93,11 @@ public class HomePage_play extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         play.addActionListener(this);
+
+    }
+
+    public void closeWindow(){
+        this.dispose();
     }
 
     @Override

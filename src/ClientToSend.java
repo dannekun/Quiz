@@ -32,7 +32,8 @@ public class ClientToSend implements Serializable {
 
             if (player1.getName() != null){
                 player1.setSTATE(1);
-                homePage_waiting = new HomePage_waiting(player1);
+                //player1 = protocol.processInput(player1);
+                homePage_waiting.showWindow(player1);
                 player1.setEndState(false);
             }
         }
@@ -58,11 +59,12 @@ public class ClientToSend implements Serializable {
 
                 player2 = (Player) objectInputStream.readObject();
 
+                objectOutputStream.flush();
 
                 System.out.println(player2.getName());
 
                 if (player2.isConnected()){
-                   homePage_waiting.dispose();
+                    homePage_waiting.closeWindow();
                     player1.setSTATE(2);
                 }
 
@@ -92,11 +94,6 @@ public class ClientToSend implements Serializable {
             //SKICKA TILLBAKA PLAYER OCH SE OM MAN ÄR PLAYER 1 ELLER 2
 
 
-
-            System.out.println("vi hitta shuno, han heter: " + player2.getName());
-
-
-            System.out.println(player1.getName());
 
             System.out.println("Closing socket and terminating program");
 

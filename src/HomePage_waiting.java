@@ -25,7 +25,8 @@ public class HomePage_waiting extends JFrame {
 
     Player pro = new Player();
 
-    public HomePage_waiting(Player p){
+
+    public void showWindow(Player p){
         pro.setName(p.getName());
         player.setText(pro.getName());
 
@@ -72,12 +73,13 @@ public class HomePage_waiting extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
     }
 
-    public HomePage_waiting(){
-
+    public void closeWindow(){
+        this.dispose();
     }
+
+
 
 /*    @Override
     public void actionPerformed(ActionEvent e) {
@@ -90,4 +92,7 @@ public class HomePage_waiting extends JFrame {
             }
         }
     }*/
+
 }
+
+

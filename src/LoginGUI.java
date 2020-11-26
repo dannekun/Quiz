@@ -12,10 +12,31 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     Player p = new Player();
 
+    /*
     public LoginGUI(){
+    }
+
+     */
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == userText || e.getSource() == login) {
+            p.setName(userText.getText());
+            dispose();
+            //HomePage page = new HomePage(p);
+        }
+    }
+
+    public Player findPlayerAndReturn() throws InterruptedException {
+
+        userText.addActionListener(this);
+        login.addActionListener(this);
+
+        return this.p;
+    }
 
 
-
+    public void showWindow(){
 
 
         add(panel);
@@ -50,23 +71,12 @@ public class LoginGUI extends JFrame implements ActionListener {
         login.addActionListener(this);
         userText.addActionListener(this);
 
+
+
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == userText || e.getSource() == login) {
-            p.setName(userText.getText());
-            dispose();
-            //HomePage page = new HomePage(p);
-        }
-    }
-
-    public Player findPlayerAndReturn() throws InterruptedException {
-
-        userText.addActionListener(this);
-        login.addActionListener(this);
-
-        return this.p;
+    public void closeWindow(){
+        this.dispose();
     }
 
 }

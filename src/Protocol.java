@@ -22,22 +22,22 @@ public class Protocol {
     private int STATE = LOGGIN;
 
     public Player processInput(Player pro) throws IOException, InterruptedException {
-
+        LoginGUI gui = new LoginGUI();
+        //HomePage_waiting homePage_waiting = new HomePage_waiting();
+        HomePage_play hPlay = new HomePage_play();
         if (pro.getSTATE() == LOGGIN){
-            LoginGUI gui = new LoginGUI();
+            gui.showWindow();
             //BEHÖVER INTE SKICKA
             while (pro.getName() == null){
                 pro =  gui.findPlayerAndReturn();
                 pro.setSTATE(1);
             }
 
-            System.out.println(pro.getName());
-
             return pro;
         }else if (pro.getSTATE() == QUEUE_NOTCONNECTED){
 
             //BEHÖVER SKICKA
-            //HomePage_waiting h = new HomePage_waiting(pro);
+           // homePage_waiting.showWindow(pro);
 
 
 
@@ -56,12 +56,17 @@ public class Protocol {
 
             //STATE = GAME;
         }else if(pro.getSTATE() == QUEUE_CONNECTED){
-
-            HomePage_play hPlay = new HomePage_play(pro);
+           // homePage_waiting.closeWindow();
+            hPlay.showWindow(pro);
 
             while(!hPlay.isClicked()){
                 hPlay.findClickPlay();
+                pro.setSTATE(4);
+                pro.setConnected(false);
             }
+
+            pro.setEndState(false);
+            return pro;
 
         } else if (pro.getSTATE() == GAME_WAITING){
             GamePage_waiting g = new GamePage_waiting(pro);
@@ -69,6 +74,7 @@ public class Protocol {
 
            // STATE = CHOSECAT;
         } else if (pro.getSTATE() == GAME_READY){
+            GamePage_play gamePage_play = new GamePage_play(pro);
 
         } else if (pro.getSTATE() == CHOSECAT){
             CategoryPage q = new CategoryPage(pro);
