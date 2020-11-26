@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 
 public class LoginGUI extends JFrame implements ActionListener {
 
@@ -10,8 +11,10 @@ public class LoginGUI extends JFrame implements ActionListener {
     JTextField userText = new JTextField();
     JButton login = new JButton("Logga in");
 
+    Player p = new Player();
 
     public LoginGUI(){
+
 
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -31,6 +34,8 @@ public class LoginGUI extends JFrame implements ActionListener {
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
         login.setBackground(new Color(71, 71, 209));
         login.setForeground(Color.WHITE);
+        login.setBorderPainted(false);
+        login.setOpaque(true);
         login.setPreferredSize(new Dimension(50,40));
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 
@@ -40,15 +45,21 @@ public class LoginGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         login.addActionListener(this);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == login){
-            Player p = new Player(userText.getText());
+            p.setName(userText.getText());
             dispose();
-            HomePage page = new HomePage(p);
+            //HomePage page = new HomePage(p);
         }
+    }
+
+    public Player returnThisMotherFucker(){
+
+        return this.p;
     }
 
 

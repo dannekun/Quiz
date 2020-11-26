@@ -88,9 +88,9 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
 
-        randomListToPull = newQuestionsForPlayerToAsk;
+        Collections.shuffle(newQuestionsForPlayerToAsk);
 
-        Collections.shuffle(randomListToPull);
+        randomListToPull = newQuestionsForPlayerToAsk;
 
         if (pro.currentQuestion.isEmpty()) {
             question.setText(randomListToPull.get(0).getQuestion());
@@ -448,6 +448,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             try {
                 dispose();
+                //Client clientMinBroder = new Client(pro);
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -466,8 +467,10 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
 
 
-            dispose();
+           dispose();
             QuestionPage q = new QuestionPage(pro);
+
         }
+
     }
 }

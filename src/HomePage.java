@@ -24,6 +24,10 @@ public class HomePage extends JFrame implements ActionListener {
         pro.setName(p.getName());
         player.setText(pro.getName());
 
+
+        ClientToSend playerTest = new ClientToSend();
+//        playerTest.setPro(pro);
+
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
         upperPanel.setBackground( new Color(51, 133, 255));
@@ -81,11 +85,14 @@ public class HomePage extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             dispose();
+            /*
             try {
                 GamePage g = new GamePage(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+
+             */
         }
     }
 }

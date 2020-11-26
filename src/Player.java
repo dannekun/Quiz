@@ -1,5 +1,6 @@
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class Player {
+public class Player implements Serializable {
 
     String name;
     int points = 0;
@@ -18,6 +19,17 @@ public class Player {
     int maxRound;
     int question;
     int maxQuestion;
+    boolean finished = false;
+    boolean startedGame = false;
+
+    public boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
     List<String> currentQuestion = new ArrayList<>();
 
     List<String> roundCategories = new ArrayList<>();
