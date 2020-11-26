@@ -19,6 +19,7 @@ public class Protocol {
 
     public Player processInput(Player pro) throws IOException {
 
+        
         if (STATE == LOGGIN){
             LoginGUI jaKnullarDig = new LoginGUI();
 
@@ -29,13 +30,13 @@ public class Protocol {
                     pro = jaKnullarDig.returnThisMotherFucker();
                 }
             }
-            STATE = QUEUE;
+            //STATE = QUEUE;
         }else if (STATE == QUEUE){
             HomePage h = new HomePage(pro);
 
             while (pro.getName() == null){
                 if (pro.getName() != null) {
-                    pro = jaKnullarDig.returnThisMotherFucker();
+
                 }
             }
 

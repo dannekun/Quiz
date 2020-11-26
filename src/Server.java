@@ -24,11 +24,14 @@ public class Server {
         System.out.println("Väntar på connection...");
 
         Socket socket = ss.accept();
+      /*
         Socket socket2 = ss.accept();
 
         if (socket.isConnected()&&socket2.isConnected()){
             System.out.println("HÄR!!!!");
         }
+
+       */
 
         System.out.println("Connection from " + socket + "!");
 

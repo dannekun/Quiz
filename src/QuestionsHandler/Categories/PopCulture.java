@@ -84,7 +84,7 @@ public class PopCulture implements Serializable {
     }
 
     public String getCategoryName() {
-        return "Pop kultur";
+        return "Pop Kultur";
     }
 
     public List<Questions> getPopCultureList() {
