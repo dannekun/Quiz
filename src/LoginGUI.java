@@ -8,8 +8,6 @@ public class LoginGUI extends JFrame implements ActionListener {
     JPanel panel = new JPanel();
     JLabel user = new JLabel("Spelare");
     JTextField userText = new JTextField();
-    JButton login = new JButton("Logga in");
-
 
     public LoginGUI(){
 
@@ -26,25 +24,20 @@ public class LoginGUI extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(10, 10)));
         panel.add(userText);
         userText.setAlignmentX(Component.CENTER_ALIGNMENT);
-        panel.add(Box.createRigidArea(new Dimension(100, 15)));
-        panel.add(login);
-        login.setAlignmentX(Component.CENTER_ALIGNMENT);
-        login.setBackground(new Color(71, 71, 209));
-        login.setForeground(Color.WHITE);
-        login.setPreferredSize(new Dimension(50,40));
-        panel.add(Box.createRigidArea(new Dimension(100, 170)));
+        userText.setPreferredSize(new Dimension(200,30));
+        userText.setMaximumSize(new Dimension(200,30));
 
         setSize(350, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
 
-        login.addActionListener(this);
+        userText.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == login){
+        if (e.getSource() == userText){
             Player p = new Player(userText.getText());
             dispose();
             HomePage page = new HomePage(p);

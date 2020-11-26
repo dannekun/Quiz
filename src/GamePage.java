@@ -22,13 +22,12 @@ import java.util.Properties;
  */
 public class GamePage extends JFrame implements ActionListener {
 
-    JFrame frame = new JFrame();
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
     JPanel categoriepanel = new JPanel();
     JPanel lowestPanel = new JPanel();
-    JButton empty = new JButton("Empty");
+    JButton info = new JButton("Spelare 2 spelar");
     JButton playerName1 = new JButton();
     JButton playerName2 = new JButton("Spelare");
  //   JLabel scorePlayer1 = new JLabel("0");
@@ -190,18 +189,18 @@ public class GamePage extends JFrame implements ActionListener {
         playerName2.setOpaque(true);
         playerName2.setPreferredSize(new Dimension(150, 40));
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-        //    stats.add(Box.createRigidArea(new Dimension(100, 30)));
 
-        //    player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         add(player1Panel);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
+
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
         categoriepanel.setBackground(new Color(51, 133, 255));
+
         add(player2Panel);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
@@ -209,17 +208,15 @@ public class GamePage extends JFrame implements ActionListener {
 
         add(lowestPanel);
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
-        lowestPanel.add(empty);
-        Border line2 = new LineBorder(new Color(51, 133, 255));
-        Border margin2 = new EmptyBorder(70, 150, 70, 150);
-        Border compound2 = new CompoundBorder(line2, margin2);
-        empty.setBorder(compound2);
-        empty.setBackground(new Color(51, 133, 255));
-        empty.setForeground(new Color(51, 133, 255));
-        empty.setFont(new Font("Arial", Font.PLAIN, 16));
-        //empty.setContentAreaFilled(false);
-        empty.setOpaque(true);
-    //    empty.setVisible(false);
+        lowestPanel.setBackground(new Color(51, 133, 255));
+        lowestPanel.add(info);
+        info.setForeground(new Color(0, 0, 77));
+        info.setFont(new Font("Arial", Font.ITALIC, 16));
+        info.setContentAreaFilled(false);
+        info.setBorderPainted(false);
+        info.setOpaque(false);
+        info.setPreferredSize(new Dimension(350,180));
+        info.setMaximumSize(new Dimension(350,200));
         lowestPanel.add(play);
         Border line = new LineBorder(new Color(128, 255, 128));
         Border margin = new EmptyBorder(5, 151, 5, 151);
@@ -228,7 +225,6 @@ public class GamePage extends JFrame implements ActionListener {
         play.setBackground(new Color(77, 255, 77));
         play.setForeground(Color.WHITE);
         play.setFont(new Font("Arial", Font.PLAIN, 16));
-        //play.setContentAreaFilled(false);
         play.setOpaque(true);
 
         playerName1.setText(pro.getName());
