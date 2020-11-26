@@ -23,19 +23,21 @@ public class Protocol {
         if (STATE == LOGGIN){
             LoginGUI loginGUI = new LoginGUI();
 
-            pro = loginGUI.findPlayerAndReturn();
+
 
             while (pro.getName() == null){
-                if (pro.getName() != null) {
-                    pro = loginGUI.findPlayerAndReturn();
-                }
-            }
-            pro.setFinished(true);
-            STATE = QUEUE;
-        }else if (STATE == QUEUE){
-            /*
-            HomePage h = new HomePage(pro);
 
+                    pro = loginGUI.findPlayerAndReturn();
+
+            }
+
+            STATE = QUEUE;
+            return pro;
+        }else if (STATE == QUEUE){
+
+            HomePage_waiting h = new HomePage_waiting(pro);
+
+            /*
             while (pro.getName() == null){
                 if (pro.getName() != null) {
 
@@ -44,9 +46,12 @@ public class Protocol {
 
              */
 
+            STATE = LOGGIN;
+            return pro;
+
             //STATE = GAME;
         }else if (STATE == GAME){
-            GamePage g = new GamePage(pro);
+            GamePage_waiting g = new GamePage_waiting(pro);
 
 
            // STATE = CHOSECAT;

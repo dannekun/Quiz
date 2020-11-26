@@ -38,9 +38,7 @@ public class ClientToSend implements Serializable {
             while (!player1.getFinished()){
                 player1 = protocol.processInput(player1);
 
-
-
-
+                System.out.println("Vi kommer hit");
 
             }
 
