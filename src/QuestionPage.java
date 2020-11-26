@@ -305,8 +305,53 @@ public class QuestionPage extends JFrame implements ActionListener {
     }
 
 
+    public void changeColorRedOrGreen(JButton x, boolean b, String selectedAnswer){
+        if (!checkAnswers(selectedAnswer)) {
+            x.setBackground(Color.RED);
+            pro.answersAddToList(false);
+            pro.addToRoundAnswersList(false);
+            b = false;
+
+
+            //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
+        } else if (checkAnswers(selectedAnswer)) {
+            x.setBackground(Color.GREEN);
+            pro.answersAddToList(true);
+            pro.addToRoundAnswersList(true);
+            pro.setPoints(pro.getPoints() + 1);
+            b= true;
+        }
+        x.setOpaque(true);
+        x.setBorderPainted(false);
+    }
+
+
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+            Boolean didYouGetIt = false;
+            if (e.getSource() == answer1) {
+                //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
+                changeColorRedOrGreen (answer1, didYouGetIt, randomAnswerList.get(0));
+
+            } else if (e.getSource() == answer2) {
+                //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
+                changeColorRedOrGreen(answer2, didYouGetIt, randomAnswerList.get(1));
+
+
+            } else if (e.getSource() == answer3) {
+                // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
+                changeColorRedOrGreen(answer3, didYouGetIt, randomAnswerList.get(2));
+
+            } else if (e.getSource() == answer4) {
+                // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
+                changeColorRedOrGreen(answer4, didYouGetIt, randomAnswerList.get(3));
+            }
+
+
+
+/*
         Boolean didYouGetIt = false;
         if (e.getSource() == answer1){
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
@@ -384,6 +429,8 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         }
 
+         */
+
         findRightAnswerAndPaint(answer1, answer2, answer3, answer4,rightAnswerFromList);
 
 
@@ -431,4 +478,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             QuestionPage q = new QuestionPage(pro);
         }
     }
+    //Flytar method till hitt
+
+
+
 }
