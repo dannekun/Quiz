@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.io.ObjectInputStream;
 
 /**
  * Created by Daniel Bojic
@@ -23,6 +24,7 @@ public class ClientToSend implements Serializable {
         InetAddress iadr = InetAddress.getLocalHost();
 
         Socket socket = new Socket(iadr, 7777);
+
         System.out.println("Connected!");
 
         Protocol protocol  = new Protocol();
@@ -33,8 +35,9 @@ public class ClientToSend implements Serializable {
 
               InputStream inputStream = socket.getInputStream();
 
-              ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);){
 
+
+              ){
 
             while (!player1.getFinished()){
                 player1 = protocol.processInput(player1);
@@ -44,17 +47,25 @@ public class ClientToSend implements Serializable {
 
 
 
+
             System.out.println("Sending message to server");
 
             objectOutputStream.writeObject(player1);
 
+
+        //HÄR ÄR PROBLEMET
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
             player2 = (Player) objectInputStream.readObject();
+
+
+
             System.out.println("vi hitta shuno, han heter: " + player2.getName());
 
 
             System.out.println(player1.getName());
 
             System.out.println("Closing socket and terminating program");
+
             socket.close();
 
         } catch (IOException e) {

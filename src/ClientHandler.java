@@ -45,7 +45,7 @@ public class ClientHandler extends Thread {
 
     @Override
     public void run() {
-/*
+
         try {
          sendPlayerInfo(spelare1);
          sendPlayerInfo(spelare2);
@@ -55,8 +55,6 @@ public class ClientHandler extends Thread {
         }
 
 
-
- */
 
 
         if (spelare1.isConnected()&&spelare2.isConnected()){
@@ -68,8 +66,15 @@ public class ClientHandler extends Thread {
         System.out.println("Connection from " + spelare2 + "!");
 
         try {
+            System.out.println("din mamma");
+
+
             player1 = (Player) receivePlayerInfo(spelare1).readObject();
+
             player2 = (Player) receivePlayerInfo(spelare2).readObject();
+
+            System.out.println("Mammaknullare");
+
 
             sendPlayerInfo(spelare2).writeObject(player1);
             sendPlayerInfo(spelare1).writeObject(player2);
@@ -79,6 +84,8 @@ public class ClientHandler extends Thread {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
 
         System.out.println("Första spelaren heter: " + player1.getName());
         System.out.println("Andra spelaren heter: " + player2.getName());
