@@ -29,14 +29,19 @@ public class LoginGUI extends JFrame implements ActionListener {
 
     public Player findPlayerAndReturn() throws InterruptedException {
 
-        userText.addActionListener(this);
-        login.addActionListener(this);
+
+        //DET ÄR HÄR NÅGONSTANS DET LAGGAR SÖNDER
+
+        //userText.addActionListener(this);
+        //TA BORT KOMMENTAREN UNDER FÖR ATT KÖRA PROGRAMMET
+       // login.addActionListener(this);
 
         return this.p;
     }
 
 
     public void showWindow(){
+
 
 
         add(panel);

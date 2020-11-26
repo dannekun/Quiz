@@ -27,16 +27,25 @@ public class ClientToSend implements Serializable {
 
         Protocol protocol  = new Protocol();
 
+
         while (player1.isEndState()){
             player1 = protocol.processInput(player1);
 
+
+            System.out.println(player1.getName());
+
+            //player1.setName("daniel");
             if (player1.getName() != null){
                 player1.setSTATE(1);
                 //player1 = protocol.processInput(player1);
-                homePage_waiting.showWindow(player1);
+               // homePage_waiting.showWindow(player1);
                 player1.setEndState(false);
             }
         }
+
+
+            homePage_waiting.showWindow(player1);
+
 
         Socket socket = new Socket(iadr, 7777);
 
@@ -102,6 +111,10 @@ public class ClientToSend implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+
 
             }
 
