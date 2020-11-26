@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class HomePage extends JFrame implements ActionListener {
+public class HomePage_play extends JFrame implements ActionListener {
 
     JPanel bottomPanel = new JPanel();
     JPanel upperPanel = new JPanel();
@@ -17,11 +17,11 @@ public class HomePage extends JFrame implements ActionListener {
     JLabel player = new JLabel();
     JButton play = new JButton("Spela");
     JLabel home = new JLabel("Hem");
-    JLabel info = new JLabel("Väntar på spelare nr 2...");
+//    JLabel info = new JLabel("Väntar på spelare nr 2...");
 
     Player pro = new Player();
 
-    public HomePage(Player p){
+    public HomePage_play(Player p){
         pro.setName(p.getName());
         player.setText(pro.getName());
 
@@ -62,12 +62,12 @@ public class HomePage extends JFrame implements ActionListener {
         home.setForeground(Color.BLACK);
         home.setBackground(Color.WHITE);
         home.setOpaque(true);
-        bottomPanel.add(Box.createRigidArea(new Dimension(40, 20)));
+    /*    bottomPanel.add(Box.createRigidArea(new Dimension(40, 20)));
         bottomPanel.add(info);
         info.setFont(new Font("Arial", Font.ITALIC, 14));
         info.setForeground(Color.BLACK);
-    //    info.setBackground(Color.WHITE);
-        info.setOpaque(true);
+        info.setBackground(Color.WHITE);
+        info.setOpaque(true);*/
         Border lineLabel = new LineBorder(new Color(128, 191, 255));
         Border marginLabel = new EmptyBorder(10, 10, 10, 10);
         Border compoundLabel = new CompoundBorder(lineLabel, marginLabel);
@@ -89,7 +89,7 @@ public class HomePage extends JFrame implements ActionListener {
         if (e.getSource() == play){
             dispose();
             try {
-                GamePage g = new GamePage(pro);
+                GamePage_play g = new GamePage_play(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

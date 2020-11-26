@@ -20,7 +20,7 @@ import java.util.Properties;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class GamePage extends JFrame implements ActionListener {
+public class GamePage_play extends JFrame implements ActionListener {
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
@@ -67,7 +67,7 @@ public class GamePage extends JFrame implements ActionListener {
     }
 
     Player pro;
-    public GamePage(Player player) throws FileNotFoundException, IOException {
+    public GamePage_play(Player player) throws FileNotFoundException, IOException {
 
         pro = player;
 
@@ -192,7 +192,7 @@ public class GamePage extends JFrame implements ActionListener {
 
         add(player1Panel);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
+        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
 
         add(categoriepanel);
@@ -203,14 +203,14 @@ public class GamePage extends JFrame implements ActionListener {
 
         add(player2Panel);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
+        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20));
         player2Panel.setBackground( new Color(51, 133, 255));
 
         add(lowestPanel);
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
         lowestPanel.setBackground(new Color(51, 133, 255));
         lowestPanel.add(info);
-        info.setForeground(new Color(0, 0, 77));
+        info.setForeground(new Color(51, 133, 255));
         info.setFont(new Font("Arial", Font.ITALIC, 16));
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);

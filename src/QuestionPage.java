@@ -1,11 +1,9 @@
-import QuestionsHandler.Answers;
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
 import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -428,7 +425,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             try {
                 dispose();
-                GamePage g = new GamePage(pro);
+                GamePage_play g = new GamePage_play(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

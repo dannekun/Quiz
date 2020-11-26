@@ -47,7 +47,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         if (e.getSource() == userText || e.getSource() == login) {
             Player p = new Player(userText.getText());
             dispose();
-            HomePage page = new HomePage(p);
+            HomePage_play page = new HomePage_play(p);
         }
     }
 
