@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Protocol {
 
     public void sleepThisProgram() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
 
 
@@ -47,38 +47,47 @@ public class Protocol {
         } else if (pro.getSTATE() == 4){
             GamePage_play gamePage_play = new GamePage_play(pro);
 
-            boolean workForMe = false;
 
-            while(!workForMe){
-                workForMe = gamePage_play.findClickPlay();
+            while(!pro.isClicked()){
+                pro = gamePage_play.findClickPlay();
                 pro.setSTATE(5);
                 sleepThisProgram();
             }
+            pro.setRound(pro.getRound()+1);
+            pro.setQuestion(pro.getQuestion()+1);
+
+            pro.setClicked(false);
+            return pro;
 
         } else if (pro.getSTATE() == 5){
             CategoryPage q = new CategoryPage(pro);
 
-            boolean workForMe = false;
 
-            while(!workForMe){
-                workForMe = q.findClickPlay();
+
+            while(!pro.isClicked()){
+                pro = q.findClickPlay();
                 pro.setSTATE(6);
                 sleepThisProgram();
+                System.out.println("du kom in i den");
             }
 
+            System.out.println("du kom ut ur den");
+            pro.setClicked(false);
             //DEN SOM SPELAR SAMMA KATEGORI FÅR INTE VÄLJA KATEGORI
-
+            return pro;
            // STATE = PLAY;
         }else if (pro.getSTATE() == 6){
             QuestionPage quest = new QuestionPage(pro);
 
-            boolean workForMe = false;
+
             System.out.println("du är i questionpage");
-            while(!workForMe){
+            while(!pro.isClicked()){
+                pro = quest.findClickPlay();
                 //workForMe = q.findClickPlay();
                 //pro.setSTATE(6);
                 sleepThisProgram();
             }
+            pro.setClicked(false);
            // STATE = RESULT;
         }else if (pro.getSTATE() == 7){
             ResultPage r = new ResultPage(pro);

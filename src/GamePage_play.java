@@ -296,16 +296,16 @@ public class GamePage_play extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-            pro.setRound(pro.getRound()+1);
-            pro.setQuestion(pro.getQuestion()+1);
+
             dispose();
-            setClicked(true);
+            pro.setClicked(true);
            // CategoryPage c = new CategoryPage(pro);
         }
     }
 
-    public boolean findClickPlay(){
+    public Player findClickPlay(){
         play.addActionListener(this);
-        return isClicked();
+
+        return pro;
     }
 }

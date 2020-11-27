@@ -118,7 +118,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
 
 
-        if (pro.getQuestion() > 0) {
+        if (pro.getQuestion() < 1) {
             for (int i = 0; i < pro.getQuestion() - 1; i++) {
                 //   if (pro.getAnswers().get(i) == false){
                 if (!pro.getRoundAnswers().get(i)) {
@@ -187,6 +187,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer1.setFont(new Font("Arial", Font.BOLD, 14));
         answer1.setContentAreaFilled(false);
         answer1.setOpaque(true);
+        answer1.setBorderPainted(false);
         answer1.setPreferredSize(new Dimension(250, 30));
 
         south.add(answer2);
@@ -195,6 +196,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer2.setFont(new Font("Arial", Font.BOLD, 14));
         answer2.setContentAreaFilled(false);
         answer2.setOpaque(true);
+        answer2.setBorderPainted(false);
         answer2.setPreferredSize(new Dimension(250, 30));
 
         south.add(answer3);
@@ -203,6 +205,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer3.setFont(new Font("Arial", Font.BOLD, 14));
         answer3.setContentAreaFilled(false);
         answer3.setOpaque(true);
+        answer3.setBorderPainted(false);
         answer3.setPreferredSize(new Dimension(250, 30));
 
         south.add(answer4);
@@ -211,6 +214,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         answer4.setFont(new Font("Arial", Font.BOLD, 14));
         answer4.setContentAreaFilled(false);
         answer4.setOpaque(true);
+        answer4.setBorderPainted(false);
         answer4.setPreferredSize(new Dimension(250, 30));
 
         Container contentPane = getContentPane();
@@ -347,6 +351,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
+            pro.setClicked(true);
         } else if (e.getSource() == answer2) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
             if (!checkAnswers(randomAnswerList.get(1))) {
@@ -364,6 +369,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
+            pro.setClicked(true);
 
         } else if (e.getSource() == answer3) {
             // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
@@ -382,7 +388,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
-
+            pro.setClicked(true);
         } else if (e.getSource() == answer4) {
             // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
             if (!checkAnswers(randomAnswerList.get(3))) {
@@ -400,7 +406,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
-
+            pro.setClicked(true);
         }
 
 
@@ -408,6 +414,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
+                System.out.println("du är i allt");
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
@@ -418,21 +425,23 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
             pro.roundAnswers.clear();
+            pro.setPlayedRound(true);
             if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
+                System.out.println("du är i lika mycket ");
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
-            try {
-                dispose();
-                GamePage_play g = new GamePage_play(pro);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            dispose();
+            // HÄR SKA DET VA GAMEPAGE_WAITING
+            // STATE 3
+            //
+            // GamePage_play g = new GamePage_play(pro);
         } else if (pro.getQuestion() <= pro.getMaxQuestion()) {
             pro.setQuestion(pro.getQuestion() + 1);
             if (didYouGetIt) {
                 JOptionPane.showMessageDialog(null, "Right!");
+                System.out.println("du är i för lite ");
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
@@ -444,7 +453,15 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
             dispose();
-            QuestionPage q = new QuestionPage(pro);
+            //QuestionPage q = new QuestionPage(pro);
         }
+    }
+
+    public Player findClickPlay(){
+        answer1.addActionListener(this);
+        answer2.addActionListener(this);
+        answer3.addActionListener(this);
+        answer4.addActionListener(this);
+        return pro;
     }
 }

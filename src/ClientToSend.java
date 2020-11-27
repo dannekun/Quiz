@@ -96,22 +96,31 @@ boolean work  = true;
 
                 while (player1.isEndState()){
 
-                    player1 = protocol.processInput(player1);
-
-                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 2){
-                        gamePage_waiting.showWindow(player1);
+                    /*
+                    //&& player2.getQuestion() == 0
+                    if (player1.getSTATE() == 3 && player1.getPLAYER() == 1){
+                        gamePage_waiting.shwWindow(player1);
                         player1.setEndState(false);
+                    } else if (player2.isPlayedRound()){
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
                     }
 
-                    //BEHÖVER ÄNDRA IF SATS
-                    /*
-                    else if (player2.getQuestionToPassBetweenPlayers().size() == player2.getQuestion()){
+                     */
+                    System.out.println(player1.getMaxQuestion());
+                    player1 = protocol.processInput(player1);
+
+
+
+                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0  && player1.getPLAYER() == 2){
+                        gamePage_waiting.showWindow(player1);
+                        player1.setEndState(false);
+                    } else if (player2.isPlayedRound()){
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
 
 
-                     */
 
                 }
             }

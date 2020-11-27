@@ -20,12 +20,31 @@ public class Player implements Serializable {
     int question = 0;
     int maxQuestion;
     boolean finished = false;
-    boolean startedGame = false;
+
+
+    boolean playedRound = false;
 
     boolean connected = false;
 
     boolean endState = true;
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
+    public boolean isPlayedRound() {
+        return playedRound;
+    }
+
+    public void setPlayedRound(boolean playedRound) {
+        this.playedRound = playedRound;
+    }
 
     public boolean isEndState() {
         return endState;
