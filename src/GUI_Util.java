@@ -15,9 +15,9 @@ public class GUI_Util {
     public static final int BOLD = 1;
 
 
-    public JLabel paintLabel(JLabel label, String fontName, int fontType, int fontSize,
-                             int rForeg, int gForeg, int bForeg,
-                             int rBackg, int gBackg, int bBackg){
+    public JLabel labelSetFontForegBackg(JLabel label, String fontName, int fontType, int fontSize,
+                                         int rForeg, int gForeg, int bForeg,
+                                         int rBackg, int gBackg, int bBackg){
         label.setFont(new Font(fontName, fontType, fontSize));
         label.setForeground(new Color(rForeg, gForeg, bForeg));
         label.setBackground(new Color(rBackg, gBackg, bBackg));
@@ -25,10 +25,21 @@ public class GUI_Util {
         return label;
     }
 
-    public JLabel paintLabelSimply(JLabel label, String fontName, int fontType, int fontSize,
-                                   int rForeg, int gForeg, int bForeg){
+    public JLabel labelSetFontForeg(JLabel label, String fontName, int fontType, int fontSize,
+                                    int rForeg, int gForeg, int bForeg){
         label.setFont(new Font(fontName, fontType, fontSize));
         label.setForeground(new Color(rForeg, gForeg, bForeg));
         return label;
+    }
+
+    public JButton buttonSetFontForegBackg(JButton button, String fontName, int fontType, int fontSize,
+                                           int rForeg, int gForeg, int bForeg,
+                                           int rBackg, int gBackg, int bBackg){
+        button.setFont(new Font(fontName, fontType, fontSize));
+        button.setForeground(new Color(rForeg, gForeg, bForeg));
+        button.setBackground(new Color(rBackg, gBackg, bBackg));
+        button.setOpaque(true);
+        return button;
+
     }
 }

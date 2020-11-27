@@ -32,13 +32,13 @@ public class HomePage_play extends JFrame implements ActionListener {
         upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
         upperPanel.add(quizkampen);
-        g.paintLabelSimply(quizkampen, "Comfortaa",1,24,255,255,255);
+        g.labelSetFontForeg(quizkampen, "Comfortaa",1,24,255,255,255);
     /*    quizkampen.setFont(new Font("Comfortaa", Font.BOLD, 24));
         quizkampen.setForeground(Color.WHITE);*/
         quizkampen.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
         upperPanel.add(player);
-        g.paintLabel(player,"Arial",0,18,
+        g.labelSetFontForegBackg(player,"Arial",0,18,
                 255,255,255, 0,51,204);
     /*    player.setFont(new Font("Arial", Font.PLAIN, 18));
         player.setForeground(Color.WHITE);
@@ -55,7 +55,6 @@ public class HomePage_play extends JFrame implements ActionListener {
         play.setBackground(new Color(77, 255, 77));
         play.setForeground(Color.WHITE);
         play.setFont(new Font("Arial", Font.PLAIN, 16));
-        play.setContentAreaFilled(false);
         play.setOpaque(true);
         play.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
