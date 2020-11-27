@@ -63,6 +63,7 @@ public Player logginProtocol(Player pro) throws InterruptedException {
         //pro =  gui.findPlayerAndReturn();
         String name = gui.findPlayerAndReturn();
         pro.setName(name);
+        System.out.println("Loop");
     }
 
 

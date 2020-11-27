@@ -39,6 +39,7 @@ boolean work  = true;
         System.out.println("Connected!");
 
         while (work == true){
+            System.out.println("första looopen");
             player1 = protocol.processInput(player1);
 
 
