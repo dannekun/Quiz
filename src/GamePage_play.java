@@ -22,6 +22,8 @@ import java.util.Properties;
  */
 public class GamePage_play extends JFrame implements ActionListener {
 
+    GUI_Util util = new GUI_Util();
+
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
@@ -170,67 +172,56 @@ public class GamePage_play extends JFrame implements ActionListener {
 
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
-        stats.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(stats);
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+
         stats.add(playerName1);
+        util.buttonSetFontForegBackg(playerName1,"Arial",0,14,255,255,255,0,51,204);
+        util.setSizeButton(playerName1,150,40,150,40);
+    /*    playerName1.setPreferredSize(new Dimension(150, 40));
+        playerName1.setMaximumSize(new Dimension(150, 40));*/
+        playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
-        playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName1.setForeground(Color.WHITE);
-        playerName1.setBackground(new Color(0, 51, 204));
-        playerName1.setOpaque(true);
-        playerName1.setPreferredSize(new Dimension(150, 40));
-        playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
-        playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName2.setForeground(Color.WHITE);
-        playerName2.setBackground(new Color(191, 64, 191));
-        playerName2.setOpaque(true);
-        playerName2.setPreferredSize(new Dimension(150, 40));
+        util.buttonSetFontForegBackg(playerName2, "Arial",0,14,255,255,255,191,64,191);
+        util.setSizeButton(playerName2,150,40,150,40);
+    /*    playerName2.setPreferredSize(new Dimension(150, 40));
+        playerName2.setMaximumSize(new Dimension(150, 40));*/
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         add(player1Panel);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 2));
-        player1Panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(player1Panel);
 
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
-        categoriepanel.setBackground(new Color(51, 133, 255));
+        util.setMainBackground(categoriepanel);
 
         add(player2Panel);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20));
-        player2Panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(player2Panel);
 
         add(lowestPanel);
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
-        lowestPanel.setBackground(new Color(51, 133, 255));
+        util.setMainBackground(lowestPanel);
         lowestPanel.add(info);
-        info.setForeground(new Color(51, 133, 255));
-        info.setFont(new Font("Arial", Font.ITALIC, 16));
-        info.setContentAreaFilled(false);
+        util.buttonSetFontForeg(info,"Arial",2,16,51,133,255);
         info.setBorderPainted(false);
         info.setOpaque(false);
-        info.setPreferredSize(new Dimension(350,180));
-        info.setMaximumSize(new Dimension(350,200));
+        util.setSizeButton(info,350,180,350,180);
+    /*    info.setPreferredSize(new Dimension(350,180));
+        info.setMaximumSize(new Dimension(350,200));*/
+
         lowestPanel.add(play);
-        Border line = new LineBorder(new Color(128, 255, 128));
-        Border margin = new EmptyBorder(5, 151, 5, 151);
-        Border compound = new CompoundBorder(line, margin);
+        Border compound = util.setCompoundBorder(128,255,128,5,151,5,151);
         play.setBorder(compound);
-        play.setBackground(new Color(77, 255, 77));
-        play.setForeground(Color.WHITE);
-        play.setFont(new Font("Arial", Font.PLAIN, 16));
-        play.setOpaque(true);
+        util.buttonSetFontForegBackg(play, "Arial",0,16,255,255,255,77,255,77);
 
         playerName1.setText(pro.getName());
-
-        playerName1.setMaximumSize(new Dimension(150, 40));
-        playerName2.setMaximumSize(new Dimension(150, 40));
 
         Container contentPane = getContentPane();
         contentPane.add(stats, BorderLayout.NORTH);
