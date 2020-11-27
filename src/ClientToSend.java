@@ -68,11 +68,14 @@ boolean work  = true;
 
                 player2 = (Player) objectInputStream.readObject();
 
-                if (player2.getPLAYER() == 2){
-                    player1.setPLAYER(1);
-                }else {
-                    player1.setPLAYER(2);
+                if (player1.getPLAYER() == 0){
+                    if (player2.getPLAYER() == 2){
+                        player1.setPLAYER(1);
+                    }else {
+                        player1.setPLAYER(2);
+                    }
                 }
+
 
                 objectOutputStream.flush();
 
@@ -81,6 +84,8 @@ boolean work  = true;
                 if (player2.isConnected()){
                     homePage_waiting.closeWindow();
                     player1.setSTATE(2);
+                    System.out.println(player1.getPLAYER());
+                    System.out.println(player2.getPLAYER());
                 }
 
             player1.setEndState(true);
