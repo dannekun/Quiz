@@ -46,7 +46,7 @@ public class Math {
 
     private final Questions Q2 = new Questions("Vilka av dessa påstående är korrekta?", A2);
 
-    private final Questions Q3 = new Questions("Vilket nummer kommer nästa i serien? 4231, 4331, 4431,?", A3);
+    private final Questions Q3 = new Questions("<html>Vilket nummer kommer nästa i serien? 4231, 4331, 4431...?</html>", A3);
 
     private final Questions Q4 = new Questions("Vad är 121 gånger 11?", A4);//Changed
 
@@ -54,7 +54,7 @@ public class Math {
 
     private final Questions Q6 = new Questions("Hur många minuter är det på sex timmar?", A6);//Changed
 
-    private final Questions Q7 = new Questions("Vilket nummer kommer nästa i serien? 3,8,13,18,?", A7); //Changed
+    private final Questions Q7 = new Questions("<html>Vilket nummer kommer nästa i serien? 3,8,13,18...?</html>", A7); //Changed
 
     private final Questions Q8 = new Questions("14+3x=26", A8);
 
