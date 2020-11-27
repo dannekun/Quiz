@@ -68,6 +68,12 @@ boolean work  = true;
 
                 player2 = (Player) objectInputStream.readObject();
 
+                if (player2.getPLAYER() == 2){
+                    player1.setPLAYER(1);
+                }else {
+                    player1.setPLAYER(2);
+                }
+
                 objectOutputStream.flush();
 
                 System.out.println(player2.getName());

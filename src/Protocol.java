@@ -11,6 +11,10 @@ import java.io.IOException;
  */
 public class Protocol {
 
+    public void sleepThisProgram() throws InterruptedException {
+        Thread.sleep(1000);
+    }
+
 
     public Player processInput(Player pro) throws IOException, InterruptedException {
 
@@ -64,7 +68,7 @@ public Player logginProtocol(Player pro) throws InterruptedException {
         String name = gui.findPlayerAndReturn();
         pro.setName(name);
         System.out.println("Loop");
-        Thread.sleep(2000);
+        sleepThisProgram();
     }
 
 
@@ -89,7 +93,7 @@ public Player queuePlayProtocol(Player pro) throws InterruptedException {
         workForMe = hPlay.findClickPlay();
         pro.setSTATE(4);
         pro.setConnected(false);
-        Thread.sleep(2000);
+        sleepThisProgram();
     }
 
     pro.setEndState(false);
