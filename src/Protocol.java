@@ -81,8 +81,10 @@ public Player queuePlayProtocol(Player pro){
     HomePage_play hPlay = new HomePage_play();
     hPlay.showWindow(pro);
 
-    while(!hPlay.isClicked()){
-        hPlay.findClickPlay();
+    boolean workForMe = false;
+
+    while(!workForMe){
+        workForMe = hPlay.findClickPlay();
         pro.setSTATE(4);
         pro.setConnected(false);
     }
