@@ -70,7 +70,7 @@ public class HomePage_play extends JFrame implements ActionListener {
         if (e.getSource() == play){
             dispose();
             try {
-                GamePage_play g = new GamePage_play(pro);
+                GamePage_waiting g = new GamePage_waiting(pro);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

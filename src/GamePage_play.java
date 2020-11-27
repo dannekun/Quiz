@@ -178,16 +178,12 @@ public class GamePage_play extends JFrame implements ActionListener {
         stats.add(playerName1);
         util.buttonSetFontForegBackg(playerName1,"Arial",0,14,255,255,255,0,51,204);
         util.setSizeButton(playerName1,150,40,150,40);
-    /*    playerName1.setPreferredSize(new Dimension(150, 40));
-        playerName1.setMaximumSize(new Dimension(150, 40));*/
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
         util.buttonSetFontForegBackg(playerName2, "Arial",0,14,255,255,255,191,64,191);
         util.setSizeButton(playerName2,150,40,150,40);
-    /*    playerName2.setPreferredSize(new Dimension(150, 40));
-        playerName2.setMaximumSize(new Dimension(150, 40));*/
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         add(player1Panel);
@@ -208,13 +204,13 @@ public class GamePage_play extends JFrame implements ActionListener {
         add(lowestPanel);
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
         util.setMainBackground(lowestPanel);
+
         lowestPanel.add(info);
         util.buttonSetFontForeg(info,"Arial",2,16,51,133,255);
+        info.setContentAreaFilled(false);
         info.setBorderPainted(false);
         info.setOpaque(false);
         util.setSizeButton(info,350,180,350,180);
-    /*    info.setPreferredSize(new Dimension(350,180));
-        info.setMaximumSize(new Dimension(350,200));*/
 
         lowestPanel.add(play);
         Border compound = util.setCompoundBorder(128,255,128,5,151,5,151);
