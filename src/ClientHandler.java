@@ -23,6 +23,9 @@ public class ClientHandler extends Thread implements Serializable {
     Player player1 = new Player();
     Player player2 = new Player();
 
+    Player player3 = new Player();
+    Player player4 = new Player();
+
 
     public ClientHandler(Socket socketToClient, Socket socketToClient2) {
         this.spelare1 = socketToClient;
@@ -32,7 +35,7 @@ public class ClientHandler extends Thread implements Serializable {
     public ObjectOutputStream sendPlayerInfo(Socket spelare) throws IOException {
         outputStream = spelare.getOutputStream();
         objectOutputStream = new ObjectOutputStream(outputStream);
-        objectOutputStream.flush();
+
 
        return objectOutputStream;
     }
@@ -44,6 +47,7 @@ public class ClientHandler extends Thread implements Serializable {
 
         return objectInputStream;
     }
+
 
     @Override
     public void run() {
@@ -66,9 +70,9 @@ public class ClientHandler extends Thread implements Serializable {
 
             try {
                 sendPlayerInfo(spelare1).writeObject(player2);
-
+                objectOutputStream.reset();
                 sendPlayerInfo(spelare2).writeObject(player1);
-
+                objectOutputStream.reset();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,29 +82,29 @@ public class ClientHandler extends Thread implements Serializable {
         System.out.println("Connection from " + spelare1 + "!");
         System.out.println("Connection from " + spelare2 + "!");
 
-while (!player2.getFinished()){
+
     System.out.println("jag är inne i while");
-    try {
+    try{
 
 
-        player1 = (Player) receivePlayerInfo(spelare1).readObject();
+        player3 = (Player) receivePlayerInfo(spelare1).readObject();
         System.out.println("send 1 sucess!!");
-        player2 = (Player) receivePlayerInfo(spelare2).readObject();
+
+        player4 = (Player) receivePlayerInfo(spelare2).readObject();
 
         System.out.println("send 2 sucess!!!");
 
+        System.out.println(player1.getName());
+        System.out.println(player2.getName());
+
         sendPlayerInfo(spelare2).writeObject(player2);
         sendPlayerInfo(spelare1).writeObject(player1);
+    } catch (EOFException eof){
+        System.out.println("walla knas bror");
+        eof.printStackTrace();
     } catch (IOException | ClassNotFoundException e) {
         e.printStackTrace();
     }
-
-
-}
-
-
-
-
 
 
         System.out.println("Första spelaren heter: " + player1.getName());

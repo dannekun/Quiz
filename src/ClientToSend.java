@@ -20,6 +20,12 @@ public class ClientToSend implements Serializable {
         Player player1 = new Player();
         Player player2 = new Player();
 
+        Player player4 = new Player();
+        Player player3 = new Player();
+
+        player3.setName("Mahmud");
+        player4.setName("Sigrun");
+
 
 
         HomePage_waiting homePage_waiting = new HomePage_waiting();
@@ -53,102 +59,94 @@ boolean work  = true;
         Socket socket = new Socket(iadr, 7777);
 
         System.out.println("Connected!");
+        while (!player1.getFinished()) {
+            System.out.println("Du är här");
 
 
+            try (OutputStream outputStream = socket.getOutputStream();
 
-        try(OutputStream outputStream = socket.getOutputStream();
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-              ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                 InputStream inputStream = socket.getInputStream();) {
 
-              InputStream inputStream = socket.getInputStream();){
 
-            while (!player1.getFinished()){
-                System.out.println("Du är här");
                 objectOutputStream.writeObject(player1);
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-
-
                 player2 = (Player) objectInputStream.readObject();
 
-                if (player1.getPLAYER() == 0){
-                    if (player2.getPLAYER() == 2){
+                if (player1.getPLAYER() == 0) {
+                    if (player2.getPLAYER() == 2) {
                         player1.setPLAYER(1);
-                    }else {
+                    } else {
                         player1.setPLAYER(2);
                     }
                 }
 
 
-                objectOutputStream.flush();
+               // objectOutputStream.flush();
+                    objectOutputStream.reset();
+
+                objectOutputStream.writeObject(player3);
 
                 System.out.println(player2.getName());
                 System.out.println(player2.getPLAYER());
 
-                if (player2.isConnected()){
+                if (player2.isConnected()) {
                     homePage_waiting.closeWindow();
                     player1.setSTATE(2);
                     System.out.println(player1.getPLAYER());
                     System.out.println(player2.getPLAYER());
                 }
 
-            player1.setEndState(true);
+                player1.setEndState(true);
 
-                while (player1.isEndState()){
+                while (player1.isEndState()) {
 
 
-
-                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1){
+                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
-                    } else if (player2.isPlayedRound()){
+                    } else if (player2.isPlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
 
 
-
-                    player1 = protocol.processInput(player1,player2);
+                    player1 = protocol.processInput(player1, player2);
 
                     System.out.println("du kommer ur alla frågor");
 
 
-                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0  && player1.getPLAYER() == 2){
+                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 2) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
-                    } else if (player2.isPlayedRound()){
+                    } else if (player2.isPlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
 
 
-
                 }
+            }catch(IOException e){
+                e.printStackTrace();
             }
+
 
             System.out.println("Sending message to server");
 
 
-
-
-
-
-
-
             //SKICKA TILLBAKA PLAYER OCH SE OM MAN ÄR PLAYER 1 ELLER 2
-
 
 
             System.out.println("Closing socket and terminating program");
 
             socket.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
         }
-
-
 
 
 
