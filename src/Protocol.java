@@ -64,6 +64,7 @@ public Player logginProtocol(Player pro) throws InterruptedException {
         String name = gui.findPlayerAndReturn();
         pro.setName(name);
         System.out.println("Loop");
+        Thread.sleep(2000);
     }
 
 
@@ -78,7 +79,7 @@ public Player queueWaitProtocol(Player pro){
     return pro;
 }
 
-public Player queuePlayProtocol(Player pro){
+public Player queuePlayProtocol(Player pro) throws InterruptedException {
     HomePage_play hPlay = new HomePage_play();
     hPlay.showWindow(pro);
 
@@ -88,6 +89,7 @@ public Player queuePlayProtocol(Player pro){
         workForMe = hPlay.findClickPlay();
         pro.setSTATE(4);
         pro.setConnected(false);
+        Thread.sleep(2000);
     }
 
     pro.setEndState(false);

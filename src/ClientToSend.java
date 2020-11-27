@@ -28,18 +28,7 @@ public class ClientToSend implements Serializable {
         Protocol protocol  = new Protocol();
 
 boolean work  = true;
-
-
-
-
-
-
-        Socket socket = new Socket(iadr, 7777);
-
-        System.out.println("Connected!");
-
         while (work == true){
-            System.out.println("första looopen");
             player1 = protocol.processInput(player1);
 
 
@@ -49,10 +38,18 @@ boolean work  = true;
             if (player1.getName() != null){
                 //player1.setSTATE(1);
                 //player1 = protocol.processInput(player1);
-                // homePage_waiting.showWindow(player1);
+               // homePage_waiting.showWindow(player1);
                 work = false;
             }
         }
+
+
+            homePage_waiting.showWindow(player1);
+
+
+        Socket socket = new Socket(iadr, 7777);
+
+        System.out.println("Connected!");
 
 
 
@@ -64,14 +61,12 @@ boolean work  = true;
 
             while (!player1.getFinished()){
                 System.out.println("Du är här");
-                homePage_waiting.showWindow(player1);
                 objectOutputStream.writeObject(player1);
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
 
                 player2 = (Player) objectInputStream.readObject();
-
 
                 //objectOutputStream.flush();
 
@@ -89,7 +84,6 @@ boolean work  = true;
 
                     
                 }
-
             }
 
             System.out.println("Sending message to server");

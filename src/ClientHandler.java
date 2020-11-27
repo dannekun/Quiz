@@ -49,6 +49,9 @@ public class ClientHandler extends Thread implements Serializable {
 
 
 
+
+
+
         if (spelare1.isConnected()&&spelare2.isConnected()){
 
             try {
@@ -93,6 +96,7 @@ public class ClientHandler extends Thread implements Serializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
 
 
         System.out.println("Första spelaren heter: " + player1.getName());
