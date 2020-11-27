@@ -5,31 +5,36 @@ import java.awt.event.ActionListener;
 
 public class LoginGUI extends JFrame implements ActionListener {
 
+    GUI_Util util = new GUI_Util();
+
     JPanel panel = new JPanel();
     JLabel user = new JLabel("Spelare");
     JTextField userText = new JTextField();
     JButton login = new JButton("Logga in");
 
     public LoginGUI() {
+
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(new Color(51, 133, 255));
+        util.setMainBackground(panel);
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 80)));
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+
         panel.add(user);
-        user.setFont(new Font("Arial", Font.PLAIN, 18));
-        user.setForeground(Color.WHITE);
+        util.labelSetFontForeg(user,"Arial",0,18,255,255,255);
         user.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(10, 10)));
+
         panel.add(userText);
         userText.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
+
         panel.add(login);
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
-        login.setBackground(new Color(71, 71, 209));
-        login.setForeground(Color.WHITE);
-        login.setPreferredSize(new Dimension(50, 40));
+        util.buttonSetFontForegBackg(login,"Arial",0,12,
+                255,255,255,71,71,209);
+        util.setSizeButton(login,90,40,90,40);
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 
         setSize(350, 500);
@@ -39,7 +44,6 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         login.addActionListener(this);
         userText.addActionListener(this);
-
     }
 
     @Override

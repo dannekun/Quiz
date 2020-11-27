@@ -25,24 +25,29 @@ public class HomePage_waiting extends JFrame {
     Player pro = new Player();
 
     public HomePage_waiting(Player p){
+
         pro.setName(p.getName());
         player.setText(pro.getName());
 
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
-        upperPanel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(upperPanel);
         upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
+
         upperPanel.add(quizkampen);
-        util.labelSetFontForeg(quizkampen, "Comfortaa",1,24,255,255,255);
+        util.labelSetFontForeg(quizkampen, "Comfortaa",1,24,
+                255,255,255);
         quizkampen.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
+
         upperPanel.add(player);
         util.labelSetFontForegBackg(player,"Arial",0,18,
                 255,255,255, 0,51,204);
         player.setBorder(new EmptyBorder(10, 70, 10, 70));
         player.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
+
         add(bottomPanel);
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.LINE_AXIS));
         bottomPanel.add(home);
@@ -51,8 +56,10 @@ public class HomePage_waiting extends JFrame {
         Border compoundLabel = util.setCompoundBorder(128,191,255,10,10,10,10);
         home.setBorder(compoundLabel);
         bottomPanel.add(Box.createRigidArea(new Dimension(40, 20)));
+
         bottomPanel.add(info);
         util.labelSetFontForeg(info,"Arial",2,14,0,0,0);
+
         Container contentPane = getContentPane();
         contentPane.add(upperPanel, BorderLayout.CENTER);
         contentPane.add(bottomPanel, BorderLayout.PAGE_END);

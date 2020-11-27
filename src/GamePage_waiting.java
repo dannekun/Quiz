@@ -1,11 +1,5 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -204,13 +198,13 @@ public class GamePage_waiting extends JFrame {
         util.setMainBackground(lowestPanel);
 
         lowestPanel.add(info);
-        util.buttonSetFontForegBackg(info,"Arial",2,16,51,133,255,51, 133, 255);
-        util.setSizeButton(info,350,180,350,180);
+        util.buttonSetFontForeg(info,"Arial",2,16,0,0,77);
+        util.setSizeButton(info,350,200,350,200);
+        info.setContentAreaFilled(false);
+        info.setBorderPainted(false);
+        info.setOpaque(false);
 
         playerName1.setText(pro.getName());
-
-        playerName1.setMaximumSize(new Dimension(150, 40));
-        playerName2.setMaximumSize(new Dimension(150, 40));
 
         Container contentPane = getContentPane();
         contentPane.add(stats, BorderLayout.NORTH);
