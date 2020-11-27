@@ -117,11 +117,11 @@ public class GamePage_waiting extends JFrame {
                 if (!pro.getAnswers().get(i)){
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
                 }else {
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
                 }
             }
             player1Panel.add(player1_answers.get(i));

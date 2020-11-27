@@ -21,6 +21,15 @@ public class Player implements Serializable {
     int maxQuestion;
     boolean finished = false;
 
+    boolean didYouGetIt = false;
+
+    public boolean isDidYouGetIt() {
+        return didYouGetIt;
+    }
+
+    public void setDidYouGetIt(boolean didYouGetIt) {
+        this.didYouGetIt = didYouGetIt;
+    }
 
     boolean playedRound = false;
 

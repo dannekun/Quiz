@@ -41,6 +41,8 @@ public class Protocol {
             }
 
 
+            System.out.println("du kom till state 3 men har redan spelat");
+            Thread.sleep(2000);
             return pro;
 
            // STATE = CHOSECAT;
@@ -77,17 +79,32 @@ public class Protocol {
             return pro;
            // STATE = PLAY;
         }else if (pro.getSTATE() == 6){
-            QuestionPage quest = new QuestionPage(pro);
+
+            for (int i = 0; i < pro.getMaxQuestion(); i++) {
+                QuestionPage quest = new QuestionPage(pro);
+
+                System.out.println("du är i questionpage");
 
 
-            System.out.println("du är i questionpage");
-            while(!pro.isClicked()){
-                pro = quest.findClickPlay();
-                //workForMe = q.findClickPlay();
-                //pro.setSTATE(6);
-                sleepThisProgram();
+                while(!pro.isClicked()){
+                    pro = quest.findClickPlay();
+                    //workForMe = q.findClickPlay();
+                    //pro.setSTATE(6);
+                    sleepThisProgram();
+                }
+                pro = quest.endGame(pro);
+                System.out.println(pro.getQuestion());
+                pro.setClicked(false);
+                if (pro.getMaxQuestion() == pro.getQuestion()){
+                    pro.setSTATE(3);
+                }
             }
-            pro.setClicked(false);
+
+            pro.setPlayedRound(true);
+
+
+
+            return pro;
            // STATE = RESULT;
         }else if (pro.getSTATE() == 7){
             ResultPage r = new ResultPage(pro);

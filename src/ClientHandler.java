@@ -45,13 +45,6 @@ public class ClientHandler extends Thread implements Serializable {
 
     @Override
     public void run() {
-
-
-
-
-
-
-
         if (spelare1.isConnected()&&spelare2.isConnected()){
 
             try {
@@ -81,20 +74,23 @@ public class ClientHandler extends Thread implements Serializable {
         System.out.println("Connection from " + spelare1 + "!");
         System.out.println("Connection from " + spelare2 + "!");
 
+while (!player2.getFinished()){
+    System.out.println("jag är inne i while");
+    try {
+        player1 = (Player) receivePlayerInfo(spelare1).readObject();
+        System.out.println("send 1 sucess!!");
+        player2 = (Player) receivePlayerInfo(spelare2).readObject();
+        System.out.println("send 2 sucess!!!");
 
-        try {
-            player1 = (Player) receivePlayerInfo(spelare1).readObject();
+        sendPlayerInfo(spelare2).writeObject(player2);
+        sendPlayerInfo(spelare1).writeObject(player1);
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
 
 
-            player2 = (Player) receivePlayerInfo(spelare2).readObject();
+}
 
-            sendPlayerInfo(spelare2).writeObject(player2);
-            sendPlayerInfo(spelare1).writeObject(player1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
 
 

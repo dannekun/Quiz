@@ -96,20 +96,22 @@ boolean work  = true;
 
                 while (player1.isEndState()){
 
-                    /*
-                    //&& player2.getQuestion() == 0
-                    if (player1.getSTATE() == 3 && player1.getPLAYER() == 1){
-                        gamePage_waiting.shwWindow(player1);
+
+
+                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1){
+                        gamePage_waiting.showWindow(player1);
                         player1.setEndState(false);
+                        System.out.println("player 1 väntar");
                     } else if (player2.isPlayedRound()){
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
 
-                     */
-                    System.out.println(player1.getMaxQuestion());
+
+
                     player1 = protocol.processInput(player1);
 
+                    System.out.println("du kommer ur alla frågor");
 
 
                     if (player1.getSTATE() == 3 && player2.getQuestion() == 0  && player1.getPLAYER() == 2){
