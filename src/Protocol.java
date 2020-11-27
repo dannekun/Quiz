@@ -28,26 +28,26 @@ public class Protocol {
         }else if(pro.getSTATE() == 2){
            // homePage_waiting.closeWindow();
       queuePlayProtocol(pro);
-        }/*
-        else if (pro.getSTATE() == GAME_WAITING){
+        }
+        else if (pro.getSTATE() == 3){
             GamePage_waiting g = new GamePage_waiting(pro);
 
 
            // STATE = CHOSECAT;
-        } else if (pro.getSTATE() == GAME_READY){
+        } else if (pro.getSTATE() == 4){
             GamePage_play gamePage_play = new GamePage_play(pro);
 
-        } else if (pro.getSTATE() == CHOSECAT){
+        } else if (pro.getSTATE() == 5){
             CategoryPage q = new CategoryPage(pro);
            // STATE = PLAY;
-        }else if (pro.getSTATE() == PLAY){
+        }else if (pro.getSTATE() == 6){
             QuestionPage quest = new QuestionPage(pro);
            // STATE = RESULT;
-        }else if (pro.getSTATE() == RESULT){
+        }else if (pro.getSTATE() == 7){
             ResultPage r = new ResultPage(pro);
         }
 
-      */
+
 
      return pro;
     }
@@ -63,8 +63,6 @@ public Player logginProtocol(Player pro) throws InterruptedException {
         //pro =  gui.findPlayerAndReturn();
         String name = gui.findPlayerAndReturn();
         pro.setName(name);
-
-
     }
 
 

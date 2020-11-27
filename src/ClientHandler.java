@@ -79,10 +79,6 @@ public class ClientHandler extends Thread implements Serializable {
         System.out.println("Connection from " + spelare1 + "!");
         System.out.println("Connection from " + spelare2 + "!");
 
-        System.out.println("din mamma");
-
-
-        System.out.println("Mammaknullare");
 
         try {
             player1 = (Player) receivePlayerInfo(spelare1).readObject();
