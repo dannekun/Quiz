@@ -85,10 +85,6 @@ boolean work  = true;
                     
                 }
 
-
-
-
-
             }
 
             System.out.println("Sending message to server");
