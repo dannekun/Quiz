@@ -83,11 +83,15 @@ boolean work  = true;
                     }
                 }
 
-
+/*
                // objectOutputStream.flush();
                     objectOutputStream.reset();
+                objectOutputStream.close();
+                objectInputStream.close();
 
                 objectOutputStream.writeObject(player3);
+
+ */
 
                 System.out.println(player2.getName());
                 System.out.println(player2.getPLAYER());
