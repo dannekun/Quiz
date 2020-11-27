@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -26,7 +28,9 @@ public class ClientHandler extends Thread implements Serializable {
     Player player3 = new Player();
     Player player4 = new Player();
 
+    List<Player> player1List = new ArrayList<>();
 
+    List<Player> player2List = new ArrayList<>();
     public ClientHandler(Socket socketToClient, Socket socketToClient2) {
         this.spelare1 = socketToClient;
         this.spelare2 = socketToClient2;
@@ -56,8 +60,12 @@ public class ClientHandler extends Thread implements Serializable {
 
 
             try {
-                player1 = (Player) receivePlayerInfo(spelare1).readObject();
-                player2 = (Player) receivePlayerInfo(spelare2).readObject();
+
+                player1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
+                player1 = player1List.get(0);
+
+                player2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
+                player2 = player2List.get(0);
                 player1.setPLAYER(1);
                 player2.setPLAYER(2);
             } catch (IOException | ClassNotFoundException e) {
@@ -69,9 +77,9 @@ public class ClientHandler extends Thread implements Serializable {
             player2.setConnected(true);
 
             try {
-                sendPlayerInfo(spelare1).writeObject(player2);
+                sendPlayerInfo(spelare1).writeObject(player2List);
 
-                sendPlayerInfo(spelare2).writeObject(player1);
+                sendPlayerInfo(spelare2).writeObject(player1List);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -91,12 +99,25 @@ public class ClientHandler extends Thread implements Serializable {
          */
 
 
-        System.out.println("Connection from " + spelare1 + "!");
-        System.out.println("Connection from " + spelare2 + "!");
+        System.out.println("Connection from " + player1.getName() + "!");
+        System.out.println("Connection from " + player2.getName() + "!");
 
 
     System.out.println("jag är inne i while");
     try{
+        //ObjectInputStream objectInputStream2 = new ObjectInputStream(spelare1.getInputStream());
+
+        List<Player> playersPlayer2 = (List<Player>) receivePlayerInfo(spelare2);
+
+
+       // List<Player> playersToFind = (List<Player>) objectInputStream2.readObject();
+        System.out.println("här");
+        List<Player> playersToFind = (List<Player>) receivePlayerInfo(spelare1);
+
+
+        System.out.println(playersToFind.get(0).getName());
+
+        System.out.println(playersPlayer2.get(0).getName());
 
 
         player3 = (Player) receivePlayerInfo(spelare1).readObject();

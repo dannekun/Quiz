@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -59,21 +61,29 @@ boolean work  = true;
         Socket socket = new Socket(iadr, 7777);
 
         System.out.println("Connected!");
+
+        try (OutputStream outputStream = socket.getOutputStream();
+
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+
+             InputStream inputStream = socket.getInputStream();) {
+
         while (!player1.getFinished()) {
             System.out.println("Du är här");
 
 
-            try (OutputStream outputStream = socket.getOutputStream();
-
-                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-
-                 InputStream inputStream = socket.getInputStream();) {
 
 
-                objectOutputStream.writeObject(player1);
+                List<Player> playersToSend = new ArrayList<>();
+                playersToSend.clear();
+                playersToSend.add(player1);
+
+                objectOutputStream.writeObject(playersToSend);
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
-                player2 = (Player) objectInputStream.readObject();
+               // player2 = (Player) objectInputStream.readObject();
+                List<Player> player2Find = (List<Player>) objectInputStream.readObject();
+                player2 = player2Find.get(0);
 
                 if (player1.getPLAYER() == 0) {
                     if (player2.getPLAYER() == 2) {
@@ -91,6 +101,10 @@ boolean work  = true;
 
                 objectOutputStream.writeObject(player3);
 
+
+                List<Player> playersToSend = new ArrayList<>();
+                playersToSend.add(player3);
+                objectOutputStream.writeObject(playersToSend);
  */
 
                 System.out.println(player2.getName());
@@ -133,10 +147,9 @@ boolean work  = true;
 
 
                 }
-            }catch(IOException e){
-                e.printStackTrace();
-            }
 
+                //LÄGG IN HÄR WRITE MED LIST
+            }
 
             System.out.println("Sending message to server");
 
@@ -150,11 +163,14 @@ boolean work  = true;
 
 
 
+        }catch(IOException e){
+            e.printStackTrace();
         }
 
 
 
-            }
+
+    }
 
     }
 
