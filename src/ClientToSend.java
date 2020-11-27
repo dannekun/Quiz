@@ -102,6 +102,8 @@ boolean work  = true;
                         gamePage_waiting.showWindow(player1);
                         player1.setEndState(false);
                     }
+
+                    //BEHÖVER ÄNDRA IF SATS
                     /*
                     else if (player2.getQuestionToPassBetweenPlayers().size() == player2.getQuestion()){
                         gamePage_waiting.closeWindow();
