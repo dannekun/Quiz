@@ -16,7 +16,7 @@ public class Protocol {
     }
 
 
-    public Player processInput(Player pro) throws IOException, InterruptedException {
+    public Player processInput(Player pro, Player player2) throws IOException, InterruptedException {
 
         //HomePage_waiting homePage_waiting = new HomePage_waiting();
 
@@ -47,7 +47,7 @@ public class Protocol {
 
            // STATE = CHOSECAT;
         } else if (pro.getSTATE() == 4){
-            GamePage_play gamePage_play = new GamePage_play(pro);
+            GamePage_play gamePage_play = new GamePage_play(pro, player2);
 
 
             while(!pro.isClicked()){

@@ -82,9 +82,12 @@ public class GamePage_waiting extends JFrame {
         return labelList;
     }
 
-    public void showWindow(Player player){
+    public void showWindow(Player player, Player player2){
 
         pro = player;
+
+        info.setText(player2.getName() + " spelar...");
+        playerName2.setText(player2.getName());
 
         try{
             p.load(new FileInputStream("src/RoundQuestions.properties"));

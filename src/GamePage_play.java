@@ -71,9 +71,11 @@ public class GamePage_play extends JFrame implements ActionListener {
     }
 
     Player pro;
-    public GamePage_play(Player player) throws FileNotFoundException, IOException {
+    public GamePage_play(Player player, Player player2) throws FileNotFoundException, IOException {
 
         pro = player;
+
+        playerName2.setText(player2.getName());
 
         try{
             p.load(new FileInputStream("src/RoundQuestions.properties"));

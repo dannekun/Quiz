@@ -32,7 +32,7 @@ public class ClientToSend implements Serializable {
 
 boolean work  = true;
         while (work == true){
-            player1 = protocol.processInput(player1);
+            player1 = protocol.processInput(player1, player2);
 
 
             System.out.println(player1.getName());
@@ -99,7 +99,7 @@ boolean work  = true;
 
 
                     if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1){
-                        gamePage_waiting.showWindow(player1);
+                        gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
                     } else if (player2.isPlayedRound()){
@@ -109,13 +109,13 @@ boolean work  = true;
 
 
 
-                    player1 = protocol.processInput(player1);
+                    player1 = protocol.processInput(player1,player2);
 
                     System.out.println("du kommer ur alla frågor");
 
 
                     if (player1.getSTATE() == 3 && player2.getQuestion() == 0  && player1.getPLAYER() == 2){
-                        gamePage_waiting.showWindow(player1);
+                        gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                     } else if (player2.isPlayedRound()){
                         gamePage_waiting.closeWindow();

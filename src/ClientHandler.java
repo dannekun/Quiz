@@ -32,6 +32,7 @@ public class ClientHandler extends Thread implements Serializable {
     public ObjectOutputStream sendPlayerInfo(Socket spelare) throws IOException {
         outputStream = spelare.getOutputStream();
         objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.flush();
 
        return objectOutputStream;
     }
@@ -40,6 +41,7 @@ public class ClientHandler extends Thread implements Serializable {
         inputStream = spelare.getInputStream();
         objectInputStream = new ObjectInputStream(inputStream);
 
+
         return objectInputStream;
     }
 
@@ -47,14 +49,14 @@ public class ClientHandler extends Thread implements Serializable {
     public void run() {
         if (spelare1.isConnected()&&spelare2.isConnected()){
 
+
+
             try {
                 player1 = (Player) receivePlayerInfo(spelare1).readObject();
                 player2 = (Player) receivePlayerInfo(spelare2).readObject();
                 player1.setPLAYER(1);
                 player2.setPLAYER(2);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
@@ -64,7 +66,9 @@ public class ClientHandler extends Thread implements Serializable {
 
             try {
                 sendPlayerInfo(spelare1).writeObject(player2);
+
                 sendPlayerInfo(spelare2).writeObject(player1);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,9 +81,12 @@ public class ClientHandler extends Thread implements Serializable {
 while (!player2.getFinished()){
     System.out.println("jag är inne i while");
     try {
+
+
         player1 = (Player) receivePlayerInfo(spelare1).readObject();
         System.out.println("send 1 sucess!!");
         player2 = (Player) receivePlayerInfo(spelare2).readObject();
+
         System.out.println("send 2 sucess!!!");
 
         sendPlayerInfo(spelare2).writeObject(player2);
