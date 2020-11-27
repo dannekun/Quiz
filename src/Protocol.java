@@ -61,7 +61,8 @@ public Player logginProtocol(Player pro) throws InterruptedException {
     //PROGRAMMET FUNGERAR UTMÄRKT OM MAN SETNAME
     while (pro.getName() == null){
         //pro =  gui.findPlayerAndReturn();
-        pro.setName(gui.findPlayerAndReturn());
+        String name = gui.findPlayerAndReturn();
+        pro.setName(name);
 
 
     }
