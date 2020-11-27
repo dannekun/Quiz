@@ -58,7 +58,7 @@ public class GeneralKnowledge {
 
     private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe?", A9);
+    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100g kaffe?", A9);//Changed
 
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 

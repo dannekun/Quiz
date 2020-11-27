@@ -288,6 +288,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
+    //------This is not used.....-------------------------------
     public void findRightAnswerAndPaint(JButton a, JButton b, JButton c, JButton d, String rightAnswer) {
         if (a.getText().equals(rightAnswer)) {
             a.setBackground(Color.GREEN);
@@ -328,49 +329,97 @@ public class QuestionPage extends JFrame implements ActionListener {
         return questionsToUse;
     }
 
-    public void changeColorOfButtonByAnswer(JButton x, boolean b, String selectedAnswer){
+    public void changeColorOfButtonByAnswer(JButton x, String selectedAnswer){
+        boolean didYouGetIt=false;
         if (!checkAnswers(selectedAnswer)) {
             x.setBackground(Color.RED);
             pro.answersAddToList(false);
             pro.addToRoundAnswersList(false);
-            b = false;
-
+            didYouGetIt = false;
         } else if (checkAnswers(selectedAnswer)) {
             x.setBackground(Color.GREEN);
             pro.answersAddToList(true);
             pro.addToRoundAnswersList(true);
             pro.setPoints(pro.getPoints() + 1);
-            b= true;
+            didYouGetIt = true;
         }
         x.setOpaque(true);
         x.setBorderPainted(false);
+        RightOrWrongAnswerWindow(didYouGetIt);// This opens the Pop-up window that indicates write answer or not
     }
+
+    public void RightOrWrongAnswerWindow(boolean b){
+        if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
+            pro.setQuestion(0);
+            if (b) {
+                JOptionPane.showMessageDialog(null, "Rätt!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Fel!" + "\nRätt svar är: \n'\'" + rightAnswerFromList + "'\'");
+            }
+            dispose();
+            ResultPage r = new ResultPage(pro);
+
+        } else if (pro.getQuestion() == pro.getMaxQuestion()) {
+            pro.setQuestion(0);
+            pro.currentQuestion.clear();
+            pro.roundAnswers.clear();
+            if (b) {
+                JOptionPane.showMessageDialog(null, "Rätt!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Fel!" + "\nRätt svar är: \n'\'" + rightAnswerFromList + "'\'");
+            }
+            try {
+                dispose();
+                GamePage g = new GamePage(pro);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        } else if (pro.getQuestion() <= pro.getMaxQuestion()) {
+            pro.setQuestion(pro.getQuestion() + 1);
+            if (b) {
+                JOptionPane.showMessageDialog(null, "Rätt!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Fel!" + "\nRätt svar är: \n'\'" + rightAnswerFromList + "'\'");
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+
+
+            dispose();
+            QuestionPage q = new QuestionPage(pro);
+        }
+
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
-        boolean didYouGetIt = false;
+        //boolean didYouGetIt=false;
         if (e.getSource() == answer1) {
 
-            changeColorOfButtonByAnswer(answer1, didYouGetIt,randomAnswerList.get(0));
+            changeColorOfButtonByAnswer(answer1,  randomAnswerList.get(0));
 
         } else if (e.getSource() == answer2) {
 
-            changeColorOfButtonByAnswer(answer2, didYouGetIt,randomAnswerList.get(1));
+            changeColorOfButtonByAnswer(answer2,  randomAnswerList.get(1));
 
         } else if (e.getSource() == answer3) {
 
-            changeColorOfButtonByAnswer(answer3, didYouGetIt,randomAnswerList.get(2));
+            changeColorOfButtonByAnswer(answer3, randomAnswerList.get(2));
 
         } else if (e.getSource() == answer4) {
 
-            changeColorOfButtonByAnswer(answer4, didYouGetIt,randomAnswerList.get(3));
+            changeColorOfButtonByAnswer(answer4, randomAnswerList.get(3));
 
         }
 
-
 /*
+
         boolean didYouGetIt = false;
         if (e.getSource() == answer1) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
@@ -450,6 +499,10 @@ public class QuestionPage extends JFrame implements ActionListener {
  */
 
 
+
+
+/*
+
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
             pro.setQuestion(0);
             if (didYouGetIt) {
@@ -492,5 +545,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             dispose();
             QuestionPage q = new QuestionPage(pro);
         }
+
+ */
     }
 }

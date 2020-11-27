@@ -30,7 +30,7 @@ public class TVShows {
 
     private final Answers A5 = new Answers("Edith", "Yvette", "Michelle", "Maria");
 
-    private final Answers A6 = new Answers("Larry David", "Jerry Seinfeld", "Richard Lewis", "Jeff Garlin");
+    private final Answers A6 = new Answers("Larry David", "Jay Leno", "Richard Lewis", "Jeff Garlin");// Chenged(wrongAnswer2)
 
     private final Answers A7 = new Answers("Claire Foy", "Cate Blanchett", "Vanessa Kirby", "Lily James");
 
