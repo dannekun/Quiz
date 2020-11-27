@@ -99,6 +99,8 @@ public class ClientHandler extends Thread implements Serializable {
 
 
 
+
+
         System.out.println("Första spelaren heter: " + player1.getName());
         System.out.println("Andra spelaren heter: " + player2.getName());
 

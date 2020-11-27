@@ -68,7 +68,7 @@ boolean work  = true;
 
                 player2 = (Player) objectInputStream.readObject();
 
-                //objectOutputStream.flush();
+                objectOutputStream.flush();
 
                 System.out.println(player2.getName());
 
