@@ -56,9 +56,8 @@ public class ClientHandler extends Thread implements Serializable {
 
             try {
                 player1 = (Player) receivePlayerInfo(spelare1).readObject();
-                player1.setPLAYER(1);
-
                 player2 = (Player) receivePlayerInfo(spelare2).readObject();
+                player1.setPLAYER(1);
                 player2.setPLAYER(2);
             } catch (IOException e) {
                 e.printStackTrace();

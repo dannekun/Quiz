@@ -26,26 +26,59 @@ public class Protocol {
         }else if (pro.getSTATE() == 1){
 //queueWaitProtocol(pro);
 
-
-
             //STATE = GAME;
         }else if(pro.getSTATE() == 2){
-           // homePage_waiting.closeWindow();
-      queuePlayProtocol(pro);
+     return queuePlayProtocol(pro);
         }
         else if (pro.getSTATE() == 3){
-            GamePage_waiting g = new GamePage_waiting(pro);
 
+            System.out.println("du kom till 3");
+            //GamePage_waiting g = new GamePage_waiting(pro);
+            if (pro.getRound() == 0 && pro.getPLAYER() == 1){
+                pro.setSTATE(4);
+            }else {
+
+            }
+
+
+            return pro;
 
            // STATE = CHOSECAT;
         } else if (pro.getSTATE() == 4){
             GamePage_play gamePage_play = new GamePage_play(pro);
 
+            boolean workForMe = false;
+
+            while(!workForMe){
+                workForMe = gamePage_play.findClickPlay();
+                pro.setSTATE(5);
+                sleepThisProgram();
+            }
+
         } else if (pro.getSTATE() == 5){
             CategoryPage q = new CategoryPage(pro);
+
+            boolean workForMe = false;
+
+            while(!workForMe){
+                workForMe = q.findClickPlay();
+                pro.setSTATE(6);
+                sleepThisProgram();
+            }
+
+            //DEN SOM SPELAR SAMMA KATEGORI FÅR INTE VÄLJA KATEGORI
+
            // STATE = PLAY;
         }else if (pro.getSTATE() == 6){
             QuestionPage quest = new QuestionPage(pro);
+
+            boolean workForMe = false;
+            System.out.println("du är i questionpage");
+            while(!workForMe){
+                //workForMe = q.findClickPlay();
+                //pro.setSTATE(6);
+                sleepThisProgram();
+            }
            // STATE = RESULT;
         }else if (pro.getSTATE() == 7){
             ResultPage r = new ResultPage(pro);
@@ -90,12 +123,12 @@ public Player queuePlayProtocol(Player pro) throws InterruptedException {
 
     while(!workForMe){
         workForMe = hPlay.findClickPlay();
-        pro.setSTATE(4);
-        pro.setConnected(false);
+        pro.setSTATE(3);
+        //pro.setConnected(false);
         sleepThisProgram();
     }
 
-    pro.setEndState(false);
+
     return pro;
 
 

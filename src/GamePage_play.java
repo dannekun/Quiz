@@ -44,6 +44,15 @@ public class GamePage_play extends JFrame implements ActionListener {
     int numberOfRounds;
     int numberOfQuestions;
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
 
     public int getNumberOfRounds() {
         return numberOfRounds;
@@ -290,7 +299,13 @@ public class GamePage_play extends JFrame implements ActionListener {
             pro.setRound(pro.getRound()+1);
             pro.setQuestion(pro.getQuestion()+1);
             dispose();
+            setClicked(true);
            // CategoryPage c = new CategoryPage(pro);
         }
+    }
+
+    public boolean findClickPlay(){
+        play.addActionListener(this);
+        return isClicked();
     }
 }

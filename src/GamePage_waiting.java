@@ -64,7 +64,25 @@ public class GamePage_waiting extends JFrame {
     }
 
     Player pro;
-    public GamePage_waiting(Player player) throws FileNotFoundException, IOException {
+
+
+    public List<JButton> createButtonList(int numberOfButtons) {
+        List<JButton> buttonList = new ArrayList<>();
+        for (int i = 0; i <numberOfButtons; i++) {
+            buttonList.add(new JButton());
+        }
+        return buttonList;
+    }
+
+    public List<JLabel> createLabelList(int numberOfRounds){
+        List<JLabel> labelList= new ArrayList<>();
+        for (int i = 0; i < numberOfRounds; i++) {
+            labelList.add(new JLabel("Cat"));
+        }
+        return labelList;
+    }
+
+    public void showWindow(Player player){
 
         pro = player;
 
@@ -178,12 +196,14 @@ public class GamePage_waiting extends JFrame {
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
         playerName1.setOpaque(true);
+        playerName1.setBorderPainted(false);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
         playerName2.setOpaque(true);
+        playerName2.setBorderPainted(false);
         playerName2.setPreferredSize(new Dimension(150, 40));
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -231,22 +251,12 @@ public class GamePage_waiting extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
     }
 
-    public List<JButton> createButtonList(int numberOfButtons) {
-        List<JButton> buttonList = new ArrayList<>();
-        for (int i = 0; i <numberOfButtons; i++) {
-            buttonList.add(new JButton());
-        }
-        return buttonList;
-    }
-
-    public List<JLabel> createLabelList(int numberOfRounds){
-        List<JLabel> labelList= new ArrayList<>();
-        for (int i = 0; i < numberOfRounds; i++) {
-            labelList.add(new JLabel("Cat"));
-        }
-        return labelList;
+    public void closeWindow(){
+        dispose();
     }
 
  /*   @Override

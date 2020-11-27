@@ -21,7 +21,10 @@ public class ClientToSend implements Serializable {
         Player player2 = new Player();
 
 
+
         HomePage_waiting homePage_waiting = new HomePage_waiting();
+        GamePage_waiting gamePage_waiting = new GamePage_waiting();
+        ;
 
         InetAddress iadr = InetAddress.getLocalHost();
 
@@ -80,6 +83,7 @@ boolean work  = true;
                 objectOutputStream.flush();
 
                 System.out.println(player2.getName());
+                System.out.println(player2.getPLAYER());
 
                 if (player2.isConnected()){
                     homePage_waiting.closeWindow();
@@ -91,9 +95,22 @@ boolean work  = true;
             player1.setEndState(true);
 
                 while (player1.isEndState()){
+
                     player1 = protocol.processInput(player1);
 
-                    
+                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 2){
+                        gamePage_waiting.showWindow(player1);
+                        player1.setEndState(false);
+                    }
+                    /*
+                    else if (player2.getQuestionToPassBetweenPlayers().size() == player2.getQuestion()){
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
+                    }
+
+
+                     */
+
                 }
             }
 

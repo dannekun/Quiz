@@ -15,9 +15,9 @@ public class Player implements Serializable {
 
     String name = null;
     int points = 0;
-    int round;
+    int round = 0;
     int maxRound;
-    int question;
+    int question = 0;
     int maxQuestion;
     boolean finished = false;
     boolean startedGame = false;

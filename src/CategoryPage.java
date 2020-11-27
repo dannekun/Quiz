@@ -33,6 +33,16 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
     public int getUnique1() {
         return unique1;
     }
@@ -302,22 +312,32 @@ public class CategoryPage extends JFrame implements ActionListener {
             //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
            // categoriesChosen.add(cat1);
             pro.addToList(cat1);
-            QuestionPage q = new QuestionPage(pro);
+            setClicked(true);
+           // QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category2){
             dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
            // categoriesChosen.add(cat2);
             pro.addToList(cat2);
-            QuestionPage q = new QuestionPage(pro);
+            setClicked(true);
+           // QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category3){
             dispose();
             //categoriesChosen.add(cat3);
             pro.addToList(cat3);
+            setClicked(true);
             //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
             //QuestionPage q = new QuestionPage(pro);
 
         }
+    }
+
+    public boolean findClickPlay(){
+        category1.addActionListener(this);
+        category2.addActionListener(this);
+        category3.addActionListener(this);
+        return isClicked();
     }
 }
