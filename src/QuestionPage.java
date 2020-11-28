@@ -56,6 +56,8 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     public QuestionPage(Player p) {
 
+        //LÄGG TILL EN PLAYER I KONSTRUKTORN
+        //HANTERA PLAYER 2
 
         pro = p;
 
