@@ -72,6 +72,8 @@ public class Protocol {
                 sleepThisProgram();
                 System.out.println("du kom in i den");
             }
+            //HÄR LÄGG TILL CAT
+
 
             System.out.println("du kom ut ur den");
             pro.setClicked(false);

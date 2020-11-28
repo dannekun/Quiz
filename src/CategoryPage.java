@@ -33,6 +33,10 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
+    boolean a = false;
+    boolean b = false;
+    boolean c = false;
+
     boolean clicked = false;
 
     public boolean isClicked() {
@@ -307,11 +311,15 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+       //LÄGG TILL BOOLEAN HÄR
+         a = false;
+         b = false;
+         c = false;
         if (e.getSource() == category1){
             dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
            // categoriesChosen.add(cat1);
-            pro.addToList(cat1);
+           a = true;
             pro.setClicked(true);
            // QuestionPage q = new QuestionPage(pro);
 
@@ -319,14 +327,14 @@ public class CategoryPage extends JFrame implements ActionListener {
             dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
            // categoriesChosen.add(cat2);
-            pro.addToList(cat2);
+            b = true;
             pro.setClicked(true);
            // QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category3){
             dispose();
             //categoriesChosen.add(cat3);
-            pro.addToList(cat3);
+           c = true;
             pro.setClicked(true);
             //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
             //QuestionPage q = new QuestionPage(pro);
@@ -334,10 +342,22 @@ public class CategoryPage extends JFrame implements ActionListener {
         }
     }
 
+    public Player addCatToPlayer(){
+        if (a){
+            pro.addToList(cat1);
+        }else if (b){
+            pro.addToList(cat2);
+        }else if (c){
+            pro.addToList(cat3);
+        }
+        return pro;
+    }
+
     public Player findClickPlay(){
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
+        pro = addCatToPlayer();
         return pro;
     }
 }

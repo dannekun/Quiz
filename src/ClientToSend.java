@@ -171,13 +171,20 @@ boolean work  = true;
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
 
-                    } else if (player2.isPlayedRound()) {
+                    }
+                    /*else if (player2.isPlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
 
+                     */
+
                     //VARJE OUTPUTSTREAM ENDAST ANVÄNDAS EN GÅNG
 
+                    if (player2.isPlayedRound()){
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
+                    }
 
                     player1 = protocol.processInput(player1, player2);
 
@@ -189,6 +196,16 @@ boolean work  = true;
                         player1.setEndState(false);
 
                         System.out.println("player 2 väntar");
+                    }
+                    /*else if (player2.isPlayedRound()) {
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
+
+                        //UPPDATERA GUI MED POÄNG FRÅN FÖRRA SPELAREN
+                        //NY SPELA KNAPP ÖPPNAS???
+                    }
+
+                     */
 /*
                         List<Player> testSend = new ArrayList<>();
                         testSend.add(player1);
@@ -221,10 +238,7 @@ boolean work  = true;
 
                          */
 
-                    } else if (player2.isPlayedRound()) {
-                        gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
-                    }
+
 
 
                 }

@@ -85,12 +85,12 @@ public class ClientHandler extends Thread implements Serializable {
 
                     //  sendPlayerInfo(spelare1).writeObject(player2List);
                     new ObjectOutputStream(spelare1.getOutputStream()).writeObject(player2);
-                    objectOutputStream.flush();
+                    //objectOutputStream.flush();
                     // objectOutputStream.reset();
 
                     //sendPlayerInfo(spelare2).writeObject(player1List);
                     new ObjectOutputStream(spelare2.getOutputStream()).writeObject(player1);
-                    objectOutputStream.flush();
+                    //objectOutputStream.flush();
 
 
                 /*
