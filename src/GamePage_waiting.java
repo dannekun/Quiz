@@ -83,6 +83,21 @@ public class GamePage_waiting extends JFrame {
     }
 
     public void showWindow(Player player, Player player2){
+/*
+        JPanel player1Panel = new JPanel();
+        JPanel player2Panel = new JPanel();
+        JPanel categoriepanel = new JPanel();
+
+ */
+
+        player1Panel.removeAll();
+        player2Panel.removeAll();
+        categoriepanel.removeAll();
+        repaint();
+        revalidate();
+
+
+
 
         pro = player;
 
@@ -132,7 +147,22 @@ public class GamePage_waiting extends JFrame {
             player1_answers.get(i).setMaximumSize(new Dimension(35,10));
         }
 
-
+        for (int i = 0; i <totalbuttons; i++) {
+            if (i < player2.getAnswers().size()){
+                if (!player2.getAnswers().get(i)){
+                    player2_answers.get(i).setBackground(Color.RED);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+                }else {
+                    player2_answers.get(i).setBackground(Color.GREEN);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+                }
+            }
+            player2Panel.add(player2_answers.get(i));
+            player2_answers.get(i).setPreferredSize(new Dimension(35,10));
+            player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+        }
 /*
         for (int i = 0; i < numberOfRounds; i++) {
             categoriepanel.add(new JLabel("Category"));
@@ -158,15 +188,15 @@ public class GamePage_waiting extends JFrame {
 
          */
 
-        for (int i = 0; i <totalbuttons ; i++) {
-            player2Panel.add(player2_answers.get(i));
-            player2_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player2_answers.get(i).setMaximumSize(new Dimension(35,10));
-        }
+
 
         if (pro.getRound() >= 1){
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
+
+
                 System.out.println(pro.getRoundCategories().get(i));
+
+
                 labelNames.get(i).setText(pro.roundCategories.get(i));
                 labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
                 labelNames.get(i).setBackground( new Color(51, 133, 255));

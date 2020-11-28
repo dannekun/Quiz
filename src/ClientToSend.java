@@ -156,7 +156,9 @@ boolean work  = true;
 
                 if (player2.isConnected()) {
                     homePage_waiting.closeWindow();
-                    player1.setSTATE(2);
+                    if (player1.getSTATE() == 0){
+                        player1.setSTATE(2);
+                    }
                     System.out.println(player1.getPLAYER());
                     System.out.println(player2.getPLAYER());
                 }
@@ -170,6 +172,7 @@ boolean work  = true;
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
+                        System.out.println(player1.getRoundCategories().size());
 
                     }
                     /*else if (player2.isPlayedRound()) {

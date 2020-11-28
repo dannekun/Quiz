@@ -36,8 +36,6 @@ public class Protocol {
             //GamePage_waiting g = new GamePage_waiting(pro);
             if (pro.getRound() == 0 && pro.getPLAYER() == 1){
                 pro.setSTATE(4);
-            }else {
-
             }
 
 

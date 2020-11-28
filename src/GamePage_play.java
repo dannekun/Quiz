@@ -172,7 +172,18 @@ public class GamePage_play extends JFrame implements ActionListener {
 
 
 
-        for (int i = 0; i <totalbuttons ; i++) {
+        for (int i = 0; i <totalbuttons; i++) {
+            if (i < player2.getAnswers().size()){
+                if (!player2.getAnswers().get(i)){
+                    player2_answers.get(i).setBackground(Color.RED);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+                }else {
+                    player2_answers.get(i).setBackground(Color.GREEN);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+                }
+            }
             player2Panel.add(player2_answers.get(i));
             player2_answers.get(i).setPreferredSize(new Dimension(35,10));
             player2_answers.get(i).setMaximumSize(new Dimension(35,10));
