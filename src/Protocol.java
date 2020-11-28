@@ -73,7 +73,7 @@ public class Protocol {
                 System.out.println("du kom in i den");
             }
             //HÄR LÄGG TILL CAT
-
+            pro = q.addCatToPlayer();
 
             System.out.println("du kom ut ur den");
             pro.setClicked(false);

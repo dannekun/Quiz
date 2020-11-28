@@ -95,6 +95,10 @@ public class CategoryPage extends JFrame implements ActionListener {
     public CategoryPage(Player p){
         pro = p;
 
+        a = false;
+        b = false;
+        c = false;
+
         category1.setText(null);
         category2.setText(null);
         category3.setText(null);
@@ -312,9 +316,7 @@ public class CategoryPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
        //LÄGG TILL BOOLEAN HÄR
-         a = false;
-         b = false;
-         c = false;
+
         if (e.getSource() == category1){
             dispose();
             //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
@@ -357,7 +359,7 @@ public class CategoryPage extends JFrame implements ActionListener {
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
-        pro = addCatToPlayer();
+      //  pro = addCatToPlayer();
         return pro;
     }
 }
