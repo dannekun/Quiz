@@ -94,6 +94,10 @@ public class ClientHandler extends Thread implements Serializable {
                 newPlayer2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
                 player2 = newPlayer2List.get(0);
                 System.out.println("Send 1 success!!!!");
+                System.out.println(player2.getName());
+                //sendPlayerInfo(spelare2).writeObject(newPlayer2List);
+                new ObjectOutputStream(spelare2.getOutputStream()).writeObject(newPlayer2List);
+                System.out.println("Hittade nytt objekt");
                 newPlayer1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
                 player1 = newPlayer1List.get(0);
                 System.out.println("Send 2 sucess!!!");

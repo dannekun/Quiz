@@ -14,6 +14,19 @@ import java.util.List;
  */
 public class ClientToSend implements Serializable {
 
+    public ObjectInputStream recievePlayerInfo(Socket spelare) throws IOException {
+        InputStream inputStream = spelare.getInputStream();
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+        return objectInputStream;
+    }
+
+    public ObjectOutputStream sendPlayerInfo(Socket spelare) throws IOException {
+
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(spelare.getOutputStream());
+        return objectOutputStream;
+
+    }
 
 
 
@@ -79,6 +92,7 @@ boolean work  = true;
                 playersToSend.add(player1);
 
                 objectOutputStream.writeObject(playersToSend);
+               // new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
 
@@ -162,10 +176,15 @@ boolean work  = true;
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
 
+                        System.out.println("player 2 väntar");
+
                         List<Player> testSend = new ArrayList<>();
-                        testSend.add(player3);
+                        testSend.add(player1);
                         ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(socket.getOutputStream());
                         objectOutputStream1.writeObject(testSend);
+
+                        testSend = (List<Player>)objectInputStream.readObject();
+                        System.out.println(testSend.get(0).getName());
 
 
                         /*
