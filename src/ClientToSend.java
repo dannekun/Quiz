@@ -75,11 +75,14 @@ boolean work  = true;
 
         System.out.println("Connected!");
 
-        try (OutputStream outputStream = socket.getOutputStream();
+        try
+                //(OutputStream outputStream = socket.getOutputStream();
 
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+           //  ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
 
-             InputStream inputStream = socket.getInputStream();) {
+             //InputStream inputStream = socket.getInputStream();)
+
+        {
 
         while (!player1.getFinished()) {
             System.out.println("Du är här");
@@ -87,24 +90,33 @@ boolean work  = true;
 
 
 
-                List<Player> playersToSend = new ArrayList<>();
+/*                List<Player> playersToSend = new ArrayList<>();
                 playersToSend.clear();
                 playersToSend.add(player1);
 
-                objectOutputStream.writeObject(playersToSend);
+ */
+
+                //objectOutputStream.writeObject(playersToSend);
+                new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
                // new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
+            System.out.println("Send success!!!!!");
 
 
 
 
 
 
-                ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+            //    ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
                // player2 = (Player) objectInputStream.readObject();
-                List<Player> player2Find = (List<Player>) objectInputStream.readObject();
-                player2 = player2Find.get(0);
+              //  List<Player> player2Find = (List<Player>) objectInputStream.readObject();
+           // List<Player> player2Find = (List<Player>) new ObjectInputStream(socket.getInputStream()).readObject();
+            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+            System.out.println("Receive success!!!!");
+           //     player2 = player2Find.get(0);
 
+            System.out.println(player2.getName());
 
 
 
@@ -177,15 +189,26 @@ boolean work  = true;
                         player1.setEndState(false);
 
                         System.out.println("player 2 väntar");
-
+/*
                         List<Player> testSend = new ArrayList<>();
                         testSend.add(player1);
                         ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(socket.getOutputStream());
                         objectOutputStream1.writeObject(testSend);
 
-                        testSend = (List<Player>)objectInputStream.readObject();
-                        System.out.println(testSend.get(0).getName());
 
+                        objectOutputStream.flush();
+
+                    //    testSend.clear();
+                        List<Player> TESTIFWORKS = new ArrayList<>();
+                       // InputStream newTestInput = socket.getInputStream();
+                       // ObjectInputStream newTest2Input = new ObjectInputStream(newTestInput);
+                       // TESTIFWORKS = (List<Player>)newTest2Input.readObject();
+                       TESTIFWORKS = (List<Player>) new ObjectInputStream(socket.getInputStream()).readObject();
+
+                        System.out.println(TESTIFWORKS.get(0).getName());
+
+
+ */
 
                         /*
                         List<Player> player3test = new ArrayList<>();

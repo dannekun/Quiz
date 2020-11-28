@@ -58,45 +58,51 @@ public class ClientHandler extends Thread implements Serializable {
     public void run() {
         List<Player> newPlayer1List = new ArrayList<>();
         List<Player> newPlayer2List = new ArrayList<>();
-        if (spelare1.isConnected()&&spelare2.isConnected()){
+        if (spelare1.isConnected()&&spelare2.isConnected()) {
+
+            while (!player2.getFinished()){
+                try {
+
+                    //  player1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
+                    player1 = (Player) new ObjectInputStream(spelare1.getInputStream()).readObject();
+                    // objectInputStream.reset();
+                    //player1 = player1List.get(0);
+
+                    //player2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
+                    player2 = (Player) new ObjectInputStream(spelare2.getInputStream()).readObject();
+
+                    //objectInputStream.reset();
+                    // player2 = player2List.get(0);
+
+                    player1.setPLAYER(1);
+                    player2.setPLAYER(2);
 
 
-            try {
-
-                player1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
-               // objectInputStream.reset();
-                player1 = player1List.get(0);
-
-                player2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
+                    System.out.println("HÄR!!!!");
+                    player1.setConnected(true);
+                    player2.setConnected(true);
 
 
-                //objectInputStream.reset();
-                player2 = player2List.get(0);
+                    //  sendPlayerInfo(spelare1).writeObject(player2List);
+                    new ObjectOutputStream(spelare1.getOutputStream()).writeObject(player2);
+                    objectOutputStream.flush();
+                    // objectOutputStream.reset();
 
-                player1.setPLAYER(1);
-                player2.setPLAYER(2);
-
-
-                System.out.println("HÄR!!!!");
-                player1.setConnected(true);
-                player2.setConnected(true);
+                    //sendPlayerInfo(spelare2).writeObject(player1List);
+                    new ObjectOutputStream(spelare2.getOutputStream()).writeObject(player1);
+                    objectOutputStream.flush();
 
 
-
-
-                sendPlayerInfo(spelare1).writeObject(player2List);
-                objectOutputStream.flush();
-                // objectOutputStream.reset();
-
-                sendPlayerInfo(spelare2).writeObject(player1List);
-                objectOutputStream.flush();
-
+                /*
                 newPlayer2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
                 player2 = newPlayer2List.get(0);
                 System.out.println("Send 1 success!!!!");
                 System.out.println(player2.getName());
                 //sendPlayerInfo(spelare2).writeObject(newPlayer2List);
-                new ObjectOutputStream(spelare2.getOutputStream()).writeObject(newPlayer2List);
+                //new ObjectOutputStream(spelare2.getOutputStream()).writeObject(newPlayer2List);
+                ObjectOutputStream newTest = new ObjectOutputStream(spelare2.getOutputStream());
+                newTest.writeObject(newPlayer2List);
+                newTest.flush();
                 System.out.println("Hittade nytt objekt");
                 newPlayer1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
                 player1 = newPlayer1List.get(0);
@@ -104,18 +110,16 @@ public class ClientHandler extends Thread implements Serializable {
 
 
 
+                 */
 
 
-
-
-                    System.out.println("Uppdaterat: " + player2.getName());
                     System.out.println("Uppdaterat: " + player1.getName());
+                    System.out.println("Uppdaterat: " + player2.getName());
 
-
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+        }
 
 
 
