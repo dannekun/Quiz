@@ -14,14 +14,7 @@ import java.awt.*;
  */
 public class GUI_Util extends JFrame{
 
-    public void setWindow(){
-        setSize(350, 500);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public void setMainBackground(JPanel panel){
+        public void setMainBackground(JPanel panel){
         panel.setBackground( new Color(51, 133, 255));
     }
 
