@@ -33,13 +33,24 @@ public class Player implements Serializable {
         this.didYouGetIt = didYouGetIt;
     }
 
-    boolean playedRound = false;
+    boolean player1playedRound;
+
+    boolean players2PlayedRound;
 
     boolean connected = false;
 
     boolean endState = true;
 
     boolean clicked = false;
+
+
+    public boolean isPlayers2PlayedRound() {
+        return players2PlayedRound;
+    }
+
+    public void setPlayers2PlayedRound(boolean players2PlayedRound) {
+        this.players2PlayedRound = players2PlayedRound;
+    }
 
     public boolean isClicked() {
         return clicked;
@@ -49,12 +60,12 @@ public class Player implements Serializable {
         this.clicked = clicked;
     }
 
-    public boolean isPlayedRound() {
-        return playedRound;
+    public boolean isPlayer1playedRound() {
+        return player1playedRound;
     }
 
-    public void setPlayedRound(boolean playedRound) {
-        this.playedRound = playedRound;
+    public void setPlayer1playedRound(boolean player1playedRound) {
+        this.player1playedRound = player1playedRound;
     }
 
     public boolean isEndState() {

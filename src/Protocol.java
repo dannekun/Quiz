@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -36,8 +34,9 @@ public class Protocol {
             //GamePage_waiting g = new GamePage_waiting(pro);
             if (pro.getRound() == 0 && pro.getPLAYER() == 1){
                 pro.setSTATE(4);
+            }else if (pro.getRound() == 0 && pro.getPLAYER() == 2) {
+                pro.setSTATE(4);
             }
-
 
             System.out.println("du kom till state 3 men har redan spelat");
             Thread.sleep(2000);
@@ -48,13 +47,33 @@ public class Protocol {
             GamePage_play gamePage_play = new GamePage_play(pro, player2);
 
 
+
+
             while(!pro.isClicked()){
                 pro = gamePage_play.findClickPlay();
-                pro.setSTATE(5);
                 sleepThisProgram();
             }
+            System.out.println(pro.getRound());
+            System.out.println(pro.isPlayer1playedRound());
+            System.out.println(pro.getPLAYER());
+            System.out.println(pro.isPlayers2PlayedRound());
+
+            if (pro.getRound() == 0 && pro.getPLAYER() == 2 && !pro.isPlayer1playedRound() && pro.isPlayers2PlayedRound()){
+                pro.setSTATE(5);
+                System.out.println("vi kom till den här jävla skiten");
+            }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && pro.isPlayer1playedRound()){
+                pro.setSTATE(6);
+                System.out.println("bram du är inte false");
+                pro.setPlayer1playedRound(false);
+                //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
+            }else if (pro.getRound() == 0 && pro.getPLAYER() == 1){
+                pro.setSTATE(5);
+            }else {
+                pro.setSTATE(6);
+            }
+
             pro.setRound(pro.getRound()+1);
-            pro.setQuestion(pro.getQuestion()+1);
+           // pro.setQuestion(pro.getQuestion()+1);
 
             pro.setClicked(false);
             return pro;
@@ -92,6 +111,10 @@ public class Protocol {
                     //pro.setSTATE(6);
                     sleepThisProgram();
                 }
+                //HÄR SKA VI LÄGGA TILL POÄNG
+                pro = quest.addPoints(pro);
+                System.out.println(pro.getQuestion()+ " FRÅGA PROTOKOLL");
+                System.out.println(pro.getMaxQuestion());
                 pro = quest.endGame(pro);
                 System.out.println(pro.getQuestion());
                 pro.setClicked(false);
@@ -100,7 +123,8 @@ public class Protocol {
                 }
             }
 
-            pro.setPlayedRound(true);
+            System.out.println("vi når till true");
+            pro.setPlayer1playedRound(true);
 
 
 

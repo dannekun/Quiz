@@ -2,8 +2,6 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -184,9 +182,9 @@ boolean work  = true;
 
                     //VARJE OUTPUTSTREAM ENDAST ANVÄNDAS EN GÅNG
 
-                    if (player2.isPlayedRound()){
+                    if (player2.isPlayer1playedRound()){
                         gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
+         //               player1.setSTATE(4);
                     }
 
                     player1 = protocol.processInput(player1, player2);

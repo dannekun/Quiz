@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -61,11 +60,11 @@ public class QuestionPage extends JFrame implements ActionListener {
         pro = p;
 
         round.setText(("Rond " + pro.getRound()));
-        questionNumber.setText("Fråga " + pro.getQuestion());
+        questionNumber.setText("Fråga " + (pro.getQuestion()+1));
 
         player.setText(pro.getName());
 
-        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() - 1));
+        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() -1));
 
         //questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
 
@@ -119,7 +118,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
         if (pro.getQuestion() > 0) {
-            for (int i = 0; i < pro.getQuestion() - 1; i++) {
+            for (int i = 0; i < pro.getQuestion(); i++) {
                 //   if (pro.getAnswers().get(i) == false){
                 if (!pro.getRoundAnswers().get(i)) {
                     paintRed(buttonsToPaintList.get(i));
@@ -407,14 +406,14 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
             pro.setQuestion(0);
-
+            System.out.println("du är i allt");
             if (pro.isDidYouGetIt()) {
                // JOptionPane.showMessageDialog(null, "Right!");
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints() + 1);
+               // pro.setPoints(pro.getPoints() + 1);
 
-                System.out.println("du är i allt");
+
             } else {
                 //JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
                 pro.answersAddToList(false);
@@ -428,15 +427,24 @@ public class QuestionPage extends JFrame implements ActionListener {
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
             pro.setQuestion(0);
             pro.currentQuestion.clear();
-            pro.roundAnswers.clear();
-            pro.setPlayedRound(true);
+          //  pro.roundAnswers.clear();
+            if (pro.getPLAYER() == 1){
+                System.out.println("du är player 1");
+                pro.setPlayer1playedRound(true);
+                pro.setPlayers2PlayedRound(false);
+            }else if (pro.getPLAYER() == 2){
+                System.out.println("du är player 2");
+                pro.setPlayer1playedRound(false);
+                pro.setPlayers2PlayedRound(true);
+            }
 
+            System.out.println("du är i lika mycket ");
             if (pro.isDidYouGetIt()) {
               //  JOptionPane.showMessageDialog(null, "Right!");
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints() + 1);
-                System.out.println("du är i lika mycket ");
+              //  pro.setPoints(pro.getPoints() + 1);
+
             } else {
                // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
                 pro.answersAddToList(false);
@@ -449,22 +457,24 @@ public class QuestionPage extends JFrame implements ActionListener {
             // STATE 3
             //
             // GamePage_play g = new GamePage_play(pro);
-        } else if (pro.getQuestion() <= pro.getMaxQuestion()) {
+        } else if (pro.getQuestion() < pro.getMaxQuestion()) {
             pro.setQuestion(pro.getQuestion() + 1);
-
+            System.out.println("du är i för lite ");
             if (pro.isDidYouGetIt()) {
               //  JOptionPane.showMessageDialog(null, "Right!");
+                System.out.println("du fick rätt!!!!!! jaaaa");
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-                pro.setPoints(pro.getPoints() + 1);
-                System.out.println("du är i för lite ");
+             //   pro.setPoinsetPoints(pro.getPoints() + 1);
+
             } else {
+                System.out.println("du fick fel neeeeeej");
                // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
-
-
+            System.out.println(pro.getAnswers().size());
+            System.out.println(pro.getRoundAnswers().size());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
@@ -478,6 +488,17 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         return pro;
 
+    }
+    public Player addPoints(Player player){
+        pro = player;
+
+        if (pro.didYouGetIt){
+            pro.setPoints(pro.getPoints()+1);
+            pro.setQuestion(pro.getQuestion()+1);
+        }else {
+            pro.setQuestion(pro.getQuestion()+1);
+        }
+        return pro;
     }
 
     public Player findClickPlay(){

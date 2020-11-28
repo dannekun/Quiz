@@ -162,6 +162,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         labelNames = createLabelList(getNumberOfRounds());
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
+            System.out.println(pro.getRound());
             if (i < pro.getRound()){
                 labelNames.get(i).setText(pro.roundCategories.get(i));
             }else {
