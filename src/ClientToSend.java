@@ -80,10 +80,22 @@ boolean work  = true;
 
                 objectOutputStream.writeObject(playersToSend);
 
+
+
+
+
+
+
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
                // player2 = (Player) objectInputStream.readObject();
                 List<Player> player2Find = (List<Player>) objectInputStream.readObject();
                 player2 = player2Find.get(0);
+
+
+
+
+           // objectOutputStream.flush();
+           // objectOutputStream.reset();
 
                 if (player1.getPLAYER() == 0) {
                     if (player2.getPLAYER() == 2) {
@@ -92,6 +104,12 @@ boolean work  = true;
                         player1.setPLAYER(2);
                     }
                 }
+
+
+
+
+
+
 
 /*
                // objectOutputStream.flush();
@@ -126,10 +144,13 @@ boolean work  = true;
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
+
                     } else if (player2.isPlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);
                     }
+
+                    //VARJE OUTPUTSTREAM ENDAST ANVÄNDAS EN GÅNG
 
 
                     player1 = protocol.processInput(player1, player2);
@@ -140,6 +161,24 @@ boolean work  = true;
                     if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 2) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
+
+                        List<Player> testSend = new ArrayList<>();
+                        testSend.add(player3);
+                        ObjectOutputStream objectOutputStream1 = new ObjectOutputStream(socket.getOutputStream());
+                        objectOutputStream1.writeObject(testSend);
+
+
+                        /*
+                        List<Player> player3test = new ArrayList<>();
+                        player3test.add(player3);
+                        objectOutputStream.writeObject(player3test);
+
+                        while (true){
+                            Thread.sleep(5000);
+                        }
+
+                         */
+
                     } else if (player2.isPlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.setSTATE(4);

@@ -53,41 +53,73 @@ public class ClientHandler extends Thread implements Serializable {
     }
 
 
+
     @Override
     public void run() {
+        List<Player> newPlayer1List = new ArrayList<>();
+        List<Player> newPlayer2List = new ArrayList<>();
         if (spelare1.isConnected()&&spelare2.isConnected()){
-
 
 
             try {
 
                 player1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
+               // objectInputStream.reset();
                 player1 = player1List.get(0);
 
                 player2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
+
+
+                //objectInputStream.reset();
                 player2 = player2List.get(0);
+
                 player1.setPLAYER(1);
                 player2.setPLAYER(2);
+
+
+                System.out.println("HÄR!!!!");
+                player1.setConnected(true);
+                player2.setConnected(true);
+
+
+
+
+                sendPlayerInfo(spelare1).writeObject(player2List);
+                objectOutputStream.flush();
+                // objectOutputStream.reset();
+
+                sendPlayerInfo(spelare2).writeObject(player1List);
+                objectOutputStream.flush();
+
+                newPlayer2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
+                player2 = newPlayer2List.get(0);
+                System.out.println("Send 1 success!!!!");
+                newPlayer1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
+                player1 = newPlayer1List.get(0);
+                System.out.println("Send 2 sucess!!!");
+
+
+
+
+
+
+
+                    System.out.println("Uppdaterat: " + player2.getName());
+                    System.out.println("Uppdaterat: " + player1.getName());
+
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
 
-            System.out.println("HÄR!!!!");
-            player1.setConnected(true);
-            player2.setConnected(true);
 
-            try {
-                sendPlayerInfo(spelare1).writeObject(player2List);
 
-                sendPlayerInfo(spelare2).writeObject(player1List);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
-
         /*
+
+        *//*
         try {
             objectOutputStream.close();
             objectInputStream.close();
@@ -96,7 +128,19 @@ public class ClientHandler extends Thread implements Serializable {
         }
 
 
-         */
+         *//*
+
+
+        System.out.println(player1.getName());
+        System.out.println(player2.getName());
+
+        try {
+            spelare2.getOutputStream().flush();
+            spelare1.getOutputStream().flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
 
         System.out.println("Connection from " + player1.getName() + "!");
@@ -107,7 +151,13 @@ public class ClientHandler extends Thread implements Serializable {
     try{
         //ObjectInputStream objectInputStream2 = new ObjectInputStream(spelare1.getInputStream());
 
+
+
+
+
         List<Player> playersPlayer2 = (List<Player>) receivePlayerInfo(spelare2);
+
+
 
 
        // List<Player> playersToFind = (List<Player>) objectInputStream2.readObject();
@@ -115,17 +165,18 @@ public class ClientHandler extends Thread implements Serializable {
         List<Player> playersToFind = (List<Player>) receivePlayerInfo(spelare1);
 
 
+
+
+
+
+
         System.out.println(playersToFind.get(0).getName());
 
         System.out.println(playersPlayer2.get(0).getName());
 
 
-        player3 = (Player) receivePlayerInfo(spelare1).readObject();
-        System.out.println("send 1 sucess!!");
 
-        player4 = (Player) receivePlayerInfo(spelare2).readObject();
 
-        System.out.println("send 2 sucess!!!");
 
         System.out.println(player1.getName());
         System.out.println(player2.getName());
@@ -135,7 +186,7 @@ public class ClientHandler extends Thread implements Serializable {
     } catch (EOFException eof){
         System.out.println("walla knas bror");
         eof.printStackTrace();
-    } catch (IOException | ClassNotFoundException e) {
+    } catch (IOException e) {
         e.printStackTrace();
     }
 
@@ -149,13 +200,13 @@ public class ClientHandler extends Thread implements Serializable {
         //   Player pro1 = (Player) objectInputStream.readObject();
 
         //Dessa är för player 2????
-        /*
+        *//*
         InputStream inputStream2 = socket.getInputStream();
         ObjectInputStream objectInputStream2 = new ObjectInputStream(inputStream);
         Player pro2 = (Player) objectInputStream.readObject();
 
 
-         */
+         *//*
 
 
        // System.out.println("Recieved " + pro1.getName()+ " from " + socket);
@@ -163,19 +214,20 @@ public class ClientHandler extends Thread implements Serializable {
        // System.out.println(pro1.getName());
 
 
-        /*
+        *//*
         System.out.println(pro2.getPoints());
         for (Questions p : pro2.getQuestionToPassBetweenPlayers()){
             System.out.println(p.getQuestion());
             System.out.println(p.getAnswerObject().getRightAnswer());
         }
 
-         */
+         *//*
 
-        System.out.println("Closing sockets");
+
        // ss.close();
-       // socket.close();
+       // socket.close();*/
 
     }
+
 
 }

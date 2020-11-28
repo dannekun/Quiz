@@ -13,6 +13,8 @@ import java.util.List;
  */
 public class Player implements Serializable {
 
+    public static final long serialVersionUID = 1L;
+
     String name = null;
     int points = 0;
     int round = 0;
