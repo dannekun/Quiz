@@ -118,11 +118,11 @@ public class Protocol {
                 pro = quest.endGame(pro);
                 System.out.println(pro.getQuestion());
                 pro.setClicked(false);
-                if (pro.getMaxQuestion() == pro.getQuestion()){
-                    pro.setSTATE(3);
-                }
-            }
 
+            }
+            if (pro.getMaxQuestion() == pro.getQuestion()){
+                pro.setSTATE(3);
+            }
             System.out.println("vi når till true");
             pro.setPlayer1playedRound(true);
 

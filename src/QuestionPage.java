@@ -119,6 +119,9 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         if (pro.getQuestion() > 0) {
             for (int i = 0; i < pro.getQuestion(); i++) {
+                System.out.println(pro.getRoundAnswers().size()+ "ROUNDANSWERS!!");
+                System.out.println(pro.getQuestion()+ " QUESTION");
+                System.out.println(i + ": i");
                 //   if (pro.getAnswers().get(i) == false){
                 if (!pro.getRoundAnswers().get(i)) {
                     paintRed(buttonsToPaintList.get(i));
@@ -405,7 +408,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         pro = p;
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
-            pro.setQuestion(0);
+            //pro.setQuestion(0);
             System.out.println("du är i allt");
             if (pro.isDidYouGetIt()) {
                // JOptionPane.showMessageDialog(null, "Right!");
@@ -425,8 +428,8 @@ public class QuestionPage extends JFrame implements ActionListener {
             ResultPage r = new ResultPage(pro);
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
-            pro.setQuestion(0);
-            pro.currentQuestion.clear();
+           // pro.setQuestion(0);
+           // pro.currentQuestion.clear();
           //  pro.roundAnswers.clear();
             if (pro.getPLAYER() == 1){
                 System.out.println("du är player 1");
@@ -458,7 +461,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             //
             // GamePage_play g = new GamePage_play(pro);
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
-            pro.setQuestion(pro.getQuestion() + 1);
+            //pro.setQuestion(pro.getQuestion() + 1);
             System.out.println("du är i för lite ");
             if (pro.isDidYouGetIt()) {
               //  JOptionPane.showMessageDialog(null, "Right!");
