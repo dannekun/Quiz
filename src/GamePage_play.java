@@ -176,13 +176,13 @@ public class GamePage_play extends JFrame implements ActionListener {
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
 
         stats.add(playerName1);
-        util.buttonSetFontForegBackg(playerName1,"Arial",0,14,255,255,255,0,51,204);
+        util.buttonSetFontForegBackg_white(playerName1,0,14,0,51,204);
         util.setSizeButton(playerName1,150,40,150,40);
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        util.buttonSetFontForegBackg(playerName2, "Arial",0,14,255,255,255,191,64,191);
+        util.buttonSetFontForegBackg_white(playerName2,0,14,191,64,191);
         util.setSizeButton(playerName2,150,40,150,40);
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -206,7 +206,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         util.setMainBackground(lowestPanel);
 
         lowestPanel.add(info);
-        util.buttonSetFontForeg(info,"Arial",2,16,51,133,255);
+        util.buttonSetFontForeg(info,2,16,51,133,255);
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);
         info.setOpaque(false);
@@ -215,7 +215,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         lowestPanel.add(play);
         Border compound = util.setCompoundBorder(128,255,128,5,151,5,151);
         play.setBorder(compound);
-        util.buttonSetFontForegBackg(play, "Arial",0,16,255,255,255,77,255,77);
+        util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
 
         playerName1.setText(pro.getName());
 

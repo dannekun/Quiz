@@ -168,13 +168,13 @@ public class GamePage_waiting extends JFrame {
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
 
         stats.add(playerName1);
-        util.buttonSetFontForegBackg(playerName1,"Arial",0,14,255,255,255,0,51,204);
+        util.buttonSetFontForegBackg_white(playerName1,0,14,0,51,204);
         util.setSizeButton(playerName1,150,40,150,40);
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        util.buttonSetFontForegBackg(playerName2, "Arial",0,14,255,255,255,191,64,191);
+        util.buttonSetFontForegBackg_white(playerName2,0,14,191,64,191);
         util.setSizeButton(playerName2,150,40,150,40);
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -198,7 +198,7 @@ public class GamePage_waiting extends JFrame {
         util.setMainBackground(lowestPanel);
 
         lowestPanel.add(info);
-        util.buttonSetFontForeg(info,"Arial",2,16,0,0,77);
+        util.buttonSetFontForeg(info,2,16,0,0,77);
         util.setSizeButton(info,350,200,350,200);
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);

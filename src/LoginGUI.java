@@ -17,7 +17,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         util.setMainBackground(panel);
-        panel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //    panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 80)));
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 
@@ -32,15 +32,14 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         panel.add(login);
         login.setAlignmentX(Component.CENTER_ALIGNMENT);
-        util.buttonSetFontForegBackg(login,"Arial",0,12,
-                255,255,255,71,71,209);
+        util.buttonSetFontForegBackg_white(login,0,12,71,71,209);
         util.setSizeButton(login,90,40,90,40);
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 
         setSize(350, 500);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
         setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         login.addActionListener(this);
         userText.addActionListener(this);

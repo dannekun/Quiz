@@ -38,8 +38,7 @@ public class HomePage_play extends JFrame implements ActionListener {
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
 
         upperPanel.add(player);
-        util.labelSetFontForegBackg(player,"Arial",0,18,
-                255,255,255, 0,51,204);
+        util.labelSetFontForegBackg_white(player,0,18, 0,51,204);
         player.setBorder(new EmptyBorder(10, 70, 10, 70));
         player.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
@@ -48,8 +47,7 @@ public class HomePage_play extends JFrame implements ActionListener {
         Border compoundButton = util.setCompoundBorder(128,255,128,
                 5,80,5,80);
         play.setBorder(compoundButton);
-        util.buttonSetFontForegBackg(play, "Arial",0,16,
-                255,255,255,77,255,77);
+        util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
         play.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
 
