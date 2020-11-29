@@ -289,6 +289,8 @@ public class GamePage_result extends JFrame implements ActionListener {
         play.setFont(new Font("Arial", Font.PLAIN, 16));
         play.setOpaque(true);
 
+
+        //TODO LÄGG TILL "SPELA KNAPP" SOM INTE SYNS FÖR ATT HA SAMMA DIMENSIONER
         closeGame.setBorder(compound);
         closeGame.setBackground(new Color(77, 255, 77));
         closeGame.setForeground(Color.WHITE);

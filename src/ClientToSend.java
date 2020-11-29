@@ -411,10 +411,12 @@ public class ClientToSend implements Serializable {
                             GamePage_result gamePage_result = new GamePage_result(player1, player2);
 
                             player1.setClicked(false);
-
-                            while (player1.getCloseGameOption() == 0) {
+                            work = false;
+                            while (!work) {
                                 player1 = gamePage_result.findClickPlay();
-
+                                if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
+                                    work = true;
+                                }
                             }
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
@@ -434,9 +436,13 @@ public class ClientToSend implements Serializable {
 
                             player1.setClicked(false);
 
-                            while (player1.getCloseGameOption() == 0) {
+                            work = false;
+                            while (!work) {
                                 player1 = gamePage_result2.findClickPlay();
 
+                                if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
+                                    work = true;
+                                }
                             }
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
@@ -457,7 +463,7 @@ public class ClientToSend implements Serializable {
                         } else {
                             HejDå bye = new HejDå(player1, player2);
                             Thread.sleep(5000);
-                            System.exit(1);
+                            System.exit(0);
                         }
                         //TODO FIXA SÅ MAN KAN SPELA IGEN OCH RÄTT FRÅGOR, SISTA SPELAREN PÅ SISTA RONDEN FÅR FEL FRÅGOR MEN RÄTT KATEGORI, FIXA RÄTT FÄRGER I GAMEPAGE WAITING
 

@@ -181,7 +181,7 @@ public class GamePage_play extends JFrame implements ActionListener {
 
 
         for (int i = 0; i <totalbuttons; i++) {
-            if (i < player2.getAnswers().size()-3){
+            if (i < player2.getAnswers().size()-pro.getMaxQuestion()){
                 if (!player2.getAnswers().get(i)){
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
