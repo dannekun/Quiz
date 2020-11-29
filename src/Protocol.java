@@ -36,6 +36,8 @@ public class Protocol {
                 pro.setSTATE(4);
             }else if (pro.getRound() == 0 && pro.getPLAYER() == 2) {
                 pro.setSTATE(4);
+            }else if (pro.getQuestion() < pro.getMaxQuestion()){
+                pro.setSTATE(4);
             }
 
             System.out.println("du kom till state 3 men har redan spelat");
@@ -58,19 +60,25 @@ public class Protocol {
             System.out.println(pro.getPLAYER());
             System.out.println(pro.isPlayers2PlayedRound());
 
-            if (pro.getRound() == 0 && pro.getPLAYER() == 2 && !pro.isPlayer1playedRound() && pro.isPlayers2PlayedRound()){
+
+            //FIRST ROUND
+
+            if (pro.getRound() == 0 && pro.getPLAYER() == 1){
                 pro.setSTATE(5);
-                System.out.println("vi kom till den här jävla skiten");
-            }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && pro.isPlayer1playedRound()){
+            }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
                 pro.setSTATE(6);
                 System.out.println("bram du är inte false");
                 pro.setPlayer1playedRound(false);
                 //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
-            }else if (pro.getRound() == 0 && pro.getPLAYER() == 1){
-                pro.setSTATE(5);
-            }else {
-                pro.setSTATE(6);
             }
+
+            //REST OF THE ROUND
+
+            if (pro.getRound() < pro.getMaxRound() && pro.getPLAYER() == 2 && !pro.isPlayer1playedRound() && pro.isPlayers2PlayedRound()){
+
+            }
+
+
 
             pro.setRound(pro.getRound()+1);
            // pro.setQuestion(pro.getQuestion()+1);
@@ -99,27 +107,61 @@ public class Protocol {
            // STATE = PLAY;
         }else if (pro.getSTATE() == 6){
 
-            for (int i = 0; i < pro.getMaxQuestion(); i++) {
-                QuestionPage quest = new QuestionPage(pro);
+            //LÄGG TILL IF ELSE HÄR PÅ OM MAN HAR KÖRT ELLER INTE
 
-                System.out.println("du är i questionpage");
+            //OM DU INTE HAR FÅTT VÄLJA KATERGORI
 
+            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
 
-                while(!pro.isClicked()){
-                    pro = quest.findClickPlay();
-                    //workForMe = q.findClickPlay();
-                    //pro.setSTATE(6);
-                    sleepThisProgram();
+                for (int i = 0; i <pro.getMaxQuestion() ; i++) {
+
+                    QuestionPage_NotChoseCat quest_wait = new QuestionPage_NotChoseCat(pro,player2);
+
+                    while(!pro.isClicked()){
+                        pro = quest_wait.findClickPlay();
+                        //workForMe = q.findClickPlay();
+                        //pro.setSTATE(6);
+                        sleepThisProgram();
+                    }
+                    //HÄR SKA VI LÄGGA TILL POÄNG
+                    pro = quest_wait.addPoints(pro);
+                    System.out.println(pro.getQuestion()+ " FRÅGA PROTOKOLL");
+                    System.out.println(pro.getMaxQuestion());
+                    pro = quest_wait.endGame(pro);
+                    System.out.println(pro.getQuestion());
+                    pro.setClicked(false);
+
                 }
-                //HÄR SKA VI LÄGGA TILL POÄNG
-                pro = quest.addPoints(pro);
-                System.out.println(pro.getQuestion()+ " FRÅGA PROTOKOLL");
-                System.out.println(pro.getMaxQuestion());
-                pro = quest.endGame(pro);
-                System.out.println(pro.getQuestion());
-                pro.setClicked(false);
 
+            }else {
+
+                for (int i = 0; i < pro.getMaxQuestion(); i++) {
+                    QuestionPage quest = new QuestionPage(pro);
+
+                    System.out.println("du är i questionpage");
+
+
+                    while(!pro.isClicked()){
+                        pro = quest.findClickPlay();
+                        //workForMe = q.findClickPlay();
+                        //pro.setSTATE(6);
+                        sleepThisProgram();
+                    }
+                    //HÄR SKA VI LÄGGA TILL POÄNG
+                    pro = quest.addPoints(pro);
+                    System.out.println(pro.getQuestion()+ " FRÅGA PROTOKOLL");
+                    System.out.println(pro.getMaxQuestion());
+                    pro = quest.endGame(pro);
+                    System.out.println(pro.getQuestion());
+                    pro.setClicked(false);
+
+                }
             }
+
+
+            //OM DU HAR FÅTT VÄLJA KATEGORI
+
+
             if (pro.getMaxQuestion() == pro.getQuestion()){
                 pro.setSTATE(3);
             }
