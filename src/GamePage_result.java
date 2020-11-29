@@ -21,6 +21,7 @@ import java.util.Properties;
  * Copyright: MIT
  */
 public class GamePage_result extends JFrame implements ActionListener {
+    int clickedAnswer;
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
@@ -33,6 +34,7 @@ public class GamePage_result extends JFrame implements ActionListener {
 
 
     JButton play = new JButton("Spela igen");
+    JButton closeGame = new JButton("Stäng av");
 
     List<JButton> player1_answers;
     List<JButton> player2_answers;
@@ -40,6 +42,14 @@ public class GamePage_result extends JFrame implements ActionListener {
     List<JLabel> labelNames;
 
     Properties p = new Properties();
+
+    public int getClickedAnswer() {
+        return clickedAnswer;
+    }
+
+    public void setClickedAnswer(int clickedAnswer) {
+        this.clickedAnswer = clickedAnswer;
+    }
 
     int numberOfRounds;
     int numberOfQuestions;
@@ -269,6 +279,7 @@ public class GamePage_result extends JFrame implements ActionListener {
         info.setPreferredSize(new Dimension(350,180));
         info.setMaximumSize(new Dimension(350,200));
         lowestPanel.add(play);
+        lowestPanel.add(closeGame);
         Border line = new LineBorder(new Color(128, 255, 128));
         Border margin = new EmptyBorder(5, 151, 5, 151);
         Border compound = new CompoundBorder(line, margin);
@@ -277,6 +288,13 @@ public class GamePage_result extends JFrame implements ActionListener {
         play.setForeground(Color.WHITE);
         play.setFont(new Font("Arial", Font.PLAIN, 16));
         play.setOpaque(true);
+
+        closeGame.setBorder(compound);
+        closeGame.setBackground(new Color(77, 255, 77));
+        closeGame.setForeground(Color.WHITE);
+        closeGame.setFont(new Font("Arial", Font.PLAIN, 16));
+        closeGame.setOpaque(true);
+        closeGame.setBorderPainted(false);
 
         playerName1.setText(pro.getName());
 
@@ -291,6 +309,7 @@ public class GamePage_result extends JFrame implements ActionListener {
         contentPane.add(lowestPanel, BorderLayout.SOUTH);
 
         play.addActionListener(this);
+        closeGame.addActionListener(this);
 
         setSize(350, 500);
         setLocationRelativeTo(null);
@@ -317,16 +336,20 @@ public class GamePage_result extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-
+            pro.setCloseGameOption(1);
             dispose();
-            pro.setClicked(true);
+
            // CategoryPage c = new CategoryPage(pro);
+        }else if (e.getSource() == closeGame){
+            pro.setCloseGameOption(2);
+            dispose();
+
         }
     }
 
     public Player findClickPlay(){
         play.addActionListener(this);
-
+        closeGame.addActionListener(this);
 
         return pro;
     }

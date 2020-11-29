@@ -1,17 +1,12 @@
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        int a  = 1;
-        int b = 2;
-        int c = 3;
-        for (int i = 1; i < 10; i++) {
-            System.out.println("i: "+ i);
-            System.out.println("a: "+i%a);
-            System.out.println("b: "+i%b);
-            System.out.println("c: "+ i%c);
-            System.out.println();
-        }
+        Player pl = new Player();
+        Player pl1 = new Player();
+      GamePage_result p = new GamePage_result(pl,pl1);
 
     }
 }

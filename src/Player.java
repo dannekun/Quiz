@@ -23,6 +23,16 @@ public class Player implements Serializable {
     int maxQuestion;
     boolean finished = false;
 
+    int closeGameOption = 0;
+
+    public int getCloseGameOption() {
+        return closeGameOption;
+    }
+
+    public void setCloseGameOption(int closeGameOption) {
+        this.closeGameOption = closeGameOption;
+    }
+
     boolean chooseCategories = false;
 
     public boolean isChooseCategories() {

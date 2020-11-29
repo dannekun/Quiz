@@ -34,10 +34,14 @@ public class ClientToSend implements Serializable {
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
 
+        boolean neverEndingStory = true;
+
         boolean gameIsPlaying = true;
 
         Player player1 = new Player();
         Player player2 = new Player();
+        Player player3 = new Player();
+        Player player4 = new Player();
 
         int waitingForPlayer = 0;
 
@@ -117,333 +121,353 @@ public class ClientToSend implements Serializable {
                     sleepThisProgram();
                 }
 
-                while(gameIsPlaying) {
 
-                    if (player1.getPLAYER() == 1) {
-                        GamePage_play gamePage_play = new GamePage_play(player1, player2);
-
-                        player1.setClicked(false);
-                        while (!player1.isClicked()) {
-                            player1 = gamePage_play.findClickPlay();
-                            sleepThisProgram();
-                        }
+                player3 = player1;
+                player4 = player2;
 
 
-                        player1.setRound(player1.getRound() + 1);
+                while (neverEndingStory) {
 
-                        CategoryPage q = new CategoryPage(player1);
-                        work = false;
-                        while (!work) {
-                            work = q.findClickPlay();
-                            sleepThisProgram();
-                        }
+                    player1 = player3;
+                    player2 = player4;
 
+                    while (gameIsPlaying) {
 
-                        player1 = q.addCatToPlayer();
+                        if (player1.getPLAYER() == 1) {
+                            GamePage_play gamePage_play = new GamePage_play(player1, player2);
 
-                        player1.setClicked(false);
-                        for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                            QuestionPage questionPage = new QuestionPage(player1);
-
+                            player1.setClicked(false);
                             while (!player1.isClicked()) {
-                                player1 = questionPage.findClickPlay();
+                                player1 = gamePage_play.findClickPlay();
                                 sleepThisProgram();
                             }
-                            player1.setClicked(false);
-                            player1 = questionPage.addPoints(player1);
-                            player1 = questionPage.endGame(player1);
-
-                        }
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                        System.out.println("Send success!!!!!");
+                            player1.setRound(player1.getRound() + 1);
 
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-
-                    } else if (player1.getPLAYER() == 2) {
-                        GamePage_waiting gamePage_waiting1 = new GamePage_waiting();
-                        gamePage_waiting1.showWindow(player1, player2);
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
-
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-                        gamePage_waiting1.closeWindow();
-                    }
-
-
-                    if (player1.getPLAYER() == 1) {
-                        GamePage_waiting gamePage_waiting2 = new GamePage_waiting();
-                        gamePage_waiting2.showWindow(player1, player2);
-
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
-
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-                        gamePage_waiting2.closeWindow();
-                    } else if (player1.getPLAYER() == 2) {
-                        //FIXME TA BORT -3 PÅ FÄRGERNA SÅ MAN INTE SER RONDENS FÄRGER FÖR MOTSTÅNDAREN
-                        //List<Boolean> temp = player2.getAnswers();
-                        GamePage_play gamePage_play1 = new GamePage_play(player1, player2);
-                        player1.setClicked(false);
-                        while (!player1.isClicked()) {
-                            player1 = gamePage_play1.findClickPlay();
-                            sleepThisProgram();
-                        }
-                        // player2.changeList(temp);
-                        player1.setRound(player1.getRound() + 1);
-                        player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
-
-                        player1.setClicked(false);
-
-                        for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                            QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
-
-                            while (!player1.isClicked()) {
-                                player1 = questionPage_notChoseCat1.findClickPlay();
+                            CategoryPage q = new CategoryPage(player1);
+                            work = false;
+                            while (!work) {
+                                work = q.findClickPlay();
                                 sleepThisProgram();
                             }
+
+
+                            player1 = q.addCatToPlayer();
+
                             player1.setClicked(false);
-                            player1 = questionPage_notChoseCat1.addPoints(player1);
-                            player1 = questionPage_notChoseCat1.endGame(player1);
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                QuestionPage questionPage = new QuestionPage(player1);
 
+                                while (!player1.isClicked()) {
+                                    player1 = questionPage.findClickPlay();
+                                    sleepThisProgram();
+                                }
+                                player1.setClicked(false);
+                                player1 = questionPage.addPoints(player1);
+                                player1 = questionPage.endGame(player1);
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+
+
+                        } else if (player1.getPLAYER() == 2) {
+                            GamePage_waiting gamePage_waiting1 = new GamePage_waiting();
+                            gamePage_waiting1.showWindow(player1, player2);
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+                            gamePage_waiting1.closeWindow();
                         }
 
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+                        if (player1.getPLAYER() == 1) {
+                            GamePage_waiting gamePage_waiting2 = new GamePage_waiting();
+                            gamePage_waiting2.showWindow(player1, player2);
 
 
-                        System.out.println("Send success!!!!!");
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-                    }
+                            System.out.println("Send success!!!!!");
 
 
-                    if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()){
-                        gameIsPlaying = false;
-                        break;
-                    }
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
 
-                    if (player1.getPLAYER() == 1) {
-                        GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
-                        gamePage_waiting3.showWindow(player1, player2);
-
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
-
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-                        gamePage_waiting3.closeWindow();
-
-                    } else if (player1.getPLAYER() == 2) {
-                        GamePage_play gamePage_play2 = new GamePage_play(player1, player2);
-                        player1.setClicked(false);
-                        while (!player1.isClicked()) {
-                            player1 = gamePage_play2.findClickPlay();
-                            sleepThisProgram();
-                        }
-                        // player2.changeList(temp);
-                        player1.setRound(player1.getRound() + 1);
-
-
-                        CategoryPage q = new CategoryPage(player1);
-                        work = false;
-                        while (!work) {
-                            work = q.findClickPlay();
-                            sleepThisProgram();
-                        }
-
-                        player1 = q.addCatToPlayer();
-                        player1.setClicked(false);
-
-
-                        for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                            QuestionPage questionPage = new QuestionPage(player1);
-
+                            gamePage_waiting2.closeWindow();
+                        } else if (player1.getPLAYER() == 2) {
+                            //FIXME TA BORT -3 PÅ FÄRGERNA SÅ MAN INTE SER RONDENS FÄRGER FÖR MOTSTÅNDAREN
+                            //List<Boolean> temp = player2.getAnswers();
+                            GamePage_play gamePage_play1 = new GamePage_play(player1, player2);
+                            player1.setClicked(false);
                             while (!player1.isClicked()) {
-                                player1 = questionPage.findClickPlay();
+                                player1 = gamePage_play1.findClickPlay();
                                 sleepThisProgram();
                             }
+                            // player2.changeList(temp);
+                            player1.setRound(player1.getRound() + 1);
+                            player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
+
                             player1.setClicked(false);
-                            player1 = questionPage.addPoints(player1);
-                            player1 = questionPage.endGame(player1);
+
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
+
+                                while (!player1.isClicked()) {
+                                    player1 = questionPage_notChoseCat1.findClickPlay();
+                                    sleepThisProgram();
+                                }
+                                player1.setClicked(false);
+                                player1 = questionPage_notChoseCat1.addPoints(player1);
+                                player1 = questionPage_notChoseCat1.endGame(player1);
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
 
                         }
 
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-
-                    }
-
-                    if (player1.getPLAYER() == 1) {
-
-                        GamePage_play gamePage_play3 = new GamePage_play(player1, player2);
-                        player1.setClicked(false);
-                        while (!player1.isClicked()) {
-                            player1 = gamePage_play3.findClickPlay();
-                            sleepThisProgram();
+                        if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                            gameIsPlaying = false;
+                            break;
                         }
-                        // player2.changeList(temp);
-                        player1.setRound(player1.getRound() + 1);
-                        player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
 
-                        player1.setClicked(false);
+                        if (player1.getPLAYER() == 1) {
+                            GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
+                            gamePage_waiting3.showWindow(player1, player2);
 
-                        for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                            QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
 
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+
+                            gamePage_waiting3.closeWindow();
+
+                        } else if (player1.getPLAYER() == 2) {
+                            GamePage_play gamePage_play2 = new GamePage_play(player1, player2);
+                            player1.setClicked(false);
                             while (!player1.isClicked()) {
-                                player1 = questionPage_notChoseCat1.findClickPlay();
+                                player1 = gamePage_play2.findClickPlay();
                                 sleepThisProgram();
                             }
+                            // player2.changeList(temp);
+                            player1.setRound(player1.getRound() + 1);
+
+
+                            CategoryPage q = new CategoryPage(player1);
+                            work = false;
+                            while (!work) {
+                                work = q.findClickPlay();
+                                sleepThisProgram();
+                            }
+
+                            player1 = q.addCatToPlayer();
                             player1.setClicked(false);
-                            player1 = questionPage_notChoseCat1.addPoints(player1);
-                            player1 = questionPage_notChoseCat1.endGame(player1);
+
+
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                QuestionPage questionPage = new QuestionPage(player1);
+
+                                while (!player1.isClicked()) {
+                                    player1 = questionPage.findClickPlay();
+                                    sleepThisProgram();
+                                }
+                                player1.setClicked(false);
+                                player1 = questionPage.addPoints(player1);
+                                player1 = questionPage.endGame(player1);
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+
 
                         }
 
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+                        if (player1.getPLAYER() == 1) {
+
+                            GamePage_play gamePage_play3 = new GamePage_play(player1, player2);
+                            player1.setClicked(false);
+                            while (!player1.isClicked()) {
+                                player1 = gamePage_play3.findClickPlay();
+                                sleepThisProgram();
+                            }
+                            // player2.changeList(temp);
+                            player1.setRound(player1.getRound() + 1);
+                            player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
+
+                            player1.setClicked(false);
+
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
+
+                                while (!player1.isClicked()) {
+                                    player1 = questionPage_notChoseCat1.findClickPlay();
+                                    sleepThisProgram();
+                                }
+                                player1.setClicked(false);
+                                player1 = questionPage_notChoseCat1.addPoints(player1);
+                                player1 = questionPage_notChoseCat1.endGame(player1);
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                        System.out.println("Send success!!!!!");
+                            System.out.println("Send success!!!!!");
 
 
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
 
 
-                    } else if (player1.getPLAYER() == 2) {
-                        GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
-                        gamePage_waiting3.showWindow(player1, player2);
+                        } else if (player1.getPLAYER() == 2) {
+                            GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
+                            gamePage_waiting3.showWindow(player1, player2);
 
 
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                        System.out.println("Send success!!!!!");
+                            System.out.println("Send success!!!!!");
 
 
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
 
-                        gamePage_waiting3.closeWindow();
+                            gamePage_waiting3.closeWindow();
 
+
+                        }
+
+                        if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                            gameIsPlaying = false;
+                            break;
+                        }
 
                     }
 
-                    if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()){
-                        gameIsPlaying = false;
-                        break;
+                    if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                        if (player1.getPLAYER() == 1) {
+
+                            ResultPage r = new ResultPage(player1, player2);
+
+
+                            work = false;
+                            while (!work) {
+                                work = r.findClickAndPlay();
+
+                            }
+                            r.dispose();
+
+
+                        } else if (player1.getPLAYER() == 2) {
+
+                            ResultPage rw = new ResultPage(player1, player2);
+
+                            work = false;
+                            while (!work) {
+                                work = rw.findClickAndPlay();
+
+                            }
+                            rw.dispose();
+                        }
+
+                        if (player1.getPLAYER() == 1) {
+                            GamePage_result gamePage_result = new GamePage_result(player1, player2);
+
+                            player1.setClicked(false);
+
+                            while (player1.getCloseGameOption() == 0) {
+                                player1 = gamePage_result.findClickPlay();
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+
+                            gamePage_result.dispose();
+
+
+                        } else if (player1.getPLAYER() == 2) {
+                            GamePage_result gamePage_result2 = new GamePage_result(player1, player2);
+
+                            player1.setClicked(false);
+
+                            while (player1.getCloseGameOption() == 0) {
+                                player1 = gamePage_result2.findClickPlay();
+
+                            }
+
+                            new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
+
+
+                            System.out.println("Send success!!!!!");
+
+
+                            player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
+                            System.out.println("Receive success!!!!");
+
+
+                            gamePage_result2.dispose();
+                        }
+
+                        if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
+
+                        } else {
+                            HejDå bye = new HejDå(player1, player2);
+                            Thread.sleep(5000);
+                            System.exit(1);
+                        }
+
                     }
+
 
                 }
-
-                if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()){
-                    if (player1.getPLAYER() == 1){
-
-                        ResultPage r = new ResultPage(player1,player2);
-
-
-                        work= false;
-                        while (!work) {
-                            work = r.findClickAndPlay();
-
-                        }
-                        r.dispose();
-
-
-                    }else if (player1.getPLAYER() == 2){
-
-                        ResultPage rw = new ResultPage(player1,player2);
-
-                        work= false;
-                        while (!work) {
-                            work = rw.findClickAndPlay();
-
-                        }
-                        rw.dispose();
-                    }
-
-                    if (player1.getPLAYER() == 1){
-                        GamePage_result gamePage_result = new GamePage_result(player1,player2);
-
-                       player1.setClicked(false);
-                        while (!player1.isClicked()) {
-                          player1 = gamePage_result.findClickPlay();
-
-                        }
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
-
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-                        gamePage_result.dispose();
-
-
-                    }else if (player1.getPLAYER() == 2){
-                       GamePage_result gamePage_result2 = new GamePage_result(player1,player2);
-
-                    player1.setClicked(false);
-                    while (!player1.isClicked()) {
-                        player1 = gamePage_result2.findClickPlay();
-
-                    }
-
-                        new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
-
-
-                        System.out.println("Send success!!!!!");
-
-
-                        player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                        System.out.println("Receive success!!!!");
-
-
-                    gamePage_result2.dispose();
-                }
-
-                    }
-
-
-                }
-
+            }
             //LÄGG TILL WHILE HÄR
 
-
+/*
                 work = true;
                 while (work){
                     System.out.println("round cat size: " + player1.getRoundCategories().size());
@@ -451,6 +475,8 @@ public class ClientToSend implements Serializable {
                     Thread.sleep(10000);
                 }
 
+
+ */
 
 
 
