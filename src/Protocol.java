@@ -45,11 +45,10 @@ public class Protocol {
         } else if (pro.getSTATE() == 4){
 
             //FIRST ROUND
-
             return gamePagePlayProtocol(pro, player2);
 
-
         } else if (pro.getSTATE() == 5){
+
             CategoryPage q = new CategoryPage(pro);
             while(!pro.isClicked()){
                 pro = q.findClickPlay();
@@ -116,12 +115,6 @@ public class Protocol {
                     pro.setClicked(false);
                 }
             }
-
-
-            //OM DU HAR FÅTT VÄLJA KATEGORI
-
-
-
                 pro.setSTATE(3);
 
             System.out.println("vi når till true");
