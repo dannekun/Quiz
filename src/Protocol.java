@@ -31,7 +31,6 @@ public class Protocol {
         else if (pro.getSTATE() == 3){
 
             System.out.println("du kom till 3");
-            //GamePage_waiting g = new GamePage_waiting(pro);
             if (pro.getRound() == 0 && pro.getPLAYER() == 1){
                 pro.setSTATE(4);
             }else if (pro.getRound() == 0 && pro.getPLAYER() == 2) {
@@ -73,7 +72,7 @@ public class Protocol {
 
             //OM DU INTE HAR FÅTT VÄLJA KATERGORI
 
-            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound() && !pro.isChooseCategories()){
+            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1PlayedRound1() && !pro.isChooseCategories()){
 
                 for (int i = 0; i <pro.getMaxQuestion() ; i++) {
 
@@ -96,7 +95,6 @@ public class Protocol {
                 }
 
             }else {
-
                 for (int i = 0; i < pro.getMaxQuestion(); i++) {
                     QuestionPage quest = new QuestionPage(pro);
 
@@ -116,7 +114,6 @@ public class Protocol {
                     pro = quest.endGame(pro);
                     System.out.println(pro.getQuestion());
                     pro.setClicked(false);
-
                 }
             }
 
@@ -128,7 +125,7 @@ public class Protocol {
                 pro.setSTATE(3);
 
             System.out.println("vi når till true");
-            pro.setPlayer1playedRound(true);
+            pro.setPlayer1PlayedRound1(true);
 
 
 
@@ -199,7 +196,7 @@ public Player gamePagePlayProtocol(Player pro, Player player2) throws IOExceptio
         pro = checkState5or6(pro);
 
         //PLUSSAR PÅ 1 FÖR ATT HITTA KATEGORINAMN I GAMEPAGE SEN KODDA MODULES
-    }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
+    }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1PlayedRound1()){
         pro.addToList(player2.getRoundCategories().get(0));
         pro.setRound(pro.getRound()+1);
         pro = gamePage_PlayPlayer(pro,player2);
@@ -209,11 +206,10 @@ public Player gamePagePlayProtocol(Player pro, Player player2) throws IOExceptio
 
         pro.setChooseCategories(false);
         System.out.println("bram du är inte false");
-        pro.setPlayer1playedRound(false);
+        pro.setPlayer1PlayedRound1(false);
         //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
 
     }else {
-
         pro = gamePage_PlayPlayer(pro, player2);
        // pro.setRound(pro.getRound()+1);
         if (pro.getRound()%2 == 0 && pro.getPLAYER() == 1){

@@ -43,9 +43,21 @@ public class Player implements Serializable {
         this.didYouGetIt = didYouGetIt;
     }
 
-    boolean player1playedRound;
+    boolean player1PlayedRound1;
 
-    boolean players2PlayedRound;
+    boolean player1PlayedRound2;
+
+    boolean player1PlayedRound3;
+
+
+
+    boolean players2PlayedRound1;
+
+    boolean player2PlayedRound2;
+
+    boolean player2PlayedRound3;
+
+
 
     boolean connected = false;
 
@@ -54,12 +66,44 @@ public class Player implements Serializable {
     boolean clicked = false;
 
 
-    public boolean isPlayers2PlayedRound() {
-        return players2PlayedRound;
+    public boolean isPlayer1PlayedRound2() {
+        return player1PlayedRound2;
     }
 
-    public void setPlayers2PlayedRound(boolean players2PlayedRound) {
-        this.players2PlayedRound = players2PlayedRound;
+    public void setPlayer1PlayedRound2(boolean player1PlayedRound2) {
+        this.player1PlayedRound2 = player1PlayedRound2;
+    }
+
+    public boolean isPlayer1PlayedRound3() {
+        return player1PlayedRound3;
+    }
+
+    public void setPlayer1PlayedRound3(boolean player1PlayedRound3) {
+        this.player1PlayedRound3 = player1PlayedRound3;
+    }
+
+    public boolean isPlayer2PlayedRound2() {
+        return player2PlayedRound2;
+    }
+
+    public void setPlayer2PlayedRound2(boolean player2PlayedRound2) {
+        this.player2PlayedRound2 = player2PlayedRound2;
+    }
+
+    public boolean isPlayer2PlayedRound3() {
+        return player2PlayedRound3;
+    }
+
+    public void setPlayer2PlayedRound3(boolean player2PlayedRound3) {
+        this.player2PlayedRound3 = player2PlayedRound3;
+    }
+
+    public boolean isPlayers2PlayedRound1() {
+        return players2PlayedRound1;
+    }
+
+    public void setPlayers2PlayedRound1(boolean players2PlayedRound1) {
+        this.players2PlayedRound1 = players2PlayedRound1;
     }
 
     public boolean isClicked() {
@@ -70,12 +114,12 @@ public class Player implements Serializable {
         this.clicked = clicked;
     }
 
-    public boolean isPlayer1playedRound() {
-        return player1playedRound;
+    public boolean isPlayer1PlayedRound1() {
+        return player1PlayedRound1;
     }
 
-    public void setPlayer1playedRound(boolean player1playedRound) {
-        this.player1playedRound = player1playedRound;
+    public void setPlayer1PlayedRound1(boolean player1PlayedRound1) {
+        this.player1PlayedRound1 = player1PlayedRound1;
     }
 
     public boolean isEndState() {

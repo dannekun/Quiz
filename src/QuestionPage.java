@@ -435,12 +435,12 @@ public class QuestionPage extends JFrame implements ActionListener {
           //  pro.roundAnswers.clear();
             if (pro.getPLAYER() == 1){
                 System.out.println("du är player 1");
-                pro.setPlayer1playedRound(true);
-                pro.setPlayers2PlayedRound(false);
+                pro.setPlayer1PlayedRound1(true);
+                pro.setPlayers2PlayedRound1(false);
             }else if (pro.getPLAYER() == 2){
                 System.out.println("du är player 2");
-                pro.setPlayer1playedRound(false);
-                pro.setPlayers2PlayedRound(true);
+                pro.setPlayer1PlayedRound1(false);
+                pro.setPlayers2PlayedRound1(true);
             }
 
             System.out.println("du är i lika mycket ");
