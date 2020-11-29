@@ -6,7 +6,7 @@ public class Main {
 
         Player pl = new Player();
         Player pl1 = new Player();
-      GamePage_result p = new GamePage_result(pl,pl1);
-
+     // GamePage_result p = new GamePage_result(pl,pl1);
+HejDå bye = new HejDå(pl,pl1);
     }
 }

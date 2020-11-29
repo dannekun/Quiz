@@ -27,6 +27,7 @@ public class HejDå extends JFrame implements ActionListener {
 
     Player pro;
     public HejDå(Player p, Player player2) {
+
         pro = p;
         add(panel);
         panel.setLayout(new BorderLayout());
@@ -44,6 +45,9 @@ public class HejDå extends JFrame implements ActionListener {
 
         panel.add(winner, BorderLayout.CENTER);
 
+        //TODO LÄGG TILL BILD PÅ HEJ DÅ!!!
+
+        /*
         if(pro.getPoints() > player2.getPoints()){
             panel.add(winner);
         }else if (pro.getPoints() < player2.getPoints()){
@@ -52,6 +56,8 @@ public class HejDå extends JFrame implements ActionListener {
             //LÄGG TILL LIKA HÄR
             JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
         }
+
+         */
 
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
