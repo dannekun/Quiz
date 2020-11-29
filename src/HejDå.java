@@ -3,10 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class ResultPage extends JFrame implements ActionListener {
+public class HejDå extends JFrame implements ActionListener {
 
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
@@ -28,7 +26,7 @@ public class ResultPage extends JFrame implements ActionListener {
     }
 
     Player pro;
-    public ResultPage(Player p, Player player2) {
+    public HejDå(Player p, Player player2) {
         pro = p;
         add(panel);
         panel.setLayout(new BorderLayout());
