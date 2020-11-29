@@ -453,12 +453,14 @@ public class ClientToSend implements Serializable {
                         }
 
                         if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
-
+                        gameIsPlaying = true;
                         } else {
                             HejDå bye = new HejDå(player1, player2);
                             Thread.sleep(5000);
                             System.exit(1);
                         }
+                        //TODO FIXA SÅ MAN KAN SPELA IGEN OCH RÄTT FRÅGOR, SISTA SPELAREN PÅ SISTA RONDEN FÅR FEL FRÅGOR MEN RÄTT KATEGORI, FIXA RÄTT FÄRGER I GAMEPAGE WAITING
+
 
                     }
 
