@@ -83,12 +83,7 @@ public class GamePage_waiting extends JFrame {
     }
 
     public void showWindow(Player player, Player player2){
-/*
-        JPanel player1Panel = new JPanel();
-        JPanel player2Panel = new JPanel();
-        JPanel categoriepanel = new JPanel();
 
- */
 
         player1Panel.removeAll();
         player2Panel.removeAll();

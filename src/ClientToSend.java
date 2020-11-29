@@ -17,12 +17,7 @@ public class ClientToSend implements Serializable {
         Player player1 = new Player();
         Player player2 = new Player();
 
-        Player player4 = new Player();
-        Player player3 = new Player();
-
-        player3.setName("Mahmud");
-        player4.setName("Sigrun");
-
+        int waitingForPlayer  = 0;
 
         HomePage_waiting homePage_waiting = new HomePage_waiting();
         GamePage_waiting gamePage_waiting = new GamePage_waiting();
@@ -68,6 +63,7 @@ public class ClientToSend implements Serializable {
 
 
                 System.out.println(player2.getName());
+                System.out.println("Du blev spelare" + player2.getPLAYER());
 
 
                 if (player1.getPLAYER() == 0) {
@@ -77,6 +73,7 @@ public class ClientToSend implements Serializable {
                         player1.setPLAYER(2);
                     }
                 }
+
 
                 System.out.println(player2.getName());
                 System.out.println(player2.getPLAYER());
@@ -95,11 +92,43 @@ public class ClientToSend implements Serializable {
                 while (player1.isEndState()) {
 
 
+                    //SÅ LÄNGE QUESTION ÄR ÖVER 0. question > 0
+                    //
+                    if (player1.getSTATE() == 3 && player1.getPLAYER() == 1 && player1.getRound() > 0 && player2.getRound() > 0){
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
+                    }else if (player1.getSTATE() == 3 && player1.getPLAYER() == 2 && player1.getRound() > 0 && player2.getRound() > 0){
+                        gamePage_waiting.closeWindow();
+                        player1.setSTATE(4);
+                    }
+
+                        /*
+                    if (player1.getSTATE() == 3 && player1.getPLAYER() == 1 && !player1.isPlayer1playedRound() && player2.isPlayers2PlayedRound()){
+                    //GAMEPAGE_WAITING.SHOWWINDOW
+                        //PLAYER1
+
+                    }else if (player1.getSTATE() == 3 && player1.getPLAYER() == 2 && player1.isPlayer1playedRound() && !player2.isPlayers2PlayedRound()){
+                        //GAMEPAGE_WAITING.SHOWWINDOW
+                        //PLAYER2
+                    }
+
+
+                         */
+
+
                     if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
                         System.out.println(player1.getRoundCategories().size());
+                        if (waitingForPlayer == 1 && player1.getPLAYER() == 1){
+                            player1.setPlayer1playedRound(false);
+                        }else if (waitingForPlayer == 1 && player1.getPLAYER() == 2){
+                            player1.setPlayers2PlayedRound(false);
+                        }
+
+                        waitingForPlayer++;
+
 
                     }
 
@@ -109,6 +138,8 @@ public class ClientToSend implements Serializable {
                     } else if (player1.isPlayers2PlayedRound()) {
                         gamePage_waiting.closeWindow();
                         player1.getQuestionToPassBetweenPlayers().clear();
+                    }else {
+                        System.out.println("YOU FUCKED UP");
                     }
 
 

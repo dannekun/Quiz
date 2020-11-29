@@ -70,14 +70,24 @@ public class Protocol {
                 System.out.println("bram du är inte false");
                 pro.setPlayer1playedRound(false);
                 //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
+            }else if (pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && player2.isPlayers2PlayedRound() ||
+            pro.getPLAYER() == 2 && pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && player2.isPlayer1playedRound()){
+                //OM DU INTE HAR VALT SÅ FÅR DU VÄLJA KAT
+                pro.setSTATE(5);
+            }else if (!pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && !player2.isPlayers2PlayedRound() ||
+                    pro.getPLAYER() == 2 && !pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && !player2.isPlayer1playedRound()){
+                //OM DU HAR PRECIS SPELAT EN DU INTE HAR VALT
+                pro.setSTATE(6);
             }
 
             //REST OF THE ROUND
-
+/*
             if (pro.getRound() < pro.getMaxRound() && pro.getPLAYER() == 2 && !pro.isPlayer1playedRound() && pro.isPlayers2PlayedRound()){
 
             }
 
+
+ */
 
 
             pro.setRound(pro.getRound()+1);

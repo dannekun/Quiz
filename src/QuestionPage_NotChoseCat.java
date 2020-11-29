@@ -523,6 +523,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         return pro;
     }
 
+
     public Player findClickPlay(){
         answer1.addActionListener(this);
         answer2.addActionListener(this);
