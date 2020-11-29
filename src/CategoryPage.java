@@ -19,6 +19,7 @@ import java.util.List;
  */
 public class CategoryPage extends JFrame implements ActionListener {
 
+
     final int animalsNature = 0;
     final int artLiterature = 1;
     final int generalKnowledge = 2;
@@ -325,7 +326,7 @@ public class CategoryPage extends JFrame implements ActionListener {
             //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
            // categoriesChosen.add(cat1);
            a = true;
-            pro.setClicked(true);
+           setClicked(true);
            // QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category2){
@@ -333,14 +334,14 @@ public class CategoryPage extends JFrame implements ActionListener {
             //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
            // categoriesChosen.add(cat2);
             b = true;
-            pro.setClicked(true);
+            setClicked(true);
            // QuestionPage q = new QuestionPage(pro);
 
         }else if (e.getSource() == category3){
             dispose();
             //categoriesChosen.add(cat3);
            c = true;
-            pro.setClicked(true);
+            setClicked(true);
             //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
             //QuestionPage q = new QuestionPage(pro);
 
@@ -361,11 +362,11 @@ public class CategoryPage extends JFrame implements ActionListener {
         return pro;
     }
 
-    public Player findClickPlay(){
+    public Boolean findClickPlay(){
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
       //  pro = addCatToPlayer();
-        return pro;
+        return isClicked();
     }
 }

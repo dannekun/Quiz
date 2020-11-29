@@ -16,7 +16,7 @@ public class ResultPage extends JFrame {
     JLabel loser = new JLabel(new ImageIcon(loserPic));
 
     Player pro;
-    public ResultPage(Player p){
+    public ResultPage(Player p, Player player2){
         pro = p;
         add(panel);
         panel.setLayout(new BorderLayout());
@@ -34,11 +34,15 @@ public class ResultPage extends JFrame {
 
         panel.add(winner, BorderLayout.CENTER);
 
-     /*   if(pro.getPoints() > player2.getPoints())
-            panel.add("winner")
-            else
-            panel.add("loser")
-     */
+        if(pro.getPoints() > player2.getPoints()){
+            panel.add(winner);
+        }else if (pro.getPoints() < player2.getPoints()){
+            panel.add(loser);
+        }else if (pro.getPoints() == player2.getPoints()){
+            //LÄGG TILL LIKA HÄR
+            JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
+        }
+
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
         ok.setBackground(new Color(77, 255, 77));
@@ -46,6 +50,7 @@ public class ResultPage extends JFrame {
         ok.setFont(new Font("Arial", Font.PLAIN, 16));
         //ok.setContentAreaFilled(false);
         ok.setOpaque(true);
+        ok.setBorderPainted(false);
 
         ok.addMouseListener(new MouseAdapter() {
             @Override

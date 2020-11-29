@@ -35,6 +35,10 @@ public class Protocol {
                 pro.setSTATE(4);
             }else if (pro.getRound() == 0 && pro.getPLAYER() == 2) {
                 pro.setSTATE(4);
+            }else if (pro.getRound() == 1 && pro.getPLAYER() == 1){
+                pro.setSTATE(4);
+            }else if (pro.getRound() == 1 && pro.getPLAYER() == 2){
+
             }
 
             System.out.println("du kom till state 3 men har redan spelat");
@@ -51,7 +55,7 @@ public class Protocol {
 
             CategoryPage q = new CategoryPage(pro);
             while(!pro.isClicked()){
-                pro = q.findClickPlay();
+                //pro = q.findClickPlay();
                 pro.setSTATE(6);
                 pro.setChooseCategories(true);
                 sleepThisProgram();
@@ -71,8 +75,7 @@ public class Protocol {
 
             //OM DU INTE HAR FÅTT VÄLJA KATERGORI
 
-            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1PlayedRound1() && !pro.isChooseCategories()){
-
+            if (pro.getRound() == 1 && pro.getPLAYER() == 2){
                 for (int i = 0; i <pro.getMaxQuestion() ; i++) {
 
                     QuestionPage_NotChoseCat quest_wait = new QuestionPage_NotChoseCat(pro,player2);
@@ -92,13 +95,9 @@ public class Protocol {
                     pro.setClicked(false);
 
                 }
-
-            }else {
+            }else if (pro.getRound() == 1 && pro.getPLAYER() == 1){
                 for (int i = 0; i < pro.getMaxQuestion(); i++) {
                     QuestionPage quest = new QuestionPage(pro);
-
-                    System.out.println("du är i questionpage");
-
 
                     while(!pro.isClicked()){
                         pro = quest.findClickPlay();
@@ -125,7 +124,7 @@ public class Protocol {
             return pro;
            // STATE = RESULT;
         }else if (pro.getSTATE() == 7){
-            ResultPage r = new ResultPage(pro);
+           // ResultPage r = new ResultPage(pro);
         }
 
 
@@ -183,18 +182,18 @@ public Player gamePagePlayProtocol(Player pro, Player player2) throws IOExceptio
 
     if (pro.getRound() == 0 && pro.getPLAYER() == 1){
         //RUNDA 1 FÖR PLAYER 1
-
         pro = gamePage_PlayPlayer(pro,player2);
         pro.setRound(pro.getRound()+1);
-        pro = checkState5or6(pro);
+        pro.setSTATE(5);
 
         //PLUSSAR PÅ 1 FÖR ATT HITTA KATEGORINAMN I GAMEPAGE SEN KODDA MODULES
-    }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1PlayedRound1()){
+    }else if (pro.getRound() == 0 && pro.getPLAYER() == 2){
+        //DEN UNDER SKA FLYTTAS PÅ
         pro.addToList(player2.getRoundCategories().get(0));
         pro.setRound(pro.getRound()+1);
         pro = gamePage_PlayPlayer(pro,player2);
         pro.setRound(pro.getRound()-1);
-        pro = checkState5or6(pro);
+        pro.setSTATE(6);
         pro.setRound(pro.getRound()+1);
 
         pro.setChooseCategories(false);
@@ -220,30 +219,14 @@ public Player gamePagePlayProtocol(Player pro, Player player2) throws IOExceptio
 
     pro.setClicked(false);
     return pro;
-/*
-    else if (player2.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && player2.isPlayers2PlayedRound() ||
-            pro.getPLAYER() == 2 && pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && player2.isPlayer1playedRound()){
-        //OM DU INTE HAR VALT SÅ FÅR DU VÄLJA KAT
-        System.out.println("State 5 är du i");
-        pro.setSTATE(5);
-    }else if (!pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && !player2.isPlayers2PlayedRound() ||
-            pro.getPLAYER() == 2 && !pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && !player2.isPlayer1playedRound()){
-        //OM DU HAR PRECIS SPELAT EN DU INTE HAR VALT
-        pro.setSTATE(6);
-        pro.setChooseCategories(false);
-    }
-
- */
-
-
 
 }
 
 public Player gamePage_PlayPlayer(Player pro, Player player2) throws IOException, InterruptedException {
-    GamePage_play gamePage_play = new GamePage_play(pro, player2);
+   // GamePage_play gamePage_play = new GamePage_play(pro, player2);
 
     while(!pro.isClicked()){
-        pro = gamePage_play.findClickPlay();
+       // pro = gamePage_play.findClickPlay();
         sleepThisProgram();
     }
       return pro;

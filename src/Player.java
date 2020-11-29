@@ -296,6 +296,11 @@ public class Player implements Serializable {
         return answers;
     }
 
+    public List<Boolean> changeList(List<Boolean> temp) {
+        answers = temp;
+        return answers;
+    }
+
     public void setAnswers(List<Boolean> answers) {
         this.answers = answers;
     }

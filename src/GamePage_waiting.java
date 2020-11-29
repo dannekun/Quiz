@@ -191,11 +191,8 @@ public class GamePage_waiting extends JFrame {
         if (pro.getRound() >= 1){
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
 
-
                 System.out.println(pro.getRoundCategories().get(i));
-
-
-                labelNames.get(i).setText(pro.roundCategories.get(i));
+                labelNames.get(i).setText(pro.getRoundCategories().get(i));
                 labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
                 labelNames.get(i).setBackground( new Color(51, 133, 255));
                 labelNames.get(i).setForeground(Color.WHITE);
@@ -290,6 +287,7 @@ public class GamePage_waiting extends JFrame {
     public void closeWindow(){
         dispose();
     }
+
 
  /*   @Override
     public void actionPerformed(ActionEvent e) {

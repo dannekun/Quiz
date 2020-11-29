@@ -24,6 +24,16 @@ public class QuestionPage extends JFrame implements ActionListener {
 
  //   Database database = new Database();
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
     JLabel round = new JLabel("Round nr");
@@ -340,6 +350,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         pro.setDidYouGetIt(false);
 
         if (e.getSource() == answer1) {
+
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
             if (!checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.RED);
@@ -354,7 +365,9 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
             pro.setClicked(true);
+            setClicked(true);
         } else if (e.getSource() == answer2) {
+
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
             if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
@@ -367,8 +380,9 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
             pro.setClicked(true);
-
+            setClicked(true);
         } else if (e.getSource() == answer3) {
+
             // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
             if (!checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.RED);
@@ -381,6 +395,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
             pro.setClicked(true);
+            setClicked(true);
         } else if (e.getSource() == answer4) {
             // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
             if (!checkAnswers(randomAnswerList.get(3))) {
@@ -394,6 +409,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
             pro.setClicked(true);
+            setClicked(true);
         }
 
         findRightAnswerAndPaint(answer1,answer2,answer3,answer4,rightAnswerFromList);
@@ -427,7 +443,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
             dispose();
-            ResultPage r = new ResultPage(pro);
+
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
            // pro.setQuestion(0);

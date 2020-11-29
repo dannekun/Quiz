@@ -129,7 +129,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         answer4.setText(randomAnswerList.get(3));
 
         category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
-        pro.addToList(player2.getRoundCategories().get(pro.getRound()-1));
+       // pro.addToList(player2.getRoundCategories().get(pro.getRound()-1));
 
         for (int i = 0; i < pro.getMaxQuestion(); i++) {
             buttonsToPaintList.add(new JButton());
@@ -354,7 +354,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        pro.setDidYouGetIt(false);
+        //pro.setDidYouGetIt(false);
 
         if (e.getSource() == answer1) {
             //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
@@ -444,7 +444,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
 
             dispose();
-            ResultPage r = new ResultPage(pro);
+
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
            // pro.setQuestion(0);
