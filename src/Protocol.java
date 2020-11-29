@@ -36,8 +36,6 @@ public class Protocol {
                 pro.setSTATE(4);
             }else if (pro.getRound() == 0 && pro.getPLAYER() == 2) {
                 pro.setSTATE(4);
-            }else if (pro.getQuestion() < pro.getMaxQuestion()){
-                pro.setSTATE(4);
             }
 
             System.out.println("du kom till state 3 men har redan spelat");
@@ -46,56 +44,11 @@ public class Protocol {
 
            // STATE = CHOSECAT;
         } else if (pro.getSTATE() == 4){
-            GamePage_play gamePage_play = new GamePage_play(pro, player2);
-
-
-
-
-            while(!pro.isClicked()){
-                pro = gamePage_play.findClickPlay();
-                sleepThisProgram();
-            }
-            System.out.println(pro.getRound());
-            System.out.println(pro.isPlayer1playedRound());
-            System.out.println(pro.getPLAYER());
-            System.out.println(pro.isPlayers2PlayedRound());
-
 
             //FIRST ROUND
 
-            if (pro.getRound() == 0 && pro.getPLAYER() == 1){
-                pro.setSTATE(5);
-            }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
-                pro.setSTATE(6);
-                pro.setChooseCategories(false);
-                System.out.println("bram du är inte false");
-                pro.setPlayer1playedRound(false);
-                //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
-            }else if (pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && player2.isPlayers2PlayedRound() ||
-            pro.getPLAYER() == 2 && pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && player2.isPlayer1playedRound()){
-                //OM DU INTE HAR VALT SÅ FÅR DU VÄLJA KAT
-                pro.setSTATE(5);
-            }else if (!pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && !player2.isPlayers2PlayedRound() ||
-                    pro.getPLAYER() == 2 && !pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && !player2.isPlayer1playedRound()){
-                //OM DU HAR PRECIS SPELAT EN DU INTE HAR VALT
-                pro.setSTATE(6);
-                pro.setChooseCategories(false);
-            }
+            return gamePagePlayProtocol(pro, player2);
 
-            //REST OF THE ROUND
-/*
-            if (pro.getRound() < pro.getMaxRound() && pro.getPLAYER() == 2 && !pro.isPlayer1playedRound() && pro.isPlayers2PlayedRound()){
-
-            }
-
-
- */
-            System.out.println("HÄR LOOPAR VI ROUND");
-            pro.setRound(pro.getRound()+1);
-           // pro.setQuestion(pro.getQuestion()+1);
-
-            pro.setClicked(false);
-            return pro;
 
         } else if (pro.getSTATE() == 5){
             CategoryPage q = new CategoryPage(pro);
@@ -209,6 +162,7 @@ public Player logginProtocol(Player pro) throws InterruptedException {
 
 }
 
+
 public Player queueWaitProtocol(Player pro){
 
     pro.setEndState(false);
@@ -233,6 +187,87 @@ public Player queuePlayProtocol(Player pro) throws InterruptedException {
     return pro;
 
 
+}
+
+public Player gamePagePlayProtocol(Player pro, Player player2) throws IOException, InterruptedException {
+
+    if (pro.getRound() == 0 && pro.getPLAYER() == 1){
+        //RUNDA 1 FÖR PLAYER 1
+
+        pro = gamePage_PlayPlayer(pro,player2);
+        pro.setRound(pro.getRound()+1);
+        pro = checkState5or6(pro);
+
+        //PLUSSAR PÅ 1 FÖR ATT HITTA KATEGORINAMN I GAMEPAGE SEN KODDA MODULES
+    }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
+        pro.addToList(player2.getRoundCategories().get(0));
+        pro.setRound(pro.getRound()+1);
+        pro = gamePage_PlayPlayer(pro,player2);
+        pro.setRound(pro.getRound()-1);
+        pro = checkState5or6(pro);
+        pro.setRound(pro.getRound()+1);
+
+        pro.setChooseCategories(false);
+        System.out.println("bram du är inte false");
+        pro.setPlayer1playedRound(false);
+        //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
+
+    }else {
+
+        pro = gamePage_PlayPlayer(pro, player2);
+       // pro.setRound(pro.getRound()+1);
+        if (pro.getRound()%2 == 0 && pro.getPLAYER() == 1){
+            pro.setSTATE(5);
+        }else if (pro.getRound()%2 !=0 && pro.getPLAYER() == 2){
+            pro.setSTATE(6);
+        }
+    }
+
+
+
+
+    System.out.println("HÄR LOOPAR VI ROUND");
+    System.out.println("PRO GET ROUND: " + pro.getRound());
+
+    pro.setClicked(false);
+    return pro;
+/*
+    else if (player2.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && player2.isPlayers2PlayedRound() ||
+            pro.getPLAYER() == 2 && pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && player2.isPlayer1playedRound()){
+        //OM DU INTE HAR VALT SÅ FÅR DU VÄLJA KAT
+        System.out.println("State 5 är du i");
+        pro.setSTATE(5);
+    }else if (!pro.isPlayer1playedRound() && pro.getPLAYER() == 1 ||player2.getPLAYER() == 2 && !player2.isPlayers2PlayedRound() ||
+            pro.getPLAYER() == 2 && !pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && !player2.isPlayer1playedRound()){
+        //OM DU HAR PRECIS SPELAT EN DU INTE HAR VALT
+        pro.setSTATE(6);
+        pro.setChooseCategories(false);
+    }
+
+ */
+
+
+
+}
+
+public Player gamePage_PlayPlayer(Player pro, Player player2) throws IOException, InterruptedException {
+    GamePage_play gamePage_play = new GamePage_play(pro, player2);
+
+    while(!pro.isClicked()){
+        pro = gamePage_play.findClickPlay();
+        sleepThisProgram();
+    }
+      return pro;
+}
+
+public Player checkState5or6(Player pro){
+    if (pro.getRound()%2 != 0 && pro.getPLAYER() == 1){
+        pro.setSTATE(5);
+    }else if (pro.getRound()%2 ==0 && pro.getPLAYER() == 2){
+        pro.setSTATE(6);
+    }
+
+        return pro;
 }
 
 }

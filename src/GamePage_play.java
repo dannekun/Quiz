@@ -166,6 +166,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         labelNames = createLabelList(getNumberOfRounds());
 
         System.out.println("STORLEK PÅ ROUNDCATEGORIES: " + pro.getRoundCategories());
+        System.out.println("STORLEK PÅ QUESTIONBETWEENPLAYERS: " + pro.getQuestionToPassBetweenPlayers());
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
             System.out.println(pro.getRound());

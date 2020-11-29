@@ -85,13 +85,14 @@ public class GamePage_waiting extends JFrame {
     public void showWindow(Player player, Player player2){
 
 
-
+        lowestPanel.removeAll();
+        stats.removeAll();
         player1Panel.removeAll();
         player2Panel.removeAll();
         categoriepanel.removeAll();
-        repaint();
-        revalidate();
 
+        revalidate();
+        repaint();
 
 
 
