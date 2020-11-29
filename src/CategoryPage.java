@@ -316,6 +316,9 @@ public class CategoryPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
        //LÄGG TILL BOOLEAN HÄR
+        a = false;
+        b = false;
+        c = false;
 
         if (e.getSource() == category1){
             dispose();
@@ -347,10 +350,13 @@ public class CategoryPage extends JFrame implements ActionListener {
     public Player addCatToPlayer(){
         if (a){
             pro.addToList(cat1);
+            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT1");
         }else if (b){
             pro.addToList(cat2);
+            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT2");
         }else if (c){
             pro.addToList(cat3);
+            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT3");
         }
         return pro;
     }

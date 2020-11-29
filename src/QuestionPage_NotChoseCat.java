@@ -473,7 +473,8 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
                 pro.addToRoundAnswersList(false);
             }
 
-
+            pro.setQuestion(0);
+            pro.getRoundAnswers().clear();
             dispose();
             // HÄR SKA DET VA GAMEPAGE_WAITING
             // STATE 3

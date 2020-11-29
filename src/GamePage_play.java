@@ -73,6 +73,10 @@ public class GamePage_play extends JFrame implements ActionListener {
     Player pro;
     public GamePage_play(Player player, Player player2) throws FileNotFoundException, IOException {
 
+        categoriepanel.removeAll();
+        revalidate();
+        repaint();
+
         pro = player;
 
         playerName2.setText(player2.getName());
@@ -161,10 +165,12 @@ public class GamePage_play extends JFrame implements ActionListener {
 
         labelNames = createLabelList(getNumberOfRounds());
 
+        System.out.println("STORLEK PÅ ROUNDCATEGORIES: " + pro.getRoundCategories());
+
         for (int i = 0; i < pro.getMaxRound(); i++) {
             System.out.println(pro.getRound());
             if (i < pro.getRound()){
-                labelNames.get(i).setText(pro.roundCategories.get(i));
+                labelNames.get(i).setText(pro.getRoundCategories().get(i));
             }else {
                 labelNames.get(i).setText("          ");
             }

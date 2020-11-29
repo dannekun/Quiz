@@ -85,6 +85,7 @@ public class GamePage_waiting extends JFrame {
     public void showWindow(Player player, Player player2){
 
 
+
         player1Panel.removeAll();
         player2Panel.removeAll();
         categoriepanel.removeAll();
@@ -165,10 +166,11 @@ public class GamePage_waiting extends JFrame {
 
  */
         labelNames = createLabelList(getNumberOfRounds());
+        System.out.println("STORLEK PÅ ROUNDCATEGORIES: " + pro.getRoundCategories());
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
             if (i < pro.getRound()){
-                labelNames.get(i).setText(pro.roundCategories.get(i));
+                labelNames.get(i).setText(pro.getRoundCategories().get(i));
             }else {
                 labelNames.get(i).setText("          ");
             }

@@ -116,7 +116,7 @@ public class ClientToSend implements Serializable {
                          */
 
 
-                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1) {
+                    if (player1.getSTATE() == 3 && player2.getRound() == 0 && player1.getPLAYER() == 1 && player1.getRound() >= 1) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
                         System.out.println("player 1 väntar");
@@ -148,7 +148,7 @@ public class ClientToSend implements Serializable {
                     System.out.println("du kommer ur alla frågor");
 
 
-                    if (player1.getSTATE() == 3 && player2.getQuestion() == 0 && player1.getPLAYER() == 2) {
+                    if (player1.getSTATE() == 3 && player2.getRound() == 0 && player1.getPLAYER() == 2) {
                         gamePage_waiting.showWindow(player1, player2);
                         player1.setEndState(false);
 

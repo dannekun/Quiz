@@ -61,6 +61,8 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         pro = p;
 
+        randomListToPull.clear();
+
         round.setText(("Rond " + pro.getRound()));
         questionNumber.setText("Fråga " + (pro.getQuestion()+1));
 
@@ -85,8 +87,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
             pro.addQuestionBetweenPlayers(randomListToPull.get(0));
         } else {
-
-
             randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
 
             //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
@@ -456,7 +456,8 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.addToRoundAnswersList(false);
             }
 
-
+            pro.setQuestion(0);
+            pro.getRoundAnswers().clear();
             dispose();
             // HÄR SKA DET VA GAMEPAGE_WAITING
             // STATE 3

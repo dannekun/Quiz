@@ -23,6 +23,16 @@ public class Player implements Serializable {
     int maxQuestion;
     boolean finished = false;
 
+    boolean chooseCategories = false;
+
+    public boolean isChooseCategories() {
+        return chooseCategories;
+    }
+
+    public void setChooseCategories(boolean chooseCategories) {
+        this.chooseCategories = chooseCategories;
+    }
+
     boolean didYouGetIt = false;
 
     public boolean isDidYouGetIt() {

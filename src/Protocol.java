@@ -67,6 +67,7 @@ public class Protocol {
                 pro.setSTATE(5);
             }else if (pro.getRound() == 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
                 pro.setSTATE(6);
+                pro.setChooseCategories(false);
                 System.out.println("bram du är inte false");
                 pro.setPlayer1playedRound(false);
                 //RETURN METOD MED FALSE PÅ PLAYED ROUND FÖR PLAYER 2
@@ -78,6 +79,7 @@ public class Protocol {
                     pro.getPLAYER() == 2 && !pro.isPlayers2PlayedRound() || player2.getPLAYER() == 1 && !player2.isPlayer1playedRound()){
                 //OM DU HAR PRECIS SPELAT EN DU INTE HAR VALT
                 pro.setSTATE(6);
+                pro.setChooseCategories(false);
             }
 
             //REST OF THE ROUND
@@ -89,7 +91,6 @@ public class Protocol {
 
  */
 
-
             pro.setRound(pro.getRound()+1);
            // pro.setQuestion(pro.getQuestion()+1);
 
@@ -98,12 +99,10 @@ public class Protocol {
 
         } else if (pro.getSTATE() == 5){
             CategoryPage q = new CategoryPage(pro);
-
-
-
             while(!pro.isClicked()){
                 pro = q.findClickPlay();
                 pro.setSTATE(6);
+                pro.setChooseCategories(true);
                 sleepThisProgram();
                 System.out.println("du kom in i den");
             }
@@ -121,7 +120,7 @@ public class Protocol {
 
             //OM DU INTE HAR FÅTT VÄLJA KATERGORI
 
-            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound()){
+            if (pro.getRound() > 0 && pro.getPLAYER() == 2 && player2.isPlayer1playedRound() && !pro.isChooseCategories()){
 
                 for (int i = 0; i <pro.getMaxQuestion() ; i++) {
 
@@ -172,9 +171,9 @@ public class Protocol {
             //OM DU HAR FÅTT VÄLJA KATEGORI
 
 
-            if (pro.getMaxQuestion() == pro.getQuestion()){
+
                 pro.setSTATE(3);
-            }
+
             System.out.println("vi når till true");
             pro.setPlayer1playedRound(true);
 
