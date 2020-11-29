@@ -379,7 +379,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
             }
             dispose();
-            ResultPage r = new ResultPage(pro);
+            ResultPage_gameOver r = new ResultPage_gameOver(pro);
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
             pro.setQuestion(0);

@@ -23,18 +23,17 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         panel.add(user);
         util.labelSetFontForeg(user,"Arial",0,18,255,255,255);
-        user.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(10, 10)));
 
         panel.add(userText);
-        userText.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
 
         panel.add(login);
-        login.setAlignmentX(Component.CENTER_ALIGNMENT);
         util.buttonSetFontForegBackg_white(login,0,12,71,71,209);
         util.setSizeButton(login,90,40,90,40);
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
+
+        util.alignComponentsCenter(user,userText,login);
 
         setSize(350, 500);
         setLocationRelativeTo(null);

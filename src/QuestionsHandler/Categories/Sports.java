@@ -54,7 +54,7 @@ public class Sports {
 
     private final Questions Q6 = new Questions("<html>Vilka färger använder Hammarby Fotboll som Bortaställ?</html>", A6);
 
-    private final Questions Q7 = new Questions("Vilket sportspel uppfann James Naismith 1891?", A7);
+    private final Questions Q7 = new Questions("<html>Vilket sportspel uppfann James Naismith 1891?</html>", A7);
 
     private final Questions Q8 = new Questions("<html>Vilket land har dominerat Olympiska sommarspel Synkroniserad simning med fem guldmedaljer sedan det återinfördes till spelen 2000?</html>", A8);
 

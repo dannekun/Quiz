@@ -28,19 +28,17 @@ public class HomePage_play extends JFrame implements ActionListener {
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
         util.setMainBackground(upperPanel);
-        upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    //    upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
 
         upperPanel.add(quizkampen);
         util.labelSetFontForeg(quizkampen, "Comfortaa",1,24,
                 255,255,255);
-        quizkampen.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
 
         upperPanel.add(player);
         util.labelSetFontForegBackg_white(player,0,18, 0,51,204);
         player.setBorder(new EmptyBorder(10, 70, 10, 70));
-        player.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 30)));
 
         upperPanel.add(play);
@@ -48,7 +46,6 @@ public class HomePage_play extends JFrame implements ActionListener {
                 5,80,5,80);
         play.setBorder(compoundButton);
         util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
-        play.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 240)));
 
         add(bottomPanel);
@@ -59,6 +56,8 @@ public class HomePage_play extends JFrame implements ActionListener {
         Border compoundLabel = util.setCompoundBorder(128,191,255,
                 10,10,10,10);
         home.setBorder(compoundLabel);
+
+        util.alignComponentsCenter(quizkampen, player, play);
 
         Container contentPane = getContentPane();
         contentPane.add(upperPanel, BorderLayout.CENTER);

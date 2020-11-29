@@ -62,7 +62,6 @@ public class CategoryPage extends JFrame implements ActionListener {
     String categoryName;
 
     JPanel panel = new JPanel();
-    JFrame frame = new JFrame();
 
     JButton category1 = new JButton();
     JButton category2 = new JButton();

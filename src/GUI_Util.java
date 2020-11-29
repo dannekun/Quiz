@@ -86,12 +86,41 @@ public class GUI_Util extends JFrame{
         label.setMaximumSize(new Dimension(wMax, hMax));
     }
 
-    public void alignComponentsCenter(JLabel label, JButton b1, JButton b2, JButton b3){
-        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+    public void alignComponentsCenter(JLabel l, JButton b1, JButton b2, JButton b3){
+        l.setAlignmentX(Component.CENTER_ALIGNMENT);
         b1.setAlignmentX(Component.CENTER_ALIGNMENT);
         b2.setAlignmentX(Component.CENTER_ALIGNMENT);
         b3.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
+
+    public void alignComponentsCenter(JLabel l, JLabel l2, JButton b){
+        l.setAlignmentX(Component.CENTER_ALIGNMENT);
+        l2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    public void alignComponentsCenter(JLabel l, JLabel l2){
+        l.setAlignmentX(Component.CENTER_ALIGNMENT);
+        l2.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    public void alignComponentsCenter(JLabel l, JTextField f, JButton b){
+        l.setAlignmentX(Component.CENTER_ALIGNMENT);
+        f.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+    public void alignComponentsCenter(JLabel l, JLabel l2, JLabel l3, JButton b){
+        l.setAlignmentX(Component.CENTER_ALIGNMENT);
+        l2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        b.setAlignmentX(Component.CENTER_ALIGNMENT);
+        l3.setAlignmentX(Component.CENTER_ALIGNMENT);
+    }
+
+
+
+
+
 
 
 }
