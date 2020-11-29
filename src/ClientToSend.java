@@ -49,6 +49,8 @@ public class ClientToSend implements Serializable {
         try {
 
             while (!player1.getFinished()) {
+
+                System.out.println("STORLEK PÅ ROUNDCATEGORI VID START: " + player1.getRoundCategories());
                 System.out.println("Du är här");
 
 

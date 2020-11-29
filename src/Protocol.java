@@ -90,7 +90,7 @@ public class Protocol {
 
 
  */
-
+            System.out.println("HÄR LOOPAR VI ROUND");
             pro.setRound(pro.getRound()+1);
            // pro.setQuestion(pro.getQuestion()+1);
 
