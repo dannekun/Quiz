@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -115,21 +116,19 @@ public class GamePage_waiting extends JFrame {
 
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }else {
 
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
 
                 }
 
             }
 
             player1Panel.add(player1_answers.get(i));
-            player1_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player1_answers.get(i).setMaximumSize(new Dimension(35,10));
-
+            util.setSizeButton(player1_answers.get(i),35,10,35,10);
         }
 
         for (int i = 0; i <totalbuttons; i++) {
@@ -140,21 +139,17 @@ public class GamePage_waiting extends JFrame {
 
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
 
                 }else {
 
                     player2_answers.get(i).setBackground(Color.GREEN);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
-
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }
-
             }
-
             player2Panel.add(player2_answers.get(i));
-            player2_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+            util.setSizeButton(player2_answers.get(i), 35,10,35,10);
 
         }
 
@@ -177,16 +172,10 @@ public class GamePage_waiting extends JFrame {
         }
 
         if (pro.getRound() >= 1){
-
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
-
                 labelNames.get(i).setText(pro.getRoundCategories().get(i));
-                labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
-                labelNames.get(i).setBackground( new Color(51, 133, 255));
-                labelNames.get(i).setForeground(Color.WHITE);
-                labelNames.get(i).setOpaque(true);
+                util.labelSetFontForegBackg_white(labelNames.get(i),0,10,51,133,255);
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
-
             }
 
         }
@@ -214,7 +203,7 @@ public class GamePage_waiting extends JFrame {
 
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
+        categoriepanel.setBorder(BorderFactory.createEmptyBorder(20, 2, 0, 2));
         util.setMainBackground(categoriepanel);
 
         add(player2Panel);
@@ -228,7 +217,7 @@ public class GamePage_waiting extends JFrame {
 
         lowestPanel.add(info);
         util.buttonSetFontForeg(info,2,16,0,0,77);
-        util.setSizeButton(info,350,200,350,200);
+        util.setSizeButton(info,350,210,350,210);
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);
         info.setOpaque(false);

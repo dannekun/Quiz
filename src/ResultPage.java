@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 public class ResultPage extends JFrame implements ActionListener {
 
+    GUI_Util util = new GUI_Util();
+
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
     JButton ok = new JButton("OK");
@@ -36,36 +38,30 @@ public class ResultPage extends JFrame implements ActionListener {
         add(panel);
 
         panel.setLayout(new BorderLayout());
-        panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(panel);
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
+
         panel.add(label, BorderLayout.NORTH);
         label.setText(pro.getName() + " fick " + pro.getPoints() + " poäng!");
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
+        util.labelSetFontForegBackg_white(label,0,18,0,51,204);
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setForeground(Color.WHITE);
-        label.setBackground(new Color(0, 51, 204));
-        label.setOpaque(true);
-        label.setBorder(new EmptyBorder(10, 10, 10, 10));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        panel.add(winner, BorderLayout.CENTER);
+        //    panel.add(winner, BorderLayout.CENTER);
 
         if(pro.getPoints() > player2.getPoints()){
-            panel.add(winner);
+            panel.add(winner, BorderLayout.CENTER);
         }else if (pro.getPoints() < player2.getPoints()){
-            panel.add(loser);
+            panel.add(loser, BorderLayout.CENTER);
         }else if (pro.getPoints() == player2.getPoints()){
-            panel.add(equals);
+            panel.add(equals, BorderLayout.CENTER);
         }
 
         panel.add(ok, BorderLayout.SOUTH);
-
+        util.buttonSetFontForegBackg_white(ok,0,16,77,255,77);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
-        ok.setBackground(new Color(77, 255, 77));
-        ok.setForeground(Color.WHITE);
-        ok.setFont(new Font("Arial", Font.PLAIN, 16));
-        ok.setOpaque(true);
-        ok.setBorderPainted(false);
+
         ok.addActionListener(this);
 
 

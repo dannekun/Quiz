@@ -90,10 +90,8 @@ public class GamePage_play extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         String stringRounds = p.getProperty("numberOfRounds", "2");
-
         setNumberOfRounds(Integer.parseInt(stringRounds));
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
-
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
 
 
@@ -104,7 +102,6 @@ public class GamePage_play extends JFrame implements ActionListener {
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
 
 
-
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
 
@@ -113,16 +110,15 @@ public class GamePage_play extends JFrame implements ActionListener {
                 if (!pro.getAnswers().get(i)){
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }else {
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }
             }
             player1Panel.add(player1_answers.get(i));
-            player1_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player1_answers.get(i).setMaximumSize(new Dimension(35,10));
+            util.setSizeButton(player1_answers.get(i),35,10,35,10);
         }
 
 
@@ -140,33 +136,27 @@ public class GamePage_play extends JFrame implements ActionListener {
         }
 
 
-
         for (int i = 0; i <totalbuttons; i++) {
             if (i < player2.getAnswers().size()){
                 if (!player2.getAnswers().get(i)){
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }else {
                     player2_answers.get(i).setBackground(Color.GREEN);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }
             }
             player2Panel.add(player2_answers.get(i));
-            player2_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+            util.setSizeButton(player2_answers.get(i), 35,10,35,10);
         }
 
         if (pro.getRound() >= 1){
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
                 labelNames.get(i).setText(pro.roundCategories.get(i));
-                labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
-                labelNames.get(i).setBackground( new Color(51, 133, 255));
-                labelNames.get(i).setForeground(Color.WHITE);
-                labelNames.get(i).setOpaque(true);
+                util.labelSetFontForegBackg_white(labelNames.get(i),0,10,51,133,255);
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
-
             }
         }
 
@@ -194,7 +184,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
+        categoriepanel.setBorder(BorderFactory.createEmptyBorder(20, 2, 0, 2));
         util.setMainBackground(categoriepanel);
 
         add(player2Panel);
@@ -214,7 +204,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         util.setSizeButton(info,350,180,350,180);
 
         lowestPanel.add(play);
-        Border compound = util.setCompoundBorder(128,255,128,5,151,5,151);
+        Border compound = util.setCompoundBorder(128,255,128,5,145,5,145);
         play.setBorder(compound);
         util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
 
