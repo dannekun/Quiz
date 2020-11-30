@@ -512,8 +512,6 @@ public class ClientToSend implements Serializable {
                         }
                         //TODO FIXA SÅ MAN KAN SPELA IGEN OCH RÄTT FRÅGOR, SISTA SPELAREN PÅ SISTA RONDEN FÅR FEL FRÅGOR MEN RÄTT KATEGORI, FIXA RÄTT FÄRGER I GAMEPAGE WAITING
 
-
-                        //INSERT RANDOM COMMENT
                     }
 
 
