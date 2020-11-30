@@ -109,6 +109,11 @@ public class ClientToSend implements Serializable {
 
                 while (neverEndingStory) {
 
+                    player1 = player1.clearAllFromPlayer(player1);
+                    player2 = player2.clearAllFromPlayer(player2);
+
+
+
 
 
                     while (gameIsPlaying) {
@@ -121,7 +126,6 @@ public class ClientToSend implements Serializable {
                                 player1 = gamePage_play.findClickPlay();
                                 sleepThisProgram();
                             }
-
 
                             player1.setRound(player1.getRound() + 1);
 
@@ -188,6 +192,7 @@ public class ClientToSend implements Serializable {
                         } else if (player1.getPLAYER() == 2) {
 
                             List<Boolean> temp = player2.getAnswers();
+
                             List<Boolean>change = player2.getAnswers();
                             player2.changeList(player2.removeAnswersFromList(change,(player2.getMaxQuestion()), player2.getRound()));
 

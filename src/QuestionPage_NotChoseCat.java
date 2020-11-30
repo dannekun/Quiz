@@ -259,11 +259,11 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             if (!checkAnswers(randomAnswerList.get(0))) {
 
                 answer1.setBackground(Color.RED);
-                pro.setDidYouGetIt(false);
+                pro.setClickedRightAnswer(false);
 
             } else if (checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.GREEN);
-                pro.setDidYouGetIt(true);
+                pro.setClickedRightAnswer(true);
             }
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
@@ -273,11 +273,11 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
             if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
-                pro.setDidYouGetIt(false);
+                pro.setClickedRightAnswer(false);
 
             } else if (checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.GREEN);
-                pro.setDidYouGetIt(true);
+                pro.setClickedRightAnswer(true);
             }
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
@@ -288,12 +288,12 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             if (!checkAnswers(randomAnswerList.get(2))) {
 
                 answer3.setBackground(Color.RED);
-                pro.setDidYouGetIt(false);
+                pro.setClickedRightAnswer(false);
 
             } else if (checkAnswers(randomAnswerList.get(2))) {
 
                 answer3.setBackground(Color.GREEN);
-                pro.setDidYouGetIt(true);
+                pro.setClickedRightAnswer(true);
             }
 
             answer3.setOpaque(true);
@@ -306,12 +306,12 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             if (!checkAnswers(randomAnswerList.get(3))) {
 
                 answer4.setBackground(Color.RED);
-                pro.setDidYouGetIt(false);
+                pro.setClickedRightAnswer(false);
 
             } else if (checkAnswers(randomAnswerList.get(3))) {
 
                 answer4.setBackground(Color.GREEN);
-                pro.setDidYouGetIt(true);
+                pro.setClickedRightAnswer(true);
             }
 
             answer4.setOpaque(true);
@@ -330,7 +330,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
 
-            if (pro.isDidYouGetIt()) {
+            if (pro.isClickedRightAnswer()) {
 
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
@@ -345,7 +345,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
 
-            if (pro.isDidYouGetIt()) {
+            if (pro.isClickedRightAnswer()) {
 
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
@@ -364,7 +364,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
 
 
-            if (pro.isDidYouGetIt()) {
+            if (pro.isClickedRightAnswer()) {
 
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
@@ -392,7 +392,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     public Player addPoints(Player player){
         pro = player;
 
-        if (pro.didYouGetIt){
+        if (pro.clickedRightAnswer){
             pro.setPoints(pro.getPoints()+1);
             pro.setQuestion(pro.getQuestion()+1);
         }else {
