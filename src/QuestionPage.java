@@ -155,7 +155,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         util.labelSetFontForeg_white(round,0,14);
 
         south.add(category);
-        util.labelSetFontForegBackg_white(category,1,14,204,0,204);
+        util.labelSetFontForegBackg_white(category,1,14,255, 128, 0);
         util.setSizeLabel(category,250,30,250,30);
         category.setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -163,24 +163,24 @@ public class QuestionPage extends JFrame implements ActionListener {
         util.labelSetFontForeg_white(questionNumber,0,14);
 
         south.add(question);
-        util.labelSetFontForegBackg_white(question,1,12,255,51,133);
+        util.labelSetFontForegBackg_white(question,1,12,255, 51, 0);
         util.setSizeLabel(question,250,30,250,30);
         question.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         south.add(answer1);
-        util.buttonSetFontForegBackg_white(answer1,1,14,163,102,255);
+        util.buttonSetFontForegBackg_white(answer1,1,14,163, 26, 255);
         util.setSizeButton(answer1,250,30,250,30);
 
         south.add(answer2);
-        util.buttonSetFontForegBackg_white(answer2,1,14,163,102,255);
+        util.buttonSetFontForegBackg_white(answer2,1,14,230, 0, 230);
         util.setSizeButton(answer2,250,30,250,30);
 
         south.add(answer3);
-        util.buttonSetFontForegBackg_white(answer3,1,14,163,102,255);
+        util.buttonSetFontForegBackg_white(answer3,1,14,230, 0, 172);
         util.setSizeButton(answer3,250,30,250,30);
 
         south.add(answer4);
-        util.buttonSetFontForegBackg_white(answer4,1,14,163,102,255);
+        util.buttonSetFontForegBackg_white(answer4,1,14,128, 0, 255);
         util.setSizeButton(answer4,250,30,250,30);
 
         Container contentPane = getContentPane();
