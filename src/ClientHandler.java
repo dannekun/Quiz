@@ -12,30 +12,19 @@ import java.util.List;
  */
 public class ClientHandler extends Thread implements Serializable {
 
-    int portNumber = 7777;
     private Socket spelare1;
     private Socket spelare2;
-
-    OutputStream outputStream;
-    ObjectOutputStream objectOutputStream;
-
-    InputStream inputStream;
-    ObjectInputStream objectInputStream;
 
     Player player1 = new Player();
     Player player2 = new Player();
 
-    Player player3 = new Player();
-    Player player4 = new Player();
 
-    List<Player> player1List = new ArrayList<>();
-
-    List<Player> player2List = new ArrayList<>();
     public ClientHandler(Socket socketToClient, Socket socketToClient2) {
         this.spelare1 = socketToClient;
         this.spelare2 = socketToClient2;
     }
 
+/*
     public ObjectOutputStream sendPlayerInfo(Socket spelare) throws IOException {
         outputStream = spelare.getOutputStream();
         objectOutputStream = new ObjectOutputStream(outputStream);
@@ -52,27 +41,22 @@ public class ClientHandler extends Thread implements Serializable {
         return objectInputStream;
     }
 
+ */
+
 
 
     @Override
     public void run() {
-        List<Player> newPlayer1List = new ArrayList<>();
-        List<Player> newPlayer2List = new ArrayList<>();
+
         if (spelare1.isConnected()&&spelare2.isConnected()) {
 
             while (!player2.getFinished()){
                 try {
 
-                    //  player1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
                     player1 = (Player) new ObjectInputStream(spelare1.getInputStream()).readObject();
-                    // objectInputStream.reset();
-                    //player1 = player1List.get(0);
 
-                    //player2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
                     player2 = (Player) new ObjectInputStream(spelare2.getInputStream()).readObject();
 
-                    //objectInputStream.reset();
-                    // player2 = player2List.get(0);
 
                     player1.setPLAYER(1);
                     player2.setPLAYER(2);
@@ -83,34 +67,10 @@ public class ClientHandler extends Thread implements Serializable {
                     player2.setConnected(true);
 
 
-                    //  sendPlayerInfo(spelare1).writeObject(player2List);
+
                     new ObjectOutputStream(spelare1.getOutputStream()).writeObject(player2);
-                    //objectOutputStream.flush();
-                    // objectOutputStream.reset();
 
-                    //sendPlayerInfo(spelare2).writeObject(player1List);
                     new ObjectOutputStream(spelare2.getOutputStream()).writeObject(player1);
-                    //objectOutputStream.flush();
-
-
-                /*
-                newPlayer2List = (List<Player>) receivePlayerInfo(spelare2).readObject();
-                player2 = newPlayer2List.get(0);
-                System.out.println("Send 1 success!!!!");
-                System.out.println(player2.getName());
-                //sendPlayerInfo(spelare2).writeObject(newPlayer2List);
-                //new ObjectOutputStream(spelare2.getOutputStream()).writeObject(newPlayer2List);
-                ObjectOutputStream newTest = new ObjectOutputStream(spelare2.getOutputStream());
-                newTest.writeObject(newPlayer2List);
-                newTest.flush();
-                System.out.println("Hittade nytt objekt");
-                newPlayer1List = (List<Player>) receivePlayerInfo(spelare1).readObject();
-                player1 = newPlayer1List.get(0);
-                System.out.println("Send 2 sucess!!!");
-
-
-
-                 */
 
 
                     System.out.println("Uppdaterat: " + player1.getName());
@@ -125,115 +85,6 @@ public class ClientHandler extends Thread implements Serializable {
 
         }
 
-        /*
-
-        *//*
-        try {
-            objectOutputStream.close();
-            objectInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-         *//*
-
-
-        System.out.println(player1.getName());
-        System.out.println(player2.getName());
-
-        try {
-            spelare2.getOutputStream().flush();
-            spelare1.getOutputStream().flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-        System.out.println("Connection from " + player1.getName() + "!");
-        System.out.println("Connection from " + player2.getName() + "!");
-
-
-    System.out.println("jag är inne i while");
-    try{
-        //ObjectInputStream objectInputStream2 = new ObjectInputStream(spelare1.getInputStream());
-
-
-
-
-
-        List<Player> playersPlayer2 = (List<Player>) receivePlayerInfo(spelare2);
-
-
-
-
-       // List<Player> playersToFind = (List<Player>) objectInputStream2.readObject();
-        System.out.println("här");
-        List<Player> playersToFind = (List<Player>) receivePlayerInfo(spelare1);
-
-
-
-
-
-
-
-        System.out.println(playersToFind.get(0).getName());
-
-        System.out.println(playersPlayer2.get(0).getName());
-
-
-
-
-
-        System.out.println(player1.getName());
-        System.out.println(player2.getName());
-
-        sendPlayerInfo(spelare2).writeObject(player2);
-        sendPlayerInfo(spelare1).writeObject(player1);
-    } catch (EOFException eof){
-        System.out.println("walla knas bror");
-        eof.printStackTrace();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
-
-        System.out.println("Första spelaren heter: " + player1.getName());
-        System.out.println("Andra spelaren heter: " + player2.getName());
-
-
-        //Dessa är för player 1
-
-        //   Player pro1 = (Player) objectInputStream.readObject();
-
-        //Dessa är för player 2????
-        *//*
-        InputStream inputStream2 = socket.getInputStream();
-        ObjectInputStream objectInputStream2 = new ObjectInputStream(inputStream);
-        Player pro2 = (Player) objectInputStream.readObject();
-
-
-         *//*
-
-
-       // System.out.println("Recieved " + pro1.getName()+ " from " + socket);
-
-       // System.out.println(pro1.getName());
-
-
-        *//*
-        System.out.println(pro2.getPoints());
-        for (Questions p : pro2.getQuestionToPassBetweenPlayers()){
-            System.out.println(p.getQuestion());
-            System.out.println(p.getAnswerObject().getRightAnswer());
-        }
-
-         *//*
-
-
-       // ss.close();
-       // socket.close();*/
 
     }
 

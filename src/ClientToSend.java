@@ -40,8 +40,6 @@ public class ClientToSend implements Serializable {
 
         Player player1 = new Player();
         Player player2 = new Player();
-        Player player3 = new Player();
-        Player player4 = new Player();
 
         int waitingForPlayer = 0;
 
@@ -50,15 +48,26 @@ public class ClientToSend implements Serializable {
 
         InetAddress iadr = InetAddress.getLocalHost();
 
-        Protocol protocol = new Protocol();
-
 
         //LOGGIN
 
         boolean work = true;
 
         while (work) {
-            player1 = protocol.processInput(player1, player2);
+
+            LoginGUI gui = new LoginGUI();
+            gui.showWindow();
+            //BEHÖVER INTE SKICKA
+            //pro.setName("daniel");
+
+            //PROGRAMMET FUNGERAR UTMÄRKT OM MAN SETNAME
+            while (player1.getName() == null){
+                //pro =  gui.findPlayerAndReturn();
+                String name = gui.findPlayerAndReturn();
+                player1.setName(name);
+                sleepThisProgram();
+            }
+
 
 
             System.out.println(player1.getName());
@@ -104,9 +113,7 @@ public class ClientToSend implements Serializable {
                 //QUEUE_CONNECTED
                 if (player2.isConnected()) {
                     homePage_waiting.closeWindow();
-                    if (player1.getSTATE() == 0) {
-                        player1.setSTATE(2);
-                    }
+
                     System.out.println(player1.getPLAYER());
                     System.out.println(player2.getPLAYER());
                 }
@@ -122,14 +129,9 @@ public class ClientToSend implements Serializable {
                 }
 
 
-                player3 = player1;
-                player4 = player2;
-
-
                 while (neverEndingStory) {
 
-                    player1 = player3;
-                    player2 = player4;
+
 
                     while (gameIsPlaying) {
 
@@ -502,7 +504,7 @@ public class ClientToSend implements Serializable {
                         }
 
                         if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
-                        gameIsPlaying = true;
+                            gameIsPlaying = true;
                             System.out.println("vi börjar om!");
                         } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2){
                             HejDå bye = new HejDå(player1, player2);
@@ -514,98 +516,18 @@ public class ClientToSend implements Serializable {
 
 
 
-                        boolean bajstest = true;
+/*                        boolean bajstest = true;
                         while (bajstest){
 
-
                         }
+
+ */
 
                     }
 
 
                 }
             }
-            //LÄGG TILL WHILE HÄR
-
-/*
-                work = true;
-                while (work){
-                    System.out.println("round cat size: " + player1.getRoundCategories().size());
-                    System.out.println(player1.getRoundCategories());
-                    Thread.sleep(10000);
-                }
-
-
- */
-
-
-
-                /*
-                player1.setEndState(true);
-
-                while (player1.isEndState()) {
-
-                    //SÅ LÄNGE QUESTION ÄR ÖVER 0. question > 0
-                    if (player1.getSTATE() == 3 && player1.getPLAYER() == 1 && player1.getRound() == 1 && player2.getRound() == 2){
-                        gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
-                    }else if (player1.getSTATE() == 3 && player1.getPLAYER() == 2 && player1.getRound() == 0 && player2.getRound() == 1){
-                        gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
-                    }
-
-
-
-                    if (player1.getSTATE() == 3 && player2.getRound() == 0 && player1.getPLAYER() == 1 && player1.getRound() == 1) {
-                        gamePage_waiting.showWindow(player1, player2);
-                        player1.setEndState(false);
-                        System.out.println("player 1 väntar");
-                        System.out.println(player1.getRoundCategories().size());
-                        if (waitingForPlayer == 1 && player1.getPLAYER() == 1){
-                            player1.setPlayer1PlayedRound1(false);
-                        }else if (waitingForPlayer == 1 && player1.getPLAYER() == 2){
-                            player1.setPlayers2PlayedRound1(false);
-                        }
-                        waitingForPlayer++;
-                    }
-
-                    if (player1.getSTATE() == 3 && player2.getRound() == 2 && player1.getPLAYER() == 1){
-                        gamePage_waiting.showWindow(player1, player2);
-                        player1.setEndState(false);
-                    }else if (player1.getSTATE() == 3 && player2.getRound() == 3 && player1.getPLAYER() == 1){
-                        gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
-                    }
-
-                    if (player1.getSTATE() == 4 && player2.getRound() == 3 && player1.getPLAYER() == 1){
-                        gamePage_waiting.showWindow(player1, player2);
-                        player1.setEndState(false);
-                    }else if (player1.getSTATE() == 4 && player2.getRound() == 4 && player1.getPLAYER() == 1){
-                        gamePage_waiting.closeWindow();
-                        player1.setSTATE(4);
-                    }
-
-
-
-                    player1 = protocol.processInput(player1, player2);
-
-                    System.out.println("du kommer ur alla frågor");
-
-
-                    if (player1.getSTATE() == 3 && player2.getRound() == 0 && player1.getPLAYER() == 2) {
-                        gamePage_waiting.showWindow(player1, player2);
-                        player1.setEndState(false);
-
-                        System.out.println("player 2 väntar");
-                    }
-                }
-
-
-                 */
-
-
-
-
 
             System.out.println("Closing socket and terminating program");
             socket.close();

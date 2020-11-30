@@ -22,8 +22,6 @@ import java.util.List;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
- //   Database database = new Database();
-
     boolean clicked = false;
 
     public boolean isClicked() {
@@ -48,26 +46,17 @@ public class QuestionPage extends JFrame implements ActionListener {
     JButton answer3 = new JButton();
     JButton answer4 = new JButton();
 
-  //  JLabel timer = new JLabel("Timer here");
-
     JPanel north = new JPanel();
     JPanel south = new JPanel();
 
     Player pro;
     List<Questions> randomListToPull = new ArrayList<>();
-    List<String> randomAnswerList = new ArrayList<>();
+    List<String> randomAnswerList;
 
     String rightAnswerFromList;
 
 
-    Database d = new Database();
-
-    String questionToAsk = null;
-
     public QuestionPage(Player p) {
-
-        //LÄGG TILL EN PLAYER I KONSTRUKTORN
-        //HANTERA PLAYER 2
 
         pro = p;
 
@@ -79,11 +68,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         player.setText(pro.getName());
 
         randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() -1));
-
-        //questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
-
-        //questionToAsk = randomListToPull.get(whichCatToChoose).getQuestion();
-
 
         List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
 
@@ -99,18 +83,13 @@ public class QuestionPage extends JFrame implements ActionListener {
         } else {
             randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
 
-            //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
             question.setText(randomListToPull.get(0).getQuestion());
-            // pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
+
             pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
             pro.addQuestionBetweenPlayers(randomListToPull.get(0));
         }
 
-
-        // randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
         randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
-
-        // rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
 
         rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
         Collections.shuffle(randomAnswerList);
@@ -130,37 +109,44 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
         if (pro.getQuestion() > 0) {
+
             for (int i = 0; i < pro.getQuestion(); i++) {
-                System.out.println(pro.getRoundAnswers().size()+ "ROUNDANSWERS!!");
-                System.out.println(pro.getQuestion()+ " QUESTION");
-                System.out.println(i + ": i");
-                //   if (pro.getAnswers().get(i) == false){
+
                 if (!pro.getRoundAnswers().get(i)) {
+
                     paintRed(buttonsToPaintList.get(i));
-                    System.out.println("röd");
+
                 } else if (pro.getRoundAnswers().get(i)){
+
                     paintGreen(buttonsToPaintList.get(i));
-                    System.out.println("grön");
+
                 }
+
             }
+
         } else if (pro.getQuestion() == 0) {
+
             for (int i = 0; i < pro.getMaxQuestion(); i++) {
                 resetPaint(buttonsToPaintList.get(i));
+
             }
+
         }
 
-    /*    for (JButton button : buttonsToPaintList) {
-            north.add(button);
-        }*/
+
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
         north.setBackground(new Color(51, 133, 255));
+
         for (int i = 0; i < buttonsToPaintList.size(); i++) {
+
             north.add(buttonsToPaintList.get(i));
             buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
             buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
+
         }
+
         north.add(player);
         player.setFont(new Font("Arial", Font.PLAIN, 14));
         player.setForeground(Color.WHITE);
@@ -351,13 +337,12 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         if (e.getSource() == answer1) {
 
-            //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
+
             if (!checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
 
 
-                //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
             } else if (checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
@@ -368,11 +353,10 @@ public class QuestionPage extends JFrame implements ActionListener {
             setClicked(true);
         } else if (e.getSource() == answer2) {
 
-            //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
             if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
@@ -383,11 +367,10 @@ public class QuestionPage extends JFrame implements ActionListener {
             setClicked(true);
         } else if (e.getSource() == answer3) {
 
-            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
             if (!checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(2))) {
                 answer3.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
@@ -396,16 +379,20 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer3.setBorderPainted(false);
             pro.setClicked(true);
             setClicked(true);
+
         } else if (e.getSource() == answer4) {
-            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
+
             if (!checkAnswers(randomAnswerList.get(3))) {
+
                 answer4.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(3))) {
+
                 answer4.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
             }
+
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
             pro.setClicked(true);
@@ -417,26 +404,21 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
-    public void answers(Player p){
-
-    }
-
     public Player endGame(Player p){
 
         pro = p;
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
-            //pro.setQuestion(0);
-            System.out.println("du är i allt");
+
             if (pro.isDidYouGetIt()) {
-               // JOptionPane.showMessageDialog(null, "Right!");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-               // pro.setPoints(pro.getPoints() + 1);
+
 
 
             } else {
-                //JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -446,28 +428,14 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
-           // pro.setQuestion(0);
-           // pro.currentQuestion.clear();
-          //  pro.roundAnswers.clear();
-            if (pro.getPLAYER() == 1){
-                System.out.println("du är player 1");
-                pro.setPlayer1PlayedRound1(true);
-                pro.setPlayers2PlayedRound1(false);
-            }else if (pro.getPLAYER() == 2){
-                System.out.println("du är player 2");
-                pro.setPlayer1PlayedRound1(false);
-                pro.setPlayers2PlayedRound1(true);
-            }
 
-            System.out.println("du är i lika mycket ");
             if (pro.isDidYouGetIt()) {
-              //  JOptionPane.showMessageDialog(null, "Right!");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-              //  pro.setPoints(pro.getPoints() + 1);
+
 
             } else {
-               // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -475,23 +443,16 @@ public class QuestionPage extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.getRoundAnswers().clear();
             dispose();
-            // HÄR SKA DET VA GAMEPAGE_WAITING
-            // STATE 3
-            //
-            // GamePage_play g = new GamePage_play(pro);
+
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
-            //pro.setQuestion(pro.getQuestion() + 1);
-            System.out.println("du är i för lite ");
+
             if (pro.isDidYouGetIt()) {
-              //  JOptionPane.showMessageDialog(null, "Right!");
-                System.out.println("du fick rätt!!!!!! jaaaa");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-             //   pro.setPoinsetPoints(pro.getPoints() + 1);
+
 
             } else {
-                System.out.println("du fick fel neeeeeej");
-               // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -503,9 +464,8 @@ public class QuestionPage extends JFrame implements ActionListener {
                 interruptedException.printStackTrace();
             }
 
-
             dispose();
-            //QuestionPage q = new QuestionPage(pro);
+
         }
 
         return pro;

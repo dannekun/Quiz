@@ -22,8 +22,6 @@ import java.util.List;
  */
 public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
- //   Database database = new Database();
-
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
     JLabel round = new JLabel("Round nr");
@@ -38,26 +36,18 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     JButton answer3 = new JButton();
     JButton answer4 = new JButton();
 
-  //  JLabel timer = new JLabel("Timer here");
-
     JPanel north = new JPanel();
     JPanel south = new JPanel();
 
     Player pro;
-    List<Questions> randomListToPull = new ArrayList<>();
-    List<String> randomAnswerList = new ArrayList<>();
+    List<Questions> randomListToPull;
+    List<String> randomAnswerList;
 
     String rightAnswerFromList;
 
 
-    Database d = new Database();
-
-    String questionToAsk = null;
 
     public QuestionPage_NotChoseCat(Player p, Player player2) {
-
-        //LÄGG TILL EN PLAYER I KONSTRUKTORN
-        //HANTERA PLAYER 2
 
         pro = p;
 
@@ -66,93 +56,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         player.setText(pro.getName());
 
-
-
-
-
-
-
-
-        /*
-
-        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() -1));
-
-        //questionToAsk = randomListToPull.get(pro.getRound()).getQuestion();
-
-        //questionToAsk = randomListToPull.get(whichCatToChoose).getQuestion();
-
-
-        List<Questions> newQuestionsForPlayerToAsk = randomListToPull;
-
-        randomListToPull = newQuestionsForPlayerToAsk;
-
-        Collections.shuffle(randomListToPull);
-
-        if (pro.currentQuestion.isEmpty()) {
-            question.setText(randomListToPull.get(0).getQuestion());
-            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
-
-            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
-        } else {
-
-            randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
-
-            //question.setText(randomListToPull.get(pro.getRound()).getQuestion());
-            question.setText(randomListToPull.get(0).getQuestion());
-            // pro.addQuestionToCurrentList(randomListToPull.get(pro.getRound()).getQuestion());
-            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
-            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
-        }
-
-
-        // randomAnswerList = randomListToPull.get(pro.getRound()).getAnswerObject().getAnswersList();
-        randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
-
-        // rightAnswerFromList = randomListToPull.get(pro.getRound()).getAnswerObject().getRightAnswer();
-
-        rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
-        Collections.shuffle(randomAnswerList);
-
-         */
         randomListToPull = player2.getQuestionToPassBetweenPlayers();
-
-        /*
-        int total = pro.getRound() * pro.getQuestion();
-        for (int i = 0; i < pro.getMaxQuestion(); i++) {
-            pro.addQuestionBetweenPlayers(player2.getQuestionToPassBetweenPlayers().get(total));
-        }
-
-         */
-        System.out.println("RANDOMLISTTOPULL SIZE: " + randomListToPull.size());
-        System.out.println("PRO GET QUESTION: "+ pro.getQuestion());
-        System.out.println("PRO GET ROUND: " + pro.getRound());
-
-        /*
-        QUESTION        ROUND       TOTALT
-        1               1           1
-        2               1           2
-        3               1           3
-
-        1               2           2
-        2               2           4
-        3               2           6
-
-
-
-        ROND            MAXQ        TOTALT
-
-        1               3           3       -3      0
-        2               3           5       -3      2
-        3               3           6
-
-                 MULTIPLICERAD
-        1               3           3       -3      0
-        2               3           6       -3      3
-        3               3           9       -3      6
-
-
-         */
-
 
 
         int correctNumberToChoose = ((pro.getRound()*pro.getMaxQuestion())-pro.getMaxQuestion())+(pro.getQuestion());
@@ -162,9 +66,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         Collections.shuffle(randomAnswerList);
 
-
         question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
-
 
         answer1.setText(randomAnswerList.get(0));
         answer2.setText(randomAnswerList.get(1));
@@ -172,45 +74,49 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         answer4.setText(randomAnswerList.get(3));
 
         category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
-       // pro.addToList(player2.getRoundCategories().get(pro.getRound()-1));
 
         for (int i = 0; i < pro.getMaxQuestion(); i++) {
+
             buttonsToPaintList.add(new JButton());
         }
 
 
         if (pro.getQuestion() > 0) {
+
             for (int i = 0; i < pro.getQuestion(); i++) {
-                System.out.println(pro.getRoundAnswers().size()+ "ROUNDANSWERS!!");
-                System.out.println(pro.getQuestion()+ " QUESTION");
-                System.out.println(i + ": i");
-                //   if (pro.getAnswers().get(i) == false){
+
                 if (!pro.getRoundAnswers().get(i)) {
+
                     paintRed(buttonsToPaintList.get(i));
-                    System.out.println("röd");
+
                 } else if (pro.getRoundAnswers().get(i)){
+
                     paintGreen(buttonsToPaintList.get(i));
-                    System.out.println("grön");
                 }
+
             }
+
         } else if (pro.getQuestion() == 0) {
+
             for (int i = 0; i < pro.getMaxQuestion(); i++) {
+
                 resetPaint(buttonsToPaintList.get(i));
             }
-        }
 
-    /*    for (JButton button : buttonsToPaintList) {
-            north.add(button);
-        }*/
+        }
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
         north.setBackground(new Color(51, 133, 255));
+
         for (int i = 0; i < buttonsToPaintList.size(); i++) {
+
             north.add(buttonsToPaintList.get(i));
             buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
             buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
+
         }
+
         north.add(player);
         player.setFont(new Font("Arial", Font.PLAIN, 14));
         player.setForeground(Color.WHITE);
@@ -322,33 +228,6 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         jb.setBackground(null);
     }
 
-    final String animalNatureName = "Djur & natur";
-    final String artLiteratureName = "Konst & literatur";
-    final String generalKnowledgeName = "Allmän kunskap";
-    final String mathName = "Matte";
-    final String musicName = "Musik";
-    final String popCultureName = "Pop Kultur";
-    final String sportsName = "Idrott";
-    final String technologyName = "Teknologi";
-    final String tvShowsName = "TV-show";
-
-
-    public List<Questions> findList(String categoryName) {
-
-        return switch (categoryName) {
-            case animalNatureName -> new AnimalsNature().getAnimalsNatureList();
-            case artLiteratureName -> new ArtLiterature().getArtLiteratureList();
-            case generalKnowledgeName -> new GeneralKnowledge().getGeneralKnowledgeList();
-            case mathName -> new Math().getMathList();
-            case musicName -> new Music().getMusicList();
-            case popCultureName -> new PopCulture().getPopCultureList();
-            case sportsName -> new Sports().getSportsList();
-            case technologyName -> new Technology().getTechnologyList();
-            case tvShowsName -> new TVShows().getTvShowsList();
-            default -> null;
-        };
-    }
-
     public Boolean checkAnswers(String a) {
 
         return rightAnswerFromList.equals(a);
@@ -375,38 +254,16 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         }
     }
 
-    public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith) {
-        boolean found = false;
-        List<Questions> questionsToUse = new ArrayList<>();
-        for (Questions questions : questionListToFind) {
-            for (String s : listToCompareWith) {
-                if (questions.getQuestion().equals(s)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                questionsToUse.add(questions);
-            }
-            found = false;
-        }
-        Collections.shuffle(questionsToUse);
-        return questionsToUse;
-    }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        //pro.setDidYouGetIt(false);
 
         if (e.getSource() == answer1) {
-            //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == false){
+
             if (!checkAnswers(randomAnswerList.get(0))) {
+
                 answer1.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
 
-
-                //}else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(0)) == true){
             } else if (checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
@@ -414,12 +271,13 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
             pro.setClicked(true);
+
         } else if (e.getSource() == answer2) {
-            //if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == false){
+
             if (!checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                //  }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(1)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(1))) {
                 answer2.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
@@ -429,28 +287,36 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             pro.setClicked(true);
 
         } else if (e.getSource() == answer3) {
-            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == false){
+
             if (!checkAnswers(randomAnswerList.get(2))) {
+
                 answer3.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                //    }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(2)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(2))) {
+
                 answer3.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
             }
+
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
             pro.setClicked(true);
+
         } else if (e.getSource() == answer4) {
-            // if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == false){
+
+
             if (!checkAnswers(randomAnswerList.get(3))) {
+
                 answer4.setBackground(Color.RED);
                 pro.setDidYouGetIt(false);
-                // }else if (randomListToPull.get(0).getAnswerObject().checkAnswer(randomAnswerList.get(3)) == true){
+
             } else if (checkAnswers(randomAnswerList.get(3))) {
+
                 answer4.setBackground(Color.GREEN);
                 pro.setDidYouGetIt(true);
             }
+
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
             pro.setClicked(true);
@@ -458,60 +324,38 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         findRightAnswerAndPaint(answer1,answer2,answer3,answer4,rightAnswerFromList);
 
-
     }
 
-    public void answers(Player p){
-
-    }
 
     public Player endGame(Player p){
 
         pro = p;
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
-            //pro.setQuestion(0);
-            System.out.println("du är i allt");
+
             if (pro.isDidYouGetIt()) {
-               // JOptionPane.showMessageDialog(null, "Right!");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-               // pro.setPoints(pro.getPoints() + 1);
-
 
             } else {
-                //JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
 
-
             dispose();
 
-
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
-           // pro.setQuestion(0);
-           // pro.currentQuestion.clear();
-          //  pro.roundAnswers.clear();
-            if (pro.getPLAYER() == 1){
-                System.out.println("du är player 1");
-                pro.setPlayer1PlayedRound1(true);
-                pro.setPlayers2PlayedRound1(false);
-            }else if (pro.getPLAYER() == 2){
-                System.out.println("du är player 2");
-                pro.setPlayer1PlayedRound1(false);
-                pro.setPlayers2PlayedRound1(true);
-            }
 
-            System.out.println("du är i lika mycket ");
             if (pro.isDidYouGetIt()) {
-              //  JOptionPane.showMessageDialog(null, "Right!");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-              //  pro.setPoints(pro.getPoints() + 1);
+
 
             } else {
-               // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -519,37 +363,30 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             pro.setQuestion(0);
             pro.getRoundAnswers().clear();
             dispose();
-            // HÄR SKA DET VA GAMEPAGE_WAITING
-            // STATE 3
-            //
-            // GamePage_play g = new GamePage_play(pro);
+
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
-            //pro.setQuestion(pro.getQuestion() + 1);
-            System.out.println("du är i för lite ");
+
+
             if (pro.isDidYouGetIt()) {
-              //  JOptionPane.showMessageDialog(null, "Right!");
-                System.out.println("du fick rätt!!!!!! jaaaa");
+
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
-             //   pro.setPoinsetPoints(pro.getPoints() + 1);
+
 
             } else {
-                System.out.println("du fick fel neeeeeej");
-               // JOptionPane.showMessageDialog(null, "Wrong!" + "\nRight answer is: \n'\'" + rightAnswerFromList + "'\'");
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
-            System.out.println(pro.getAnswers().size());
-            System.out.println(pro.getRoundAnswers().size());
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
                 interruptedException.printStackTrace();
             }
 
-
             dispose();
-            //QuestionPage q = new QuestionPage(pro);
+
         }
 
         return pro;

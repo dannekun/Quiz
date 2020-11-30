@@ -48,29 +48,6 @@ public class CategoryPage extends JFrame implements ActionListener {
         this.clicked = clicked;
     }
 
-    public int getUnique1() {
-        return unique1;
-    }
-
-    public void setUnique1(int unique1) {
-        this.unique1 = unique1;
-    }
-
-    public int getUnique2() {
-        return unique2;
-    }
-
-    public void setUnique2(int unique2) {
-        this.unique2 = unique2;
-    }
-
-    public int getUnique3() {
-        return unique3;
-    }
-
-    public void setUnique3(int unique3) {
-        this.unique3 = unique3;
-    }
 
     String categoryName;
 
@@ -85,7 +62,6 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
 
-    //List<String> categoriesChosen = new ArrayList<>();
 
    String cat1 = "";
    String cat2 = "";
@@ -110,7 +86,6 @@ public class CategoryPage extends JFrame implements ActionListener {
         cat2 = category2.getText();
         cat3 = category3.getText();
 
-    //    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground( new Color(51, 133, 255));
@@ -170,13 +145,6 @@ public class CategoryPage extends JFrame implements ActionListener {
         category2.addActionListener(this);
         category3.addActionListener(this);
 
-    }
-
-    public List<String> findCategoryNamiestoDisplay(String input){
-        List<String> categorieNames = new ArrayList<>();
-        categorieNames.add(input);
-
-        return categorieNames;
     }
 
     /**
@@ -309,41 +277,32 @@ public class CategoryPage extends JFrame implements ActionListener {
     }
 
 
-    // Factory method();
-    // Factory pattern.
-    // Lista till QuestionPage.
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-       //LÄGG TILL BOOLEAN HÄR
+
         a = false;
         b = false;
         c = false;
 
         if (e.getSource() == category1){
             dispose();
-            //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
-           // categoriesChosen.add(cat1);
+
            a = true;
            setClicked(true);
-           // QuestionPage q = new QuestionPage(pro);
+
 
         }else if (e.getSource() == category2){
             dispose();
-            //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
-           // categoriesChosen.add(cat2);
+
             b = true;
             setClicked(true);
-           // QuestionPage q = new QuestionPage(pro);
+
 
         }else if (e.getSource() == category3){
             dispose();
-            //categoriesChosen.add(cat3);
            c = true;
             setClicked(true);
-            //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
-            //QuestionPage q = new QuestionPage(pro);
+
 
         }
     }
@@ -351,13 +310,10 @@ public class CategoryPage extends JFrame implements ActionListener {
     public Player addCatToPlayer(){
         if (a){
             pro.addToList(cat1);
-            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT1");
         }else if (b){
             pro.addToList(cat2);
-            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT2");
         }else if (c){
             pro.addToList(cat3);
-            System.out.println("HÄR LOOOPAR VI TYDLIGEN VID LÄGG TILL KAT3");
         }
         return pro;
     }
@@ -366,7 +322,7 @@ public class CategoryPage extends JFrame implements ActionListener {
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);
-      //  pro = addCatToPlayer();
+
         return isClicked();
     }
 }
