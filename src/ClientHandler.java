@@ -1,7 +1,5 @@
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -24,33 +22,13 @@ public class ClientHandler extends Thread implements Serializable {
         this.spelare2 = socketToClient2;
     }
 
-/*
-    public ObjectOutputStream sendPlayerInfo(Socket spelare) throws IOException {
-        outputStream = spelare.getOutputStream();
-        objectOutputStream = new ObjectOutputStream(outputStream);
-
-
-       return objectOutputStream;
-    }
-
-    public ObjectInputStream receivePlayerInfo(Socket spelare) throws IOException {
-        inputStream = spelare.getInputStream();
-        objectInputStream = new ObjectInputStream(inputStream);
-
-
-        return objectInputStream;
-    }
-
- */
-
-
 
     @Override
     public void run() {
 
-        if (spelare1.isConnected()&&spelare2.isConnected()) {
+        if (spelare1.isConnected() && spelare2.isConnected()) {
 
-            while (!player2.getFinished()){
+            while (!player2.getFinished()) {
                 try {
 
                     player1 = (Player) new ObjectInputStream(spelare1.getInputStream()).readObject();
@@ -62,10 +40,8 @@ public class ClientHandler extends Thread implements Serializable {
                     player2.setPLAYER(2);
 
 
-                    System.out.println("HÄR!!!!");
                     player1.setConnected(true);
                     player2.setConnected(true);
-
 
 
                     new ObjectOutputStream(spelare1.getOutputStream()).writeObject(player2);
@@ -73,14 +49,10 @@ public class ClientHandler extends Thread implements Serializable {
                     new ObjectOutputStream(spelare2.getOutputStream()).writeObject(player1);
 
 
-                    System.out.println("Uppdaterat: " + player1.getName());
-                    System.out.println("Uppdaterat: " + player2.getName());
-
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-        }
-
+            }
 
 
         }

@@ -23,6 +23,7 @@ public class ServerListener extends Thread implements Serializable {
     public void run() {
         while (true){
             try {
+
                 final Socket socketToClient = serverSocket.accept();
                 final Socket socketToClient2 = serverSocket.accept();
                 ClientHandler clientHandler = new ClientHandler(socketToClient, socketToClient2);

@@ -1,10 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class HejDå extends JFrame implements ActionListener {
+public class HejDå extends JFrame {
 
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
@@ -14,16 +12,6 @@ public class HejDå extends JFrame implements ActionListener {
     String loserPic = "src/Pictures/Loser.jpg";
     JLabel winner = new JLabel(new ImageIcon(winnerPic));
     JLabel loser = new JLabel(new ImageIcon(loserPic));
-
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
 
     Player pro;
     public HejDå(Player p, Player player2) {
@@ -47,37 +35,15 @@ public class HejDå extends JFrame implements ActionListener {
 
         //TODO LÄGG TILL BILD PÅ HEJ DÅ!!!
 
-        /*
-        if(pro.getPoints() > player2.getPoints()){
-            panel.add(winner);
-        }else if (pro.getPoints() < player2.getPoints()){
-            panel.add(loser);
-        }else if (pro.getPoints() == player2.getPoints()){
-            //LÄGG TILL LIKA HÄR
-            JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
-        }
-
-         */
 
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
         ok.setBackground(new Color(77, 255, 77));
         ok.setForeground(Color.WHITE);
         ok.setFont(new Font("Arial", Font.PLAIN, 16));
-        //ok.setContentAreaFilled(false);
+
         ok.setOpaque(true);
         ok.setBorderPainted(false);
-        ok.addActionListener(this);
-
-        /*
-        ok.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-               // HomePage_play page = new HomePage_play(pro);
-            }
-        });
-
-         */
 
         setSize(350, 500);
         setLocationRelativeTo(null);
@@ -86,16 +52,5 @@ public class HejDå extends JFrame implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ok){
-            setClicked(true);
-        }
-    }
-
-    public boolean findClickAndPlay(){
-        ok.addActionListener(this);
-        return isClicked();
-    }
 }
 

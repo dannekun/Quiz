@@ -21,7 +21,6 @@ import java.util.Properties;
  * Copyright: MIT
  */
 public class GamePage_result extends JFrame implements ActionListener {
-    int clickedAnswer;
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
@@ -43,26 +42,8 @@ public class GamePage_result extends JFrame implements ActionListener {
 
     Properties p = new Properties();
 
-    public int getClickedAnswer() {
-        return clickedAnswer;
-    }
-
-    public void setClickedAnswer(int clickedAnswer) {
-        this.clickedAnswer = clickedAnswer;
-    }
-
     int numberOfRounds;
     int numberOfQuestions;
-
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
 
     public int getNumberOfRounds() {
         return numberOfRounds;
@@ -109,11 +90,9 @@ public class GamePage_result extends JFrame implements ActionListener {
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-
 
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
@@ -122,6 +101,7 @@ public class GamePage_result extends JFrame implements ActionListener {
         playerName1.setBorderPainted(false);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
@@ -134,81 +114,100 @@ public class GamePage_result extends JFrame implements ActionListener {
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
+
         add(categoriepanel, BorderLayout.CENTER);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
         categoriepanel.setBackground(new Color(51, 133, 255));
+
         add(player2Panel, BorderLayout.EAST);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
         player2Panel.setBackground( new Color(51, 133, 255));
-
 
         pro.setMaxRound(getNumberOfRounds());
         pro.setMaxQuestion(getNumberOfQuestions());
 
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
 
-
-
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
 
         for (int i = 0; i < totalbuttons; i++) {
+
             if (i < pro.getAnswers().size()){
+
                 if (!pro.getAnswers().get(i)){
+
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
                     player1_answers.get(i).setBorderPainted(false);
+
                 }else {
+
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
                     player1_answers.get(i).setBorderPainted(false);
+
                 }
+
             }
+
             player1Panel.add(player1_answers.get(i));
             player1_answers.get(i).setPreferredSize(new Dimension(35,10));
             player1_answers.get(i).setMaximumSize(new Dimension(35,10));
-        }
 
+        }
 
         labelNames = createLabelList(getNumberOfRounds());
 
-        System.out.println("STORLEK PÅ ROUNDCATEGORIES: " + pro.getRoundCategories());
-        System.out.println("STORLEK PÅ QUESTIONBETWEENPLAYERS: " + pro.getQuestionToPassBetweenPlayers());
-
         for (int i = 0; i < pro.getMaxRound(); i++) {
-            System.out.println(pro.getRound());
+
             if (i < pro.getRound()){
+
                 labelNames.get(i).setText(pro.getRoundCategories().get(i));
+
             }else {
+
                 labelNames.get(i).setText("          ");
+
             }
+
             categoriepanel.add(labelNames.get(i));
+
         }
 
-
-
         for (int i = 0; i <totalbuttons; i++) {
+
             if (i < player2.getAnswers().size()){
+
                 if (!player2.getAnswers().get(i)){
+
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
                     player2_answers.get(i).setBorderPainted(false);
+
                 }else {
+
                     player2_answers.get(i).setBackground(Color.GREEN);
                     player2_answers.get(i).setOpaque(true);
                     player2_answers.get(i).setBorderPainted(false);
+
                 }
+
             }
+
             player2Panel.add(player2_answers.get(i));
             player2_answers.get(i).setPreferredSize(new Dimension(35,10));
             player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+
         }
 
         if (pro.getRound() >= 1){
+
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
+
                 labelNames.get(i).setText(pro.roundCategories.get(i));
                 labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
                 labelNames.get(i).setBackground( new Color(51, 133, 255));
@@ -217,33 +216,23 @@ public class GamePage_result extends JFrame implements ActionListener {
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
             }
+
         }
-
-        /*
-        if (pro.getPoints() == 0){
-            score.setText("0 - 0");
-        }else {
-            score.setText(String.valueOf(pro.getPoints()) + " - 0");
-        }
-
-
-         */
 
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
         playerName1.setOpaque(true);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
@@ -289,8 +278,6 @@ public class GamePage_result extends JFrame implements ActionListener {
         play.setFont(new Font("Arial", Font.PLAIN, 16));
         play.setOpaque(true);
 
-
-        //TODO LÄGG TILL "SPELA KNAPP" SOM INTE SYNS FÖR ATT HA SAMMA DIMENSIONER
         closeGame.setBorder(compound);
         closeGame.setBackground(new Color(77, 255, 77));
         closeGame.setForeground(Color.WHITE);
@@ -317,6 +304,7 @@ public class GamePage_result extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
     public List<JButton> createButtonList(int numberOfButtons) {
@@ -341,12 +329,12 @@ public class GamePage_result extends JFrame implements ActionListener {
             pro.setCloseGameOption(1);
             dispose();
 
-           // CategoryPage c = new CategoryPage(pro);
         }else if (e.getSource() == closeGame){
             pro.setCloseGameOption(2);
             dispose();
 
         }
+
     }
 
     public Player findClickPlay(){

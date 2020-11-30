@@ -3,8 +3,6 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ResultPage extends JFrame implements ActionListener {
 
@@ -28,9 +26,13 @@ public class ResultPage extends JFrame implements ActionListener {
     }
 
     Player pro;
+
     public ResultPage(Player p, Player player2) {
+
         pro = p;
+
         add(panel);
+
         panel.setLayout(new BorderLayout());
         panel.setBackground( new Color(51, 133, 255));
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
@@ -51,29 +53,20 @@ public class ResultPage extends JFrame implements ActionListener {
         }else if (pro.getPoints() < player2.getPoints()){
             panel.add(loser);
         }else if (pro.getPoints() == player2.getPoints()){
-            //LÄGG TILL LIKA HÄR
+            //FIXME LÄGG TILL LIKA HÄR
             JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
         }
 
         panel.add(ok, BorderLayout.SOUTH);
+
         ok.setHorizontalAlignment(SwingConstants.CENTER);
         ok.setBackground(new Color(77, 255, 77));
         ok.setForeground(Color.WHITE);
         ok.setFont(new Font("Arial", Font.PLAIN, 16));
-        //ok.setContentAreaFilled(false);
         ok.setOpaque(true);
         ok.setBorderPainted(false);
         ok.addActionListener(this);
 
-        /*
-        ok.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-               // HomePage_play page = new HomePage_play(pro);
-            }
-        });
-
-         */
 
         setSize(350, 500);
         setLocationRelativeTo(null);

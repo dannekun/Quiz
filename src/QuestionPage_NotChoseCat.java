@@ -1,6 +1,3 @@
-import QuestionsHandler.Categories.Math;
-import QuestionsHandler.Categories.*;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;

@@ -41,15 +41,11 @@ public class ClientToSend implements Serializable {
         Player player1 = new Player();
         Player player2 = new Player();
 
-        int waitingForPlayer = 0;
 
         HomePage_waiting homePage_waiting = new HomePage_waiting();
-        GamePage_waiting gamePage_waiting = new GamePage_waiting();
 
         InetAddress iadr = InetAddress.getLocalHost();
 
-
-        //LOGGIN
 
         boolean work = true;
 
@@ -57,50 +53,34 @@ public class ClientToSend implements Serializable {
 
             LoginGUI gui = new LoginGUI();
             gui.showWindow();
-            //BEHÖVER INTE SKICKA
-            //pro.setName("daniel");
 
-            //PROGRAMMET FUNGERAR UTMÄRKT OM MAN SETNAME
             while (player1.getName() == null){
-                //pro =  gui.findPlayerAndReturn();
+
                 String name = gui.findPlayerAndReturn();
                 player1.setName(name);
                 sleepThisProgram();
+
             }
 
-
-
-            System.out.println(player1.getName());
             if (player1.getName() != null) {
+
                 work = false;
+
             }
+
         }
 
-
-        //QUENOTCONNECTEC
         homePage_waiting.showWindow(player1);
 
-
         Socket socket = new Socket(iadr, 7777);
-
-        System.out.println("Connected!");
 
         try {
 
             while (!player1.getFinished() && !player2.getFinished()) {
 
-                System.out.println("STORLEK PÅ ROUNDCATEGORI VID START: " + player1.getRoundCategories());
-
-
                 new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                System.out.println("Send success!!!!!");
-
-
                 player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                System.out.println("Receive success!!!!");
-
 
                 if (player1.getPLAYER() == 0) {
                     if (player2.getPLAYER() == 2) {
@@ -110,12 +90,10 @@ public class ClientToSend implements Serializable {
                     }
                 }
 
-                //QUEUE_CONNECTED
                 if (player2.isConnected()) {
+
                     homePage_waiting.closeWindow();
 
-                    System.out.println(player1.getPLAYER());
-                    System.out.println(player2.getPLAYER());
                 }
 
 
@@ -154,8 +132,6 @@ public class ClientToSend implements Serializable {
                                 sleepThisProgram();
                             }
 
-
-                            //HÄR HAR VI LAGT TILL 3 FRÅGOR
                             player1 = q.addCatToPlayer();
 
                             player1.setClicked(false);
@@ -175,11 +151,8 @@ public class ClientToSend implements Serializable {
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
+
 
 
                         } else if (player1.getPLAYER() == 2) {
@@ -190,11 +163,8 @@ public class ClientToSend implements Serializable {
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
 
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
+
                             gamePage_waiting1.closeWindow();
                             player2.getQuestionToPassBetweenPlayers();
                             int läggtill = (player2.getRound() * player1.getMaxQuestion())-player1.getMaxQuestion();
@@ -212,16 +182,11 @@ public class ClientToSend implements Serializable {
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
 
                             gamePage_waiting2.closeWindow();
                         } else if (player1.getPLAYER() == 2) {
-                            //FIXME TA BORT -3 PÅ FÄRGERNA SÅ MAN INTE SER RONDENS FÄRGER FÖR MOTSTÅNDAREN
+
                             List<Boolean> temp = player2.getAnswers();
                             List<Boolean>change = player2.getAnswers();
                             player2.changeList(player2.removeAnswersFromList(change,(player2.getMaxQuestion()), player2.getRound()));
@@ -253,12 +218,7 @@ public class ClientToSend implements Serializable {
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
 
                         }
 
@@ -272,15 +232,9 @@ public class ClientToSend implements Serializable {
                             GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
                             gamePage_waiting3.showWindow(player1, player2);
 
-
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
 
                             gamePage_waiting3.closeWindow();
                             player2.getQuestionToPassBetweenPlayers();
@@ -297,7 +251,6 @@ public class ClientToSend implements Serializable {
                                 player1 = gamePage_play2.findClickPlay();
                                 sleepThisProgram();
                             }
-                            // player2.changeList(temp);
                             player1.setRound(player1.getRound() + 1);
 
 
@@ -310,9 +263,6 @@ public class ClientToSend implements Serializable {
 
                             player1 = q.addCatToPlayer();
                             player1.setClicked(false);
-
-                            //HÄR LÄGGER VI TILL 3 FRÅGOR
-
 
                             for (int i = 0; i < player1.getMaxQuestion(); i++) {
                                 QuestionPage questionPage = new QuestionPage(player1);
@@ -329,13 +279,7 @@ public class ClientToSend implements Serializable {
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
-
 
                         }
 
@@ -348,8 +292,6 @@ public class ClientToSend implements Serializable {
                             List<Boolean>change2 = player2.getAnswers();
                             player2.changeList(player2.removeAnswersFromList(change2,(player2.getMaxQuestion()), player2.getRound()));
 
-                            System.out.println("PLAYER 2 ÄR PÅ ROUND: " +player2.getRound());
-
                             GamePage_play gamePage_play3 = new GamePage_play(player1, player2);
 
 
@@ -358,12 +300,10 @@ public class ClientToSend implements Serializable {
                                 player1 = gamePage_play3.findClickPlay();
                                 sleepThisProgram();
                             }
-                            // player2.changeList(temp);
+
                             player2.changeList(temp2);
                             player1.setRound(player1.getRound() + 1);
                             player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
-
-
 
                             player1.setClicked(false);
 
@@ -382,13 +322,7 @@ public class ClientToSend implements Serializable {
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
-
 
                         } else if (player1.getPLAYER() == 2) {
                             GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
@@ -397,24 +331,13 @@ public class ClientToSend implements Serializable {
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
 
                             gamePage_waiting3.closeWindow();
 
 
                         }
 
-
-
-
-
-
-                        //SISTA CHECKPOINT
                         if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
                             gameIsPlaying = false;
                             break;
@@ -427,14 +350,12 @@ public class ClientToSend implements Serializable {
 
                             ResultPage r = new ResultPage(player1, player2);
 
-
                             work = false;
                             while (!work) {
                                 work = r.findClickAndPlay();
 
                             }
                             r.dispose();
-
 
                         } else if (player1.getPLAYER() == 2) {
 
@@ -449,27 +370,24 @@ public class ClientToSend implements Serializable {
                         }
 
                         if (player1.getPLAYER() == 1) {
+
                             GamePage_result gamePage_result = new GamePage_result(player1, player2);
 
                             player1.setClicked(false);
                             work = false;
                             player1.setCloseGameOption(0);
+
                             while (!work) {
+
                                 player1 = gamePage_result.findClickPlay();
                                 if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
                                     work = true;
                                 }
                             }
-                            System.out.println("Du klickade på: "+ player1.getCloseGameOption());
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
 
                             gamePage_result.dispose();
 
@@ -481,6 +399,7 @@ public class ClientToSend implements Serializable {
 
                             player1.setCloseGameOption(0);
                             work = false;
+
                             while (!work) {
                                 player1 = gamePage_result2.findClickPlay();
 
@@ -488,24 +407,16 @@ public class ClientToSend implements Serializable {
                                     work = true;
                                 }
                             }
-                            System.out.println("Du klickade på: "+ player1.getCloseGameOption());
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
-
-                            System.out.println("Send success!!!!!");
-
-
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
-                            System.out.println("Receive success!!!!");
-
 
                             gamePage_result2.dispose();
                         }
 
                         if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
                             gameIsPlaying = true;
-                            System.out.println("vi börjar om!");
                         } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2){
                             HejDå bye = new HejDå(player1, player2);
                             //System.out.println("hej då!!!");
@@ -529,7 +440,6 @@ public class ClientToSend implements Serializable {
                 }
             }
 
-            System.out.println("Closing socket and terminating program");
             socket.close();
 
         } catch (IOException e) {

@@ -207,31 +207,21 @@ public class GamePage_play extends JFrame implements ActionListener {
             }
         }
 
-        /*
-        if (pro.getPoints() == 0){
-            score.setText("0 - 0");
-        }else {
-            score.setText(String.valueOf(pro.getPoints()) + " - 0");
-        }
-
-
-         */
-
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
+
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
         playerName1.setOpaque(true);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
@@ -259,6 +249,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
         lowestPanel.setBackground(new Color(51, 133, 255));
         lowestPanel.add(info);
+
         info.setForeground(new Color(51, 133, 255));
         info.setFont(new Font("Arial", Font.ITALIC, 16));
         info.setContentAreaFilled(false);
@@ -266,7 +257,9 @@ public class GamePage_play extends JFrame implements ActionListener {
         info.setOpaque(false);
         info.setPreferredSize(new Dimension(350,180));
         info.setMaximumSize(new Dimension(350,200));
+
         lowestPanel.add(play);
+
         Border line = new LineBorder(new Color(128, 255, 128));
         Border margin = new EmptyBorder(5, 151, 5, 151);
         Border compound = new CompoundBorder(line, margin);
@@ -315,10 +308,8 @@ public class GamePage_play extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
-
             dispose();
             pro.setClicked(true);
-           // CategoryPage c = new CategoryPage(pro);
         }
     }
 

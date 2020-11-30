@@ -1,6 +1,5 @@
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
@@ -456,8 +455,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
-            System.out.println(pro.getAnswers().size());
-            System.out.println(pro.getRoundAnswers().size());
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException interruptedException) {
