@@ -12,8 +12,10 @@ public class ResultPage extends JFrame implements ActionListener {
 
     String winnerPic = "src/Pictures/Winner.jpg";
     String loserPic = "src/Pictures/Loser.jpg";
+    String equalsPic = "src/Pictures/Equal.jpg";
     JLabel winner = new JLabel(new ImageIcon(winnerPic));
     JLabel loser = new JLabel(new ImageIcon(loserPic));
+    JLabel equals = new JLabel(new ImageIcon(equalsPic));
 
     boolean clicked = false;
 
@@ -53,8 +55,7 @@ public class ResultPage extends JFrame implements ActionListener {
         }else if (pro.getPoints() < player2.getPoints()){
             panel.add(loser);
         }else if (pro.getPoints() == player2.getPoints()){
-            //FIXME LÄGG TILL LIKA HÄR
-            JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
+            panel.add(equals);
         }
 
         panel.add(ok, BorderLayout.SOUTH);
