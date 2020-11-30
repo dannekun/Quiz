@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -18,6 +17,7 @@ import java.util.List;
  * Copyright: MIT
  */
 public class CategoryPage extends JFrame implements ActionListener {
+
 
     final int animalsNature = 0;
     final int artLiterature = 1;
@@ -33,29 +33,20 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
-    public int getUnique1() {
-        return unique1;
+    boolean a = false;
+    boolean b = false;
+    boolean c = false;
+
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
     }
 
-    public void setUnique1(int unique1) {
-        this.unique1 = unique1;
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
     }
 
-    public int getUnique2() {
-        return unique2;
-    }
-
-    public void setUnique2(int unique2) {
-        this.unique2 = unique2;
-    }
-
-    public int getUnique3() {
-        return unique3;
-    }
-
-    public void setUnique3(int unique3) {
-        this.unique3 = unique3;
-    }
 
     String categoryName;
 
@@ -70,7 +61,6 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player pro = new Player();
 
-    //List<String> categoriesChosen = new ArrayList<>();
 
    String cat1 = "";
    String cat2 = "";
@@ -80,6 +70,10 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     public CategoryPage(Player p){
         pro = p;
+
+        a = false;
+        b = false;
+        c = false;
 
         category1.setText(null);
         category2.setText(null);
@@ -91,7 +85,6 @@ public class CategoryPage extends JFrame implements ActionListener {
         cat2 = category2.getText();
         cat3 = category3.getText();
 
-    //    frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
         frame.add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground( new Color(51, 133, 255));
@@ -110,12 +103,14 @@ public class CategoryPage extends JFrame implements ActionListener {
         category1.setForeground(Color.WHITE);
         category1.setFont(new Font("Arial", Font.BOLD, 14));
         category1.setContentAreaFilled(false);
+        category1.setBorderPainted(false);
         category1.setOpaque(true);
         category1.setPreferredSize(new Dimension(200, 70));
         category1.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
         panel.add(category2);
         category2.setBackground(new Color(0, 204, 102));
+        category2.setBorderPainted(false);
         category2.setForeground(Color.WHITE);
         category2.setFont(new Font("Arial", Font.BOLD, 14));
         category2.setContentAreaFilled(false);
@@ -128,6 +123,7 @@ public class CategoryPage extends JFrame implements ActionListener {
         category3.setForeground(Color.WHITE);
         category3.setFont(new Font("Arial", Font.BOLD, 14));
         category3.setContentAreaFilled(false);
+        category3.setBorderPainted(false);
         category3.setOpaque(true);
         category3.setPreferredSize(new Dimension(200, 70));
         category3.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -148,13 +144,6 @@ public class CategoryPage extends JFrame implements ActionListener {
         category2.addActionListener(this);
         category3.addActionListener(this);
 
-    }
-
-    public List<String> findCategoryNamiestoDisplay(String input){
-        List<String> categorieNames = new ArrayList<>();
-        categorieNames.add(input);
-
-        return categorieNames;
     }
 
     /**
@@ -287,34 +276,52 @@ public class CategoryPage extends JFrame implements ActionListener {
     }
 
 
-    // Factory method();
-    // Factory pattern.
-    // Lista till QuestionPage.
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        a = false;
+        b = false;
+        c = false;
+
         if (e.getSource() == category1){
             dispose();
-            //categoriesChosen = findCategoryNamiestoDisplay(category1.getText());
-           // categoriesChosen.add(cat1);
-            pro.addToList(cat1);
-            QuestionPage q = new QuestionPage(pro);
+
+           a = true;
+           setClicked(true);
+
 
         }else if (e.getSource() == category2){
             dispose();
-            //categoriesChosen = findCategoryNamiestoDisplay(category2.getText());
-           // categoriesChosen.add(cat2);
-            pro.addToList(cat2);
-            QuestionPage q = new QuestionPage(pro);
+
+            b = true;
+            setClicked(true);
+
 
         }else if (e.getSource() == category3){
             dispose();
-            //categoriesChosen.add(cat3);
-            pro.addToList(cat3);
-            //categoriesChosen = findCategoryNamiestoDisplay(category3.getText());
-            QuestionPage q = new QuestionPage(pro);
+           c = true;
+            setClicked(true);
+
 
         }
+    }
+
+    public Player addCatToPlayer(){
+        if (a){
+            pro.addToList(cat1);
+        }else if (b){
+            pro.addToList(cat2);
+        }else if (c){
+            pro.addToList(cat3);
+        }
+        return pro;
+    }
+
+    public Boolean findClickPlay(){
+        category1.addActionListener(this);
+        category2.addActionListener(this);
+        category3.addActionListener(this);
+
+        return isClicked();
     }
 }

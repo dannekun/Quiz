@@ -1,10 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ResultPage extends JFrame implements ActionListener {
+public class HejDå extends JFrame {
 
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
@@ -15,29 +13,16 @@ public class ResultPage extends JFrame implements ActionListener {
     JLabel winner = new JLabel(new ImageIcon(winnerPic));
     JLabel loser = new JLabel(new ImageIcon(loserPic));
 
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
-
     Player pro;
-
-    public ResultPage(Player p, Player player2) {
+    public HejDå(Player p, Player player2) {
 
         pro = p;
-
         add(panel);
-
         panel.setLayout(new BorderLayout());
         panel.setBackground( new Color(51, 133, 255));
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
         panel.add(label, BorderLayout.NORTH);
-        label.setText(pro.getName() + " fick " + pro.getPoints() + " poäng!");
+        label.setText("Hej då!");
         label.setFont(new Font("Arial", Font.PLAIN, 18));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setForeground(Color.WHITE);
@@ -48,25 +33,17 @@ public class ResultPage extends JFrame implements ActionListener {
 
         panel.add(winner, BorderLayout.CENTER);
 
-        if(pro.getPoints() > player2.getPoints()){
-            panel.add(winner);
-        }else if (pro.getPoints() < player2.getPoints()){
-            panel.add(loser);
-        }else if (pro.getPoints() == player2.getPoints()){
-            //FIXME LÄGG TILL LIKA HÄR
-            JOptionPane.showMessageDialog(null, "wallah det blev lika bram");
-        }
+        //TODO LÄGG TILL BILD PÅ HEJ DÅ!!!
+
 
         panel.add(ok, BorderLayout.SOUTH);
-
         ok.setHorizontalAlignment(SwingConstants.CENTER);
         ok.setBackground(new Color(77, 255, 77));
         ok.setForeground(Color.WHITE);
         ok.setFont(new Font("Arial", Font.PLAIN, 16));
+
         ok.setOpaque(true);
         ok.setBorderPainted(false);
-        ok.addActionListener(this);
-
 
         setSize(350, 500);
         setLocationRelativeTo(null);
@@ -75,16 +52,5 @@ public class ResultPage extends JFrame implements ActionListener {
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == ok){
-            setClicked(true);
-        }
-    }
-
-    public boolean findClickAndPlay(){
-        ok.addActionListener(this);
-        return isClicked();
-    }
 }
 

@@ -20,7 +20,7 @@ import java.util.Properties;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class GamePage_play extends JFrame implements ActionListener {
+public class GamePage_result extends JFrame implements ActionListener {
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
@@ -32,7 +32,8 @@ public class GamePage_play extends JFrame implements ActionListener {
     JButton playerName2 = new JButton("Spelare");
 
 
-    JButton play = new JButton("Spela");
+    JButton play = new JButton("Spela igen");
+    JButton closeGame = new JButton("Stäng av");
 
     List<JButton> player1_answers;
     List<JButton> player2_answers;
@@ -43,16 +44,6 @@ public class GamePage_play extends JFrame implements ActionListener {
 
     int numberOfRounds;
     int numberOfQuestions;
-
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
 
     public int getNumberOfRounds() {
         return numberOfRounds;
@@ -71,7 +62,7 @@ public class GamePage_play extends JFrame implements ActionListener {
     }
 
     Player pro;
-    public GamePage_play(Player player, Player player2) throws FileNotFoundException, IOException {
+    public GamePage_result(Player player, Player player2) throws FileNotFoundException, IOException {
 
         categoriepanel.removeAll();
         revalidate();
@@ -99,11 +90,9 @@ public class GamePage_play extends JFrame implements ActionListener {
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-
 
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
@@ -112,6 +101,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         playerName1.setBorderPainted(false);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
@@ -124,79 +114,100 @@ public class GamePage_play extends JFrame implements ActionListener {
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
         player1Panel.setBackground( new Color(51, 133, 255));
+
         add(categoriepanel, BorderLayout.CENTER);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
         categoriepanel.setBackground(new Color(51, 133, 255));
+
         add(player2Panel, BorderLayout.EAST);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
         player2Panel.setBackground( new Color(51, 133, 255));
-
 
         pro.setMaxRound(getNumberOfRounds());
         pro.setMaxQuestion(getNumberOfQuestions());
 
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
 
-
-
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
 
         for (int i = 0; i < totalbuttons; i++) {
+
             if (i < pro.getAnswers().size()){
+
                 if (!pro.getAnswers().get(i)){
+
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
                     player1_answers.get(i).setBorderPainted(false);
+
                 }else {
+
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
                     player1_answers.get(i).setBorderPainted(false);
+
                 }
+
             }
+
             player1Panel.add(player1_answers.get(i));
             player1_answers.get(i).setPreferredSize(new Dimension(35,10));
             player1_answers.get(i).setMaximumSize(new Dimension(35,10));
+
         }
 
-
         labelNames = createLabelList(getNumberOfRounds());
-
 
         for (int i = 0; i < pro.getMaxRound(); i++) {
 
             if (i < pro.getRound()){
+
                 labelNames.get(i).setText(pro.getRoundCategories().get(i));
+
             }else {
+
                 labelNames.get(i).setText("          ");
+
             }
+
             categoriepanel.add(labelNames.get(i));
+
         }
 
-
-
         for (int i = 0; i <totalbuttons; i++) {
+
             if (i < player2.getAnswers().size()){
+
                 if (!player2.getAnswers().get(i)){
+
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
                     player2_answers.get(i).setBorderPainted(false);
+
                 }else {
+
                     player2_answers.get(i).setBackground(Color.GREEN);
                     player2_answers.get(i).setOpaque(true);
                     player2_answers.get(i).setBorderPainted(false);
+
                 }
+
             }
+
             player2Panel.add(player2_answers.get(i));
             player2_answers.get(i).setPreferredSize(new Dimension(35,10));
             player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+
         }
 
         if (pro.getRound() >= 1){
+
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
+
                 labelNames.get(i).setText(pro.roundCategories.get(i));
                 labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
                 labelNames.get(i).setBackground( new Color(51, 133, 255));
@@ -205,6 +216,7 @@ public class GamePage_play extends JFrame implements ActionListener {
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
             }
+
         }
 
         add(stats);
@@ -214,7 +226,6 @@ public class GamePage_play extends JFrame implements ActionListener {
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
@@ -249,7 +260,6 @@ public class GamePage_play extends JFrame implements ActionListener {
         lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
         lowestPanel.setBackground(new Color(51, 133, 255));
         lowestPanel.add(info);
-
         info.setForeground(new Color(51, 133, 255));
         info.setFont(new Font("Arial", Font.ITALIC, 16));
         info.setContentAreaFilled(false);
@@ -257,9 +267,8 @@ public class GamePage_play extends JFrame implements ActionListener {
         info.setOpaque(false);
         info.setPreferredSize(new Dimension(350,180));
         info.setMaximumSize(new Dimension(350,200));
-
         lowestPanel.add(play);
-
+        lowestPanel.add(closeGame);
         Border line = new LineBorder(new Color(128, 255, 128));
         Border margin = new EmptyBorder(5, 151, 5, 151);
         Border compound = new CompoundBorder(line, margin);
@@ -268,6 +277,13 @@ public class GamePage_play extends JFrame implements ActionListener {
         play.setForeground(Color.WHITE);
         play.setFont(new Font("Arial", Font.PLAIN, 16));
         play.setOpaque(true);
+
+        closeGame.setBorder(compound);
+        closeGame.setBackground(new Color(77, 255, 77));
+        closeGame.setForeground(Color.WHITE);
+        closeGame.setFont(new Font("Arial", Font.PLAIN, 16));
+        closeGame.setOpaque(true);
+        closeGame.setBorderPainted(false);
 
         playerName1.setText(pro.getName());
 
@@ -282,11 +298,13 @@ public class GamePage_play extends JFrame implements ActionListener {
         contentPane.add(lowestPanel, BorderLayout.SOUTH);
 
         play.addActionListener(this);
+        closeGame.addActionListener(this);
 
         setSize(350, 500);
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
     public List<JButton> createButtonList(int numberOfButtons) {
@@ -308,14 +326,20 @@ public class GamePage_play extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
+            pro.setCloseGameOption(1);
             dispose();
-            pro.setClicked(true);
+
+        }else if (e.getSource() == closeGame){
+            pro.setCloseGameOption(2);
+            dispose();
+
         }
+
     }
 
     public Player findClickPlay(){
         play.addActionListener(this);
-
+        closeGame.addActionListener(this);
 
         return pro;
     }

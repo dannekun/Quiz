@@ -1,5 +1,3 @@
-import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Math;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
@@ -19,17 +17,7 @@ import java.util.List;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class QuestionPage extends JFrame implements ActionListener {
-
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
+public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
@@ -49,56 +37,43 @@ public class QuestionPage extends JFrame implements ActionListener {
     JPanel south = new JPanel();
 
     Player pro;
-    List<Questions> randomListToPull = new ArrayList<>();
+    List<Questions> randomListToPull;
     List<String> randomAnswerList;
 
     String rightAnswerFromList;
 
 
-    public QuestionPage(Player p) {
+
+    public QuestionPage_NotChoseCat(Player p, Player player2) {
 
         pro = p;
-
-        randomListToPull.clear();
 
         round.setText(("Rond " + pro.getRound()));
         questionNumber.setText("Fråga " + (pro.getQuestion()+1));
 
         player.setText(pro.getName());
 
-        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() -1));
+        randomListToPull = player2.getQuestionToPassBetweenPlayers();
 
-        Collections.shuffle(randomListToPull);
 
-        if (pro.currentQuestion.isEmpty()) {
-            question.setText(randomListToPull.get(0).getQuestion());
-            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+        int correctNumberToChoose = ((pro.getRound()*pro.getMaxQuestion())-pro.getMaxQuestion())+(pro.getQuestion());
 
-            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
-        } else {
-            randomListToPull = findQuestion(randomListToPull, pro.getCurrentQuestion());
+        randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
+        rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
 
-            question.setText(randomListToPull.get(0).getQuestion());
-
-            pro.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
-            pro.addQuestionBetweenPlayers(randomListToPull.get(0));
-        }
-
-        randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
-
-        rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
         Collections.shuffle(randomAnswerList);
 
+        question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
 
         answer1.setText(randomAnswerList.get(0));
         answer2.setText(randomAnswerList.get(1));
         answer3.setText(randomAnswerList.get(2));
         answer4.setText(randomAnswerList.get(3));
 
-        category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size() - 1));
-
+        category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
 
         for (int i = 0; i < pro.getMaxQuestion(); i++) {
+
             buttonsToPaintList.add(new JButton());
         }
 
@@ -114,7 +89,6 @@ public class QuestionPage extends JFrame implements ActionListener {
                 } else if (pro.getRoundAnswers().get(i)){
 
                     paintGreen(buttonsToPaintList.get(i));
-
                 }
 
             }
@@ -122,13 +96,11 @@ public class QuestionPage extends JFrame implements ActionListener {
         } else if (pro.getQuestion() == 0) {
 
             for (int i = 0; i < pro.getMaxQuestion(); i++) {
-                resetPaint(buttonsToPaintList.get(i));
 
+                resetPaint(buttonsToPaintList.get(i));
             }
 
         }
-
-
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
@@ -253,33 +225,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         jb.setBackground(null);
     }
 
-    final String animalNatureName = "Djur & natur";
-    final String artLiteratureName = "Konst & literatur";
-    final String generalKnowledgeName = "Allmän kunskap";
-    final String mathName = "Matte";
-    final String musicName = "Musik";
-    final String popCultureName = "Pop Kultur";
-    final String sportsName = "Idrott";
-    final String technologyName = "Teknologi";
-    final String tvShowsName = "TV-show";
-
-
-    public List<Questions> findList(String categoryName) {
-
-        return switch (categoryName) {
-            case animalNatureName -> new AnimalsNature().getAnimalsNatureList();
-            case artLiteratureName -> new ArtLiterature().getArtLiteratureList();
-            case generalKnowledgeName -> new GeneralKnowledge().getGeneralKnowledgeList();
-            case mathName -> new Math().getMathList();
-            case musicName -> new Music().getMusicList();
-            case popCultureName -> new PopCulture().getPopCultureList();
-            case sportsName -> new Sports().getSportsList();
-            case technologyName -> new Technology().getTechnologyList();
-            case tvShowsName -> new TVShows().getTvShowsList();
-            default -> null;
-        };
-    }
-
     public Boolean checkAnswers(String a) {
 
         return rightAnswerFromList.equals(a);
@@ -306,37 +251,15 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
     }
 
-    public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith) {
-        boolean found = false;
-        List<Questions> questionsToUse = new ArrayList<>();
-        for (Questions questions : questionListToFind) {
-            for (String s : listToCompareWith) {
-                if (questions.getQuestion().equals(s)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                questionsToUse.add(questions);
-            }
-            found = false;
-        }
-        Collections.shuffle(questionsToUse);
-        return questionsToUse;
-    }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        pro.setClickedRightAnswer(false);
 
         if (e.getSource() == answer1) {
 
-
             if (!checkAnswers(randomAnswerList.get(0))) {
+
                 answer1.setBackground(Color.RED);
                 pro.setClickedRightAnswer(false);
-
 
             } else if (checkAnswers(randomAnswerList.get(0))) {
                 answer1.setBackground(Color.GREEN);
@@ -345,7 +268,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer1.setOpaque(true);
             answer1.setBorderPainted(false);
             pro.setClicked(true);
-            setClicked(true);
+
         } else if (e.getSource() == answer2) {
 
             if (!checkAnswers(randomAnswerList.get(1))) {
@@ -359,23 +282,26 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer2.setOpaque(true);
             answer2.setBorderPainted(false);
             pro.setClicked(true);
-            setClicked(true);
+
         } else if (e.getSource() == answer3) {
 
             if (!checkAnswers(randomAnswerList.get(2))) {
+
                 answer3.setBackground(Color.RED);
                 pro.setClickedRightAnswer(false);
 
             } else if (checkAnswers(randomAnswerList.get(2))) {
+
                 answer3.setBackground(Color.GREEN);
                 pro.setClickedRightAnswer(true);
             }
+
             answer3.setOpaque(true);
             answer3.setBorderPainted(false);
             pro.setClicked(true);
-            setClicked(true);
 
         } else if (e.getSource() == answer4) {
+
 
             if (!checkAnswers(randomAnswerList.get(3))) {
 
@@ -391,13 +317,12 @@ public class QuestionPage extends JFrame implements ActionListener {
             answer4.setOpaque(true);
             answer4.setBorderPainted(false);
             pro.setClicked(true);
-            setClicked(true);
         }
 
         findRightAnswerAndPaint(answer1,answer2,answer3,answer4,rightAnswerFromList);
 
-
     }
+
 
     public Player endGame(Player p){
 
@@ -410,17 +335,13 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.answersAddToList(true);
                 pro.addToRoundAnswersList(true);
 
-
-
             } else {
 
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
 
-
             dispose();
-
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
 
@@ -431,6 +352,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
             } else {
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -441,6 +363,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
 
+
             if (pro.isClickedRightAnswer()) {
 
                 pro.answersAddToList(true);
@@ -448,6 +371,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
             } else {
+
                 pro.answersAddToList(false);
                 pro.addToRoundAnswersList(false);
             }
@@ -476,6 +400,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
         return pro;
     }
+
 
     public Player findClickPlay(){
         answer1.addActionListener(this);

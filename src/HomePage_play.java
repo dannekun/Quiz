@@ -17,10 +17,23 @@ public class HomePage_play extends JFrame implements ActionListener {
     JLabel player = new JLabel();
     JButton play = new JButton("Spela");
     JLabel home = new JLabel("Hem");
+//    JLabel info = new JLabel("Väntar på spelare nr 2...");
 
     Player pro = new Player();
 
-    public HomePage_play(Player p){
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
+
+    public void showWindow(Player p) {
+
         pro.setName(p.getName());
         player.setText(pro.getName());
 
@@ -61,6 +74,7 @@ public class HomePage_play extends JFrame implements ActionListener {
         home.setForeground(Color.BLACK);
         home.setBackground(Color.WHITE);
         home.setOpaque(true);
+
         Border lineLabel = new LineBorder(new Color(128, 191, 255));
         Border marginLabel = new EmptyBorder(10, 10, 10, 10);
         Border compoundLabel = new CompoundBorder(lineLabel, marginLabel);
@@ -79,13 +93,17 @@ public class HomePage_play extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == play){
+        if (e.getSource() == play) {
+
             dispose();
-            try {
-                GamePage_play g = new GamePage_play(pro);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
+            setClicked(true);
+
         }
+
+    }
+
+    public boolean findClickPlay() {
+        play.addActionListener(this);
+        return isClicked();
     }
 }

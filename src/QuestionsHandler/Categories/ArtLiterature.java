@@ -3,6 +3,7 @@ package QuestionsHandler.Categories;
 import QuestionsHandler.Answers;
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class ArtLiterature {
+public class ArtLiterature implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // Art & Literature Answers

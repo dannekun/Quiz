@@ -1,14 +1,6 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -29,9 +21,6 @@ public class GamePage_waiting extends JFrame {
     JButton info = new JButton("Spelare 2 spelar");
     JButton playerName1 = new JButton();
     JButton playerName2 = new JButton("Spelare");
-    //   JLabel scorePlayer1 = new JLabel("0");
-    //   JLabel colon = new JLabel(" : ");
-    //   JLabel scorePlayer2 = new JLabel("0");
 
     List<JButton> player1_answers;
     List<JButton> player2_answers;
@@ -39,9 +28,6 @@ public class GamePage_waiting extends JFrame {
     List<JLabel> labelNames;
 
     Properties p = new Properties();
-
-    CategoryPage catToFindNamesForLabel = new CategoryPage();
-
 
     int numberOfRounds;
     int numberOfQuestions;
@@ -64,9 +50,38 @@ public class GamePage_waiting extends JFrame {
     }
 
     Player pro;
-    public GamePage_waiting(Player player) throws FileNotFoundException, IOException {
+
+    public List<JButton> createButtonList(int numberOfButtons) {
+        List<JButton> buttonList = new ArrayList<>();
+        for (int i = 0; i <numberOfButtons; i++) {
+            buttonList.add(new JButton());
+        }
+        return buttonList;
+    }
+
+    public List<JLabel> createLabelList(int numberOfRounds){
+        List<JLabel> labelList= new ArrayList<>();
+        for (int i = 0; i < numberOfRounds; i++) {
+            labelList.add(new JLabel("Cat"));
+        }
+        return labelList;
+    }
+
+    public void showWindow(Player player, Player player2){
+
+        lowestPanel.removeAll();
+        stats.removeAll();
+        player1Panel.removeAll();
+        player2Panel.removeAll();
+        categoriepanel.removeAll();
+
+        revalidate();
+        repaint();
 
         pro = player;
+
+        info.setText(player2.getName() + " spelar...");
+        playerName2.setText(player2.getName());
 
         try{
             p.load(new FileInputStream("src/RoundQuestions.properties"));
@@ -75,77 +90,92 @@ public class GamePage_waiting extends JFrame {
             e.printStackTrace();
         }
         String stringRounds = p.getProperty("numberOfRounds", "2");
-        //numberOfRounds = Integer.parseInt(stringRounds);
         setNumberOfRounds(Integer.parseInt(stringRounds));
         String stringQuestions = p.getProperty("numberOfQuestions", "2");
-        //numberOfQuestions = Integer.parseInt(stringQuestions);
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
-
-
 
         pro.setMaxRound(getNumberOfRounds());
         pro.setMaxQuestion(getNumberOfQuestions());
 
-        //int totalbuttons = numberOfQuestions * numberOfRounds;
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
-
-
 
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
 
         for (int i = 0; i < totalbuttons; i++) {
+
             if (i < pro.getAnswers().size()){
+
                 if (!pro.getAnswers().get(i)){
+
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
                 }else {
+
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    //    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorderPainted(false);
+
                 }
+
             }
+
             player1Panel.add(player1_answers.get(i));
             player1_answers.get(i).setPreferredSize(new Dimension(35,10));
             player1_answers.get(i).setMaximumSize(new Dimension(35,10));
+
         }
 
+        for (int i = 0; i <totalbuttons; i++) {
 
-/*
-        for (int i = 0; i < numberOfRounds; i++) {
-            categoriepanel.add(new JLabel("Category"));
-        }
+            if (i < player2.getAnswers().size()){
 
- */
-        labelNames = createLabelList(getNumberOfRounds());
+                if (!player2.getAnswers().get(i)){
 
-        for (int i = 0; i < pro.getMaxRound(); i++) {
-            if (i < pro.getRound()){
-                labelNames.get(i).setText(pro.roundCategories.get(i));
-            }else {
-                labelNames.get(i).setText("          ");
+                    player2_answers.get(i).setBackground(Color.RED);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+
+                }else {
+
+                    player2_answers.get(i).setBackground(Color.GREEN);
+                    player2_answers.get(i).setOpaque(true);
+                    player2_answers.get(i).setBorderPainted(false);
+
+                }
+
             }
-            categoriepanel.add(labelNames.get(i));
-        }
 
-        /*
-        for (int i = 0; i < getNumberOfRounds(); i++) {
-            categoriepanel.add(new JLabel("Category"));
-        }
-
-
-         */
-
-        for (int i = 0; i <totalbuttons ; i++) {
             player2Panel.add(player2_answers.get(i));
             player2_answers.get(i).setPreferredSize(new Dimension(35,10));
             player2_answers.get(i).setMaximumSize(new Dimension(35,10));
+
+        }
+
+        labelNames = createLabelList(getNumberOfRounds());
+
+        for (int i = 0; i < pro.getMaxRound(); i++) {
+
+            if (i < pro.getRound()){
+
+                labelNames.get(i).setText(pro.getRoundCategories().get(i));
+
+            }else {
+
+                labelNames.get(i).setText("          ");
+
+            }
+
+            categoriepanel.add(labelNames.get(i));
+
         }
 
         if (pro.getRound() >= 1){
+
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
-                labelNames.get(i).setText(pro.roundCategories.get(i));
+
+                labelNames.get(i).setText(pro.getRoundCategories().get(i));
                 labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
                 labelNames.get(i).setBackground( new Color(51, 133, 255));
                 labelNames.get(i).setForeground(Color.WHITE);
@@ -153,37 +183,29 @@ public class GamePage_waiting extends JFrame {
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
             }
+
         }
-
-        /*
-        if (pro.getPoints() == 0){
-            score.setText("0 - 0");
-        }else {
-            score.setText(String.valueOf(pro.getPoints()) + " - 0");
-        }
-
-
-         */
 
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         stats.setBackground( new Color(51, 133, 255));
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
         stats.add(playerName1);
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        //    stats.add(Box.createRigidArea(new Dimension(30, 40)));
         playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName1.setForeground(Color.WHITE);
         playerName1.setBackground(new Color(0, 51, 204));
         playerName1.setOpaque(true);
+        playerName1.setBorderPainted(false);
         playerName1.setPreferredSize(new Dimension(150, 40));
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
+
         playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
         playerName2.setForeground(Color.WHITE);
         playerName2.setBackground(new Color(191, 64, 191));
         playerName2.setOpaque(true);
+        playerName2.setBorderPainted(false);
         playerName2.setPreferredSize(new Dimension(150, 40));
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -231,32 +253,12 @@ public class GamePage_waiting extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
     }
 
-    public List<JButton> createButtonList(int numberOfButtons) {
-        List<JButton> buttonList = new ArrayList<>();
-        for (int i = 0; i <numberOfButtons; i++) {
-            buttonList.add(new JButton());
-        }
-        return buttonList;
+    public void closeWindow(){
+        dispose();
     }
-
-    public List<JLabel> createLabelList(int numberOfRounds){
-        List<JLabel> labelList= new ArrayList<>();
-        for (int i = 0; i < numberOfRounds; i++) {
-            labelList.add(new JLabel("Cat"));
-        }
-        return labelList;
-    }
-
- /*   @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == play){
-            pro.setRound(pro.getRound()+1);
-            pro.setQuestion(pro.getQuestion()+1);
-            dispose();
-            CategoryPage c = new CategoryPage(pro);
-        }
-    }*/
 
 }

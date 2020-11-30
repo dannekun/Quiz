@@ -4,6 +4,8 @@ package QuestionsHandler;
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
 
+import java.io.Serializable;
+
 /**
  * Created by Salah Abdinoor
  * 11/13/2020
@@ -11,7 +13,7 @@ import QuestionsHandler.Categories.Math;
  * Quiz
  * Copyright: MIT
  */
-public class Database{
+public class Database implements Serializable {
 
     public AnimalsNature animalsNature = new AnimalsNature();
     public ArtLiterature artLiterature = new ArtLiterature();
