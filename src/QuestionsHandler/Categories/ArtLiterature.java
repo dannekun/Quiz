@@ -31,7 +31,7 @@ public class ArtLiterature implements Serializable {
 
     private final Answers A5 = new Answers("Charles Dickens", "Frank Kafka", "William Shakespeare", "George Orwell");
 
-    private final Answers A6 = new Answers("Louvren, Paris", "British Museum, London", "Pradomuseet, Madrid", "The Metropolitan Museum of Art, New York");
+    private final Answers A6 = new Answers("Louvren, Paris", "British Museum, London", "Pradomuseet, Madrid", "<html>The Metropolitan Museum of Art, New York</html>");
 
     private final Answers A7 = new Answers("Antonio Vivaldi", "Giacomo Puccini", "Gioacchino Rossini", "Benito Mussolini");
 

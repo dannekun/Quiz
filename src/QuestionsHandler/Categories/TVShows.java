@@ -23,7 +23,7 @@ public class TVShows implements Serializable {
 
     private final Answers A1 = new Answers("Central Perk", "Starbucks", "Friends Pub", "SoHo");
 
-    private final Answers A2 = new Answers("How you doing?", "How's it going beautiful?", "Hey baby.", "You're wasting good pastrami!");
+    private final Answers A2 = new Answers("How you doing?", "How's it going beautiful?", "Hey baby.", "<html>You're wasting good pastrami!</html>");
 
     private final Answers A3 = new Answers("73", "87", "53", "67");
 

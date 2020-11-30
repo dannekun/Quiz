@@ -1,5 +1,6 @@
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
+import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
@@ -7,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +23,9 @@ import java.util.List;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
-    boolean clicked = false;
+    GUI_Util util = new GUI_Util();
+
+     boolean clicked = false;
 
     public boolean isClicked() {
         return clicked;
@@ -56,6 +60,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
     public QuestionPage(Player p) {
+
 
         pro = p;
 
@@ -132,103 +137,60 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
-        north.setBackground(new Color(51, 133, 255));
-
+        util.setMainBackground(north);
         for (int i = 0; i < buttonsToPaintList.size(); i++) {
-
             north.add(buttonsToPaintList.get(i));
-            buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
-            buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
-
+            util.setSizeButton(buttonsToPaintList.get(i),30,30,30,30);
         }
-
         north.add(player);
-        player.setFont(new Font("Arial", Font.PLAIN, 14));
-        player.setForeground(Color.WHITE);
-        player.setBackground(new Color(0, 51, 204));
-        player.setOpaque(true);
+        util.labelSetFontForegBackg_white(player,0,14,0,51,204);
         player.setBorder(new EmptyBorder(10, 30, 10, 30));
 
         add(south);
         south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         south.setLayout(new GridLayout(8,1));
-        south.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(south);
 
         south.add(round);
-        round.setFont(new Font("Arial", Font.PLAIN, 14));
-        round.setForeground(Color.WHITE);
+        util.labelSetFontForeg_white(round,0,14);
 
         south.add(category);
-        category.setBackground(new Color(204, 0, 204));
-        category.setForeground(Color.WHITE);
-        category.setFont(new Font("Arial", Font.BOLD, 14));
-        category.setOpaque(true);
-        category.setPreferredSize(new Dimension(250, 30));
+        util.labelSetFontForegBackg_white(category,1,14,204,0,204);
+        util.setSizeLabel(category,250,30,250,30);
         category.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         south.add(questionNumber);
-        questionNumber.setFont(new Font("Arial", Font.PLAIN, 14));
-        questionNumber.setForeground(Color.WHITE);
+        util.labelSetFontForeg_white(questionNumber,0,14);
 
         south.add(question);
-        question.setBackground(new Color(255, 51, 133));
-        question.setForeground(Color.WHITE);
-        question.setFont(new Font("Arial", Font.BOLD, 12));
+        util.labelSetFontForegBackg_white(question,1,12,255,51,133);
+        util.setSizeLabel(question,250,30,250,30);
         question.setBorder(new EmptyBorder(10, 10, 10, 10));
-        question.setOpaque(true);
-        question.setPreferredSize(new Dimension(250, 30));
 
         south.add(answer1);
-        answer1.setBackground(new Color(163, 102, 255));
-        answer1.setForeground(Color.WHITE);
-        answer1.setFont(new Font("Arial", Font.BOLD, 14));
-        answer1.setContentAreaFilled(false);
-        answer1.setOpaque(true);
-        answer1.setBorderPainted(false);
-        answer1.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer1,1,14,163,102,255);
+        util.setSizeButton(answer1,250,30,250,30);
 
         south.add(answer2);
-        answer2.setBackground(new Color(163, 102, 255));
-        answer2.setForeground(Color.WHITE);
-        answer2.setFont(new Font("Arial", Font.BOLD, 14));
-        answer2.setContentAreaFilled(false);
-        answer2.setOpaque(true);
-        answer2.setBorderPainted(false);
-        answer2.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer2,1,14,163,102,255);
+        util.setSizeButton(answer2,250,30,250,30);
 
         south.add(answer3);
-        answer3.setBackground(new Color(163, 102, 255));
-        answer3.setForeground(Color.WHITE);
-        answer3.setFont(new Font("Arial", Font.BOLD, 14));
-        answer3.setContentAreaFilled(false);
-        answer3.setOpaque(true);
-        answer3.setBorderPainted(false);
-        answer3.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer3,1,14,163,102,255);
+        util.setSizeButton(answer3,250,30,250,30);
 
         south.add(answer4);
-        answer4.setBackground(new Color(163, 102, 255));
-        answer4.setForeground(Color.WHITE);
-        answer4.setFont(new Font("Arial", Font.BOLD, 14));
-        answer4.setContentAreaFilled(false);
-        answer4.setOpaque(true);
-        answer4.setBorderPainted(false);
-        answer4.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer4,1,14,163,102,255);
+        util.setSizeButton(answer4,250,30,250,30);
 
         Container contentPane = getContentPane();
         contentPane.add(north, BorderLayout.NORTH);
         contentPane.add(south, BorderLayout.CENTER);
 
-        category.setMaximumSize(new Dimension(250, 30));
-        question.setMaximumSize(new Dimension(250, 30));
-        answer1.setMaximumSize(new Dimension(250, 30));
-        answer2.setMaximumSize(new Dimension(250, 30));
-        answer3.setMaximumSize(new Dimension(250, 30));
-        answer4.setMaximumSize(new Dimension(250, 30));
-
         setSize(350, 500);
         setLocationRelativeTo(null);
         setVisible(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         answer1.addActionListener(this);
         answer2.addActionListener(this);
