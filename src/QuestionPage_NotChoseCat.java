@@ -116,11 +116,54 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
          */
         randomListToPull = player2.getQuestionToPassBetweenPlayers();
 
-        randomAnswerList = randomListToPull.get(pro.getQuestion()).getAnswerObject().getAnswersList();
-        rightAnswerFromList = randomListToPull.get(pro.getQuestion()).getAnswerObject().getRightAnswer();
+        /*
+        int total = pro.getRound() * pro.getQuestion();
+        for (int i = 0; i < pro.getMaxQuestion(); i++) {
+            pro.addQuestionBetweenPlayers(player2.getQuestionToPassBetweenPlayers().get(total));
+        }
+
+         */
+        System.out.println("RANDOMLISTTOPULL SIZE: " + randomListToPull.size());
+        System.out.println("PRO GET QUESTION: "+ pro.getQuestion());
+        System.out.println("PRO GET ROUND: " + pro.getRound());
+
+        /*
+        QUESTION        ROUND       TOTALT
+        1               1           1
+        2               1           2
+        3               1           3
+
+        1               2           2
+        2               2           4
+        3               2           6
+
+
+
+        ROND            MAXQ        TOTALT
+
+        1               3           3       -3      0
+        2               3           5       -3      2
+        3               3           6
+
+                 MULTIPLICERAD
+        1               3           3       -3      0
+        2               3           6       -3      3
+        3               3           9       -3      6
+
+
+         */
+
+
+
+        int correctNumberToChoose = ((pro.getRound()*pro.getMaxQuestion())-pro.getMaxQuestion())+(pro.getQuestion());
+
+        randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
+        rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
 
         Collections.shuffle(randomAnswerList);
-        question.setText(randomListToPull.get(pro.getQuestion()).getQuestion());
+
+
+        question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
 
 
         answer1.setText(randomAnswerList.get(0));

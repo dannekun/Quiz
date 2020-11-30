@@ -34,7 +34,7 @@ public class HejDå extends JFrame implements ActionListener {
         panel.setBackground( new Color(51, 133, 255));
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
         panel.add(label, BorderLayout.NORTH);
-        label.setText(pro.getName() + " fick " + pro.getPoints() + " poäng!");
+        label.setText("Hej då!");
         label.setFont(new Font("Arial", Font.PLAIN, 18));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setForeground(Color.WHITE);

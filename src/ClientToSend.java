@@ -153,6 +153,7 @@ public class ClientToSend implements Serializable {
                             }
 
 
+                            //HÄR HAR VI LAGT TILL 3 FRÅGOR
                             player1 = q.addCatToPlayer();
 
                             player1.setClicked(false);
@@ -180,6 +181,7 @@ public class ClientToSend implements Serializable {
 
 
                         } else if (player1.getPLAYER() == 2) {
+
                             GamePage_waiting gamePage_waiting1 = new GamePage_waiting();
                             gamePage_waiting1.showWindow(player1, player2);
 
@@ -192,6 +194,12 @@ public class ClientToSend implements Serializable {
                             player2 = (Player) new ObjectInputStream(socket.getInputStream()).readObject();
                             System.out.println("Receive success!!!!");
                             gamePage_waiting1.closeWindow();
+                            player2.getQuestionToPassBetweenPlayers();
+                            int läggtill = (player2.getRound() * player1.getMaxQuestion())-player1.getMaxQuestion();
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                player1.addQuestionBetweenPlayers(player2.getQuestionToPassBetweenPlayers().get(läggtill));
+                                läggtill++;
+                            }
                         }
 
 
@@ -212,14 +220,17 @@ public class ClientToSend implements Serializable {
                             gamePage_waiting2.closeWindow();
                         } else if (player1.getPLAYER() == 2) {
                             //FIXME TA BORT -3 PÅ FÄRGERNA SÅ MAN INTE SER RONDENS FÄRGER FÖR MOTSTÅNDAREN
-                            //List<Boolean> temp = player2.getAnswers();
+                            List<Boolean> temp = player2.getAnswers();
+                            List<Boolean>change = player2.getAnswers();
+                            player2.changeList(player2.removeAnswersFromList(change,(player2.getMaxQuestion()), player2.getRound()));
+
                             GamePage_play gamePage_play1 = new GamePage_play(player1, player2);
                             player1.setClicked(false);
                             while (!player1.isClicked()) {
                                 player1 = gamePage_play1.findClickPlay();
                                 sleepThisProgram();
                             }
-                            // player2.changeList(temp);
+                            player2.changeList(temp);
                             player1.setRound(player1.getRound() + 1);
                             player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
 
@@ -270,6 +281,12 @@ public class ClientToSend implements Serializable {
                             System.out.println("Receive success!!!!");
 
                             gamePage_waiting3.closeWindow();
+                            player2.getQuestionToPassBetweenPlayers();
+                            int läggtill2 = (player2.getRound() * player1.getMaxQuestion())-player1.getMaxQuestion();
+                            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+                                player1.addQuestionBetweenPlayers(player2.getQuestionToPassBetweenPlayers().get(läggtill2));
+                                läggtill2++;
+                            }
 
                         } else if (player1.getPLAYER() == 2) {
                             GamePage_play gamePage_play2 = new GamePage_play(player1, player2);
@@ -291,6 +308,8 @@ public class ClientToSend implements Serializable {
 
                             player1 = q.addCatToPlayer();
                             player1.setClicked(false);
+
+                            //HÄR LÄGGER VI TILL 3 FRÅGOR
 
 
                             for (int i = 0; i < player1.getMaxQuestion(); i++) {
@@ -320,15 +339,29 @@ public class ClientToSend implements Serializable {
 
                         if (player1.getPLAYER() == 1) {
 
+
+
+
+                            List<Boolean> temp2 = player2.getAnswers();
+                            List<Boolean>change2 = player2.getAnswers();
+                            player2.changeList(player2.removeAnswersFromList(change2,(player2.getMaxQuestion()), player2.getRound()));
+
+                            System.out.println("PLAYER 2 ÄR PÅ ROUND: " +player2.getRound());
+
                             GamePage_play gamePage_play3 = new GamePage_play(player1, player2);
+
+
                             player1.setClicked(false);
                             while (!player1.isClicked()) {
                                 player1 = gamePage_play3.findClickPlay();
                                 sleepThisProgram();
                             }
                             // player2.changeList(temp);
+                            player2.changeList(temp2);
                             player1.setRound(player1.getRound() + 1);
                             player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
+
+
 
                             player1.setClicked(false);
 
@@ -374,6 +407,12 @@ public class ClientToSend implements Serializable {
 
                         }
 
+
+
+
+
+
+                        //SISTA CHECKPOINT
                         if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
                             gameIsPlaying = false;
                             break;
@@ -412,12 +451,14 @@ public class ClientToSend implements Serializable {
 
                             player1.setClicked(false);
                             work = false;
+                            player1.setCloseGameOption(0);
                             while (!work) {
                                 player1 = gamePage_result.findClickPlay();
                                 if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
                                     work = true;
                                 }
                             }
+                            System.out.println("Du klickade på: "+ player1.getCloseGameOption());
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
@@ -436,6 +477,7 @@ public class ClientToSend implements Serializable {
 
                             player1.setClicked(false);
 
+                            player1.setCloseGameOption(0);
                             work = false;
                             while (!work) {
                                 player1 = gamePage_result2.findClickPlay();
@@ -444,6 +486,7 @@ public class ClientToSend implements Serializable {
                                     work = true;
                                 }
                             }
+                            System.out.println("Du klickade på: "+ player1.getCloseGameOption());
 
                             new ObjectOutputStream(socket.getOutputStream()).writeObject(player1);
 
@@ -460,10 +503,12 @@ public class ClientToSend implements Serializable {
 
                         if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
                         gameIsPlaying = true;
-                        } else {
+                            System.out.println("vi börjar om!");
+                        } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2){
                             HejDå bye = new HejDå(player1, player2);
-                            Thread.sleep(5000);
-                            System.exit(0);
+                            System.out.println("hej då!!!");
+                            Thread.sleep(3000);
+
                         }
                         //TODO FIXA SÅ MAN KAN SPELA IGEN OCH RÄTT FRÅGOR, SISTA SPELAREN PÅ SISTA RONDEN FÅR FEL FRÅGOR MEN RÄTT KATEGORI, FIXA RÄTT FÄRGER I GAMEPAGE WAITING
 

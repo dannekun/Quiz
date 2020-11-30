@@ -230,7 +230,7 @@ public class Player implements Serializable {
 
 
     public void addQuestionBetweenPlayers(Questions quest){
-        this.questionToPassBetweenPlayers.add(quest);
+        questionToPassBetweenPlayers.add(quest);
     }
 
     public List<Questions> getQuestionToPassBetweenPlayers() {
@@ -304,6 +304,24 @@ public class Player implements Serializable {
 
     public List<Boolean> getAnswers() {
         return answers;
+    }
+    public List<Boolean> removeAnswersFromList(List<Boolean> listToRemoveFrom, int antal, int round){
+        int max = antal * round;
+        System.out.println("MAX: " + max);
+        int back = max-1;
+        for (int i = 0; i < antal; i++) {
+
+            System.out.println("i: "+ i);
+            System.out.println("max: "+ max);
+            System.out.println("back: "+ back);
+            listToRemoveFrom.remove(back);
+            System.out.println();
+            back--;
+        }
+        if (max == 0){
+            listToRemoveFrom.clear();
+        }
+        return listToRemoveFrom;
     }
 
     public List<Boolean> changeList(List<Boolean> temp) {
