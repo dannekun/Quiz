@@ -506,11 +506,19 @@ public class ClientToSend implements Serializable {
                             System.out.println("vi börjar om!");
                         } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2){
                             HejDå bye = new HejDå(player1, player2);
-                            System.out.println("hej då!!!");
-                            Thread.sleep(3000);
-
+                            //System.out.println("hej då!!!");
+                            //Thread.sleep(3000);
+                            System.out.println("VI ÖPPNAR HEJ DÅ");
                         }
                         //TODO FIXA SÅ MAN KAN SPELA IGEN OCH RÄTT FRÅGOR, SISTA SPELAREN PÅ SISTA RONDEN FÅR FEL FRÅGOR MEN RÄTT KATEGORI, FIXA RÄTT FÄRGER I GAMEPAGE WAITING
+
+
+
+                        boolean bajstest = true;
+                        while (bajstest){
+
+
+                        }
 
                     }
 
