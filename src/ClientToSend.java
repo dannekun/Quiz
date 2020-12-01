@@ -16,11 +16,11 @@ public class ClientToSend implements Serializable {
 
     static Player player1 = new Player();
     static Player player2 = new Player();
-    static boolean work = true;
+    static boolean waitForInput = true;
     static Socket socket;
     static HomePage_waiting homePageWaitForConnection = new HomePage_waiting();
     static HomePage_play homePageConnectedPlay = new HomePage_play();
-    static GamePage_waiting gamePage_waitingPlayer2Round1 = new GamePage_waiting();
+    static GamePage_waiting gamePage_Waiting = new GamePage_waiting();
     static int maxAmountOfRounds = checkPropertiesForMaxRound();
     static boolean gameIsPlaying = true;
     static boolean neverEndingStory = true;
@@ -45,7 +45,7 @@ public class ClientToSend implements Serializable {
 
     public static void logIn() throws InterruptedException {
 
-        while (work) {
+        while (waitForInput) {
 
             LoginGUI logInScreen = new LoginGUI();
             logInScreen.showWindow();
@@ -60,7 +60,7 @@ public class ClientToSend implements Serializable {
 
             if (player1.getName() != null) {
 
-                work = false;
+                waitForInput = false;
 
             }
 
@@ -108,9 +108,10 @@ public class ClientToSend implements Serializable {
         homePageConnectedPlay.showWindow(player1);
 
 
-        while (!work) {
+        waitForInput = false;
+        while (!waitForInput) {
 
-            work = homePageConnectedPlay.findClickPlay();
+            waitForInput = homePageConnectedPlay.findClickPlay();
             sleepThisProgram();
 
         }
@@ -124,63 +125,114 @@ public class ClientToSend implements Serializable {
 
     }
 
-    public static void player1PlayChooseCategoryRound() throws InterruptedException, IOException, ClassNotFoundException {
+    public static void playRoundNotChoosenCategory() throws IOException, InterruptedException, ClassNotFoundException {
+        List<Boolean> listWithPlayersPlayedTurn = player2.getAnswers();
 
-        if (player1.getPLAYER() == 1) {
-            GamePage_play gamePage_play = new GamePage_play(player1, player2);
+        List<Boolean> listWithoutLastPlayersPlayedTurn = player2.getAnswers();
+
+        player2.changeList(player2.removeAnswersFromList(listWithoutLastPlayersPlayedTurn, (player2.getMaxQuestion()), player2.getRound()));
+
+        startRound();
+
+        player2.changeList(listWithPlayersPlayedTurn);
+
+        player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
+
+        player1.setClicked(false);
+
+        playUntilMaxQuestionIsReachedForRoundNotChosenCategory();
+
+        transferObject();
+    }
+
+    public static void playUntilMaxQuestionIsReachedForRoundChosenCategory() throws InterruptedException {
+        for (int i = 0; i < player1.getMaxQuestion(); i++) {
+
+            QuestionPage questionPageWithChosenCategory = new QuestionPage(player1);
+
+            while (!player1.isClicked()) {
+                player1 = questionPageWithChosenCategory.findClickPlay();
+                sleepThisProgram();
+
+            }
 
             player1.setClicked(false);
+            player1 = questionPageWithChosenCategory.addPoints(player1);
+            player1 = questionPageWithChosenCategory.endGame(player1);
+
+        }
+
+    }
+
+    public static void playUntilMaxQuestionIsReachedForRoundNotChosenCategory() throws InterruptedException {
+        for (int i = 0; i < player1.getMaxQuestion(); i++) {
+
+            QuestionPage_NotChoseCat questionPageWithoutChoosingCategory = new QuestionPage_NotChoseCat(player1, player2);
 
             while (!player1.isClicked()) {
 
-                player1 = gamePage_play.findClickPlay();
+                player1 = questionPageWithoutChoosingCategory.findClickPlay();
                 sleepThisProgram();
 
             }
-
-            player1.setRound(player1.getRound() + 1);
-
-            CategoryPage q = new CategoryPage(player1);
-
-            work = false;
-
-            while (!work) {
-
-                work = q.findClickPlay();
-                sleepThisProgram();
-
-            }
-
-            player1 = q.addCatToPlayer();
 
             player1.setClicked(false);
+            player1 = questionPageWithoutChoosingCategory.addPoints(player1);
+            player1 = questionPageWithoutChoosingCategory.endGame(player1);
 
-            for (int i = 0; i < player1.getMaxQuestion(); i++) {
+        }
 
-                QuestionPage questionPage = new QuestionPage(player1);
+    }
 
-                while (!player1.isClicked()) {
-                    player1 = questionPage.findClickPlay();
-                    sleepThisProgram();
+    public static void chooseCategory() throws InterruptedException {
+        CategoryPage chooseCurrentRoundCategory = new CategoryPage(player1);
 
-                }
+        waitForInput = false;
 
-                player1.setClicked(false);
-                player1 = questionPage.addPoints(player1);
-                player1 = questionPage.endGame(player1);
+        while (!waitForInput) {
 
-            }
+            waitForInput = chooseCurrentRoundCategory.findClickPlay();
+            sleepThisProgram();
+
+        }
+
+        player1 = chooseCurrentRoundCategory.addCatToPlayer();
+
+        player1.setClicked(false);
+
+    }
+
+    public static void startRound() throws InterruptedException, IOException {
+        GamePage_play gamePage_play = new GamePage_play(player1, player2);
+
+        player1.setClicked(false);
+
+        while (!player1.isClicked()) {
+
+            player1 = gamePage_play.findClickPlay();
+            sleepThisProgram();
+
+        }
+
+        player1.setRound(player1.getRound() + 1);
+    }
+
+    public static void player1PlayChooseCategoryRound() throws InterruptedException, IOException, ClassNotFoundException {
+
+        if (player1.getPLAYER() == 1) {
+
+            startRound();
+
+            chooseCategory();
+
+            playUntilMaxQuestionIsReachedForRoundChosenCategory();
 
             transferObject();
 
 
         } else if (player1.getPLAYER() == 2) {
 
-            gamePage_waitingPlayer2Round1.showWindow(player1, player2);
-
-            transferObject();
-
-            gamePage_waitingPlayer2Round1.closeWindow();
+            gamePageWaitingForOtherPlayer();
 
             findQuestionsFromLastPlayedPlayer();
 
@@ -191,7 +243,7 @@ public class ClientToSend implements Serializable {
      * Metoden används för att hitta tidigare spelarens frågor som har valt kategori samt överföra frågorna mellan spelarna.
      * För att båda spelarna ska ha samma frågor.
      */
-    public static void findQuestionsFromLastPlayedPlayer(){
+    public static void findQuestionsFromLastPlayedPlayer() {
 
         int addQuestionFromLastRound = (player2.getRound() * player1.getMaxQuestion()) - player1.getMaxQuestion();
 
@@ -205,96 +257,38 @@ public class ClientToSend implements Serializable {
 
     public static void player2PlayNotChooseCategoryRound() throws IOException, ClassNotFoundException, InterruptedException {
         if (player1.getPLAYER() == 1) {
-            GamePage_waiting gamePage_waiting2 = new GamePage_waiting();
-            gamePage_waiting2.showWindow(player1, player2);
 
+            gamePageWaitingForOtherPlayer();
 
-            transferObject();
-
-            gamePage_waiting2.closeWindow();
         } else if (player1.getPLAYER() == 2) {
 
-            List<Boolean> temp = player2.getAnswers();
-
-            List<Boolean> change = player2.getAnswers();
-            player2.changeList(player2.removeAnswersFromList(change, (player2.getMaxQuestion()), player2.getRound()));
-
-            GamePage_play gamePage_play1 = new GamePage_play(player1, player2);
-            player1.setClicked(false);
-            while (!player1.isClicked()) {
-                player1 = gamePage_play1.findClickPlay();
-                sleepThisProgram();
-            }
-            player2.changeList(temp);
-            player1.setRound(player1.getRound() + 1);
-            player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
-
-            player1.setClicked(false);
-
-            for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
-
-                while (!player1.isClicked()) {
-                    player1 = questionPage_notChoseCat1.findClickPlay();
-                    sleepThisProgram();
-                }
-                player1.setClicked(false);
-                player1 = questionPage_notChoseCat1.addPoints(player1);
-                player1 = questionPage_notChoseCat1.endGame(player1);
-
-            }
-
-            transferObject();
+            playRoundNotChoosenCategory();
         }
+    }
+
+    public static void gamePageWaitingForOtherPlayer() throws IOException, ClassNotFoundException {
+        gamePage_Waiting.showWindow(player1, player2);
+
+        transferObject();
+
+        gamePage_Waiting.closeWindow();
+
     }
 
     public static void player2PlayChooseCategoryRound() throws IOException, ClassNotFoundException, InterruptedException {
         if (player1.getPLAYER() == 1) {
-            GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
-            gamePage_waiting3.showWindow(player1, player2);
 
-            transferObject();
+            gamePageWaitingForOtherPlayer();
 
-            gamePage_waiting3.closeWindow();
-            player2.getQuestionToPassBetweenPlayers();
-            int läggtill2 = (player2.getRound() * player1.getMaxQuestion()) - player1.getMaxQuestion();
-            for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                player1.addQuestionBetweenPlayers(player2.getQuestionToPassBetweenPlayers().get(läggtill2));
-                läggtill2++;
-            }
+            findQuestionsFromLastPlayedPlayer();
 
         } else if (player1.getPLAYER() == 2) {
-            GamePage_play gamePage_play2 = new GamePage_play(player1, player2);
-            player1.setClicked(false);
-            while (!player1.isClicked()) {
-                player1 = gamePage_play2.findClickPlay();
-                sleepThisProgram();
-            }
-            player1.setRound(player1.getRound() + 1);
 
+            startRound();
 
-            CategoryPage q = new CategoryPage(player1);
-            work = false;
-            while (!work) {
-                work = q.findClickPlay();
-                sleepThisProgram();
-            }
+            chooseCategory();
 
-            player1 = q.addCatToPlayer();
-            player1.setClicked(false);
-
-            for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                QuestionPage questionPage = new QuestionPage(player1);
-
-                while (!player1.isClicked()) {
-                    player1 = questionPage.findClickPlay();
-                    sleepThisProgram();
-                }
-                player1.setClicked(false);
-                player1 = questionPage.addPoints(player1);
-                player1 = questionPage.endGame(player1);
-
-            }
+            playUntilMaxQuestionIsReachedForRoundChosenCategory();
 
             transferObject();
 
@@ -304,49 +298,11 @@ public class ClientToSend implements Serializable {
     public static void player1PlayNotChooseCategory() throws IOException, InterruptedException, ClassNotFoundException {
         if (player1.getPLAYER() == 1) {
 
-            List<Boolean> temp2 = player2.getAnswers();
-            List<Boolean> change2 = player2.getAnswers();
-            player2.changeList(player2.removeAnswersFromList(change2, (player2.getMaxQuestion()), player2.getRound()));
-
-            GamePage_play gamePage_play3 = new GamePage_play(player1, player2);
-
-
-            player1.setClicked(false);
-            while (!player1.isClicked()) {
-                player1 = gamePage_play3.findClickPlay();
-                sleepThisProgram();
-            }
-
-            player2.changeList(temp2);
-            player1.setRound(player1.getRound() + 1);
-            player1.addToList(player2.getRoundCategories().get(player1.getRound() - 1));
-
-            player1.setClicked(false);
-
-            for (int i = 0; i < player1.getMaxQuestion(); i++) {
-                QuestionPage_NotChoseCat questionPage_notChoseCat1 = new QuestionPage_NotChoseCat(player1, player2);
-
-                while (!player1.isClicked()) {
-                    player1 = questionPage_notChoseCat1.findClickPlay();
-                    sleepThisProgram();
-                }
-                player1.setClicked(false);
-                player1 = questionPage_notChoseCat1.addPoints(player1);
-                player1 = questionPage_notChoseCat1.endGame(player1);
-
-            }
-
-            transferObject();
+            playRoundNotChoosenCategory();
 
         } else if (player1.getPLAYER() == 2) {
-            GamePage_waiting gamePage_waiting3 = new GamePage_waiting();
-            gamePage_waiting3.showWindow(player1, player2);
 
-
-            transferObject();
-
-            gamePage_waiting3.closeWindow();
-
+            gamePageWaitingForOtherPlayer();
 
         }
     }
@@ -355,25 +311,11 @@ public class ClientToSend implements Serializable {
         if (player1.getRound() == maxAmountOfRounds && player2.getRound() == maxAmountOfRounds) {
             if (player1.getPLAYER() == 1) {
 
-                ResultPage r = new ResultPage(player1, player2);
-
-                work = false;
-                while (!work) {
-                    work = r.findClickAndPlay();
-
-                }
-                r.dispose();
+                showResult();
 
             } else if (player1.getPLAYER() == 2) {
 
-                ResultPage rw = new ResultPage(player1, player2);
-
-                work = false;
-                while (!work) {
-                    work = rw.findClickAndPlay();
-
-                }
-                rw.dispose();
+                showResult();
             }
         }
     }
@@ -381,55 +323,33 @@ public class ClientToSend implements Serializable {
     public static void resultWindowWithPlayAgainOption() throws IOException, ClassNotFoundException {
         if (player1.getPLAYER() == 1) {
 
-            GamePage_result gamePage_result = new GamePage_result(player1, player2);
-
-            player1.setClicked(false);
-            work = false;
-            player1.setCloseGameOption(0);
-
-            while (!work) {
-
-                player1 = gamePage_result.findClickPlay();
-                if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
-                    work = true;
-                }
-            }
-
-            transferObject();
-
-            gamePage_result.dispose();
+            scoreboard();
 
 
         } else if (player1.getPLAYER() == 2) {
-            GamePage_result gamePage_result2 = new GamePage_result(player1, player2);
 
-            player1.setClicked(false);
+            scoreboard();
 
-            player1.setCloseGameOption(0);
-            work = false;
-
-            while (!work) {
-                player1 = gamePage_result2.findClickPlay();
-
-                if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
-                    work = true;
-                }
-            }
-
-            transferObject();
-
-            gamePage_result2.dispose();
         }
 
     }
 
     public static void playAgainOrClose() throws IOException, ClassNotFoundException {
-        if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
-            gameIsPlaying = true;
-        } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2) {
-            HejDå bye = new HejDå(player1, player2);
 
-            //while loop här för click
+        if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
+
+            gameIsPlaying = true;
+
+        } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2) {
+
+            EndingGamePage endingGamePage = new EndingGamePage(player1, player2);
+
+            waitForInput = false;
+            while (!waitForInput) {
+                waitForInput = endingGamePage.findClickAndPlay();
+
+            }
+
             player1.setFinished(true);
             player1.setConnected(false);
             gameIsPlaying = false;
@@ -437,6 +357,38 @@ public class ClientToSend implements Serializable {
             transferObject();
 
         }
+
+    }
+
+    public static void showResult() {
+        ResultPage resultPage = new ResultPage(player1, player2);
+
+        waitForInput = false;
+        while (!waitForInput) {
+            waitForInput = resultPage.findClickAndPlay();
+
+        }
+        resultPage.dispose();
+    }
+
+    public static void scoreboard() throws IOException, ClassNotFoundException {
+        GamePage_result scoreboardWindow = new GamePage_result(player1, player2);
+
+        player1.setClicked(false);
+        waitForInput = false;
+        player1.setCloseGameOption(0);
+
+        while (!waitForInput) {
+
+            player1 = scoreboardWindow.findClickPlay();
+            if (player1.getCloseGameOption() == 1 || player1.getCloseGameOption() == 2) {
+                waitForInput = true;
+            }
+        }
+
+        transferObject();
+
+        scoreboardWindow.dispose();
     }
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {

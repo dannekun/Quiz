@@ -255,19 +255,22 @@ public class Player implements Serializable {
      * Om man är i rond 2 får man endast se motståndarens svar från rond 1.
      * Det är för att spelare som inte spelat rondens frågor ska se vad andra spelaren har fått.
      * @param listToRemoveFrom
-     * @param antal
-     * @param round
+     * @param maxAmountOfQuestionPerRound
+     * @param playerCurrentRound
      * @return
      */
-    public List<Boolean> removeAnswersFromList(List<Boolean> listToRemoveFrom, int antal, int round){
-        int max = antal * round;
-        int back = max-1;
-        for (int i = 0; i < antal; i++) {
+    public List<Boolean> removeAnswersFromList(List<Boolean> listToRemoveFrom, int maxAmountOfQuestionPerRound, int playerCurrentRound){
 
-            listToRemoveFrom.remove(back);
-            back--;
+        int maxAmountOfQuestionsPossible = maxAmountOfQuestionPerRound * playerCurrentRound;
+
+        int allQuestionAnswersUntilPreviousRound = maxAmountOfQuestionsPossible-1;
+
+        for (int i = 0; i < maxAmountOfQuestionPerRound; i++) {
+
+            listToRemoveFrom.remove(allQuestionAnswersUntilPreviousRound);
+            allQuestionAnswersUntilPreviousRound--;
         }
-        if (max == 0){
+        if (maxAmountOfQuestionsPossible == 0){
             listToRemoveFrom.clear();
         }
         return listToRemoveFrom;

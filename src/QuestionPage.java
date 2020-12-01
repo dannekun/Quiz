@@ -1,6 +1,5 @@
 import QuestionsHandler.Categories.*;
 import QuestionsHandler.Categories.Math;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
@@ -9,7 +8,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +24,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     GUI_Util util = new GUI_Util();
 
-     boolean clicked = false;
+    boolean clicked = false;
 
     public boolean isClicked() {
         return clicked;
@@ -67,12 +65,107 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         randomListToPull.clear();
 
-        round.setText(("Rond " + pro.getRound()));
-        questionNumber.setText("Fråga " + (pro.getQuestion()+1));
+        generateUI();
 
-        player.setText(pro.getName());
 
-        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() -1));
+        add(north);
+        north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+        util.setMainBackground(north);
+        for (JButton jButton : buttonsToPaintList) {
+            north.add(jButton);
+            util.setSizeButton(jButton, 30, 30, 30, 30);
+        }
+        north.add(player);
+        util.labelSetFontForegBackg_white(player, 0, 14, 0, 51, 204);
+        player.setBorder(new EmptyBorder(10, 30, 10, 30));
+
+        add(south);
+        south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        south.setLayout(new GridLayout(8, 1));
+        util.setMainBackground(south);
+
+        south.add(round);
+        util.labelSetFontForeg_white(round, 0, 14);
+
+        south.add(category);
+        util.labelSetFontForegBackg_white(category, 1, 14, 255, 128, 0);
+        util.setSizeLabel(category, 250, 30, 250, 30);
+        category.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        south.add(questionNumber);
+        util.labelSetFontForeg_white(questionNumber, 0, 14);
+
+        south.add(question);
+        util.labelSetFontForegBackg_white(question, 1, 12, 255, 51, 0);
+        util.setSizeLabel(question, 250, 30, 250, 30);
+        question.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        south.add(answer1);
+        util.buttonSetFontForegBackg_white(answer1, 1, 14, 163, 26, 255);
+        util.setSizeButton(answer1, 250, 30, 250, 30);
+
+        south.add(answer2);
+        util.buttonSetFontForegBackg_white(answer2, 1, 14, 230, 0, 230);
+        util.setSizeButton(answer2, 250, 30, 250, 30);
+
+        south.add(answer3);
+        util.buttonSetFontForegBackg_white(answer3, 1, 14, 230, 0, 172);
+        util.setSizeButton(answer3, 250, 30, 250, 30);
+
+        south.add(answer4);
+        util.buttonSetFontForegBackg_white(answer4, 1, 14, 128, 0, 255);
+        util.setSizeButton(answer4, 250, 30, 250, 30);
+
+        Container contentPane = getContentPane();
+        contentPane.add(north, BorderLayout.NORTH);
+        contentPane.add(south, BorderLayout.CENTER);
+
+        setSize(350, 500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        answer1.addActionListener(this);
+        answer2.addActionListener(this);
+        answer3.addActionListener(this);
+        answer4.addActionListener(this);
+
+    }
+
+    public void createButtonAndPaint() {
+        for (int i = 0; i < pro.getMaxQuestion(); i++) {
+            buttonsToPaintList.add(new JButton());
+        }
+
+
+        if (pro.getQuestion() > 0) {
+
+            for (int i = 0; i < pro.getQuestion(); i++) {
+
+                if (!pro.getRoundAnswers().get(i)) {
+
+                    paintRed(buttonsToPaintList.get(i));
+
+                } else if (pro.getRoundAnswers().get(i)) {
+
+                    paintGreen(buttonsToPaintList.get(i));
+
+                }
+
+            }
+
+        } else if (pro.getQuestion() == 0) {
+
+            for (int i = 0; i < pro.getMaxQuestion(); i++) {
+                resetPaint(buttonsToPaintList.get(i));
+
+            }
+
+        }
+    }
+
+    public void selectQuestionObject() {
+        randomListToPull = findList(pro.getRoundCategories().get(pro.getRound() - 1));
 
         Collections.shuffle(randomListToPull);
 
@@ -95,110 +188,35 @@ public class QuestionPage extends JFrame implements ActionListener {
         rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
 
         Collections.shuffle(randomAnswerList);
+    }
 
-        answer1.setText(randomAnswerList.get(0));
-        answer2.setText(randomAnswerList.get(1));
-        answer3.setText(randomAnswerList.get(2));
-        answer4.setText(randomAnswerList.get(3));
+    public void setButtonText(List<String> listToPullFrom, JButton button1, JButton button2, JButton button3, JButton button4) {
+        button1.setText(listToPullFrom.get(0));
+        button2.setText(listToPullFrom.get(1));
+        button3.setText(listToPullFrom.get(2));
+        button4.setText(listToPullFrom.get(3));
+
+    }
+
+    public void generateUI() {
+
+        round.setText(("Rond " + pro.getRound()));
+        questionNumber.setText("Fråga " + (pro.getQuestion() + 1));
+
+        player.setText(pro.getName());
+
+        selectQuestionObject();
+
+        setButtonText(randomAnswerList, answer1, answer2, answer3, answer4);
 
         category.setText(pro.getRoundCategories().get(pro.getRoundCategories().size() - 1));
 
 
-        for (int i = 0; i < pro.getMaxQuestion(); i++) {
-            buttonsToPaintList.add(new JButton());
-        }
+        createButtonAndPaint();
 
-
-        if (pro.getQuestion() > 0) {
-
-            for (int i = 0; i < pro.getQuestion(); i++) {
-
-                if (!pro.getRoundAnswers().get(i)) {
-
-                    paintRed(buttonsToPaintList.get(i));
-
-                } else if (pro.getRoundAnswers().get(i)){
-
-                    paintGreen(buttonsToPaintList.get(i));
-
-                }
-
-            }
-
-        } else if (pro.getQuestion() == 0) {
-
-            for (int i = 0; i < pro.getMaxQuestion(); i++) {
-                resetPaint(buttonsToPaintList.get(i));
-
-            }
-
-        }
-
-
-
-        add(north);
-        north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
-        util.setMainBackground(north);
-        for (int i = 0; i < buttonsToPaintList.size(); i++) {
-            north.add(buttonsToPaintList.get(i));
-            util.setSizeButton(buttonsToPaintList.get(i),30,30,30,30);
-        }
-        north.add(player);
-        util.labelSetFontForegBackg_white(player,0,14,0,51,204);
-        player.setBorder(new EmptyBorder(10, 30, 10, 30));
-
-        add(south);
-        south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        south.setLayout(new GridLayout(8,1));
-        util.setMainBackground(south);
-
-        south.add(round);
-        util.labelSetFontForeg_white(round,0,14);
-
-        south.add(category);
-        util.labelSetFontForegBackg_white(category,1,14,255, 128, 0);
-        util.setSizeLabel(category,250,30,250,30);
-        category.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        south.add(questionNumber);
-        util.labelSetFontForeg_white(questionNumber,0,14);
-
-        south.add(question);
-        util.labelSetFontForegBackg_white(question,1,12,255, 51, 0);
-        util.setSizeLabel(question,250,30,250,30);
-        question.setBorder(new EmptyBorder(10, 10, 10, 10));
-
-        south.add(answer1);
-        util.buttonSetFontForegBackg_white(answer1,1,14,163, 26, 255);
-        util.setSizeButton(answer1,250,30,250,30);
-
-        south.add(answer2);
-        util.buttonSetFontForegBackg_white(answer2,1,14,230, 0, 230);
-        util.setSizeButton(answer2,250,30,250,30);
-
-        south.add(answer3);
-        util.buttonSetFontForegBackg_white(answer3,1,14,230, 0, 172);
-        util.setSizeButton(answer3,250,30,250,30);
-
-        south.add(answer4);
-        util.buttonSetFontForegBackg_white(answer4,1,14,128, 0, 255);
-        util.setSizeButton(answer4,250,30,250,30);
-
-        Container contentPane = getContentPane();
-        contentPane.add(north, BorderLayout.NORTH);
-        contentPane.add(south, BorderLayout.CENTER);
-
-        setSize(350, 500);
-        setLocationRelativeTo(null);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        answer1.addActionListener(this);
-        answer2.addActionListener(this);
-        answer3.addActionListener(this);
-        answer4.addActionListener(this);
 
     }
+
 
     public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
@@ -295,125 +313,83 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         if (e.getSource() == answer1) {
 
+            checkAnswerAndPaint(answer1, 0);
 
-            if (!checkAnswers(randomAnswerList.get(0))) {
-                answer1.setBackground(Color.RED);
-                pro.setClickedRightAnswer(false);
-
-
-            } else if (checkAnswers(randomAnswerList.get(0))) {
-                answer1.setBackground(Color.GREEN);
-                pro.setClickedRightAnswer(true);
-            }
-            answer1.setOpaque(true);
-            answer1.setBorder(new LineBorder(new Color(51, 133, 255)));
-            pro.setClicked(true);
-            setClicked(true);
         } else if (e.getSource() == answer2) {
 
-            if (!checkAnswers(randomAnswerList.get(1))) {
-                answer2.setBackground(Color.RED);
-                pro.setClickedRightAnswer(false);
+            checkAnswerAndPaint(answer2, 1);
 
-            } else if (checkAnswers(randomAnswerList.get(1))) {
-                answer2.setBackground(Color.GREEN);
-                pro.setClickedRightAnswer(true);
-            }
-            answer2.setOpaque(true);
-            answer2.setBorder(new LineBorder(new Color(51, 133, 255)));
-            pro.setClicked(true);
-            setClicked(true);
+
         } else if (e.getSource() == answer3) {
+            checkAnswerAndPaint(answer3, 2);
 
-            if (!checkAnswers(randomAnswerList.get(2))) {
-                answer3.setBackground(Color.RED);
-                pro.setClickedRightAnswer(false);
-
-            } else if (checkAnswers(randomAnswerList.get(2))) {
-                answer3.setBackground(Color.GREEN);
-                pro.setClickedRightAnswer(true);
-            }
-            answer3.setOpaque(true);
-            answer3.setBorder(new LineBorder(new Color(51, 133, 255)));
-            pro.setClicked(true);
-            setClicked(true);
 
         } else if (e.getSource() == answer4) {
+            checkAnswerAndPaint(answer4, 3);
 
-            if (!checkAnswers(randomAnswerList.get(3))) {
-
-                answer4.setBackground(Color.RED);
-                pro.setClickedRightAnswer(false);
-
-            } else if (checkAnswers(randomAnswerList.get(3))) {
-
-                answer4.setBackground(Color.GREEN);
-                pro.setClickedRightAnswer(true);
-            }
-
-            answer4.setOpaque(true);
-            answer4.setBorder(new LineBorder(new Color(51, 133, 255)));
-            pro.setClicked(true);
-            setClicked(true);
         }
 
-        findRightAnswerAndPaint(answer1,answer2,answer3,answer4,rightAnswerFromList);
+        findRightAnswerAndPaint(answer1, answer2, answer3, answer4, rightAnswerFromList);
 
 
     }
 
-    public Player endGame(Player p){
+    public void checkAnswerAndPaint(JButton buttonToPaint, int buttonNumber) {
+
+        if (!checkAnswers(randomAnswerList.get(buttonNumber))) {
+            buttonToPaint.setBackground(Color.RED);
+            pro.setClickedRightAnswer(false);
+
+
+        } else if (checkAnswers(randomAnswerList.get(buttonNumber))) {
+            buttonToPaint.setBackground(Color.GREEN);
+            pro.setClickedRightAnswer(true);
+        }
+        buttonToPaint.setOpaque(true);
+        buttonToPaint.setBorder(new LineBorder(new Color(51, 133, 255)));
+        pro.setClicked(true);
+        setClicked(true);
+
+    }
+
+    public void checkAnswerAndAddToList() {
+        if (pro.isClickedRightAnswer()) {
+
+            pro.answersAddToList(true);
+            pro.addToRoundAnswersList(true);
+
+
+        } else {
+
+            pro.answersAddToList(false);
+            pro.addToRoundAnswersList(false);
+        }
+
+
+    }
+
+    public Player endGame(Player p) {
 
         pro = p;
 
         if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
 
-            if (pro.isClickedRightAnswer()) {
-
-                pro.answersAddToList(true);
-                pro.addToRoundAnswersList(true);
-
-
-
-            } else {
-
-                pro.answersAddToList(false);
-                pro.addToRoundAnswersList(false);
-            }
-
+            checkAnswerAndAddToList();
 
             dispose();
 
 
         } else if (pro.getQuestion() == pro.getMaxQuestion()) {
 
-            if (pro.isClickedRightAnswer()) {
+            checkAnswerAndAddToList();
+            dispose();
 
-                pro.answersAddToList(true);
-                pro.addToRoundAnswersList(true);
-
-
-            } else {
-                pro.answersAddToList(false);
-                pro.addToRoundAnswersList(false);
-            }
 
             pro.setQuestion(0);
             pro.getRoundAnswers().clear();
-            dispose();
-
         } else if (pro.getQuestion() < pro.getMaxQuestion()) {
 
-            if (pro.isClickedRightAnswer()) {
-
-                pro.answersAddToList(true);
-                pro.addToRoundAnswersList(true);
-
-
-            } else {
-                pro.answersAddToList(false);
-                pro.addToRoundAnswersList(false);
-            }
+            checkAnswerAndAddToList();
 
             try {
                 Thread.sleep(1000);
@@ -428,19 +404,20 @@ public class QuestionPage extends JFrame implements ActionListener {
         return pro;
 
     }
-    public Player addPoints(Player player){
+
+    public Player addPoints(Player player) {
         pro = player;
 
-        if (pro.clickedRightAnswer){
-            pro.setPoints(pro.getPoints()+1);
-            pro.setQuestion(pro.getQuestion()+1);
-        }else {
-            pro.setQuestion(pro.getQuestion()+1);
+        if (pro.clickedRightAnswer) {
+            pro.setPoints(pro.getPoints() + 1);
+            pro.setQuestion(pro.getQuestion() + 1);
+        } else {
+            pro.setQuestion(pro.getQuestion() + 1);
         }
         return pro;
     }
 
-    public Player findClickPlay(){
+    public Player findClickPlay() {
         answer1.addActionListener(this);
         answer2.addActionListener(this);
         answer3.addActionListener(this);

@@ -1,8 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class HejDå extends JFrame {
+public class EndingGamePage extends JFrame implements ActionListener {
 
     GUI_Util util = new GUI_Util();
 
@@ -10,11 +12,21 @@ public class HejDå extends JFrame {
     JLabel label = new JLabel();
     JButton ok = new JButton("OK");
 
+    boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
     String byePic = "src/Pictures/Bye.jpg";
     JLabel bye = new JLabel(new ImageIcon(byePic));
 
     Player pro;
-    public HejDå(Player p, Player player2) {
+    public EndingGamePage(Player p, Player player2) {
 
         pro = p;
         add(panel);
@@ -34,6 +46,7 @@ public class HejDå extends JFrame {
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
         util.buttonSetFontForegBackg_white(ok,0,16,77,255,77);
+        ok.addActionListener(this);
 
         setSize(350, 500);
         setLocationRelativeTo(null);
@@ -42,5 +55,16 @@ public class HejDå extends JFrame {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == ok){
+            setClicked(true);
+        }
+    }
+
+    public boolean findClickAndPlay(){
+        ok.addActionListener(this);
+        return isClicked();
+    }
 }
 

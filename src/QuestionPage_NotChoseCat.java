@@ -40,6 +40,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     JPanel south = new JPanel();
 
     Player pro;
+    Player player2;
     List<Questions> randomListToPull;
     List<String> randomAnswerList;
 
@@ -47,63 +48,13 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
 
 
-    public QuestionPage_NotChoseCat(Player p, Player player2) {
+    public QuestionPage_NotChoseCat(Player p, Player pro2) {
 
         pro = p;
 
-        round.setText(("Rond " + pro.getRound()));
-        questionNumber.setText("Fråga " + (pro.getQuestion()+1));
-
-        player.setText(pro.getName());
-
-        randomListToPull = player2.getQuestionToPassBetweenPlayers();
+        player2 = pro2;
 
 
-        int correctNumberToChoose = ((pro.getRound()*pro.getMaxQuestion())-pro.getMaxQuestion())+(pro.getQuestion());
-
-        randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
-        rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
-
-        Collections.shuffle(randomAnswerList);
-
-        question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
-
-        answer1.setText(randomAnswerList.get(0));
-        answer2.setText(randomAnswerList.get(1));
-        answer3.setText(randomAnswerList.get(2));
-        answer4.setText(randomAnswerList.get(3));
-
-        category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
-
-        for (int i = 0; i < pro.getMaxQuestion(); i++) {
-
-            buttonsToPaintList.add(new JButton());
-        }
-
-
-        if (pro.getQuestion() > 0) {
-
-            for (int i = 0; i < pro.getQuestion(); i++) {
-
-                if (!pro.getRoundAnswers().get(i)) {
-
-                    paintRed(buttonsToPaintList.get(i));
-
-                } else if (pro.getRoundAnswers().get(i)){
-
-                    paintGreen(buttonsToPaintList.get(i));
-                }
-
-            }
-
-        } else if (pro.getQuestion() == 0) {
-
-            for (int i = 0; i < pro.getMaxQuestion(); i++) {
-
-                resetPaint(buttonsToPaintList.get(i));
-            }
-
-        }
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
@@ -166,6 +117,64 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         answer2.addActionListener(this);
         answer3.addActionListener(this);
         answer4.addActionListener(this);
+
+    }
+
+    public void generateUI(){
+        round.setText(("Rond " + pro.getRound()));
+        questionNumber.setText("Fråga " + (pro.getQuestion()+1));
+
+        player.setText(pro.getName());
+
+        randomListToPull = player2.getQuestionToPassBetweenPlayers();
+
+
+        int correctNumberToChoose = ((pro.getRound()*pro.getMaxQuestion())-pro.getMaxQuestion())+(pro.getQuestion());
+
+        randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
+        rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
+
+        Collections.shuffle(randomAnswerList);
+
+        question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
+
+        answer1.setText(randomAnswerList.get(0));
+        answer2.setText(randomAnswerList.get(1));
+        answer3.setText(randomAnswerList.get(2));
+        answer4.setText(randomAnswerList.get(3));
+
+        category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
+
+        for (int i = 0; i < pro.getMaxQuestion(); i++) {
+
+            buttonsToPaintList.add(new JButton());
+        }
+
+
+        if (pro.getQuestion() > 0) {
+
+            for (int i = 0; i < pro.getQuestion(); i++) {
+
+                if (!pro.getRoundAnswers().get(i)) {
+
+                    paintRed(buttonsToPaintList.get(i));
+
+                } else if (pro.getRoundAnswers().get(i)){
+
+                    paintGreen(buttonsToPaintList.get(i));
+                }
+
+            }
+
+        } else if (pro.getQuestion() == 0) {
+
+            for (int i = 0; i < pro.getMaxQuestion(); i++) {
+
+                resetPaint(buttonsToPaintList.get(i));
+            }
+
+        }
+
 
     }
 
