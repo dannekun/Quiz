@@ -94,11 +94,6 @@ public class GamePage_play extends JFrame implements ActionListener {
         generateUI(player2);
 
 
-
-
-
-        //CLEEEAN
-
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         util.setMainBackground(stats);
@@ -252,7 +247,7 @@ public class GamePage_play extends JFrame implements ActionListener {
     public List<JLabel> createLabelList(int numberOfRounds){
         List<JLabel> labelList= new ArrayList<>();
         for (int i = 0; i < numberOfRounds; i++) {
-            labelList.add(new JLabel("Cat"));
+            labelList.add(new JLabel(""));
         }
         return labelList;
     }

@@ -160,9 +160,6 @@ public class Player implements Serializable {
     }
 
 
-
-
-
     public void addQuestionToCurrentList(String s){
         currentQuestion.add(s);
     }
@@ -216,27 +213,27 @@ public class Player implements Serializable {
     }
 
 
+    /**
+     * Återställer en spelare
+     * @param player
+     * @return
+     */
+    public Player clearAllFromPlayer(Player player){
 
-    public Player clearAllFromPlayer(Player p){
-        p.getCurrentQuestion().clear();
-        p.getRoundCategories().clear();
-        p.getAnswers().clear();
-        p.getRoundAnswers().clear();
-        p.getQuestionToPassBetweenPlayers().clear();
-        p.setPoints(0);
-        p.setRound(0);
-        p.setQuestion(0);
-        p.setCloseGameOption(0);
-        p.setClicked(false);
-        p.setClickedRightAnswer(false);
+        player.getCurrentQuestion().clear();
+        player.getRoundCategories().clear();
+        player.getAnswers().clear();
+        player.getRoundAnswers().clear();
+        player.getQuestionToPassBetweenPlayers().clear();
+        player.setPoints(0);
+        player.setRound(0);
+        player.setQuestion(0);
+        player.setCloseGameOption(0);
+        player.setClicked(false);
+        player.setClickedRightAnswer(false);
 
-
-        return p;
+        return player;
     }
-
-
-
-
 
     /**
      * Den här metoden används i servern för att ge den första anslutna spelaren till spelare 1.
@@ -275,7 +272,6 @@ public class Player implements Serializable {
         }
         return listToRemoveFrom;
     }
-
 
     /**
      * Metod som byter två listor.

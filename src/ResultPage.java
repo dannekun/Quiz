@@ -14,10 +14,10 @@ public class ResultPage extends JFrame implements ActionListener {
 
     String winnerPic = "src/Pictures/Winner.jpg";
     String loserPic = "src/Pictures/Loser.jpg";
-    String equalsPic = "src/Pictures/Equal.jpg";
+    String drawPic = "src/Pictures/Equal.jpg";
     JLabel winner = new JLabel(new ImageIcon(winnerPic));
     JLabel loser = new JLabel(new ImageIcon(loserPic));
-    JLabel equals = new JLabel(new ImageIcon(equalsPic));
+    JLabel draw = new JLabel(new ImageIcon(drawPic));
 
     boolean clicked = false;
 
@@ -29,11 +29,11 @@ public class ResultPage extends JFrame implements ActionListener {
         this.clicked = clicked;
     }
 
-    Player pro;
+    Player player1Local;
 
-    public ResultPage(Player p, Player player2) {
+    public ResultPage(Player player1, Player player2) {
 
-        pro = p;
+        player1Local = player1;
 
         add(panel);
 
@@ -42,20 +42,19 @@ public class ResultPage extends JFrame implements ActionListener {
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
 
         panel.add(label, BorderLayout.NORTH);
-        label.setText(pro.getName() + " fick " + pro.getPoints() + " poäng!");
+        label.setText(player1Local.getName() + " fick " + player1Local.getPoints() + " poäng!");
         util.labelSetFontForegBackg_white(label,0,18,0,51,204);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        //    panel.add(winner, BorderLayout.CENTER);
 
-        if(pro.getPoints() > player2.getPoints()){
+        if(player1Local.getPoints() > player2.getPoints()){
             panel.add(winner, BorderLayout.CENTER);
-        }else if (pro.getPoints() < player2.getPoints()){
+        }else if (player1Local.getPoints() < player2.getPoints()){
             panel.add(loser, BorderLayout.CENTER);
-        }else if (pro.getPoints() == player2.getPoints()){
-            panel.add(equals, BorderLayout.CENTER);
+        }else if (player1Local.getPoints() == player2.getPoints()){
+            panel.add(draw, BorderLayout.CENTER);
         }
 
         panel.add(ok, BorderLayout.SOUTH);

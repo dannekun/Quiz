@@ -1,12 +1,9 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class HomePage_play extends JFrame implements ActionListener {
 
@@ -21,7 +18,7 @@ public class HomePage_play extends JFrame implements ActionListener {
     JLabel home = new JLabel("Hem");
 
 
-    Player pro = new Player();
+    Player player1Local = new Player();
 
     boolean clicked = false;
 
@@ -34,10 +31,10 @@ public class HomePage_play extends JFrame implements ActionListener {
     }
 
 
-    public void showWindow(Player p) {
+    public void showWindow(Player player1) {
 
-        pro.setName(p.getName());
-        player.setText(pro.getName());
+        player1Local.setName(player1.getName());
+        player.setText(player1Local.getName());
 
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));

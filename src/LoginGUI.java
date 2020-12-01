@@ -38,7 +38,6 @@ public class LoginGUI extends JFrame implements ActionListener {
         add(panel);
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         util.setMainBackground(panel);
-    //    panel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(Box.createRigidArea(new Dimension(100, 80)));
         panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 

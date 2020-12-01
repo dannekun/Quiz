@@ -36,8 +36,10 @@ public class ClientHandler extends Thread implements Serializable {
                     player2 = (Player) new ObjectInputStream(player2Socket.getInputStream()).readObject();
 
 
-                    player1.setPLAYER(1);
-                    player2.setPLAYER(2);
+                    if (player1.getPLAYER() == 0 && player2.getPLAYER() == 0){
+                        player1.setPLAYER(1);
+                        player2.setPLAYER(2);
+                    }
 
 
                     player1.setConnected(true);
