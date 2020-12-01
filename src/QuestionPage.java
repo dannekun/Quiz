@@ -5,6 +5,7 @@ import QuestionsHandler.Questions;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -202,13 +203,13 @@ public class QuestionPage extends JFrame implements ActionListener {
     public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
         jb.setOpaque(true);
-        jb.setBorderPainted(false);
+        jb.setBorder(new LineBorder(new Color(51, 133, 255)));
     }
 
     public void paintGreen(JButton jb) {
         jb.setBackground(Color.GREEN);
         jb.setOpaque(true);
-        jb.setBorderPainted(false);
+        jb.setBorder(new LineBorder(new Color(51, 133, 255)));
     }
 
     public void resetPaint(JButton jb) {
@@ -252,19 +253,19 @@ public class QuestionPage extends JFrame implements ActionListener {
         if (a.getText().equals(rightAnswer)) {
             a.setBackground(Color.GREEN);
             a.setOpaque(true);
-            a.setBorderPainted(false);
+            a.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (b.getText().equals(rightAnswer)) {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
-            b.setBorderPainted(false);
+            b.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (c.getText().equals(rightAnswer)) {
             c.setBackground(Color.GREEN);
             c.setOpaque(true);
-            c.setBorderPainted(false);
+            c.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (d.getText().equals(rightAnswer)) {
             d.setBackground(Color.GREEN);
             d.setOpaque(true);
-            d.setBorderPainted(false);
+            d.setBorder(new LineBorder(new Color(51, 133, 255)));
         }
     }
 
@@ -305,7 +306,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.setClickedRightAnswer(true);
             }
             answer1.setOpaque(true);
-            answer1.setBorderPainted(false);
+            answer1.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
             setClicked(true);
         } else if (e.getSource() == answer2) {
@@ -319,7 +320,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.setClickedRightAnswer(true);
             }
             answer2.setOpaque(true);
-            answer2.setBorderPainted(false);
+            answer2.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
             setClicked(true);
         } else if (e.getSource() == answer3) {
@@ -333,7 +334,7 @@ public class QuestionPage extends JFrame implements ActionListener {
                 pro.setClickedRightAnswer(true);
             }
             answer3.setOpaque(true);
-            answer3.setBorderPainted(false);
+            answer3.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
             setClicked(true);
 
@@ -351,7 +352,7 @@ public class QuestionPage extends JFrame implements ActionListener {
             }
 
             answer4.setOpaque(true);
-            answer4.setBorderPainted(false);
+            answer4.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
             setClicked(true);
         }

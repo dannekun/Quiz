@@ -42,7 +42,6 @@ public class HomePage_play extends JFrame implements ActionListener {
         add(upperPanel);
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.Y_AXIS));
         util.setMainBackground(upperPanel);
-    //    upperPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         upperPanel.add(Box.createRigidArea(new Dimension(100, 10)));
 
         upperPanel.add(quizkampen);
