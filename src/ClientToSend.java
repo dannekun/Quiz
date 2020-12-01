@@ -34,6 +34,8 @@ public class ClientToSend implements Serializable {
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
 
+        int maxAmountOfRounds = checkPropertiesForMaxRound();
+
         boolean neverEndingStory = true;
 
         boolean gameIsPlaying = true;
@@ -228,7 +230,7 @@ public class ClientToSend implements Serializable {
                         }
 
 
-                        if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                        if (player1.getRound() == maxAmountOfRounds && player2.getRound() == maxAmountOfRounds) {
                             gameIsPlaying = false;
                             break;
                         }
@@ -343,14 +345,14 @@ public class ClientToSend implements Serializable {
 
                         }
 
-                        if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                        if (player1.getRound() == maxAmountOfRounds && player2.getRound() == maxAmountOfRounds) {
                             gameIsPlaying = false;
                             break;
                         }
 
                     }
 
-                    if (player1.getRound() == checkPropertiesForMaxRound() && player2.getRound() == checkPropertiesForMaxRound()) {
+                    if (player1.getRound() == maxAmountOfRounds && player2.getRound() == maxAmountOfRounds) {
                         if (player1.getPLAYER() == 1) {
 
                             ResultPage r = new ResultPage(player1, player2);
@@ -423,6 +425,7 @@ public class ClientToSend implements Serializable {
                         if (player1.getCloseGameOption() == 1 && player2.getCloseGameOption() == 1) {
                             gameIsPlaying = true;
                         } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2){
+                            System.out.println("du är i else if");
                             HejDå bye = new HejDå(player1, player2);
                             //System.out.println("hej då!!!");
                             //Thread.sleep(3000);
