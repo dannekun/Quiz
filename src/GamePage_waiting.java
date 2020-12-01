@@ -2,8 +2,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -26,14 +24,16 @@ public class GamePage_waiting extends JFrame {
     JPanel lowestPanel = new JPanel();
     JButton info = new JButton("Spelare 2 spelar");
     JButton playerName1 = new JButton();
-    JButton playerName2 = new JButton("Spelare");
+    JButton playerName2 = new JButton("");
 
     List<JButton> player1_answers;
     List<JButton> player2_answers;
 
     List<JLabel> labelNames;
 
-    Properties p = new Properties();
+    Player player1Local;
+
+    Properties properties = new Properties();
 
     int numberOfRounds;
     int numberOfQuestions;
@@ -55,25 +55,24 @@ public class GamePage_waiting extends JFrame {
         this.numberOfQuestions = numberOfQuestions;
     }
 
-    Player pro;
 
     public List<JButton> createButtonList(int numberOfButtons) {
         List<JButton> buttonList = new ArrayList<>();
-        for (int i = 0; i <numberOfButtons; i++) {
+        for (int i = 0; i < numberOfButtons; i++) {
             buttonList.add(new JButton());
         }
         return buttonList;
     }
 
-    public List<JLabel> createLabelList(int numberOfRounds){
-        List<JLabel> labelList= new ArrayList<>();
+    public List<JLabel> createLabelList(int numberOfRounds) {
+        List<JLabel> labelList = new ArrayList<>();
         for (int i = 0; i < numberOfRounds; i++) {
             labelList.add(new JLabel("Cat"));
         }
         return labelList;
     }
 
-    public void showWindow(Player player, Player player2){
+    public void showWindow(Player player1, Player player2) {
 
         lowestPanel.removeAll();
         stats.removeAll();
@@ -84,101 +83,15 @@ public class GamePage_waiting extends JFrame {
         revalidate();
         repaint();
 
-        pro = player;
+        player1Local = player1;
 
         info.setText(player2.getName() + " spelar...");
         playerName2.setText(player2.getName());
 
-        try{
-            p.load(new FileInputStream("src/RoundQuestions.properties"));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        String stringRounds = p.getProperty("numberOfRounds", "2");
-        setNumberOfRounds(Integer.parseInt(stringRounds));
-        String stringQuestions = p.getProperty("numberOfQuestions", "2");
-        setNumberOfQuestions(Integer.parseInt(stringQuestions));
+        importFromProperties();
 
-        pro.setMaxRound(getNumberOfRounds());
-        pro.setMaxQuestion(getNumberOfQuestions());
+        generateUI(player2);
 
-        int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
-
-        player1_answers = createButtonList(totalbuttons);
-        player2_answers = createButtonList(totalbuttons);
-
-        for (int i = 0; i < totalbuttons; i++) {
-
-            if (i < pro.getAnswers().size()){
-
-                if (!pro.getAnswers().get(i)){
-
-                    player1_answers.get(i).setBackground(Color.RED);
-                    player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }else {
-
-                    player1_answers.get(i).setBackground(Color.GREEN);
-                    player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-
-                }
-
-            }
-
-            player1Panel.add(player1_answers.get(i));
-            util.setSizeButton(player1_answers.get(i),35,10,35,10);
-        }
-
-        for (int i = 0; i <totalbuttons; i++) {
-
-            if (i < player2.getAnswers().size()){
-
-                if (!player2.getAnswers().get(i)){
-
-                    player2_answers.get(i).setBackground(Color.RED);
-                    player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-
-                }else {
-
-                    player2_answers.get(i).setBackground(Color.GREEN);
-                    player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }
-            }
-            player2Panel.add(player2_answers.get(i));
-            util.setSizeButton(player2_answers.get(i), 35,10,35,10);
-
-        }
-
-        labelNames = createLabelList(getNumberOfRounds());
-
-        for (int i = 0; i < pro.getMaxRound(); i++) {
-
-            if (i < pro.getRound()){
-
-                labelNames.get(i).setText(pro.getRoundCategories().get(i));
-
-            }else {
-
-                labelNames.get(i).setText("          ");
-
-            }
-
-            categoriepanel.add(labelNames.get(i));
-
-        }
-
-        if (pro.getRound() >= 1){
-            for (int i = 0; i < pro.getRoundCategories().size(); i++) {
-                labelNames.get(i).setText(pro.getRoundCategories().get(i));
-                util.labelSetFontForegBackg_white(labelNames.get(i),0,10,51,133,255);
-                labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
-            }
-
-        }
 
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
@@ -186,28 +99,28 @@ public class GamePage_waiting extends JFrame {
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
 
         stats.add(playerName1);
-        util.buttonSetFontForegBackg_white(playerName1,0,14,0,51,204);
-        util.setSizeButton(playerName1,150,40,150,40);
+        util.buttonSetFontForegBackg_white(playerName1, 0, 14, 0, 51, 204);
+        util.setSizeButton(playerName1, 150, 40, 150, 40);
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         stats.add(Box.createRigidArea(new Dimension(20, 40)));
         stats.add(playerName2);
-        util.buttonSetFontForegBackg_white(playerName2,0,14,191,64,191);
-        util.setSizeButton(playerName2,150,40,150,40);
+        util.buttonSetFontForegBackg_white(playerName2, 0, 14, 191, 64, 191);
+        util.setSizeButton(playerName2, 150, 40, 150, 40);
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         add(player1Panel);
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions() + 1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 2));
         util.setMainBackground(player1Panel);
 
         add(categoriepanel);
-        categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
+        categoriepanel.setLayout(new GridLayout(getNumberOfRounds() + 1, 1));
         categoriepanel.setBorder(BorderFactory.createEmptyBorder(20, 2, 0, 2));
         util.setMainBackground(categoriepanel);
 
         add(player2Panel);
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
+        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions() + 1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20));
         util.setMainBackground(player2Panel);
 
@@ -216,13 +129,13 @@ public class GamePage_waiting extends JFrame {
         util.setMainBackground(lowestPanel);
 
         lowestPanel.add(info);
-        util.buttonSetFontForeg(info,2,16,0,0,77);
-        util.setSizeButton(info,350,210,350,210);
+        util.buttonSetFontForeg(info, 2, 16, 0, 0, 77);
+        util.setSizeButton(info, 350, 210, 350, 210);
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);
         info.setOpaque(false);
 
-        playerName1.setText(pro.getName());
+        playerName1.setText(player1Local.getName());
 
         Container contentPane = getContentPane();
         contentPane.add(stats, BorderLayout.NORTH);
@@ -239,7 +152,87 @@ public class GamePage_waiting extends JFrame {
 
     }
 
-    public void closeWindow(){
+    public void generateUI(Player player2) {
+
+        player1Local.setMaxRound(getNumberOfRounds());
+        player1Local.setMaxQuestion(getNumberOfQuestions());
+
+        int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
+
+        player1_answers = createButtonList(totalbuttons);
+        player2_answers = createButtonList(totalbuttons);
+
+
+        generatePlayerButtons(player1Local, player1_answers, totalbuttons, player1Panel);
+        generatePlayerButtons(player2, player2_answers, totalbuttons, player2Panel);
+
+
+        labelNames = createLabelList(getNumberOfRounds());
+
+        //Hämtar kategorinamn
+        for (int i = 0; i < player1Local.getMaxRound(); i++) {
+
+            if (i < player1Local.getRound()) {
+
+                labelNames.get(i).setText(player1Local.getRoundCategories().get(i));
+
+            } else {
+
+                labelNames.get(i).setText("          ");
+
+            }
+
+            categoriepanel.add(labelNames.get(i));
+
+        }
+
+        //Placerar kategorinamn
+        if (player1Local.getRound() >= 1) {
+            for (int i = 0; i < player1Local.getRoundCategories().size(); i++) {
+                labelNames.get(i).setText(player1Local.getRoundCategories().get(i));
+                util.labelSetFontForegBackg_white(labelNames.get(i), 0, 10, 51, 133, 255);
+                labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
+            }
+
+        }
+    }
+
+    public void generatePlayerButtons(Player playerToGenerate, List<JButton> playerButtonToGenerate, int totalbuttons, JPanel playerPanel) {
+
+        for (int i = 0; i < totalbuttons; i++) {
+            if (i < playerToGenerate.getAnswers().size()) {
+                if (!playerToGenerate.getAnswers().get(i)) {
+                    playerButtonToGenerate.get(i).setBackground(Color.RED);
+                    playerButtonToGenerate.get(i).setOpaque(true);
+                    playerButtonToGenerate.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
+                } else {
+                    playerButtonToGenerate.get(i).setBackground(Color.GREEN);
+                    playerButtonToGenerate.get(i).setOpaque(true);
+                    playerButtonToGenerate.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
+                }
+            }
+            playerPanel.add(playerButtonToGenerate.get(i));
+            util.setSizeButton(playerButtonToGenerate.get(i), 35, 10, 35, 10);
+        }
+
+    }
+
+    public void importFromProperties() {
+        try {
+            properties.load(new FileInputStream("src/RoundQuestions.properties"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String stringRounds = properties.getProperty("numberOfRounds", "2");
+        setNumberOfRounds(Integer.parseInt(stringRounds));
+
+
+        String stringQuestions = properties.getProperty("numberOfQuestions", "2");
+        setNumberOfQuestions(Integer.parseInt(stringQuestions));
+    }
+
+
+    public void closeWindow() {
         dispose();
     }
 

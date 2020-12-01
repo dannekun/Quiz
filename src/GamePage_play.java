@@ -28,7 +28,7 @@ public class GamePage_play extends JFrame implements ActionListener {
     JPanel lowestPanel = new JPanel();
     JButton info = new JButton("Spelare 2 spelar");
     JButton playerName1 = new JButton();
-    JButton playerName2 = new JButton("Spelare");
+    JButton playerName2 = new JButton("");
 
 
     JButton play = new JButton("Spela");
@@ -74,7 +74,13 @@ public class GamePage_play extends JFrame implements ActionListener {
 
     public GamePage_play(Player player1, Player player2) {
 
+
+        lowestPanel.removeAll();
+        stats.removeAll();
+        player1Panel.removeAll();
+        player2Panel.removeAll();
         categoriepanel.removeAll();
+
         revalidate();
         repaint();
 
@@ -87,8 +93,7 @@ public class GamePage_play extends JFrame implements ActionListener {
 
         generateUI(player2);
 
-        player1Local.setMaxRound(getNumberOfRounds());
-        player1Local.setMaxQuestion(getNumberOfQuestions());
+
 
 
 
@@ -180,9 +185,10 @@ public class GamePage_play extends JFrame implements ActionListener {
     }
 
     public void generateUI(Player player2){
+        player1Local.setMaxRound(getNumberOfRounds());
+        player1Local.setMaxQuestion(getNumberOfQuestions());
+
         int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
-
-
 
         player1_answers = createButtonList(totalbuttons);
         player2_answers = createButtonList(totalbuttons);
