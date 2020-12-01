@@ -196,7 +196,7 @@ public class ClientToSend implements Serializable {
 
         }
 
-        player1 = chooseCurrentRoundCategory.addCatToPlayer();
+        player1 = chooseCurrentRoundCategory.addCategoryInputToPlayer();
 
         player1.setClicked(false);
 
@@ -342,7 +342,7 @@ public class ClientToSend implements Serializable {
 
         } else if (player1.getCloseGameOption() == 2 || player2.getCloseGameOption() == 2) {
 
-            EndingGamePage endingGamePage = new EndingGamePage(player1, player2);
+            EndingGamePage endingGamePage = new EndingGamePage(player1);
 
             waitForInput = false;
             while (!waitForInput) {

@@ -10,30 +10,30 @@ import java.net.Socket;
  */
 public class ClientHandler extends Thread implements Serializable {
 
-    private Socket spelare1;
-    private Socket spelare2;
+    private Socket player1Socket;
+    private Socket player2Socket;
 
     Player player1 = new Player();
     Player player2 = new Player();
 
 
     public ClientHandler(Socket socketToClient, Socket socketToClient2) {
-        this.spelare1 = socketToClient;
-        this.spelare2 = socketToClient2;
+        this.player1Socket = socketToClient;
+        this.player2Socket = socketToClient2;
     }
 
 
     @Override
     public void run() {
 
-        if (spelare1.isConnected() && spelare2.isConnected()) {
+        if (player1Socket.isConnected() && player2Socket.isConnected()) {
 
             while (!player2.getFinished() && !player1.getFinished()) {
                 try {
 
-                    player1 = (Player) new ObjectInputStream(spelare1.getInputStream()).readObject();
+                    player1 = (Player) new ObjectInputStream(player1Socket.getInputStream()).readObject();
 
-                    player2 = (Player) new ObjectInputStream(spelare2.getInputStream()).readObject();
+                    player2 = (Player) new ObjectInputStream(player2Socket.getInputStream()).readObject();
 
 
                     player1.setPLAYER(1);
@@ -44,9 +44,9 @@ public class ClientHandler extends Thread implements Serializable {
                     player2.setConnected(true);
 
 
-                    new ObjectOutputStream(spelare1.getOutputStream()).writeObject(player2);
+                    new ObjectOutputStream(player1Socket.getOutputStream()).writeObject(player2);
 
-                    new ObjectOutputStream(spelare2.getOutputStream()).writeObject(player1);
+                    new ObjectOutputStream(player2Socket.getOutputStream()).writeObject(player1);
 
 
                 } catch (IOException | ClassNotFoundException e) {
@@ -57,8 +57,8 @@ public class ClientHandler extends Thread implements Serializable {
 
 
         try {
-            spelare1.close();
-            spelare2.close();
+            player1Socket.close();
+            player2Socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

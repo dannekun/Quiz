@@ -22,13 +22,15 @@ public class EndingGamePage extends JFrame implements ActionListener {
         this.clicked = clicked;
     }
 
-    String byePic = "src/Pictures/Bye.jpg";
-    JLabel bye = new JLabel(new ImageIcon(byePic));
+    String importPath = "src/Pictures/Bye.jpg";
+    JLabel endingImage = new JLabel(new ImageIcon(importPath));
 
-    Player pro;
-    public EndingGamePage(Player p, Player player2) {
+    Player player1Local;
 
-        pro = p;
+    public EndingGamePage(Player player) {
+
+        player1Local = player;
+
         add(panel);
         panel.setLayout(new BorderLayout());
         util.setMainBackground(panel);
@@ -41,7 +43,7 @@ public class EndingGamePage extends JFrame implements ActionListener {
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        panel.add(bye, BorderLayout.CENTER);
+        panel.add(endingImage, BorderLayout.CENTER);
 
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);

@@ -1,14 +1,10 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -20,6 +16,7 @@ import java.util.Properties;
  * Project: Quizkampen
  * Copyright: MIT
  */
+
 public class GamePage_play extends JFrame implements ActionListener {
 
     GUI_Util util = new GUI_Util();
@@ -41,10 +38,12 @@ public class GamePage_play extends JFrame implements ActionListener {
 
     List<JLabel> labelNames;
 
-    Properties p = new Properties();
+    Properties properties = new Properties();
 
     int numberOfRounds;
     int numberOfQuestions;
+
+    Player player1Local;
 
     boolean clicked = false;
 
@@ -72,93 +71,28 @@ public class GamePage_play extends JFrame implements ActionListener {
         this.numberOfQuestions = numberOfQuestions;
     }
 
-    Player pro;
-    public GamePage_play(Player player, Player player2) throws FileNotFoundException, IOException {
+
+    public GamePage_play(Player player1, Player player2) {
 
         categoriepanel.removeAll();
         revalidate();
         repaint();
 
-        pro = player;
+        player1Local = player1;
 
         playerName2.setText(player2.getName());
+        playerName1.setText(player1Local.getName());
 
-        try{
-            p.load(new FileInputStream("src/RoundQuestions.properties"));
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        String stringRounds = p.getProperty("numberOfRounds", "2");
-        setNumberOfRounds(Integer.parseInt(stringRounds));
-        String stringQuestions = p.getProperty("numberOfQuestions", "2");
-        setNumberOfQuestions(Integer.parseInt(stringQuestions));
+        importFromProperties();
+
+        generateUI(player2);
+
+        player1Local.setMaxRound(getNumberOfRounds());
+        player1Local.setMaxQuestion(getNumberOfQuestions());
 
 
 
-        pro.setMaxRound(getNumberOfRounds());
-        pro.setMaxQuestion(getNumberOfQuestions());
-
-        int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
-
-
-        player1_answers = createButtonList(totalbuttons);
-        player2_answers = createButtonList(totalbuttons);
-
-        for (int i = 0; i < totalbuttons; i++) {
-            if (i < pro.getAnswers().size()){
-                if (!pro.getAnswers().get(i)){
-                    player1_answers.get(i).setBackground(Color.RED);
-                    player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }else {
-                    player1_answers.get(i).setBackground(Color.GREEN);
-                    player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }
-            }
-            player1Panel.add(player1_answers.get(i));
-            util.setSizeButton(player1_answers.get(i),35,10,35,10);
-        }
-
-
-        labelNames = createLabelList(getNumberOfRounds());
-
-
-        for (int i = 0; i < pro.getMaxRound(); i++) {
-
-            if (i < pro.getRound()){
-                labelNames.get(i).setText(pro.getRoundCategories().get(i));
-            }else {
-                labelNames.get(i).setText("          ");
-            }
-            categoriepanel.add(labelNames.get(i));
-        }
-
-
-        for (int i = 0; i <totalbuttons; i++) {
-            if (i < player2.getAnswers().size()){
-                if (!player2.getAnswers().get(i)){
-                    player2_answers.get(i).setBackground(Color.RED);
-                    player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }else {
-                    player2_answers.get(i).setBackground(Color.GREEN);
-                    player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
-                }
-            }
-            player2Panel.add(player2_answers.get(i));
-            util.setSizeButton(player2_answers.get(i), 35,10,35,10);
-        }
-
-        if (pro.getRound() >= 1){
-            for (int i = 0; i < pro.getRoundCategories().size(); i++) {
-                labelNames.get(i).setText(pro.roundCategories.get(i));
-                util.labelSetFontForegBackg_white(labelNames.get(i),0,10,51,133,255);
-                labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
-            }
-        }
+        //CLEEEAN
 
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
@@ -208,7 +142,7 @@ public class GamePage_play extends JFrame implements ActionListener {
         play.setBorder(compound);
         util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
 
-        playerName1.setText(pro.getName());
+
 
         Container contentPane = getContentPane();
         contentPane.add(stats, BorderLayout.NORTH);
@@ -223,6 +157,82 @@ public class GamePage_play extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public void generatePlayerButtons(Player playerToGenerate, List<JButton> playerButtonToGenerate, int totalbuttons, JPanel playerPanel){
+
+        for (int i = 0; i < totalbuttons; i++) {
+            if (i < playerToGenerate.getAnswers().size()){
+                if (!playerToGenerate.getAnswers().get(i)){
+                    playerButtonToGenerate.get(i).setBackground(Color.RED);
+                    playerButtonToGenerate.get(i).setOpaque(true);
+                    playerButtonToGenerate.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
+                }else {
+                    playerButtonToGenerate.get(i).setBackground(Color.GREEN);
+                    playerButtonToGenerate.get(i).setOpaque(true);
+                    playerButtonToGenerate.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
+                }
+            }
+            playerPanel.add(playerButtonToGenerate.get(i));
+            util.setSizeButton(playerButtonToGenerate.get(i),35,10,35,10);
+        }
+
+    }
+
+    public void generateUI(Player player2){
+        int totalbuttons = getNumberOfQuestions() * getNumberOfRounds();
+
+
+
+        player1_answers = createButtonList(totalbuttons);
+        player2_answers = createButtonList(totalbuttons);
+
+       generatePlayerButtons(player1Local, player1_answers,totalbuttons, player1Panel);
+       generatePlayerButtons(player2, player2_answers,totalbuttons,player2Panel);
+
+
+        labelNames = createLabelList(getNumberOfRounds());
+
+
+
+        //Hämtar kategorinamn
+        for (int i = 0; i < player1Local.getMaxRound(); i++) {
+
+            if (i < player1Local.getRound()){
+                labelNames.get(i).setText(player1Local.getRoundCategories().get(i));
+            }else {
+                labelNames.get(i).setText("          ");
+            }
+            categoriepanel.add(labelNames.get(i));
+        }
+
+
+        //Placerar kategorinamn
+        if (player1Local.getRound() >= 1){
+            for (int i = 0; i < player1Local.getRoundCategories().size(); i++) {
+                labelNames.get(i).setText(player1Local.roundCategories.get(i));
+                util.labelSetFontForegBackg_white(labelNames.get(i),0,10,51,133,255);
+                labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
+            }
+        }
+
+
+    }
+
+
+    public void importFromProperties(){
+        try{
+            properties.load(new FileInputStream("src/RoundQuestions.properties"));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        String stringRounds = properties.getProperty("numberOfRounds", "2");
+        setNumberOfRounds(Integer.parseInt(stringRounds));
+
+
+        String stringQuestions = properties.getProperty("numberOfQuestions", "2");
+        setNumberOfQuestions(Integer.parseInt(stringQuestions));
     }
 
     public List<JButton> createButtonList(int numberOfButtons) {
@@ -245,7 +255,7 @@ public class GamePage_play extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == play){
             dispose();
-            pro.setClicked(true);
+            player1Local.setClicked(true);
         }
     }
 
@@ -253,6 +263,6 @@ public class GamePage_play extends JFrame implements ActionListener {
         play.addActionListener(this);
 
 
-        return pro;
+        return player1Local;
     }
 }

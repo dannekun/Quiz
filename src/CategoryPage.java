@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by Daniel Bojic
@@ -35,9 +34,9 @@ public class CategoryPage extends JFrame implements ActionListener {
     int unique2;
     int unique3;
 
-    boolean a = false;
-    boolean b = false;
-    boolean c = false;
+    boolean category1Clicked;
+    boolean category2Clicked;
+    boolean category3Clicked;
 
     boolean clicked = false;
 
@@ -60,21 +59,20 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     JLabel choose = new JLabel("Välj en kategori");
 
-    Player pro = new Player();
+    Player playerLocal;
 
 
-   String cat1 = "";
-   String cat2 = "";
-   String cat3 = "";
+    String cat1 = "";
+    String cat2 = "";
+    String cat3 = "";
 
-    public CategoryPage(){}
 
-    public CategoryPage(Player p){
-        pro = p;
+    public CategoryPage(Player player) {
+        playerLocal = player;
 
-        a = false;
-        b = false;
-        c = false;
+        category1Clicked = false;
+        category2Clicked = false;
+        category3Clicked = false;
 
         category1.setText(null);
         category2.setText(null);
@@ -91,25 +89,25 @@ public class CategoryPage extends JFrame implements ActionListener {
         panel.add(Box.createRigidArea(new Dimension(100, 60)));
 
         panel.add(choose);
-        util.labelSetFontForegBackg_white(choose,0,18,0,51,204);
+        util.labelSetFontForegBackg_white(choose, 0, 18, 0, 51, 204);
         choose.setBorder(new EmptyBorder(10, 30, 10, 30));
         panel.add(Box.createRigidArea(new Dimension(100, 40)));
 
         panel.add(category1);
-        util.buttonSetFontForegBackg_white(category1,1,14,204,0,204);
-        util.setSizeButton(category1,200,70,200,70);
+        util.buttonSetFontForegBackg_white(category1, 1, 14, 204, 0, 204);
+        util.setSizeButton(category1, 200, 70, 200, 70);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
 
         panel.add(category2);
-        util.buttonSetFontForegBackg_white(category2,1,14,0,204,102);
-        util.setSizeButton(category2,200,70,200,70);
+        util.buttonSetFontForegBackg_white(category2, 1, 14, 0, 204, 102);
+        util.setSizeButton(category2, 200, 70, 200, 70);
         panel.add(Box.createRigidArea(new Dimension(100, 15)));
 
         panel.add(category3);
-        util.buttonSetFontForegBackg_white(category3,1,14,255,92,51);
-        util.setSizeButton(category3,200,70,200,70);
+        util.buttonSetFontForegBackg_white(category3, 1, 14, 255, 92, 51);
+        util.setSizeButton(category3, 200, 70, 200, 70);
 
-        util.alignComponentsCenter(choose,category1,category2,category3);
+        util.alignComponentsCenter(choose, category1, category2, category3);
 
         setSize(350, 500);
         setVisible(true);
@@ -128,11 +126,9 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This methods calls the uniqueRandomNumber(); method to assing values to the 3 unique numbers
      * and uses those as parameters for the method findCategoryText();
-     *
-     *
      */
 
-    public void getCategoryText(){
+    public void getCategoryText() {
 
         // Generate 3 random numbers and set unique[1, 2, 3]
         uniqueRandomNumber();
@@ -146,15 +142,15 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This method finds the right category based on a unique random number 0 - 9
      * All the cases (Categories) have been assigned to a number that will corresponds to the given unique number
-     *
-     *
+     * <p>
+     * <p>
      * t.ex: unique1 = 5 && popCulture = 5 -> category1.setText("Pop Culture)
      *
      * @param randomCategoryIndex = [unique1 || unique2 || unique3]
      */
 
 
-    public void findCategory(int randomCategoryIndex){
+    public void findCategory(int randomCategoryIndex) {
 
         // Operator = randomCategoryIndex = t.ex: unique1
         // animalsNature = 0 && if(unique1 == 0) -> case animalsNature is active:
@@ -207,22 +203,22 @@ public class CategoryPage extends JFrame implements ActionListener {
      * @param categoryText
      */
 
-    public void setCategoryText(String categoryText){
+    public void setCategoryText(String categoryText) {
 
         // if all category names are empty ->
-        if (category1.getText() == null && category2.getText() == null && category3.getText() == null){
+        if (category1.getText() == null && category2.getText() == null && category3.getText() == null) {
 
             // Set category1 as categoryText
             category1.setText(categoryText);
 
-        // if first category name is taken and the other two are empty ->
-        } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null){
+            // if first category name is taken and the other two are empty ->
+        } else if ((category1.getText() != null) && category2.getText() == null && category3.getText() == null) {
 
             // Set category2 as categoryText
             category2.setText(categoryText);
 
-        // if the two first category names are taken and last one is empty ->
-        } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null){
+            // if the two first category names are taken and last one is empty ->
+        } else if ((category1.getText() != null) && (category2.getText() != null) && category3.getText() == null) {
 
             // Set category3 as categoryText
             category3.setText(categoryText);
@@ -236,7 +232,7 @@ public class CategoryPage extends JFrame implements ActionListener {
      * @return
      */
 
-    public void uniqueRandomNumber(){
+    public void uniqueRandomNumber() {
 
         ArrayList<Integer> listOfNumbers = new ArrayList<>();
 
@@ -248,9 +244,9 @@ public class CategoryPage extends JFrame implements ActionListener {
         Collections.shuffle(listOfNumbers);
 
         // Get 3 numbers from list. since list is shuffled these will always me 3 different random numbers between 0-8
-            unique1 = listOfNumbers.get(0);
-            unique2 = listOfNumbers.get(1);
-            unique3 = listOfNumbers.get(2);
+        unique1 = listOfNumbers.get(0);
+        unique2 = listOfNumbers.get(1);
+        unique3 = listOfNumbers.get(2);
 
     }
 
@@ -258,45 +254,54 @@ public class CategoryPage extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        a = false;
-        b = false;
-        c = false;
+        category1Clicked = false;
+        category2Clicked = false;
+        category3Clicked = false;
 
-        if (e.getSource() == category1){
+        if (e.getSource() == category1) {
+
             dispose();
+            category1Clicked = true;
+            setClicked(true);
 
-           a = true;
-           setClicked(true);
+        } else if (e.getSource() == category2) {
 
-
-        }else if (e.getSource() == category2){
             dispose();
-
-            b = true;
+            category2Clicked = true;
             setClicked(true);
 
 
-        }else if (e.getSource() == category3){
-            dispose();
-           c = true;
-            setClicked(true);
+        } else if (e.getSource() == category3) {
 
+            dispose();
+            category3Clicked = true;
+            setClicked(true);
 
         }
     }
 
-    public Player addCatToPlayer(){
-        if (a){
-            pro.addToList(cat1);
-        }else if (b){
-            pro.addToList(cat2);
-        }else if (c){
-            pro.addToList(cat3);
+    public Player addCategoryInputToPlayer() {
+
+        if (category1Clicked) {
+
+            playerLocal.addToList(cat1);
+
+        } else if (category2Clicked) {
+
+            playerLocal.addToList(cat2);
+
+        } else if (category3Clicked) {
+
+            playerLocal.addToList(cat3);
+
         }
-        return pro;
+
+        return playerLocal;
+
     }
 
-    public Boolean findClickPlay(){
+    public Boolean findClickPlay() {
+
         category1.addActionListener(this);
         category2.addActionListener(this);
         category3.addActionListener(this);

@@ -39,19 +39,19 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     JPanel north = new JPanel();
     JPanel south = new JPanel();
 
-    Player pro;
-    Player player2;
+    Player player1Local;
+    Player player2Local;
     List<Questions> randomListToPull;
     List<String> randomAnswerList;
 
     String rightAnswerFromList;
 
 
-    public QuestionPage_NotChoseCat(Player p, Player pro2) {
+    public QuestionPage_NotChoseCat(Player player1, Player player2) {
 
-        pro = p;
+        player1Local = player1;
 
-        player2 = pro2;
+        player2Local = player2;
 
         generateUI();
 
@@ -120,15 +120,15 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     }
 
     public void generateUI() {
-        round.setText(("Rond " + pro.getRound()));
-        questionNumber.setText("Fråga " + (pro.getQuestion() + 1));
+        round.setText(("Rond " + player1Local.getRound()));
+        questionNumber.setText("Fråga " + (player1Local.getQuestion() + 1));
 
-        player.setText(pro.getName());
+        player.setText(player1Local.getName());
         selectQuestionObject();
         setButtonText(randomAnswerList, answer1, answer2, answer3, answer4);
 
 
-        category.setText(player2.getRoundCategories().get(pro.getRound() - 1));
+        category.setText(player2Local.getRoundCategories().get(player1Local.getRound() - 1));
 
         createButtonAndPaint();
 
@@ -136,30 +136,30 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
     public void createButtonAndPaint() {
 
-        for (int i = 0; i < pro.getMaxQuestion(); i++) {
+        for (int i = 0; i < player1Local.getMaxQuestion(); i++) {
 
             buttonsToPaintList.add(new JButton());
         }
 
 
-        if (pro.getQuestion() > 0) {
+        if (player1Local.getQuestion() > 0) {
 
-            for (int i = 0; i < pro.getQuestion(); i++) {
+            for (int i = 0; i < player1Local.getQuestion(); i++) {
 
-                if (!pro.getRoundAnswers().get(i)) {
+                if (!player1Local.getRoundAnswers().get(i)) {
 
                     paintRed(buttonsToPaintList.get(i));
 
-                } else if (pro.getRoundAnswers().get(i)) {
+                } else if (player1Local.getRoundAnswers().get(i)) {
 
                     paintGreen(buttonsToPaintList.get(i));
                 }
 
             }
 
-        } else if (pro.getQuestion() == 0) {
+        } else if (player1Local.getQuestion() == 0) {
 
-            for (int i = 0; i < pro.getMaxQuestion(); i++) {
+            for (int i = 0; i < player1Local.getMaxQuestion(); i++) {
 
                 resetPaint(buttonsToPaintList.get(i));
             }
@@ -172,10 +172,10 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     public void selectQuestionObject() {
 
 
-        randomListToPull = player2.getQuestionToPassBetweenPlayers();
+        randomListToPull = player2Local.getQuestionToPassBetweenPlayers();
 
 
-        int correctNumberToChoose = ((pro.getRound() * pro.getMaxQuestion()) - pro.getMaxQuestion()) + (pro.getQuestion());
+        int correctNumberToChoose = ((player1Local.getRound() * player1Local.getMaxQuestion()) - player1Local.getMaxQuestion()) + (player1Local.getQuestion());
 
         randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
         rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
@@ -240,16 +240,16 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         if (!checkAnswers(randomAnswerList.get(buttonNumber))) {
             buttonToPaint.setBackground(Color.RED);
-            pro.setClickedRightAnswer(false);
+            player1Local.setClickedRightAnswer(false);
 
 
         } else if (checkAnswers(randomAnswerList.get(buttonNumber))) {
             buttonToPaint.setBackground(Color.GREEN);
-            pro.setClickedRightAnswer(true);
+            player1Local.setClickedRightAnswer(true);
         }
         buttonToPaint.setOpaque(true);
         buttonToPaint.setBorder(new LineBorder(new Color(51, 133, 255)));
-        pro.setClicked(true);
+        player1Local.setClicked(true);
 
     }
 
@@ -279,16 +279,16 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     }
 
     public void checkAnswerAndAddToList() {
-        if (pro.isClickedRightAnswer()) {
+        if (player1Local.isClickedRightAnswer()) {
 
-            pro.answersAddToList(true);
-            pro.addToRoundAnswersList(true);
+            player1Local.answersAddToList(true);
+            player1Local.addToRoundAnswersList(true);
 
 
         } else {
 
-            pro.answersAddToList(false);
-            pro.addToRoundAnswersList(false);
+            player1Local.answersAddToList(false);
+            player1Local.addToRoundAnswersList(false);
         }
 
 
@@ -297,24 +297,24 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
     public Player lastAnswerCheck(Player p) {
 
-        pro = p;
+        player1Local = p;
 
-        if (pro.getQuestion() == pro.getMaxQuestion() && pro.getRound() == pro.getMaxRound()) {
+        if (player1Local.getQuestion() == player1Local.getMaxQuestion() && player1Local.getRound() == player1Local.getMaxRound()) {
 
             checkAnswerAndAddToList();
 
             dispose();
 
 
-        } else if (pro.getQuestion() == pro.getMaxQuestion()) {
+        } else if (player1Local.getQuestion() == player1Local.getMaxQuestion()) {
 
             checkAnswerAndAddToList();
             dispose();
 
 
-            pro.setQuestion(0);
-            pro.getRoundAnswers().clear();
-        } else if (pro.getQuestion() < pro.getMaxQuestion()) {
+            player1Local.setQuestion(0);
+            player1Local.getRoundAnswers().clear();
+        } else if (player1Local.getQuestion() < player1Local.getMaxQuestion()) {
 
             checkAnswerAndAddToList();
 
@@ -328,20 +328,20 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         }
 
-        return pro;
+        return player1Local;
 
     }
 
     public Player addPoints(Player player) {
-        pro = player;
+        player1Local = player;
 
-        if (pro.clickedRightAnswer) {
-            pro.setPoints(pro.getPoints() + 1);
-            pro.setQuestion(pro.getQuestion() + 1);
+        if (player1Local.clickedRightAnswer) {
+            player1Local.setPoints(player1Local.getPoints() + 1);
+            player1Local.setQuestion(player1Local.getQuestion() + 1);
         } else {
-            pro.setQuestion(pro.getQuestion() + 1);
+            player1Local.setQuestion(player1Local.getQuestion() + 1);
         }
-        return pro;
+        return player1Local;
     }
 
 
@@ -350,6 +350,6 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         answer2.addActionListener(this);
         answer3.addActionListener(this);
         answer4.addActionListener(this);
-        return pro;
+        return player1Local;
     }
 }
