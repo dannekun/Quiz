@@ -93,8 +93,8 @@ public class QuestionPage extends JFrame implements ActionListener {
         randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
 
         rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
-        Collections.shuffle(randomAnswerList);
 
+        Collections.shuffle(randomAnswerList);
 
         answer1.setText(randomAnswerList.get(0));
         answer2.setText(randomAnswerList.get(1));

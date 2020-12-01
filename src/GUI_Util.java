@@ -50,6 +50,7 @@ public class GUI_Util extends JFrame {
         button.setForeground(Color.WHITE);
         button.setBackground(new Color(rBackg, gBackg, bBackg));
         button.setOpaque(true);
+        button.setBorderPainted(false);
     }
 
     public void buttonSetFontForeg(JButton button, int fontType, int fontSize,
@@ -57,6 +58,7 @@ public class GUI_Util extends JFrame {
         button.setFont(new Font("Arial", fontType, fontSize));
         button.setForeground(new Color(rForeg, gForeg, bForeg));
         button.setOpaque(true);
+        button.setBorderPainted(false);
     }
 
     public Border setCompoundBorder(int r, int g, int b, int top, int left, int bottom, int right) {

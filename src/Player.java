@@ -115,6 +115,10 @@ public class Player implements Serializable {
         return finished;
     }
 
+    public void setFinished(boolean finished) {
+        this.finished = finished;
+    }
+
     public int getPoints() {
         return points;
     }

@@ -28,7 +28,7 @@ public class ClientHandler extends Thread implements Serializable {
 
         if (spelare1.isConnected() && spelare2.isConnected()) {
 
-            while (!player2.getFinished()) {
+            while (!player2.getFinished() && !player1.getFinished()) {
                 try {
 
                     player1 = (Player) new ObjectInputStream(spelare1.getInputStream()).readObject();
@@ -53,11 +53,17 @@ public class ClientHandler extends Thread implements Serializable {
                     e.printStackTrace();
                 }
             }
-
-
         }
 
 
+        try {
+            spelare1.close();
+            spelare2.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    System.exit(0);
     }
 
 
