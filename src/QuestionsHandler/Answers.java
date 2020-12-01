@@ -1,7 +1,7 @@
 package QuestionsHandler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,12 +11,12 @@ import java.util.List;
  * Quiz
  * Copyright: MIT
  */
-public class Answers {
+public class Answers implements Serializable {
 
-    private String rightAnswer;
-    private String wrongAnswer1;
-    private String wrongAnswer2;
-    private String wrongAnswer3;
+    private final String rightAnswer;
+    private final String wrongAnswer1;
+    private final String wrongAnswer2;
+    private final String wrongAnswer3;
 
     public Answers(String rightAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
 
@@ -25,31 +25,6 @@ public class Answers {
         this.wrongAnswer2 = wrongAnswer2;
         this.wrongAnswer3 = wrongAnswer3;
 
-    }
-
-    /**
-     * This method gives you a shuffled list of the type List<String>.
-     *
-     * @return shuffledAnswerList
-     */
-
-    public List<String> getShuffledAnswersList(){
-
-        List<String> shuffledAnswerList = new ArrayList<>();
-
-        shuffledAnswerList.add(rightAnswer);
-        shuffledAnswerList.add(wrongAnswer1);
-        shuffledAnswerList.add(wrongAnswer2);
-        shuffledAnswerList.add(wrongAnswer3);
-
-        Collections.shuffle(shuffledAnswerList);
-
-        return shuffledAnswerList;
-
-    }
-
-    public void shuffleAnswers(List<String> answersToShuffle){
-        Collections.shuffle(answersToShuffle);
     }
 
     /**
@@ -71,29 +46,6 @@ public class Answers {
 
     public String getRightAnswer() {
         return rightAnswer;
-    }
-
-
-    /**
-     * This method gives the user the correct answer as true/false
-     *
-     * @param getTextFromClick
-     * @return
-     */
-
-    //FixMe:
-    // Byt denna till e.getSource
-    // När användaren klickar på ett svarsalternativ så ska klicket(e.getSource) hämta texten från knappen(getText())
-    // och om den texten motsvarar getRightAnswer så spottas en true boolean ut, om inte så blir det false.
-
-    public boolean checkAnswer(String getTextFromClick){
-
-        if (getRightAnswer() == getTextFromClick){
-            return true;
-        }else {
-            return false;
-        }
-
     }
 
 }

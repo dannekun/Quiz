@@ -3,6 +3,7 @@ package QuestionsHandler.Categories;
 import QuestionsHandler.Answers;
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class Sports {
+public class Sports implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // Sports Answers
@@ -42,23 +43,23 @@ public class Sports {
 
     //--------------------------------------------------------------------------------------//
     // General Knowledge Questions
-    private final Questions Q1 = new Questions("Hur många spelare finns det i ett vattenpoloteam?", A1);
+    private final Questions Q1 = new Questions("<html>Hur många spelare finns det i ett vattenpoloteam?</html>", A1);
 
-    private final Questions Q2 = new Questions("Vilken tennisspelare vann Australian Ladies Australian Open 2012 och besegrade Maria Sharapova 6-3, 6-0?", A2);
+    private final Questions Q2 = new Questions("<html>Vilken tennisspelare vann Australian Ladies Australian Open 2012 och besegrade Maria Sharapova 6-3, 6-0?</html>", A2);
 
-    private final Questions Q3 = new Questions("Wimbledon 2017 vann av 14: e fröna som överraskande besegrade Venus WIlliams i finalen. Vem är hon?", A3);
+    private final Questions Q3 = new Questions("<html>Wimbledon 2017 vann av 14: e fröna som överraskande besegrade Venus WIlliams i finalen. Vem är hon?</html>", A3);
 
-    private final Questions Q4 = new Questions("Vem var BBC’s ‘Sports Personality of the Year’ 2001?", A4);
+    private final Questions Q4 = new Questions("<html>Vem var BBC’s ‘Sports Personality of the Year’ 2001?</html>", A4);
 
-    private final Questions Q5 = new Questions("Kanadensiska Connor McDavid är en stigande stjärna i vilken sport?", A5);
+    private final Questions Q5 = new Questions("<html>Kanadensiska Connor McDavid är en stigande stjärna i vilken sport?</html>", A5);
 
-    private final Questions Q6 = new Questions("Vilka färger använder Hammarby Fotboll som Bortaställ?", A6);
+    private final Questions Q6 = new Questions("<html>Vilka färger använder Hammarby Fotboll som Bortaställ?</html>", A6);
 
-    private final Questions Q7 = new Questions("Vilket sportspel uppfann James Naismith 1891?", A7);
+    private final Questions Q7 = new Questions("<html>Vilket sportspel uppfann James Naismith 1891?</html>", A7);
 
-    private final Questions Q8 = new Questions("Vilket land har dominerat Olympiska sommarspel Synkroniserad simning med fem guldmedaljer sedan det återinfördes till spelen 2000?", A8);
+    private final Questions Q8 = new Questions("<html>Vilket land har dominerat Olympiska sommarspel Synkroniserad simning med fem guldmedaljer sedan det återinfördes till spelen 2000?</html>", A8);
 
-    private final Questions Q9 = new Questions("Vem är svensk bordtennisspelare känd som ‘Gamle Wa’?", A9);
+    private final Questions Q9 = new Questions("<html>Vem är svensk bordtennisspelare känd som ‘Gamle Wa’?</html>", A9);
 
     private final Questions Q10 = new Questions("Vad betyder Zratanera?", A10);
 
@@ -83,7 +84,7 @@ public class Sports {
     }
 
     public String getCategoryName() {
-        return "General Knowledge";
+        return "Idrott";
     }
 
     public List<Questions> getSportsList() {

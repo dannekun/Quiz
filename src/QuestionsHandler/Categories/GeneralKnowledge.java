@@ -1,9 +1,9 @@
 package QuestionsHandler.Categories;
 
 import QuestionsHandler.Answers;
-import QuestionsHandler.Database;
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class GeneralKnowledge {
+public class GeneralKnowledge implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // General Knowledge Answers
@@ -51,7 +51,7 @@ public class GeneralKnowledge {
 
     private final Questions Q4 = new Questions("När fick Sverige färg-TV?", A4);
 
-    private final Questions Q5 = new Questions("Vad hette Tokyo förr", A5);
+    private final Questions Q5 = new Questions("Vad hette Tokyo förr?", A5);
 
     private final Questions Q6 = new Questions("När skapades Facebook?", A6);
 
@@ -59,7 +59,7 @@ public class GeneralKnowledge {
 
     private final Questions Q8 = new Questions("Hur många kanter har en kub?", A8);
 
-    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe", A9);
+    private final Questions Q9 = new Questions("Ungefär hur mycket koffein är de i 100 kaffe?", A9);
 
     private final Questions Q10 = new Questions("Vad hade Einstein för IQ?", A10);
 
@@ -84,7 +84,7 @@ public class GeneralKnowledge {
     }
 
     public String getCategoryName() {
-        return "General Knowledge";
+        return "Allmän kunskap";
     }
 
     public List<Questions> getGeneralKnowledgeList() {

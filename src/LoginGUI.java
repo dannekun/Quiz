@@ -1,48 +1,67 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Daniel Bojic
- * Date: 2020-11-12
- * Time: 14:34
- * Project: Quizkampen
- * Copyright: MIT
- */
 public class LoginGUI extends JFrame implements ActionListener {
+
+    GUI_Util util = new GUI_Util();
+
     JPanel panel = new JPanel();
-    JFrame frame = new JFrame();
-    JLabel user = new JLabel("Player");
-    JTextField userText = new JTextField(20);
-    JButton login = new JButton("Log in");
+    JLabel user = new JLabel("Spelare");
+    JTextField userText = new JTextField();
+    JButton login = new JButton("Logga in");
 
+    String name;
 
-    public LoginGUI(){
-
-        frame.setSize(350, 100);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.add(panel);
-        user.setBounds(10,20,80,25);
-        panel.add(user);
-        userText.setBounds(100,20,165,25);
-        panel.add(userText);
-        login.setBounds(10,80,80,25);
-        panel.add(login);
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-
-        login.addActionListener(this);
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == login){
-            Player p = new Player(userText.getText());
-            frame.dispose();
-            HomePage page = new HomePage(p);
+        if (e.getSource() == userText || e.getSource() == login) {
+
+            name = userText.getText();
+            dispose();
+
         }
     }
 
+    public String findPlayerAndReturn() {
+
+        login.addActionListener(this);
+
+        return name;
+    }
+
+
+    public void showWindow(){
+
+        add(panel);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        util.setMainBackground(panel);
+        panel.add(Box.createRigidArea(new Dimension(100, 80)));
+        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+
+        panel.add(user);
+        util.labelSetFontForeg(user,"Arial",0,18,255,255,255);
+        panel.add(Box.createRigidArea(new Dimension(10, 10)));
+
+        panel.add(userText);
+        panel.add(Box.createRigidArea(new Dimension(100, 15)));
+
+        panel.add(login);
+        util.buttonSetFontForegBackg_white(login,0,12,71,71,209);
+        util.setSizeButton(login,100,40,100,40);
+        panel.add(Box.createRigidArea(new Dimension(100, 170)));
+
+        util.alignComponentsCenter(user,userText,login);
+
+        setSize(350, 500);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        login.addActionListener(this);
+        userText.addActionListener(this);
+    }
 
 }

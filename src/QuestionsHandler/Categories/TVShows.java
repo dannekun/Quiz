@@ -3,6 +3,7 @@ package QuestionsHandler.Categories;
 import QuestionsHandler.Answers;
 import QuestionsHandler.Questions;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Quiz2
  * Copyright: MIT
  */
-public class TVShows {
+public class TVShows implements Serializable {
 
     //--------------------------------------------------------------------------------------//
     // TVShows Answers
@@ -22,7 +23,7 @@ public class TVShows {
 
     private final Answers A1 = new Answers("Central Perk", "Starbucks", "Friends Pub", "SoHo");
 
-    private final Answers A2 = new Answers("How you doing?", "How's it going beautiful?", "Hey baby.", "You're wasting good pastrami!");
+    private final Answers A2 = new Answers("How you doing?", "How's it going beautiful?", "Hey baby.", "<html>You're wasting good pastrami!</html>");
 
     private final Answers A3 = new Answers("73", "87", "53", "67");
 
@@ -42,25 +43,25 @@ public class TVShows {
 
     //--------------------------------------------------------------------------------------//
     // TVShows Questions
-    private final Questions Q1 = new Questions("Vad heter kaféet där de umgås i Friends?", A1);
+    private final Questions Q1 = new Questions("Vad heter kaféet där de umgås i 'Friends?'", A1);
 
-    private final Questions Q2 = new Questions("Vad är Joey's slagord när han träffar kvinnor i Friends?", A2);
+    private final Questions Q2 = new Questions("<html>Vad är Joey's slagord när han träffar kvinnor i 'Friends'?</html>", A2);
 
-    private final Questions Q3 = new Questions("Hur många avsnitt av Game of Thrones finns det?", A3);
+    private final Questions Q3 = new Questions("<html>Hur många avsnitt av 'Game of Thrones' finns det?</html>", A3);
 
-    private final Questions Q4 = new Questions("Namnge skaparna av Stranger Things", A4);
+    private final Questions Q4 = new Questions("Namnge skaparna av 'Stranger Things'", A4);
 
     private final Questions Q5 = new Questions("Vad heter Renes fru i 'Allo' Allo! ?", A5);
 
-    private final Questions Q6 = new Questions("Vem skapade hit USA: s sitcom Seinfeld with Jerry Seinfeld?", A6);
+    private final Questions Q6 = new Questions("<html>Vem skapade hit USA: s sitcom Seinfeld with Jerry Seinfeld?</html>", A6);
 
-    private final Questions Q7 = new Questions("Vem spelade drottning Elizabeth II under de första säsongerna av The Crown?", A7);
+    private final Questions Q7 = new Questions("<html>Vem spelade drottning Elizabeth II under de första säsongerna av 'The Crown'?</html>", A7);
 
-    private final Questions Q8 = new Questions("Vilket tv-program innehåller Miranda Hobbes och Samantha Jones?", A8);
+    private final Questions Q8 = new Questions("<html>Vilket tv-program innehåller Miranda Hobbes och Samantha Jones?</html>", A8);
 
-    private final Questions Q9 = new Questions("Amy Poehler, Rob Lowe och Chris Pratt arbetade tillsammans på vilken amerikansk komedieserie?", A9);
+    private final Questions Q9 = new Questions("<html>Amy Poehler, Rob Lowe och Chris Pratt arbetade tillsammans på vilken amerikansk komedieserie?</html>", A9);
 
-    private final Questions Q10 = new Questions("Vilken amerikansk komedi-skådespelerska skapade Netflix-showen The Unbreakable Kimmy Schmidt?", A10);
+    private final Questions Q10 = new Questions("<html>Vilken amerikansk komedi-skådespelerska skapade Netflix-showen 'The Unbreakable Kimmy Schmidt'?</html>", A10);
 
 
     public TVShows(){
@@ -84,7 +85,7 @@ public class TVShows {
     }
 
     public String getCategoryName() {
-        return "TVShows";
+        return "TV-show";
     }
 
     public List<Questions> getTvShowsList() {

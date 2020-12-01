@@ -1,5 +1,7 @@
 package QuestionsHandler;
 
+import java.io.Serializable;
+
 /**
  * Created by Daniel Bojic
  * Date: 2020-11-12
@@ -8,10 +10,10 @@ package QuestionsHandler;
  * Copyright: MIT
  */
 
-public class Questions {
+public class Questions implements Serializable {
 
-    private String question;
-    private Answers answers;
+    private final String question;
+    private final Answers answers;
 
     public Questions(String question, Answers answers) {
 
