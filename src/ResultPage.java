@@ -52,10 +52,13 @@ public class ResultPage extends JFrame implements ActionListener {
 
         if(pro.getPoints() > player2.getPoints()){
             panel.add(winner, BorderLayout.CENTER);
+            winner.setBackground(new Color(51, 133, 255));
         }else if (pro.getPoints() < player2.getPoints()){
             panel.add(loser, BorderLayout.CENTER);
+            loser.setBackground(new Color(51, 133, 255));
         }else if (pro.getPoints() == player2.getPoints()){
             panel.add(equals, BorderLayout.CENTER);
+            equals.setBackground(new Color(51, 133, 255));
         }
 
         panel.add(ok, BorderLayout.SOUTH);

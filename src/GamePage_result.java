@@ -167,7 +167,7 @@ public class GamePage_result extends JFrame implements ActionListener {
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
 
                 labelNames.get(i).setText(pro.roundCategories.get(i));
-                util.labelSetFontForegBackg_white(labelNames.get(i),0,18,51,133,255);
+                util.labelSetFontForegBackg_white(labelNames.get(i),0,12,51,133,255);
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
             }
