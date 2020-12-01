@@ -49,7 +49,7 @@ public class Technology implements Serializable {
 
     private final Questions Q3 = new Questions("<html>Vilket prestigefyllt universitet hoppade Microsoft-grundaren Bill Gates av?</html>", A3);
 
-    private final Questions Q4 = new Questions("Vilket år lanserades den första Apple iPhone?", A4);
+    private final Questions Q4 = new Questions("<html>Vilket år lanserades den första Apple iPhone?</html>", A4);
 
     private final Questions Q5 = new Questions("<html>Vilken längdenhet är lika med cirka 5,8 biljoner mil?</html>", A5);
 
@@ -59,7 +59,7 @@ public class Technology implements Serializable {
 
     private final Questions Q8 = new Questions("När elektronikföretaget Nintendo grundades?", A8);
 
-    private final Questions Q9 = new Questions("Ursprungligen sålde Amazon endast vilken produkt?", A9);
+    private final Questions Q9 = new Questions("<html>Ursprungligen sålde Amazon endast vilken produkt?</html>", A9);
 
     private final Questions Q10 = new Questions("Vad står LG för i LG Electronics?", A10);
 

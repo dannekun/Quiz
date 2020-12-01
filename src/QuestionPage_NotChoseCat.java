@@ -2,6 +2,7 @@ import QuestionsHandler.Questions;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,8 @@ import java.util.List;
  * Copyright: MIT
  */
 public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
+
+    GUI_Util util = new GUI_Util();
 
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
@@ -104,98 +107,55 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
         add(north);
         north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
-        north.setBackground(new Color(51, 133, 255));
-
+        util.setMainBackground(north);
         for (int i = 0; i < buttonsToPaintList.size(); i++) {
-
             north.add(buttonsToPaintList.get(i));
-            buttonsToPaintList.get(i).setPreferredSize(new Dimension(30,30));
-            buttonsToPaintList.get(i).setMaximumSize(new Dimension(30,30));
-
+            util.setSizeButton(buttonsToPaintList.get(i),30,30,30,30);
         }
-
         north.add(player);
-        player.setFont(new Font("Arial", Font.PLAIN, 14));
-        player.setForeground(Color.WHITE);
-        player.setBackground(new Color(0, 51, 204));
-        player.setOpaque(true);
+        util.labelSetFontForegBackg_white(player,0,14,0,51,204);
         player.setBorder(new EmptyBorder(10, 30, 10, 30));
 
         add(south);
         south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         south.setLayout(new GridLayout(8,1));
-        south.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(south);
 
         south.add(round);
-        round.setFont(new Font("Arial", Font.PLAIN, 14));
-        round.setForeground(Color.WHITE);
+        util.labelSetFontForeg_white(round,0,14);
 
         south.add(category);
-        category.setBackground(new Color(204, 0, 204));
-        category.setForeground(Color.WHITE);
-        category.setFont(new Font("Arial", Font.BOLD, 14));
-        category.setOpaque(true);
-        category.setPreferredSize(new Dimension(250, 30));
+        util.labelSetFontForegBackg_white(category,1,14,255, 128, 0);
+        util.setSizeLabel(category,250,30,250,30);
         category.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         south.add(questionNumber);
-        questionNumber.setFont(new Font("Arial", Font.PLAIN, 14));
-        questionNumber.setForeground(Color.WHITE);
+        util.labelSetFontForeg_white(questionNumber,0,14);
 
         south.add(question);
-        question.setBackground(new Color(255, 51, 133));
-        question.setForeground(Color.WHITE);
-        question.setFont(new Font("Arial", Font.BOLD, 12));
+        util.labelSetFontForegBackg_white(question,1,12,255, 51, 0);
+        util.setSizeLabel(question,250,30,250,30);
         question.setBorder(new EmptyBorder(10, 10, 10, 10));
-        question.setOpaque(true);
-        question.setPreferredSize(new Dimension(250, 30));
 
         south.add(answer1);
-        answer1.setBackground(new Color(163, 102, 255));
-        answer1.setForeground(Color.WHITE);
-        answer1.setFont(new Font("Arial", Font.BOLD, 14));
-        answer1.setContentAreaFilled(false);
-        answer1.setOpaque(true);
-        answer1.setBorderPainted(false);
-        answer1.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer1,1,14,163, 26, 255);
+        util.setSizeButton(answer1,250,30,250,30);
 
         south.add(answer2);
-        answer2.setBackground(new Color(163, 102, 255));
-        answer2.setForeground(Color.WHITE);
-        answer2.setFont(new Font("Arial", Font.BOLD, 14));
-        answer2.setContentAreaFilled(false);
-        answer2.setOpaque(true);
-        answer2.setBorderPainted(false);
-        answer2.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer2,1,14,230, 0, 230);
+        util.setSizeButton(answer2,250,30,250,30);
 
         south.add(answer3);
-        answer3.setBackground(new Color(163, 102, 255));
-        answer3.setForeground(Color.WHITE);
-        answer3.setFont(new Font("Arial", Font.BOLD, 14));
-        answer3.setContentAreaFilled(false);
-        answer3.setOpaque(true);
-        answer3.setBorderPainted(false);
-        answer3.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer3,1,14,230, 0, 172);
+        util.setSizeButton(answer3,250,30,250,30);
 
         south.add(answer4);
-        answer4.setBackground(new Color(163, 102, 255));
-        answer4.setForeground(Color.WHITE);
-        answer4.setFont(new Font("Arial", Font.BOLD, 14));
-        answer4.setContentAreaFilled(false);
-        answer4.setOpaque(true);
-        answer4.setBorderPainted(false);
-        answer4.setPreferredSize(new Dimension(250, 30));
+        util.buttonSetFontForegBackg_white(answer4,1,14,128, 0, 255);
+        util.setSizeButton(answer4,250,30,250,30);
 
         Container contentPane = getContentPane();
         contentPane.add(north, BorderLayout.NORTH);
         contentPane.add(south, BorderLayout.CENTER);
-
-        category.setMaximumSize(new Dimension(250, 30));
-        question.setMaximumSize(new Dimension(250, 30));
-        answer1.setMaximumSize(new Dimension(250, 30));
-        answer2.setMaximumSize(new Dimension(250, 30));
-        answer3.setMaximumSize(new Dimension(250, 30));
-        answer4.setMaximumSize(new Dimension(250, 30));
 
         setSize(350, 500);
         setLocationRelativeTo(null);
@@ -212,13 +172,13 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
     public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
         jb.setOpaque(true);
-        jb.setBorderPainted(false);
+        jb.setBorder(new LineBorder(new Color(51, 133, 255)));
     }
 
     public void paintGreen(JButton jb) {
         jb.setBackground(Color.GREEN);
         jb.setOpaque(true);
-        jb.setBorderPainted(false);
+        jb.setBorder(new LineBorder(new Color(51, 133, 255)));
     }
 
     public void resetPaint(JButton jb) {
@@ -235,19 +195,19 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
         if (a.getText().equals(rightAnswer)) {
             a.setBackground(Color.GREEN);
             a.setOpaque(true);
-            a.setBorderPainted(false);
+            a.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (b.getText().equals(rightAnswer)) {
             b.setBackground(Color.GREEN);
             b.setOpaque(true);
-            b.setBorderPainted(false);
+            b.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (c.getText().equals(rightAnswer)) {
             c.setBackground(Color.GREEN);
             c.setOpaque(true);
-            c.setBorderPainted(false);
+            c.setBorder(new LineBorder(new Color(51, 133, 255)));
         } else if (d.getText().equals(rightAnswer)) {
             d.setBackground(Color.GREEN);
             d.setOpaque(true);
-            d.setBorderPainted(false);
+            d.setBorder(new LineBorder(new Color(51, 133, 255)));
         }
     }
 
@@ -266,7 +226,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
                 pro.setClickedRightAnswer(true);
             }
             answer1.setOpaque(true);
-            answer1.setBorderPainted(false);
+            answer1.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
 
         } else if (e.getSource() == answer2) {
@@ -280,7 +240,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
                 pro.setClickedRightAnswer(true);
             }
             answer2.setOpaque(true);
-            answer2.setBorderPainted(false);
+            answer2.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
 
         } else if (e.getSource() == answer3) {
@@ -297,7 +257,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             }
 
             answer3.setOpaque(true);
-            answer3.setBorderPainted(false);
+            answer3.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
 
         } else if (e.getSource() == answer4) {
@@ -315,7 +275,7 @@ public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
             }
 
             answer4.setOpaque(true);
-            answer4.setBorderPainted(false);
+            answer4.setBorder(new LineBorder(new Color(51, 133, 255)));
             pro.setClicked(true);
         }
 

@@ -22,6 +22,8 @@ import java.util.Properties;
  */
 public class GamePage_result extends JFrame implements ActionListener {
 
+    GUI_Util util = new GUI_Util();
+
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
     JPanel stats = new JPanel();
@@ -85,46 +87,6 @@ public class GamePage_result extends JFrame implements ActionListener {
 
         setNumberOfQuestions(Integer.parseInt(stringQuestions));
 
-        add(stats, BorderLayout.NORTH);
-        stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
-        stats.setBackground( new Color(51, 133, 255));
-        stats.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        stats.add(playerName1);
-        stats.add(Box.createRigidArea(new Dimension(20, 40)));
-        stats.add(playerName2);
-
-        playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName1.setForeground(Color.WHITE);
-        playerName1.setBackground(new Color(0, 51, 204));
-        playerName1.setOpaque(true);
-        playerName1.setBorderPainted(false);
-        playerName1.setPreferredSize(new Dimension(150, 40));
-        playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
-
-        playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName2.setForeground(Color.WHITE);
-        playerName2.setBackground(new Color(191, 64, 191));
-        playerName2.setBorderPainted(false);
-        playerName2.setOpaque(true);
-        playerName2.setPreferredSize(new Dimension(150, 40));
-        playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
-
-        add(player1Panel, BorderLayout.WEST);
-        player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 2));
-        player1Panel.setBackground( new Color(51, 133, 255));
-
-        add(categoriepanel, BorderLayout.CENTER);
-        categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
-        categoriepanel.setBackground(new Color(51, 133, 255));
-
-        add(player2Panel, BorderLayout.EAST);
-        player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 10));
-        player2Panel.setBackground( new Color(51, 133, 255));
 
         pro.setMaxRound(getNumberOfRounds());
         pro.setMaxQuestion(getNumberOfQuestions());
@@ -142,21 +104,20 @@ public class GamePage_result extends JFrame implements ActionListener {
 
                     player1_answers.get(i).setBackground(Color.RED);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
 
                 }else {
 
                     player1_answers.get(i).setBackground(Color.GREEN);
                     player1_answers.get(i).setOpaque(true);
-                    player1_answers.get(i).setBorderPainted(false);
+                    player1_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
 
                 }
 
             }
 
             player1Panel.add(player1_answers.get(i));
-            player1_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player1_answers.get(i).setMaximumSize(new Dimension(35,10));
+            util.setSizeButton( player1_answers.get(i), 35,10,35,10);
 
         }
 
@@ -186,22 +147,19 @@ public class GamePage_result extends JFrame implements ActionListener {
 
                     player2_answers.get(i).setBackground(Color.RED);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
 
                 }else {
 
                     player2_answers.get(i).setBackground(Color.GREEN);
                     player2_answers.get(i).setOpaque(true);
-                    player2_answers.get(i).setBorderPainted(false);
-
+                    player2_answers.get(i).setBorder(new LineBorder(new Color(51, 133, 255)));
                 }
 
             }
 
             player2Panel.add(player2_answers.get(i));
-            player2_answers.get(i).setPreferredSize(new Dimension(35,10));
-            player2_answers.get(i).setMaximumSize(new Dimension(35,10));
-
+            util.setSizeButton(player2_answers.get(i), 35,10,35,10);
         }
 
         if (pro.getRound() >= 1){
@@ -209,86 +167,66 @@ public class GamePage_result extends JFrame implements ActionListener {
             for (int i = 0; i < pro.getRoundCategories().size(); i++) {
 
                 labelNames.get(i).setText(pro.roundCategories.get(i));
-                labelNames.get(i).setFont(new Font("Arial", Font.PLAIN, 10));
-                labelNames.get(i).setBackground( new Color(51, 133, 255));
-                labelNames.get(i).setForeground(Color.WHITE);
-                labelNames.get(i).setOpaque(true);
+                util.labelSetFontForegBackg_white(labelNames.get(i),0,18,51,133,255);
                 labelNames.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 
             }
 
         }
-
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
-        stats.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(stats);
         stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
+
         stats.add(playerName1);
-        stats.add(Box.createRigidArea(new Dimension(20, 40)));
-        stats.add(playerName2);
-        playerName1.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName1.setForeground(Color.WHITE);
-        playerName1.setBackground(new Color(0, 51, 204));
-        playerName1.setOpaque(true);
-        playerName1.setPreferredSize(new Dimension(150, 40));
+        util.buttonSetFontForegBackg_white(playerName1,0,14,0,51,204);
+        util.setSizeButton(playerName1,150,40,150,40);
         playerName1.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        playerName2.setFont(new Font("Arial", Font.PLAIN, 14));
-        playerName2.setForeground(Color.WHITE);
-        playerName2.setBackground(new Color(191, 64, 191));
-        playerName2.setOpaque(true);
-        playerName2.setPreferredSize(new Dimension(150, 40));
+        stats.add(Box.createRigidArea(new Dimension(20, 40)));
+        stats.add(playerName2);
+        util.buttonSetFontForegBackg_white(playerName2,0,14,191,64,191);
+        util.setSizeButton(playerName2,150,40,150,40);
         playerName2.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         add(player1Panel);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 2));
-        player1Panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(player1Panel);
 
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds()+1, 1));
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 2));
-        categoriepanel.setBackground(new Color(51, 133, 255));
+        categoriepanel.setBorder(BorderFactory.createEmptyBorder(20, 2, 0, 2));
+        util.setMainBackground(categoriepanel);
 
         add(player2Panel);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions()+1));
         player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20));
-        player2Panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(player2Panel);
 
         add(lowestPanel);
-        lowestPanel.setLayout(new BoxLayout(lowestPanel, BoxLayout.Y_AXIS));
-        lowestPanel.setBackground(new Color(51, 133, 255));
-        lowestPanel.add(info);
-        info.setForeground(new Color(51, 133, 255));
-        info.setFont(new Font("Arial", Font.ITALIC, 16));
+        lowestPanel.setLayout(new BorderLayout());
+        util.setMainBackground(lowestPanel);
+
+        lowestPanel.add(info, BorderLayout.NORTH);
+        util.buttonSetFontForeg(info,2,16,51,133,255);
         info.setContentAreaFilled(false);
         info.setBorderPainted(false);
         info.setOpaque(false);
-        info.setPreferredSize(new Dimension(350,180));
-        info.setMaximumSize(new Dimension(350,200));
-        lowestPanel.add(play);
-        lowestPanel.add(closeGame);
-        Border line = new LineBorder(new Color(128, 255, 128));
-        Border margin = new EmptyBorder(5, 151, 5, 151);
-        Border compound = new CompoundBorder(line, margin);
-        play.setBorder(compound);
-        play.setBackground(new Color(77, 255, 77));
-        play.setForeground(Color.WHITE);
-        play.setFont(new Font("Arial", Font.PLAIN, 16));
-        play.setOpaque(true);
+        util.setSizeButton(info,350,180,350,180);
 
-        closeGame.setBorder(compound);
-        closeGame.setBackground(new Color(77, 255, 77));
-        closeGame.setForeground(Color.WHITE);
-        closeGame.setFont(new Font("Arial", Font.PLAIN, 16));
-        closeGame.setOpaque(true);
-        closeGame.setBorderPainted(false);
+        lowestPanel.add(play, BorderLayout.WEST);
+        Border compound = util.setCompoundBorder(128,255,128,5,45,5,45);
+        play.setBorder(compound);
+        util.buttonSetFontForegBackg_white(play,0,16,77,255,77);
+
+        lowestPanel.add(closeGame, BorderLayout.EAST);
+        Border compound2 = util.setCompoundBorder(255, 77, 77,5,50,5,50);
+        closeGame.setBorder(compound2);
+        util.buttonSetFontForegBackg_white(closeGame,0,16,255, 77, 77);
 
         playerName1.setText(pro.getName());
-
-        playerName1.setMaximumSize(new Dimension(150, 40));
-        playerName2.setMaximumSize(new Dimension(150, 40));
 
         Container contentPane = getContentPane();
         contentPane.add(stats, BorderLayout.NORTH);

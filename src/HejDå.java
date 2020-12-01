@@ -4,14 +4,14 @@ import java.awt.*;
 
 public class HejDå extends JFrame {
 
+    GUI_Util util = new GUI_Util();
+
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
     JButton ok = new JButton("OK");
 
-    String winnerPic = "src/Pictures/Winner.jpg";
-    String loserPic = "src/Pictures/Loser.jpg";
-    JLabel winner = new JLabel(new ImageIcon(winnerPic));
-    JLabel loser = new JLabel(new ImageIcon(loserPic));
+    String byePic = "src/Pictures/Bye.jpg";
+    JLabel bye = new JLabel(new ImageIcon(byePic));
 
     Player pro;
     public HejDå(Player p, Player player2) {
@@ -19,31 +19,21 @@ public class HejDå extends JFrame {
         pro = p;
         add(panel);
         panel.setLayout(new BorderLayout());
-        panel.setBackground( new Color(51, 133, 255));
+        util.setMainBackground(panel);
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
+
         panel.add(label, BorderLayout.NORTH);
         label.setText("Hej då!");
-        label.setFont(new Font("Arial", Font.PLAIN, 18));
+        util.labelSetFontForegBackg_white(label,0,18,0,51,204);
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setForeground(Color.WHITE);
-        label.setBackground(new Color(0, 51, 204));
-        label.setOpaque(true);
-        label.setBorder(new EmptyBorder(10, 10, 10, 10));
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        panel.add(winner, BorderLayout.CENTER);
-
-        //TODO LÄGG TILL BILD PÅ HEJ DÅ!!!
-
+        panel.add(bye, BorderLayout.CENTER);
 
         panel.add(ok, BorderLayout.SOUTH);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
-        ok.setBackground(new Color(77, 255, 77));
-        ok.setForeground(Color.WHITE);
-        ok.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        ok.setOpaque(true);
-        ok.setBorderPainted(false);
+        util.buttonSetFontForegBackg_white(ok,0,16,77,255,77);
 
         setSize(350, 500);
         setLocationRelativeTo(null);
