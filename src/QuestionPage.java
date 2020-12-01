@@ -22,6 +22,16 @@ import java.util.List;
  */
 public class QuestionPage extends JFrame implements ActionListener {
 
+    final String animalNatureName = "Djur & natur";
+    final String artLiteratureName = "Konst & literatur";
+    final String generalKnowledgeName = "Allmän kunskap";
+    final String mathName = "Matte";
+    final String musicName = "Musik";
+    final String popCultureName = "Pop Kultur";
+    final String sportsName = "Idrott";
+    final String technologyName = "Teknologi";
+    final String tvShowsName = "TV-show";
+
     GUI_Util util = new GUI_Util();
 
     boolean clicked = false;
@@ -234,15 +244,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         jb.setBackground(null);
     }
 
-    final String animalNatureName = "Djur & natur";
-    final String artLiteratureName = "Konst & literatur";
-    final String generalKnowledgeName = "Allmän kunskap";
-    final String mathName = "Matte";
-    final String musicName = "Musik";
-    final String popCultureName = "Pop Kultur";
-    final String sportsName = "Idrott";
-    final String technologyName = "Teknologi";
-    final String tvShowsName = "TV-show";
+
 
 
     public List<Questions> findList(String categoryName) {
@@ -368,7 +370,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
-    public Player endGame(Player p) {
+    public Player lastAnswerCheck(Player p) {
 
         pro = p;
 

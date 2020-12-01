@@ -158,7 +158,7 @@ public class ClientToSend implements Serializable {
 
             player1.setClicked(false);
             player1 = questionPageWithChosenCategory.addPoints(player1);
-            player1 = questionPageWithChosenCategory.endGame(player1);
+            player1 = questionPageWithChosenCategory.lastAnswerCheck(player1);
 
         }
 
@@ -178,7 +178,7 @@ public class ClientToSend implements Serializable {
 
             player1.setClicked(false);
             player1 = questionPageWithoutChoosingCategory.addPoints(player1);
-            player1 = questionPageWithoutChoosingCategory.endGame(player1);
+            player1 = questionPageWithoutChoosingCategory.lastAnswerCheck(player1);
 
         }
 
