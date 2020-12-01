@@ -13,7 +13,7 @@ import java.net.Socket;
  */
 public class ServerListener extends Thread implements Serializable {
 
-    private ServerSocket serverSocket;
+    private final ServerSocket serverSocket;
 
     ServerListener() throws IOException {
         serverSocket = ServerSocketFactory.getDefault().createServerSocket(7777);

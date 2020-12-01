@@ -12,8 +12,8 @@ import java.io.Serializable;
 
 public class Questions implements Serializable {
 
-    private String question;
-    private Answers answers;
+    private final String question;
+    private final Answers answers;
 
     public Questions(String question, Answers answers) {
 

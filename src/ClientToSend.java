@@ -202,7 +202,7 @@ public class ClientToSend implements Serializable {
 
     }
 
-    public static void startRound() throws InterruptedException, IOException {
+    public static void startRound() throws InterruptedException{
         GamePage_play gamePage_play = new GamePage_play(player1, player2);
 
         player1.setClicked(false);

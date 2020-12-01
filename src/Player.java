@@ -278,9 +278,8 @@ public class Player implements Serializable {
      * @param temp
      * @return
      */
-    public List<Boolean> changeList(List<Boolean> temp) {
+    public void changeList(List<Boolean> temp) {
         answers = temp;
-        return answers;
     }
 
 

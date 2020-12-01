@@ -61,10 +61,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
     Player playerLocal;
 
-
-    String cat1 = "";
-    String cat2 = "";
-    String cat3 = "";
+    String category1Name;
+    String category2Name;
+    String category3Name;
 
 
     public CategoryPage(Player player) {
@@ -80,9 +79,9 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         getCategoryText();
 
-        cat1 = category1.getText();
-        cat2 = category2.getText();
-        cat3 = category3.getText();
+        category1Name = category1.getText();
+        category2Name = category2.getText();
+        category3Name = category3.getText();
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         util.setMainBackground(panel);
@@ -200,7 +199,7 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This method makes sure to set the correct category in the right button.
      *
-     * @param categoryText
+     *
      */
 
     public void setCategoryText(String categoryText) {
@@ -229,7 +228,7 @@ public class CategoryPage extends JFrame implements ActionListener {
     /**
      * This method creates 3 random numbers that is used for the selection of categories.
      *
-     * @return
+     *
      */
 
     public void uniqueRandomNumber() {
@@ -284,15 +283,15 @@ public class CategoryPage extends JFrame implements ActionListener {
 
         if (category1Clicked) {
 
-            playerLocal.addToList(cat1);
+            playerLocal.addToList(category1Name);
 
         } else if (category2Clicked) {
 
-            playerLocal.addToList(cat2);
+            playerLocal.addToList(category2Name);
 
         } else if (category3Clicked) {
 
-            playerLocal.addToList(cat3);
+            playerLocal.addToList(category3Name);
 
         }
 

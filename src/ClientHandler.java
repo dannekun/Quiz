@@ -10,8 +10,8 @@ import java.net.Socket;
  */
 public class ClientHandler extends Thread implements Serializable {
 
-    private Socket player1Socket;
-    private Socket player2Socket;
+    private final Socket player1Socket;
+    private final Socket player2Socket;
 
     Player player1 = new Player();
     Player player2 = new Player();
