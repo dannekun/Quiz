@@ -50,7 +50,7 @@ public class LoginGUI extends JFrame implements ActionListener {
 
         panel.add(login);
         util.buttonSetFontForegBackg_white(login,0,12,71,71,209);
-        util.setSizeButton(login,90,40,90,40);
+        util.setSizeButton(login,100,40,100,40);
         panel.add(Box.createRigidArea(new Dimension(100, 170)));
 
         util.alignComponentsCenter(user,userText,login);
