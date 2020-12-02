@@ -143,6 +143,7 @@ public class QuestionPage extends JFrame implements ActionListener {
     }
 
     public void createButtonAndPaint() {
+
         for (int i = 0; i < player1Local.getMaxQuestion(); i++) {
             buttonsToPaintList.add(new JButton());
         }

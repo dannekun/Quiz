@@ -68,7 +68,7 @@ public class GamePage_waiting extends JFrame {
     public List<JLabel> createLabelList(int numberOfRounds) {
         List<JLabel> labelList = new ArrayList<>();
         for (int i = 0; i < numberOfRounds; i++) {
-            labelList.add(new JLabel("Cat"));
+            labelList.add(new JLabel(""));
         }
         return labelList;
     }
