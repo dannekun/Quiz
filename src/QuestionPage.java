@@ -79,7 +79,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
         add(north);
-        north.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));
+        north.setBorder(new EmptyBorder(10, 10, 10, 0));
         util.setMainBackground(north);
         for (JButton jButton : buttonsToPaintList) {
             north.add(jButton);
@@ -90,7 +90,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         player.setBorder(new EmptyBorder(10, 30, 10, 30));
 
         add(south);
-        south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        south.setBorder(new EmptyBorder(10, 10, 10, 10));
         south.setLayout(new GridLayout(8, 1));
         util.setMainBackground(south);
 

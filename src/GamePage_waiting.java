@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.io.FileInputStream;
@@ -96,7 +97,7 @@ public class GamePage_waiting extends JFrame {
         add(stats);
         stats.setLayout(new BoxLayout(stats, BoxLayout.LINE_AXIS));
         util.setMainBackground(stats);
-        stats.setBorder(BorderFactory.createEmptyBorder(30, 10, 30, 10));
+        stats.setBorder(new EmptyBorder(30, 10, 30, 10));
 
         stats.add(playerName1);
         util.buttonSetFontForegBackg_white(playerName1, 0, 14, 0, 51, 204);
@@ -111,17 +112,17 @@ public class GamePage_waiting extends JFrame {
 
         add(player1Panel);
         player1Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions() + 1));
-        player1Panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 2));
+        player1Panel.setBorder(new EmptyBorder(10, 20, 10, 2));
         util.setMainBackground(player1Panel);
 
         add(categoriepanel);
         categoriepanel.setLayout(new GridLayout(getNumberOfRounds() + 1, 1));
-        categoriepanel.setBorder(BorderFactory.createEmptyBorder(20, 2, 0, 2));
+        categoriepanel.setBorder(new EmptyBorder(20, 2, 0, 2));
         util.setMainBackground(categoriepanel);
 
         add(player2Panel);
         player2Panel.setLayout(new GridLayout(getNumberOfRounds(), getNumberOfQuestions() + 1));
-        player2Panel.setBorder(BorderFactory.createEmptyBorder(10, 2, 10, 20));
+        player2Panel.setBorder(new EmptyBorder(10, 2, 10, 20));
         util.setMainBackground(player2Panel);
 
         add(lowestPanel);

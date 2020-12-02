@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,7 @@ public class LoginGUI extends JFrame implements ActionListener {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         util.setMainBackground(panel);
         panel.add(Box.createRigidArea(new Dimension(100, 80)));
-        panel.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        panel.setBorder(new EmptyBorder(50, 50, 50, 50));
 
         panel.add(user);
         util.labelSetFontForeg(user,"Arial",0,18,255,255,255);
