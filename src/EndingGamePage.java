@@ -4,20 +4,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ResultPage extends JFrame implements ActionListener {
+public class EndingGamePage extends JFrame implements ActionListener {
 
     GUI_Util util = new GUI_Util();
 
     JPanel panel = new JPanel();
     JLabel label = new JLabel();
     JButton ok = new JButton("OK");
-
-    String winnerPic = "src/Pictures/Winner.jpg";
-    String loserPic = "src/Pictures/Loser.jpg";
-    String drawPic = "src/Pictures/Equal.jpg";
-    JLabel winner = new JLabel(new ImageIcon(winnerPic));
-    JLabel loser = new JLabel(new ImageIcon(loserPic));
-    JLabel draw = new JLabel(new ImageIcon(drawPic));
 
     boolean clicked = false;
 
@@ -29,40 +22,33 @@ public class ResultPage extends JFrame implements ActionListener {
         this.clicked = clicked;
     }
 
+    String importPath = "src/Pictures/Bye.jpg";
+    JLabel endingImage = new JLabel(new ImageIcon(importPath));
+
     Player player1Local;
 
-    public ResultPage(Player player1, Player player2) {
+    public EndingGamePage(Player player) {
 
-        player1Local = player1;
+        player1Local = player;
 
         add(panel);
-
         panel.setLayout(new BorderLayout());
         util.setMainBackground(panel);
         panel.setBorder(new EmptyBorder(50, 30, 20, 30));
 
         panel.add(label, BorderLayout.NORTH);
-        label.setText(player1Local.getName() + " fick " + player1Local.getPoints() + " poäng!");
+        label.setText("Hej då!");
         util.labelSetFontForegBackg_white(label,0,18,0,51,204);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         label.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-
-        if(player1Local.getPoints() > player2.getPoints()){
-            panel.add(winner, BorderLayout.CENTER);
-        }else if (player1Local.getPoints() < player2.getPoints()){
-            panel.add(loser, BorderLayout.CENTER);
-        }else if (player1Local.getPoints() == player2.getPoints()){
-            panel.add(draw, BorderLayout.CENTER);
-        }
+        panel.add(endingImage, BorderLayout.CENTER);
 
         panel.add(ok, BorderLayout.SOUTH);
-        util.buttonSetFontForegBackg_white(ok,0,16,77,255,77);
         ok.setHorizontalAlignment(SwingConstants.CENTER);
-
+        util.buttonSetFontForegBackg_white(ok,0,16,77,255,77);
         ok.addActionListener(this);
-
 
         setSize(350, 500);
         setLocationRelativeTo(null);

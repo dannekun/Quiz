@@ -1,5 +1,3 @@
-import QuestionsHandler.Categories.*;
-import QuestionsHandler.Categories.Math;
 import QuestionsHandler.Questions;
 
 import javax.swing.*;
@@ -20,29 +18,9 @@ import java.util.List;
  * Project: Quizkampen
  * Copyright: MIT
  */
-public class QuestionPage extends JFrame implements ActionListener {
-
-    final String animalNatureName = "Djur & natur";
-    final String artLiteratureName = "Konst & literatur";
-    final String generalKnowledgeName = "Allmän kunskap";
-    final String mathName = "Matte";
-    final String musicName = "Musik";
-    final String popCultureName = "Pop Kultur";
-    final String sportsName = "Idrott";
-    final String technologyName = "Teknologi";
-    final String tvShowsName = "TV-show";
+public class QuestionPage_NotChoseCat extends JFrame implements ActionListener {
 
     GUI_Util util = new GUI_Util();
-
-    boolean clicked = false;
-
-    public boolean isClicked() {
-        return clicked;
-    }
-
-    public void setClicked(boolean clicked) {
-        this.clicked = clicked;
-    }
 
     List<JButton> buttonsToPaintList = new ArrayList<>();
 
@@ -62,28 +40,27 @@ public class QuestionPage extends JFrame implements ActionListener {
     JPanel south = new JPanel();
 
     Player player1Local;
-    List<Questions> randomListToPull = new ArrayList<>();
+    Player player2Local;
+    List<Questions> randomListToPull;
     List<String> randomAnswerList;
 
     String rightAnswerFromList;
 
 
-    public QuestionPage(Player player1) {
-
+    public QuestionPage_NotChoseCat(Player player1, Player player2) {
 
         player1Local = player1;
 
-        randomListToPull.clear();
+        player2Local = player2;
 
         generateUI();
-
 
         add(north);
         north.setBorder(new EmptyBorder(10, 10, 10, 0));
         util.setMainBackground(north);
-        for (JButton jButton : buttonsToPaintList) {
-            north.add(jButton);
-            util.setSizeButton(jButton, 30, 30, 30, 30);
+        for (JButton button : buttonsToPaintList) {
+            north.add(button);
+            util.setSizeButton(button, 30, 30, 30, 30);
         }
         north.add(player);
         util.labelSetFontForegBackg_white(player, 0, 14, 0, 51, 204);
@@ -133,7 +110,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         setSize(350, 500);
         setLocationRelativeTo(null);
         setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         answer1.addActionListener(this);
         answer2.addActionListener(this);
@@ -142,9 +119,25 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     }
 
+    public void generateUI() {
+        round.setText(("Rond " + player1Local.getRound()));
+        questionNumber.setText("Fråga " + (player1Local.getQuestion() + 1));
+
+        player.setText(player1Local.getName());
+        selectQuestionObject();
+        setButtonText(randomAnswerList, answer1, answer2, answer3, answer4);
+
+
+        category.setText(player2Local.getRoundCategories().get(player1Local.getRound() - 1));
+
+        createButtonAndPaint();
+
+    }
+
     public void createButtonAndPaint() {
 
         for (int i = 0; i < player1Local.getMaxQuestion(); i++) {
+
             buttonsToPaintList.add(new JButton());
         }
 
@@ -160,7 +153,6 @@ public class QuestionPage extends JFrame implements ActionListener {
                 } else if (player1Local.getRoundAnswers().get(i)) {
 
                     paintGreen(buttonsToPaintList.get(i));
-
                 }
 
             }
@@ -168,37 +160,30 @@ public class QuestionPage extends JFrame implements ActionListener {
         } else if (player1Local.getQuestion() == 0) {
 
             for (int i = 0; i < player1Local.getMaxQuestion(); i++) {
-                resetPaint(buttonsToPaintList.get(i));
 
+                resetPaint(buttonsToPaintList.get(i));
             }
 
         }
+
+
     }
 
     public void selectQuestionObject() {
-        randomListToPull = findList(player1Local.getRoundCategories().get(player1Local.getRound() - 1));
 
-        Collections.shuffle(randomListToPull);
 
-        if (player1Local.currentQuestion.isEmpty()) {
-            question.setText(randomListToPull.get(0).getQuestion());
-            player1Local.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
+        randomListToPull = player2Local.getQuestionToPassBetweenPlayers();
 
-            player1Local.addQuestionBetweenPlayers(randomListToPull.get(0));
-        } else {
-            randomListToPull = findQuestion(randomListToPull, player1Local.getCurrentQuestion());
 
-            question.setText(randomListToPull.get(0).getQuestion());
+        int correctNumberToChoose = ((player1Local.getRound() * player1Local.getMaxQuestion()) - player1Local.getMaxQuestion()) + (player1Local.getQuestion());
 
-            player1Local.addQuestionToCurrentList(randomListToPull.get(0).getQuestion());
-            player1Local.addQuestionBetweenPlayers(randomListToPull.get(0));
-        }
-
-        randomAnswerList = randomListToPull.get(0).getAnswerObject().getAnswersList();
-
-        rightAnswerFromList = randomListToPull.get(0).getAnswerObject().getRightAnswer();
+        randomAnswerList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getAnswersList();
+        rightAnswerFromList = randomListToPull.get(correctNumberToChoose).getAnswerObject().getRightAnswer();
 
         Collections.shuffle(randomAnswerList);
+
+        question.setText(randomListToPull.get(correctNumberToChoose).getQuestion());
+
     }
 
     public void setButtonText(List<String> listToPullFrom, JButton button1, JButton button2, JButton button3, JButton button4) {
@@ -208,26 +193,6 @@ public class QuestionPage extends JFrame implements ActionListener {
         button4.setText(listToPullFrom.get(3));
 
     }
-
-    public void generateUI() {
-
-        round.setText(("Rond " + player1Local.getRound()));
-        questionNumber.setText("Fråga " + (player1Local.getQuestion() + 1));
-
-        player.setText(player1Local.getName());
-
-        selectQuestionObject();
-
-        setButtonText(randomAnswerList, answer1, answer2, answer3, answer4);
-
-        category.setText(player1Local.getRoundCategories().get(player1Local.getRoundCategories().size() - 1));
-
-
-        createButtonAndPaint();
-
-
-    }
-
 
     public void paintRed(JButton jb) {
         jb.setBackground(Color.RED);
@@ -243,25 +208,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
     public void resetPaint(JButton jb) {
         jb.setBackground(null);
-    }
-
-
-
-
-    public List<Questions> findList(String categoryName) {
-
-        return switch (categoryName) {
-            case animalNatureName -> new AnimalsNature().getAnimalsNatureList();
-            case artLiteratureName -> new ArtLiterature().getArtLiteratureList();
-            case generalKnowledgeName -> new GeneralKnowledge().getGeneralKnowledgeList();
-            case mathName -> new Math().getMathList();
-            case musicName -> new Music().getMusicList();
-            case popCultureName -> new PopCulture().getPopCultureList();
-            case sportsName -> new Sports().getSportsList();
-            case technologyName -> new Technology().getTechnologyList();
-            case tvShowsName -> new TVShows().getTvShowsList();
-            default -> null;
-        };
     }
 
     public Boolean checkAnswers(String a) {
@@ -290,29 +236,25 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
     }
 
-    public List<Questions> findQuestion(List<Questions> questionListToFind, List<String> listToCompareWith) {
-        boolean found = false;
-        List<Questions> questionsToUse = new ArrayList<>();
-        for (Questions questions : questionListToFind) {
-            for (String s : listToCompareWith) {
-                if (questions.getQuestion().equals(s)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                questionsToUse.add(questions);
-            }
-            found = false;
-        }
-        Collections.shuffle(questionsToUse);
-        return questionsToUse;
-    }
+    public void checkAnswerAndPaint(JButton buttonToPaint, int buttonNumber) {
 
+        if (!checkAnswers(randomAnswerList.get(buttonNumber))) {
+            buttonToPaint.setBackground(Color.RED);
+            player1Local.setClickedRightAnswer(false);
+
+
+        } else if (checkAnswers(randomAnswerList.get(buttonNumber))) {
+            buttonToPaint.setBackground(Color.GREEN);
+            player1Local.setClickedRightAnswer(true);
+        }
+        buttonToPaint.setOpaque(true);
+        buttonToPaint.setBorder(new LineBorder(new Color(51, 133, 255)));
+        player1Local.setClicked(true);
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        player1Local.setClickedRightAnswer(false);
 
         if (e.getSource() == answer1) {
 
@@ -334,25 +276,6 @@ public class QuestionPage extends JFrame implements ActionListener {
 
         findRightAnswerAndPaint(answer1, answer2, answer3, answer4, rightAnswerFromList);
 
-
-    }
-
-    public void checkAnswerAndPaint(JButton buttonToPaint, int buttonNumber) {
-
-        if (!checkAnswers(randomAnswerList.get(buttonNumber))) {
-            buttonToPaint.setBackground(Color.RED);
-            player1Local.setClickedRightAnswer(false);
-
-
-        } else if (checkAnswers(randomAnswerList.get(buttonNumber))) {
-            buttonToPaint.setBackground(Color.GREEN);
-            player1Local.setClickedRightAnswer(true);
-        }
-        buttonToPaint.setOpaque(true);
-        buttonToPaint.setBorder(new LineBorder(new Color(51, 133, 255)));
-        player1Local.setClicked(true);
-        setClicked(true);
-
     }
 
     public void checkAnswerAndAddToList() {
@@ -370,6 +293,7 @@ public class QuestionPage extends JFrame implements ActionListener {
 
 
     }
+
 
     public Player lastAnswerCheck(Player p) {
 
@@ -419,6 +343,7 @@ public class QuestionPage extends JFrame implements ActionListener {
         }
         return player1Local;
     }
+
 
     public Player findClickPlay() {
         answer1.addActionListener(this);
